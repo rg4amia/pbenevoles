@@ -297,6 +297,12 @@
                                                     <div class="form-group">
                                                          <input type="text" name="siteweb" class="required form-control" placeholder="Site web">
                                                     </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Téléphone du répondant">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Email du répondant">
+                                                    </div>
                                                    
                                                 </div><!-- /col-sm-6 -->
 
@@ -310,42 +316,129 @@
                                                     <div class="form-group">
                                                          <input type="text" name="nom_repondant" class="required form-control" placeholder="Nom du répondant">
                                                     </div>
-                                                    
-                                                </div><!-- /col-sm-6 -->
-
-                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                          <input type="text" name="prenom_repondant" class="required form-control" placeholder="Prenoms du répondant">
                                                     </div>
                                                     <div class="form-group">
                                                          <input type="text" name="" class="required form-control" placeholder="Fonction du répondant dans l’organisation">
                                                     </div>
-                                                    <div class="form-group">
-                                                         <input type="text" name="" class="required form-control" placeholder="Téléphone du répondant">
-                                                    </div>
+                                                    
                                                 </div><!-- /col-sm-6 -->
 
-                                                <div class="col-sm-6">
+                                
+                                                <div class="col-sm-12">
                                                     <div class="form-group">
-                                                         <input type="text" name="" class="required form-control" placeholder="Email du répondant">
+                                                        <h4>Domaine(s) d’intervention (plusieurs choix possibles) </h4>
+
+                                                        <div class="row add_bottom_30">
+                                                   
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Custom interface and layout" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Education / Formation
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Web site design" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Santé communautaire
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Seo optimization" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Assainissement/Environnement
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Promotion des droits humains
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                     
-                                                    <div class="form-group">
-                                                        <div class="styled-select">
-                                                            <select class="required" name="">
-                                                                <option value="" selected>Domaine(s) d’intervention (plusieurs choix possibles) </option>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="CMS integrations (Wordpress)" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Agriculture
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Domain registration" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Appui aux organisations de base
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Développement communautaire
+                                                            </label>
+                                                        </div>
 
-                                                            </select>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Autre :
+                                                            </label>
                                                         </div>
+                                                        
                                                     </div>
+                                                </div>    
+                                                </div>
+                                                </div>
+                                                
+                                                <div class="col-sm-12">
                                                     <div class="form-group">
-                                                        <div class="styled-select">
-                                                            <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Population cible (plusieurs choix possibles)</option>
-                                                                
-                                                            </select>
+                                                        <h4>Population cible (plusieurs choix possibles) </h4>
+
+                                                        <div class="row add_bottom_30">
+                                                   
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Custom interface and layout" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Population générale
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Web site design" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Hommes
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Seo optimization" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Femmes
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Jeunes
+                                                            </label>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="CMS integrations (Wordpress)" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Enfants
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Domain registration" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Personnes âgées
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Personnes vivant avec un handicap
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-group checkbox_questions">
+                                                            <label class="">
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Autre :
+                                                            </label>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>    
+                                                </div>
+                                                </div>
                                                     
                                                 </div><!-- /col-sm-6 -->
 

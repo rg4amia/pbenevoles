@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 //prefix('inscription')->name('inscription.')->
 Route::controller(BenevoleController::class)->group(function () {
-    Route::post('/', 'index')->name('index');
-    Route::get('/inscription', 'store')->name('store');
+    Route::get('/', 'index')->name('index');
+    Route::post('/inscription', 'store')->name('store');
 });
 
 

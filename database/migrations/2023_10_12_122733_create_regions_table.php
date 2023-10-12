@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
+            $table->string('libelle')->nullable();
+            $table->unsignedBigInteger('district_id');
+            $table->foreign('district_id')->references('id')->on('districts');
             $table->timestamps();
         });
     }

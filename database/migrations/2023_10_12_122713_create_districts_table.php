@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
+            $table->string('libelle')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

@@ -64,17 +64,21 @@ return new class extends Migration
             $table->string('niveau_scolaire')->nullable();
             $table->string('preciser_niveau_scolaire')->nullable();
 
+            $table->unsignedBigInteger('niveau_scolaire_id');
+            $table->foreign('niveau_scolaire_id')->references('id')->on('niveau_scolaires');
+
             $table->unsignedBigInteger('diplome_id');
             $table->foreign('diplome_id')->references('id')->on('diplomes');
+            $table->string('preciser_diplome')->nullable();
 
             $table->unsignedBigInteger('situation_professionel_id');
-            $table->foreign('situation_professionel_id')->references('id')->on('situation_professionel_id');
+            $table->foreign('situation_professionel_id')->references('id')->on('situation_professionels');
 
             $table->string('preciser_travail')->nullable();
 
             $table->boolean('membre_association')->default(false);
             $table->string('preciser_association')->nullable();
-            $table->string('domaine_association')->nullable();
+            $table->string('domaine_intervention_asso')->nullable();
 
             $table->timestamps();
         });

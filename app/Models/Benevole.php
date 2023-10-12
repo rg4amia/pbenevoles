@@ -11,8 +11,6 @@ class Benevole extends Model
 {
     use HasFactory,HasUuids;
 
-
-
     protected $dispatchesEvents = [
         'saved' => BenevoleSaved::class,
     ];

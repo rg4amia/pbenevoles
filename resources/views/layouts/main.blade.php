@@ -9,11 +9,11 @@
     <title>FORMULAIRE D’INSCRIPTION AU PROGRAMME BENEVOLE CAN 2023</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/img/apple-touch-icon-57x57-precomposed.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/img/apple-touch-icon-72x72-precomposed.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('assets/img/apple-touch-icon-114x114-precomposed.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('assets/img/apple-touch-icon-144x144-precomposed.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo-oscn.png') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/img/logo-oscn.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/img/logo-oscn.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('assets/img/logo-oscn.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('assets/img/logo-oscn.png') }}">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -24,14 +24,13 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
-
 </head>
-
 <body>
 
 <div id="loader_form">
     <div data-loader="circle-side-2"></div>
-</div><!-- /Loader_form -->
+</div>
+<!-- /Loader_form -->
 
 @include('layouts.header')
 

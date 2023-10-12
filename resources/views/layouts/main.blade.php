@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('assets/img/apple-touch-icon-144x144-precomposed.png') }}">
 
     <!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <!-- BASE CSS -->
     @include('layouts.styles')

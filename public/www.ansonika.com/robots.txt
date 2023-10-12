@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /forum/
+Disallow: /test/
+Crawl-delay: 10

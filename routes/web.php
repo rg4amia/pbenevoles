@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('inscription')->name('inscription.')->controller(BenevoleController::class)->group(function () {
+//prefix('inscription')->name('inscription.')->
+Route::controller(BenevoleController::class)->group(function () {
     Route::post('/', 'index')->name('index');
     Route::get('/inscription', 'store')->name('store');
 });

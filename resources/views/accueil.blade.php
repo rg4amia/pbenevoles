@@ -23,27 +23,19 @@
                                     <!-- <div id="progressbar"></div> -->
                                 </div><!-- /top-wizard-->
 
-                                <form name="example-1" id="wrapped" method="POST">
+                                <div class="form-group">
+                                   <div class="styled-select">
+                                        <select class="required" name="country" onchange="displayform(this.value)">
+                                            <option value="" selected>Type inscription</option>
+                                            <option value="1">Association / Structure</option>
+                                            <option value="2">Particulier</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <form  id="particulier" method="POST" style="display: block;">
                                     <input id="website" name="website" type="text" value=""><!-- Leave for security protection, read docs for details -->
                                     <div id="middle-wizard">
-                                        <div class="step">
-                                            <h3 class="main_question"><strong></strong></h3>
-
-                                            <div class="form-group radio_questions">
-                                                <label>Association / Structure
-                                                    <input name="question_1" type="radio" value="My budget is under $500" class="icheck required">
-                                                </label>
-                                            </div>
-                                            <div class="form-group radio_questions">
-                                                <label>Particulier
-                                                    <input name="question_1" type="radio" value="My budget is between $500 and $1000" class="icheck required">
-                                                </label>
-                                            </div>
-                                            
-                                        </div><!-- /step 1-->
-
-                                        <div class="step">
-                                            <h3 class="main_question"><strong>2/4</strong>What your poject need?</h3>
 
                                             <div class="row add_bottom_30">
 
@@ -245,12 +237,171 @@
 
                                             </div><!-- /row-->
                                             
-                                        </div><!-- /step 2-->
+                                       
 
                                     </div><!-- /middle-wizard -->
                                     <div id="bottom-wizard">
-                                        <button type="button" name="backward" class="backward">Backward </button>
-                                        <button type="button" name="forward" class="forward">Forward</button>
+                                        <button type="submit" name="process" class="submit">Submit</button>
+                                    </div><!-- /bottom-wizard -->
+                                </form>
+
+                                <form id="structure" method="POST" style="display: none;">
+                                    <input id="website" name="website" type="text" value=""><!-- Leave for security protection, read docs for details -->
+                                    <div id="middle-wizard">
+
+                                            <div class="row add_bottom_30">
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <input type="text" name="nom" class="form-control" placeholder="Nom">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="prenoms" class="required form-control" placeholder="N° d’enregistrement Pour les ONG et associations">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="prenoms" class="required form-control" placeholder="N° du texte de création Pour les structures et parapubliques">
+                                                    </div>
+                                                </div><!-- /col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <input type="text" name="statut_juridique" class="required form-control" placeholder="Statut juridique">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="styled-select">
+                                                            <select class="required" name="situationmatrimoniale">
+                                                                <option value="" selected>Région</option>
+                                                                <option value=""></option>
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="adresse_postal" class="required form-control" placeholder="Adresse postale">
+                                                    </div>
+                                                </div><!-- /col-sm-6 -->
+
+                                                 <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <div class="styled-select">
+                                                            <select class="required" name="situationmatrimoniale">
+                                                                <option value="" selected>Département</option>
+                                                                <option value=""></option>
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="email" name="email" class="required form-control" placeholder="Email">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="siteweb" class="required form-control" placeholder="Site web">
+                                                    </div>
+                                                   
+                                                </div><!-- /col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <input type="text" name="telephone" class="required form-control" placeholder="Téléphone">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="fax" class="required form-control" placeholder="Fax">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="nom_repondant" class="required form-control" placeholder="Nom du répondant">
+                                                    </div>
+                                                    
+                                                </div><!-- /col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                         <input type="text" name="prenom_repondant" class="required form-control" placeholder="Prenoms du répondant">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Fonction du répondant dans l’organisation">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Téléphone du répondant">
+                                                    </div>
+                                                </div><!-- /col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Email du répondant">
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="styled-select">
+                                                            <select class="required" name="">
+                                                                <option value="" selected>Domaine(s) d’intervention (plusieurs choix possibles) </option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="styled-select">
+                                                            <select class="required" name="situationmatrimoniale">
+                                                                <option value="" selected>Population cible (plusieurs choix possibles)</option>
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div><!-- /col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                         <input type="text" name="prenom_repondant" class="required form-control" placeholder="Effectif du Personnel">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Effectif Homme">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder=" Effectif Femme">
+                                                    </div>
+                                                </div><!-- /col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                         <input type="text" name="prenom_repondant" class="required form-control" placeholder="Effectif Salariés">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Effectif Contractuels">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Effectif Bénévoles">
+                                                    </div>
+                                                </div><!-- /col-sm-6 -->
+
+                                                 <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                         <input type="text" name="prenom_repondant" class="required form-control" placeholder="Montant du budget de l’année en cours">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Année 2019">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Année 2018">
+                                                    </div>
+                                                </div><!-- /col-sm-6 -->
+
+                                                <div class="col-sm-6">
+                                                    
+                                                    <div class="form-group">
+                                                         <input type="text" name="" class="required form-control" placeholder="Année 2017">
+                                                    </div>
+                                                    <div class="form-group">
+                                                         <input type="text" name="prenom_repondant" class="required form-control" placeholder=" Désirez-vous nous communiquer d’autres informations ? Si oui, les quelles ?">
+                                                    </div>
+                                                </div><!-- /col-sm-6 -->
+
+
+                                            </div><!-- /row-->
+                                            
+                                       
+
+                                    </div><!-- /middle-wizard -->
+                                    <div id="bottom-wizard">
                                         <button type="submit" name="process" class="submit">Submit</button>
                                     </div><!-- /bottom-wizard -->
                                 </form>
@@ -264,4 +415,23 @@
             </div><!-- /tab content -->
         </div><!-- /container-fluid -->
     </div>
+@endsection
+@section('js')
+
+<script type="text/javascript">
+    function displayform(form_id){
+         
+      if (form_id == 2) {
+            $("#particulier").css("display","block");
+            $("#structure").css("display","none");
+        
+                         }else{
+                            $("#particulier").css("display","none");
+                            $("#structure").css("display","block");
+
+                        }
+
+      } 
+</script>
+
 @endsection

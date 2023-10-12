@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Commune;
 use App\Models\Departement;
+use App\Models\Diplome;
 use App\Models\District;
 use App\Models\DomaineIntervention;
 use App\Models\Nationalite;
+use App\Models\NiveauScolaire;
 use App\Models\PopulationCible;
 use App\Models\Region;
 use App\Models\Sexe;
@@ -30,6 +32,8 @@ class BenevoleController extends Controller
         $departements = Departement::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $districts = District::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $nationnalites = Nationalite::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $niveauscolaires = NiveauScolaire::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $diplomes = Diplome::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
 
         //paramètre association bénévole
         $domaineinterventions = DomaineIntervention::pluck('libelle', 'id');
@@ -47,6 +51,8 @@ class BenevoleController extends Controller
             'populationcible' => $populationcibles,
             'domaineinterventions' => $domaineinterventions,
             'nationnalites' => $nationnalites,
+            'niveauscolaires' => $niveauscolaires,
+            'diplomes' => $diplomes,
 
         ]);
     }

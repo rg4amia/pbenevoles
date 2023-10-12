@@ -149,14 +149,15 @@
                                                     <label>Situation matrimoniale <span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="situationmatrimoniale">
+                                                        {{ html()->select('situation_matrimoniale_id', $situationmatrimonial, null)->class('required')->placeholder('Selectionner Situation')->id('situation_matrimoniale_id') }}
+                                                        {{--<select class="required" name="situationmatrimoniale">
                                                             <option value="" selected></option>
                                                             <option value="1">Célibataire</option>
                                                             <option value="2">En concubinage</option>
                                                             <option value="3">Marié(e)</option>
                                                             <option value="4">Divorcé</option>
                                                             <option value="5">Veuf(ve)</option>
-                                                        </select>
+                                                        </select>--}}
                                                     </div>
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -165,31 +166,24 @@
                                                 <div class="form-group">
                                                     <label>District<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="situationmatrimoniale">
-                                                            <option value="" selected></option>
-                                                            <option value=""></option>
-
-                                                        </select>
+                                                        {{ html()->select('district_id', $districts, null)->class('required')->placeholder('Selectionner districs')->id('district_id') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Région<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="situationmatrimoniale">
-                                                            <option value="" selected></option>
-                                                            <option value=""></option>
-
-                                                        </select>
+                                                        {{ html()->select('region_id', $regions, null)->class('required')->placeholder('Selectionner region')->id('region_id') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="situationmatrimoniale">
-                                                            <option value="" selected></option>
-                                                            <option value=""></option>
+                                                        {{ html()->select('departement_id', $regions, null)->class('required')->placeholder('Selectionner departement')->id('departement_id') }}
+                                                        {{-- <select class="required" name="situationmatrimoniale">
+                                                             <option value="" selected></option>
+                                                             <option value=""></option>
 
-                                                        </select>
+                                                         </select>--}}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -207,8 +201,8 @@
                                                         <select class="required" name=""
                                                                 onchange="precisehandicap(this.value)">
                                                             <option value=""></option>
-                                                            <option value="1">Handicap</option>
-                                                            <option value="2">Non handicap</option>
+                                                            <option value="1">OUI</option>
+                                                            <option value="2">NON</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -233,7 +227,9 @@
                                                 <div class="form-group" style="display:none;" id="preciseniveau">
                                                     <label>Niveau scolaire<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="">
+                                                        {{ html()->select('niveau_scolaire_id', $niveauscolaires, null)->class('required')->placeholder('Selectionner niveau scolaire')->id('niveau_scolaire_id') }}
+
+                                                        {{--<select class="required" name="">
                                                             <option value="" selected></option>
                                                             <option value="1">Cours primaire (CP1 au CP2)</option>
                                                             <option value="2">Cours élémentaire (CE1 au CE2)</option>
@@ -251,14 +247,15 @@
                                                             <option value="8">Université / Ecole supérieure</option>
                                                             <option value="9">Ecole coranique</option>
                                                             <option value="10">Autre</option>
-                                                        </select>
+                                                        </select>--}}
                                                     </div>
                                                 </div>
                                                 <div class="form-group" style="display:none;" id="precisediplome">
                                                     <label>Diplôme(s) obtenu(s)<span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="">
+                                                        {{ html()->select('diplome_id', $diplomes, null)->class('required')->placeholder('Selectionner diplôme')->id('diplome_id') }}
+                                                        {{--<select class="required" name="">
                                                             <option value="" selected></option>
                                                             <option value="">Aucun</option>
                                                             <option value="">CEPE</option>
@@ -270,8 +267,7 @@
                                                             <option value="">Licence</option>
                                                             <option value="">Master</option>
                                                             <option value="">Autre (à préciser)</option>
-
-                                                        </select>
+                                                        </select>--}}
                                                     </div>
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -281,14 +277,16 @@
                                                     <label>Situation professionnelle actuelle<span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="situationmatrimoniale"
+                                                        {{ html()->select('situation_professionel_id', $situationpros, null)->class('required')->placeholder('Selectionner situation professionelle')->id('situation_professionel_id') }}
+
+                                                        {{--<select class="required" name="situationmatrimoniale"
                                                                 onchange="precisesituationprof(this.value)">
                                                             <option value=""></option>
                                                             <option value="1">Travailleur</option>
                                                             <option value="2">Sans emploi</option>
                                                             <option value="3">Etudiant</option>
                                                             <option value="4">Elève</option>
-                                                        </select>
+                                                        </select>--}}
                                                     </div>
                                                 </div>
                                                 <div class="form-group" style="display:none;" id="precisesituationprof">
@@ -892,15 +890,13 @@
 
         }
 
-        function precisesituationprof(id) {
-
-            if (id == 1) {
+        $('#situation_professionel_id').on('change', function(e){
+            if ($(this).val() == 1) {
                 $("#precisesituationprof").css("display", "block");
             } else {
                 $("#precisesituationprof").css("display", "none");
             }
-
-        }
+        })
 
         function preciseinformation(id) {
 

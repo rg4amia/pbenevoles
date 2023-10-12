@@ -14,11 +14,7 @@ class TypePiecesSeeder extends Seeder
      * @return void
      */
     public function run()
-    {/*CNI
-Attestation d'identité
-Passeport
-Extrait de Naissance
-Autre*/
+    {
         $typespieces = [
             [
                 'libelle' => 'CNI'
@@ -33,7 +29,7 @@ Autre*/
                 'libelle' => 'Extrait de Naissance'
             ],
             [
-            'libelle' => 'Autre'
+                'libelle' => 'Autre'
             ],
             [
                 'libelle' => 'Aucun'

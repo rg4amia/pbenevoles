@@ -17,7 +17,11 @@ class DatabaseSeeder extends Seeder
        // $this->call(DistrictSeeder::class);
         //$this->call(RegionAbidjanSeeder::class);
         //$this->call(RegionSeeder::class);
-        $this->call(DepartementSeeder::class);
+       // $this->call(SexeSeeder::class);
+       // $this->call(NationaliteSeeder::class);
+       // $this->call(SituationMatrimonialeSeeder::class);
+       // $this->call(SituationProfessionelsSeeder::class);
+        $this->call(TypePiecesSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

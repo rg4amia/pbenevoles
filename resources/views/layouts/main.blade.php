@@ -38,7 +38,7 @@
 <div id="main_container" class="visible">
 
     <div id="header_in">
-        <div id="logo_in"><img src="{{ asset('assets/img/logo_black.png') }}" width="160" height="48" data-retina="true" alt="Quote"></div>
+        <div id="logo_in"><img src="{{ asset('assets/img/logodv.png') }}" width="100" height="100" data-retina="true" alt="Quote"></div>
     </div>
 
     @yield('content')

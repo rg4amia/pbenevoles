@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('communes', function (Blueprint $table) {
             $table->id();
+            $table->string('libelle')->nullable();
+            $table->integer('region_id')->nullable();
+            $table->integer('departement_id')->nullable();
+            $table->integer('district_id')->nullable();
             $table->timestamps();
         });
     }

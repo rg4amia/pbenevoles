@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
        // $this->call(DistrictSeeder::class);
-        $this->call(RegionAbidjanSeeder::class);
+        //$this->call(RegionAbidjanSeeder::class);
+        //$this->call(RegionSeeder::class);
+        $this->call(DepartementSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

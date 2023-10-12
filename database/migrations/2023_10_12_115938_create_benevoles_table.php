@@ -35,6 +35,8 @@ return new class extends Migration
             $table->unsignedBigInteger('type_piece_id');
             $table->foreign('type_piece_id')->references('id')->on('type_pieces');
 
+            $table->string('autre_typepiece')->nullable();
+
             $table->string('numero_piece')->unique()->nullable();
 
             $table->unsignedBigInteger('situation_matrimoniale_id');

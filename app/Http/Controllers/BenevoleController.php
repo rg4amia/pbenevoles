@@ -18,19 +18,19 @@ class BenevoleController extends Controller
         $sexes = Sexe::pluck('libelle','id');
         $situationpros = SituationProfessionel::pluck('libelle','id');
         $situationmatrimonial = SituationMatrimoniale::pluck('libelle','id');
-        $communes = Commune::orderBy('ASC','libelle')->pluck('libelle','id');
-        $regions = Region::orderBy('ASC','libelle')->pluck('libelle','id');
-        $departements = Departement::orderBy('ASC','libelle')->pluck('libelle','id');
-        $district = District::orderBy('ASC','libelle')->pluck('libelle','id');
+        // $communes = Commune::orderBy('ASC','libelle')->pluck('libelle','id');
+        // $regions = Region::orderBy('ASC','libelle')->pluck('libelle','id');
+        // $departements = Departement::orderBy('ASC','libelle')->pluck('libelle','id');
+        // $district = District::orderBy('ASC','libelle')->pluck('libelle','id');
 
         return view('accueil',[
             'sexes'                 => $sexes,
             'situationpros'         => $situationpros,
             'situationmatrimonial'  => $situationmatrimonial,
-            'communes'              => $communes,
-            'regions'               => $regions,
-            'departements'          => $departements,
-            'district'              => $district,
+            // 'communes'              => $communes,
+            // 'regions'               => $regions,
+            // 'departements'          => $departements,
+            // 'district'              => $district,
         ]);
     }
 

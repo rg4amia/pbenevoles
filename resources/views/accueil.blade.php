@@ -237,13 +237,13 @@
 
                                             </div><!-- /row-->
                                             
-                                       
-
+                            
                                     </div><!-- /middle-wizard -->
                                     <div id="bottom-wizard">
                                         <button type="submit" name="process" class="submit">Submit</button>
                                     </div><!-- /bottom-wizard -->
                                 </form>
+
 
                                 <form id="structure" method="POST" style="display: none;">
                                     <input id="website" name="website" type="text" value=""><!-- Leave for security protection, read docs for details -->

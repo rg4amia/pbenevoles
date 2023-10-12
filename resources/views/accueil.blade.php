@@ -72,12 +72,16 @@
                                                     <div class="form-group">
                                                          <label>Nationalité <span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="country">
-                                                                <option value="" selected>Nationalité</option>
+                                                            <select class="required" name="country" onchange="precisenationalite(this.value)">
+                                                                <option value="" selected></option>
                                                                 <option value="1">Ivoirienne</option>
                                                                 <option value="2">Non ivoirienne</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group" style="display:none;" id="precisenationalite">
+                                                         <label>Précisez votre nationalité <span style="color: red;">*</span></label>
+                                                        <input type="text" name="" class="required form-control" placeholder="Précisez votre nationalité">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
@@ -93,7 +97,7 @@
                                                     <div class="form-group">
                                                         <label>Type de pièce <span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="typepiece">
+                                                            <select class="required" name="typepiece" onchange="precisepiece(this.value)">
                                                                 <option value="" selected></option>
                                                                 <option value="1">CNI</option>
                                                                 <option value="2">Attestation d'identité</option>
@@ -104,6 +108,11 @@
                                                                 
                                                             </select>
                                                         </div>
+                                                    </div>
+
+                                                    <div class="form-group" style="display:none;" id="precisepiece">
+                                                         <label>Précisez votre pièce <span style="color: red;">*</span></label>
+                                                        <input type="text" name="" class="required form-control" placeholder="Précisez votre pièce">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
@@ -172,28 +181,32 @@
                                                     <div class="form-group">
                                                         <label>Situation de handicap<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected></option>
-                                                                <option value="">Handicap</option>
-                                                                <option value="">Non handicap</option>
+                                                            <select class="required" name="" onchange="precisehandicap(this.value)">
+                                                                <option value=""></option>
+                                                                <option value="1">Handicap</option>
+                                                                <option value="2">Non handicap</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group" style="display:none;" id="precisehandicap">
+                                                         <label>Précisez votre handicap <span style="color: red;">*</span></label>
+                                                        <input type="text" name="" class="required form-control" placeholder="Précisez votre handicap">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Scolarisé<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="situationmatrimoniale">
+                                                            <select class="required" name="" onchange="precisescolarite(this.value)">
                                                                 <option value="" selected></option>
-                                                                <option value="">Oui</option>
-                                                                <option value="">Non</option>
+                                                                <option value="1">Oui</option>
+                                                                <option value="2">Non</option>
                                                                 
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group" style="display:none;" id="preciseniveau">
                                                         <label>Niveau scolaire<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="situationmatrimoniale">
+                                                            <select class="required" name="">
                                                                 <option value="" selected></option>
                                                                 <option value="1">Cours primaire (CP1 au CP2)</option>
                                                                 <option value="2">Cours élémentaire (CE1 au CE2)</option>
@@ -208,10 +221,10 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group" style="display:none;" id="precisediplome">
                                                         <label>Diplôme(s) obtenu(s)<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="situationmatrimoniale">
+                                                            <select class="required" name="">
                                                                 <option value="" selected></option>
                                                                 <option value="">Aucun</option>
                                                                 <option value="">CEPE</option>
@@ -233,25 +246,36 @@
                                                     <div class="form-group">
                                                         <label>Situation professionnelle actuelle<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected></option>
-                                                                <option value="">Travailleur</option>
-                                                                <option value="">Sans emploi</option>
-                                                                <option value="">Etudiant</option>
-                                                                <option value="">Elève</option>
+                                                            <select class="required" name="situationmatrimoniale" onchange="precisesituationprof(this.value)">
+                                                                <option value=""></option>
+                                                                <option value="1">Travailleur</option>
+                                                                <option value="2">Sans emploi</option>
+                                                                <option value="3">Etudiant</option>
+                                                                <option value="4">Elève</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group" style="display:none;" id="precisesituationprof">
+                                                         <label>Précisez votre emploi<span style="color: red;">*</span></label>
+                                                        <input type="text" name="" class="required form-control" placeholder="Précisez votre emploi">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Êtes-vous membre d'une association?<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected></option>
+                                                            <select class="required" name="" onchange="preciseassociation(this.value)">
+                                                                <option value=""></option>
                                                                 <option value="1">Oui</option>
                                                                 <option value="2">Non</option>
-                                                                
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group" style="display:none;" id="preciseassociation">
+                                                         <label>Laquelle des associations ?<span style="color: red;">*</span></label>
+                                                        <input type="text" name="" class="required form-control" placeholder="Laquelle des associations ?">
+                                                    </div>
+                                                    <div class="form-group" style="display:none;" id="precisedomaine">
+                                                         <label>Dans quel domaine intervenez-vous?<span style="color: red;">*</span></label>
+                                                        <input type="text" name="" class="required form-control" placeholder="Dans quel domaine intervenez-vous?">
                                                     </div>
                                                     
                                                 </div><!-- /col-sm-6 -->
@@ -411,7 +435,7 @@
 
                                                         <div class="form-group checkbox_questions">
                                                             <label class="">
-                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Autre :
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;" onchange="precisedomaineintervention(this.value)"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Autre : <span style="display:none" id="precisedomaineintervention"><input type="text" name="" class="required form-control" placeholder="Autre domaine"></span>
                                                             </label>
                                                         </div>
                                                         
@@ -468,7 +492,7 @@
 
                                                         <div class="form-group checkbox_questions">
                                                             <label class="">
-                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Autre :
+                                                                <div class="icheckbox_square-yellow checked" style="position: relative;"><input name="question_2[]" type="checkbox" value="Hosting plan" class="icheck required" style="position: absolute; opacity: 0;" onchange="precisepopulationcible(this.value)"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>Autre : <span style="display:none" id="precisepopulationcible"> <input type="text"  name="" class="required form-control" placeholder="Autre population"></span>
                                                             </label>
                                                         </div>
                                                         
@@ -527,22 +551,28 @@
                                                 </div><!-- /col-sm-6 -->
 
                                                 <div class="col-sm-6">
-                                                    
                                                     <div class="form-group">
                                                         <label>Année 2017<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Année 2017">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Désirez-vous nous communiquer d’autres informations ? Si oui, les quelles ?<span style="color: red;">*</span></label>
-                                                         <input type="text" name="prenom_repondant" class="required form-control" placeholder=" Désirez-vous nous communiquer d’autres informations ? Si oui, les quelles ?">
+                                                        <label>Désirez-vous nous communiquer d’autres informations ?<span style="color: red;">*</span></label>
+                                                         <div class="styled-select">
+                                                            <select class="required" name="" onchange="preciseinformation(this.value)">
+                                                                <option value="" selected></option>
+                                                                <option value="1">Oui</option>
+                                                                <option value="2">Non</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" style="display:none;" id="preciseinformation">
+                                                         <label>Quelles informations ?</label>
+                                                        <input type="text" name="" class="required form-control" placeholder="Quelles informations ?">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
-
                                             </div><!-- /row-->
                                             
-                                       
-
                                     </div><!-- /middle-wizard -->
                                     <div id="bottom-wizard">
                                         <button type="submit" name="process" class="submit">Submit</button>
@@ -562,6 +592,7 @@
 @section('js')
 
 <script type="text/javascript">
+
     function displayform(form_id){
          
       if (form_id == 2) {
@@ -575,6 +606,62 @@
                         }
 
       } 
+
+      function precisenationalite(id){
+         
+      if (id == 2) {$("#precisenationalite").css("display","block");}else{$("#precisenationalite").css("display","none");}
+
+      } 
+
+      function precisepiece(id){
+         
+      if (id == 5) {$("#precisepiece").css("display","block");}else{$("#precisepiece").css("display","none");}
+
+      } 
+      function precisehandicap(id){
+         
+      if (id == 1) {$("#precisehandicap").css("display","block");}else{$("#precisehandicap").css("display","none");}
+
+      } 
+      function precisescolarite(id){
+         
+      if (id == 1) {
+                    $("#preciseniveau").css("display","block");
+                    $("#precisediplome").css("display","block");
+                  }else{
+                    $("#preciseniveau").css("display","none");
+                    $("#precisediplome").css("display","none");
+                }
+
+      }
+      function preciseassociation(id){
+         
+      if (id == 1) {
+                    $("#preciseassociation").css("display","block");
+                    $("#precisedomaine").css("display","block");
+                  }else{
+                    $("#preciseassociation").css("display","none");
+                    $("#precisedomaine").css("display","none");
+                }
+
+      } 
+    function precisesituationprof(id){
+         
+      if (id == 1) {$("#precisesituationprof").css("display","block");}else{$("#precisesituationprof").css("display","none");}
+
+      } 
+
+      function preciseinformation(id){
+         
+      if (id == 1) {$("#preciseinformation").css("display","block");}else{$("#preciseinformation").css("display","none");}
+
+      }
+
+      function precisedomaineintervention(id){
+         alert(id)
+      if (id == 1) {$("#preciseinformation").css("display","block");}else{$("#preciseinformation").css("display","none");}
+
+      }  
 </script>
 
 @endsection

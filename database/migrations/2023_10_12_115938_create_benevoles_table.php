@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('benevoles', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table->string('matricule')->unique()->nullable();
             $table->string('photoidentite')->nullable();
             $table->string('nom')->nullable();
             $table->string('prenoms')->nullable();

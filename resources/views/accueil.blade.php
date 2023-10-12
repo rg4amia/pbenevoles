@@ -23,10 +23,11 @@
                                     <!-- <div id="progressbar"></div> -->
                                 </div><!-- /top-wizard-->
 
-                                <div class="form-group">
+                                <div class="form-group col-sm-6" style="margin: 20px;">
+                                    <label>Type inscription <span style="color: red;">*</span></label>
                                    <div class="styled-select">
                                         <select class="required" name="country" onchange="displayform(this.value)">
-                                            <option value="" selected>Type inscription</option>
+                                            <option value="" selected></option>
                                             <option value="1">Association / Structure</option>
                                             <option value="2">Particulier</option>
                                         </select>
@@ -34,22 +35,24 @@
                                 </div>
 
                                 <form  id="particulier" method="POST" style="display: block;">
-                                    <input id="website" name="website" type="text" value=""><!-- Leave for security protection, read docs for details -->
+                                    
                                     <div id="middle-wizard">
-
                                             <div class="row add_bottom_30">
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                         <label>Nom <span style="color: red;">*</span></label>
                                                         <input type="text" name="nom" class="form-control" placeholder="Nom">
                                                     </div>
                                                     <div class="form-group">
+                                                         <label>Prénoms <span style="color: red;">*</span></label>
                                                         <input type="text" name="prenoms" class="required form-control" placeholder="Prénoms">
                                                     </div>
                                                     <div class="form-group">
+                                                         <label>Sexe <span style="color: red;">*</span></label>
                                                        <div class="styled-select">
                                                             <select class="required" name="country">
-                                                                <option value="" selected>Sexe</option>
+                                                                <option value="" selected></option>
                                                                 <option value="1">Masculin</option>
                                                                 <option value="2">Feminin</option>
                                                             </select>
@@ -59,18 +62,20 @@
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                         <label>Date de naissance <span style="color: red;">*</span></label>
                                                         <input type="date" name="datedenaissance" class="required form-control" placeholder="Date de naissance">
                                                     </div>
                                                     <div class="form-group">
+                                                         <label>Lieu de Naissance <span style="color: red;">*</span></label>
                                                         <input type="text" name="lieudenaissance" class="required form-control" placeholder="Lieu de naissance">
                                                     </div>
                                                     <div class="form-group">
+                                                         <label>Nationalité <span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="country">
                                                                 <option value="" selected>Nationalité</option>
                                                                 <option value="1">Ivoirienne</option>
                                                                 <option value="2">Non ivoirienne</option>
-                                                                
                                                             </select>
                                                         </div>
                                                     </div>
@@ -78,15 +83,18 @@
 
                                                  <div class="col-sm-6">
                                                     <div class="form-group">
+                                                         <label>Téléphone personnel 1 <span style="color: red;">*</span></label>
                                                         <input type="text" name="telephone" class="required form-control" placeholder="Téléphone personnel 1">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Téléphone personnel 2 <span style="color: red;">*</span></label>
                                                          <input type="text" name="telephone2" class="required form-control" placeholder="Téléphone personnel 2">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Type de pièce <span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="typepiece">
-                                                                <option value="" selected>Type de pièce</option>
+                                                                <option value="" selected></option>
                                                                 <option value="1">CNI</option>
                                                                 <option value="2">Attestation d'identité</option>
                                                                 <option value="3">Passeport</option>
@@ -101,15 +109,18 @@
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Numéro de la pièce <span style="color: red;">*</span></label>
                                                         <input type="text" name="numeropiece" class="required form-control" placeholder="Numéro de la pièce">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Lieu de résidence<span style="color: red;">*</span></label>
                                                          <input type="text" name="residence" class="required form-control" placeholder="Lieu de résidence">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Situation matrimoniale <span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Situation matrimoniale</option>
+                                                                <option value="" selected></option>
                                                                 <option value="1">Célibataire</option>
                                                                 <option value="2">En concubinage</option>
                                                                 <option value="3">Marié(e)</option>
@@ -122,51 +133,57 @@
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>District<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>District</option>
+                                                                <option value="" selected></option>
                                                                 <option value=""></option>
                                                                 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Région<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Région</option>
+                                                                <option value="" selected></option>
                                                                 <option value=""></option>
                                                                 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Département<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Département</option>
+                                                                <option value="" selected></option>
                                                                 <option value=""></option>
                                                                 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Sous-Préfecture<span style="color: red;">*</span></label>
                                                          <input type="text" name="sousprefecture" class="required form-control" placeholder="Sous-Préfecture">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Situation de handicap<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Situation de handicap</option>
+                                                                <option value="" selected></option>
                                                                 <option value="">Handicap</option>
                                                                 <option value="">Non handicap</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Scolarisé<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Scolarisé</option>
+                                                                <option value="" selected></option>
                                                                 <option value="">Oui</option>
                                                                 <option value="">Non</option>
                                                                 
@@ -174,9 +191,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Niveau scolaire<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Niveau scolaire</option>
+                                                                <option value="" selected></option>
                                                                 <option value="1">Cours primaire (CP1 au CP2)</option>
                                                                 <option value="2">Cours élémentaire (CE1 au CE2)</option>
                                                                 <option value="3">Cours moyen (CM1 au CM2)</option>
@@ -191,9 +209,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Diplôme(s) obtenu(s)<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Diplôme(s) obtenu(s)</option>
+                                                                <option value="" selected></option>
                                                                 <option value="">Aucun</option>
                                                                 <option value="">CEPE</option>
                                                                 <option value="">CAP/CQP</option>
@@ -212,9 +231,10 @@
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Situation professionnelle actuelle<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Situation professionnelle actuelle</option>
+                                                                <option value="" selected></option>
                                                                 <option value="">Travailleur</option>
                                                                 <option value="">Sans emploi</option>
                                                                 <option value="">Etudiant</option>
@@ -223,9 +243,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Êtes-vous membre d'une association?<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Êtes-vous membre d'une association?</option>
+                                                                <option value="" selected></option>
                                                                 <option value="1">Oui</option>
                                                                 <option value="2">Non</option>
                                                                 
@@ -253,54 +274,65 @@
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Nom<span style="color: red;">*</span></label>
                                                         <input type="text" name="nom" class="form-control" placeholder="Nom">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>N° d’enregistrement Pour les ONG et associations<span style="color: red;">*</span></label>
                                                         <input type="text" name="prenoms" class="required form-control" placeholder="N° d’enregistrement Pour les ONG et associations">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>N° du texte de création Pour les structures et parapubliques<span style="color: red;">*</span></label>
                                                         <input type="text" name="prenoms" class="required form-control" placeholder="N° du texte de création Pour les structures et parapubliques">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Statut juridique<span style="color: red;">*</span></label>
                                                         <input type="text" name="statut_juridique" class="required form-control" placeholder="Statut juridique">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Région<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Région</option>
+                                                                <option value="" selected></option>
                                                                 <option value=""></option>
                                                                 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Adresse postale<span style="color: red;">*</span></label>
                                                         <input type="text" name="adresse_postal" class="required form-control" placeholder="Adresse postale">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
                                                  <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Département<span style="color: red;">*</span></label>
                                                         <div class="styled-select">
                                                             <select class="required" name="situationmatrimoniale">
-                                                                <option value="" selected>Département</option>
+                                                                <option value="" selected></option>
                                                                 <option value=""></option>
                                                                 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Email<span style="color: red;">*</span></label>
                                                         <input type="email" name="email" class="required form-control" placeholder="Email">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Site web<span style="color: red;">*</span></label>
                                                          <input type="text" name="siteweb" class="required form-control" placeholder="Site web">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Téléphone du répondant<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Téléphone du répondant">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Email du répondant<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Email du répondant">
                                                     </div>
                                                    
@@ -308,18 +340,23 @@
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Téléphone<span style="color: red;">*</span></label>
                                                         <input type="text" name="telephone" class="required form-control" placeholder="Téléphone">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Fax<span style="color: red;">*</span></label>
                                                          <input type="text" name="fax" class="required form-control" placeholder="Fax">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Nom du répondant<span style="color: red;">*</span></label>
                                                          <input type="text" name="nom_repondant" class="required form-control" placeholder="Nom du répondant">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Prenoms du répondant<span style="color: red;">*</span></label>
                                                          <input type="text" name="prenom_repondant" class="required form-control" placeholder="Prenoms du répondant">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Fonction du répondant dans l’organisation<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Fonction du répondant dans l’organisation">
                                                     </div>
                                                     
@@ -442,38 +479,49 @@
                                                     
                                                 </div><!-- /col-sm-6 -->
 
+                                                <div class="row add_bottom_30">
+
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Effectif du Personnel<span style="color: red;">*</span></label>
                                                          <input type="text" name="prenom_repondant" class="required form-control" placeholder="Effectif du Personnel">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Effectif Homme<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Effectif Homme">
                                                     </div>
                                                     <div class="form-group">
-                                                         <input type="text" name="" class="required form-control" placeholder=" Effectif Femme">
+                                                        <label>Effectif Femme<span style="color: red;">*</span></label>
+                                                         <input type="text" name="" class="required form-control" placeholder="Effectif Femme">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Effectif Salariés<span style="color: red;">*</span></label>
                                                          <input type="text" name="prenom_repondant" class="required form-control" placeholder="Effectif Salariés">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Effectif Contractuels<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Effectif Contractuels">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Effectif Bénévoles<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Effectif Bénévoles">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
 
                                                  <div class="col-sm-6">
                                                     <div class="form-group">
+                                                        <label>Montant du budget de l’année en cours<span style="color: red;">*</span></label>
                                                          <input type="text" name="prenom_repondant" class="required form-control" placeholder="Montant du budget de l’année en cours">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Année 2019<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Année 2019">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Année 2018<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Année 2018">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->
@@ -481,9 +529,11 @@
                                                 <div class="col-sm-6">
                                                     
                                                     <div class="form-group">
+                                                        <label>Année 2017<span style="color: red;">*</span></label>
                                                          <input type="text" name="" class="required form-control" placeholder="Année 2017">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label>Désirez-vous nous communiquer d’autres informations ? Si oui, les quelles ?<span style="color: red;">*</span></label>
                                                          <input type="text" name="prenom_repondant" class="required form-control" placeholder=" Désirez-vous nous communiquer d’autres informations ? Si oui, les quelles ?">
                                                     </div>
                                                 </div><!-- /col-sm-6 -->

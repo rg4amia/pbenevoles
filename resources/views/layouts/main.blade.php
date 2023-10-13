@@ -35,26 +35,12 @@
 @include('layouts.header')
 
 <div id="main_container" class="visible">
-
     <div id="header_in">
         <div id="logo_in"><img src="{{ asset('assets/img/logodv.png') }}" width="100" height="100" data-retina="true" alt="Quote"></div>
     </div>
-
     @yield('content')
     <!-- /wrapper_in -->
 </div><!-- /main_container -->
-
-<div id="additional_links">
-    <ul>
-        <li>© Quote</li>
-        <li><a href="https://1.envato.market/05xEM" class="animated_link">Purchase this template</a></li>
-        <li><a href="index_2.html" class="animated_link">Demo Slider</a></li>
-        <li><a href="index_3.html" class="animated_link">With UPLOAD</a></li>
-        <li><a href="index_4.html" class="animated_link">With Branch</a></li>
-        <li><a href="index_5.html" class="animated_link">Full Page View</a></li>
-        <li><a href="shortcodes.html" class="animated_link">Shortcodes</a></li>
-    </ul>
-</div><!-- /add links -->
 
 <!-- Modal terms -->
 <div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">

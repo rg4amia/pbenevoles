@@ -64,7 +64,8 @@ class BenevoleController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->type_inscription == null) {
+       // dd($request->type_in_b,$request->type_in_a);
+        if ($request->type_in_b == 1) {
             //Association / Structure benevole
             ///validation
             $validation = Validator::make([
@@ -128,76 +129,85 @@ class BenevoleController extends Controller
                 DB::beginTransaction();
                 $data = $request->except('_token');
 
-                foreach ($data['do'] as $item) {
-                    switch ($item){
-                        case 1:
-                            $data['do_education_formation'] = true;
-                            break;
-                        case 2:
-                            $data['do_sante_communautaire'] = true;
-                            break;
-                        case 3:
-                            $data['do_assainissement_environnement'] = true;
-                            break;
-                        case 4:
-                            $data['do_promotion_droits_humains'] = true;
-                            break;
-                        case 5:
-                            $data['do_agriculture'] = true;
-                            break;
-                        case 6:
-                            $data['do_appui_aux_organisation'] = true;
-                            break;
-                        case 7:
-                            $data['do_developpement_communauteire'] = true;
-                            break;
-                        case 8:
-                            $data['do_autre'] = true;
-                            break;
+                if(isset($data['do'] )){
+                    foreach ($data['do'] as $item) {
+                        switch ($item) {
+                            case 1:
+                                $data['do_education_formation'] = true;
+                                break;
+                            case 2:
+                                $data['do_sante_communautaire'] = true;
+                                break;
+                            case 3:
+                                $data['do_assainissement_environnement'] = true;
+                                break;
+                            case 4:
+                                $data['do_promotion_droits_humains'] = true;
+                                break;
+                            case 5:
+                                $data['do_agriculture'] = true;
+                                break;
+                            case 6:
+                                $data['do_appui_aux_organisation'] = true;
+                                break;
+                            case 7:
+                                $data['do_developpement_communauteire'] = true;
+                                break;
+                            case 8:
+                                $data['do_autre'] = true;
+                                break;
+                        }
                     }
                 }
 
-                foreach ($data['po'] as $item) {
-                    switch ($item){
-                        case 1:
-                            $data['pop_population_generale'] = true;
-                            break;
-                        case 2:
-                            $data['pop_homme'] = true;
-                            break;
-                        case 3:
-                            $data['pop_femme'] = true;
-                            break;
-                        case 4:
-                            $data['pop_jeunes'] = true;
-                            break;
-                        case 5:
-                            $data['pop_enfants'] = true;
-                            break;
-                        case 6:
-                            $data['pop_personne_agees'] = true;
-                            break;
-                        case 7:
-                            $data['pop_personne_vivant_avec_handicap'] = true;
-                            break;
-                        case 8:
-                            $data['pop_autre'] = true;
-                            break;
+                if(isset($data['po'])){
+                    foreach ($data['po'] as $item) {
+                        switch ($item) {
+                            case 1:
+                                $data['pop_population_generale'] = true;
+                                break;
+                            case 2:
+                                $data['pop_homme'] = true;
+                                break;
+                            case 3:
+                                $data['pop_femme'] = true;
+                                break;
+                            case 4:
+                                $data['pop_jeunes'] = true;
+                                break;
+                            case 5:
+                                $data['pop_enfants'] = true;
+                                break;
+                            case 6:
+                                $data['pop_personne_agees'] = true;
+                                break;
+                            case 7:
+                                $data['pop_personne_vivant_avec_handicap'] = true;
+                                break;
+                            case 8:
+                                $data['pop_autre'] = true;
+                                break;
+                        }
                     }
                 }
 
                 $benevole = AssociationBenevole::create($data);
-                session()->flash('success','Votre FORMULAIRE D’INSCRIPTION a été soumis avec succès.' . $benevole->matricule);
+                $string = $benevole->id;
+                $benevole->matricule = 'BN-'. date('dmY') .'-CAN-2023';
+                $benevole->save();
+
+                session()->flash('success', 'VOTRE CANDIDATURE A ETE RETENUE AVEC SUCCES.' . $benevole->matricule);
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
                 Log::info($e->getMessage());
-                session()->flash('warning','Erreur est survenu pendant l\' enregistrement du formulaire!!!');
+                session()->flash('warning', 'Erreur est survenu pendant l\' enregistrement du formulaire!!!');
             }
 
             return back();
 
-        } else if($request->type_inscription ==2) {
+        } else if ($request->type_in_a == 2) {
+
             //Particulier benevole
             $rulesChar = "required_if:type_piece_id,";
 
@@ -218,6 +228,7 @@ class BenevoleController extends Controller
 
             $validation = Validator::make(
                 [
+                    'photoidentite' => $request->photoidentite,
                     'nom' => $request->nom,
                     'prenoms' => $request->prenoms,
                     'sexe' => $request->sexe_id,
@@ -244,7 +255,7 @@ class BenevoleController extends Controller
                     'preciser_type_handicap' => $request->preciser_type_handicap,
                     'situation_handicap' => $request->situation_handicap,
                     'scolarise' => $request->scolarise,
-                    'niveau_scolaire' => $request->niveau_scolaire_id,
+                    'niveau_scolaire_id' => $request->niveau_scolaire_id,
                     'membre_association' => $request->membre_association,
                     'preciser_travail' => $request->preciser_travail,
                     'preciser_association' => $request->preciser_association,
@@ -255,6 +266,7 @@ class BenevoleController extends Controller
                     'preciser_autre_diplome' => $request->preciser_autre_diplome
                 ],
                 [   'nom' => 'required',
+                    'photoidentite' => 'required|mimes:jpeg,jpg,png,gif|max:1000',
                     'prenoms' => 'required',
                     'sexe' => 'required',
                     'lieudenaissance' => 'required',
@@ -269,22 +281,22 @@ class BenevoleController extends Controller
                     'telephone_autren' => 'required_if:telephone_autre,digits:10|required_if:telephone_autre,numeric|unique:App\Models\Benevole,telephone_autre',
                     'lieuresidence' => 'required',
                     'situationmatrimoniale' => 'required',
-                    'preciser_type_handicap' => 'required_if:situation_handicap,2',
+                    'preciser_type_handicap' => 'required_if:situation_handicap,1',
                     'situation_handicap' => 'required_if:preciser_type_handicap,1',
                     'scolarise' => 'required',
-                    'diplome_id' => 'required',
+                    'diplome_id' => 'required_if:scolarise,1',
                     'district' => 'required',
                     'region' => 'required',
                     'departement' => 'required',
                     'sous_prefecture' => 'required',
-                    'niveau_scolaire' => 'required_if:scolarise,1',
+                    'niveau_scolaire_id' => 'required_if:scolarise,1',
                     'membre_association' => 'required',
                     'preciser_travail' => 'required_if:situation_professionel,1',
                     'preciser_association' => 'required_if:membre_association,1',
                     'preciser_autre_niveau_scolaire' => 'required_if:niveau_scolaire_id,10',
                     'preciser_autre_diplome' => 'required_if:diplome_id,10',
                     'domaine_intervention_asso' => 'required_if:membre_association,1',
-                ], [
+                ],[
                     'npieceidentite.size' => 'Le numéro de cette pièce n\'est pas conforme.',
                     'npieceidentite.unique' => 'Le numéro de cette pièce a déjà été pris.',
                 ]
@@ -292,16 +304,20 @@ class BenevoleController extends Controller
 
             $data = $request->except('_token');
             $fileName = 'PHOTO_IDENTITE_' . $request->nom . ' ' . $request->prenoms . '.' . $request->photoidentite->extension();
-            $data['photoidentite'] = FileUploader::upload($request, 'photoidentite', 'storage', str_replace(" ", "_", $fileName));
+            $data['photoidentite'] = FileUploader::upload($request, 'photoidentite', 'public', str_replace(" ", "_", $fileName));
 
             try {
                 DB::beginTransaction();
                 $benevole = Benevole::create($data);
-                $request->flash('success', 'Votre FORMULAIRE D’INSCRIPTION a été soumis avec succès.' . $benevole->matricule);
+                $benevole->matricule = 'BN-'. date('dmY') .'-CAN-2023';
+                $benevole->save();
+                session()->flash('success','VOTRE CANDIDATURE A ETE RETENUE AVEC SUCCES.' . $benevole->matricule);
                 DB::commit();
             } catch (\Exception $exception) {
+                dd($exception->getMessage());
+                Log::info($exception->getMessage());
                 DB::rollBack();
-                $request->flash('success', 'Erreur est survenu pendant l\' enregistrement du formulaire!!!');
+                session()->flash('warning','Erreur est survenu pendant l\' enregistrement du formulaire!!!');
             }
 
             return back();

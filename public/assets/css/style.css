@@ -608,20 +608,22 @@ footer ul li:first-child {
 .subheader {
     text-align: center;
     /*margin: 0 -65px 45px;*/
+    /*height: 300px;*/
     height: 300px;
+    width: 1686px;
     border-bottom: 1px solid #e8ebed
 }
 
 .subheader#about {
-    background: #fff4e3 url(../img/banatext.jpeg) no-repeat center bottom
+    background: #ffff url(../img/banatext.jpeg) no-repeat center bottom;
 }
 
 .subheader#quote {
-    background: #fff4e3 url(../img/banatext.jpeg) no-repeat center bottom
+    background: #ffff url(../img/banatext.jpeg) no-repeat center bottom;
 }
 
 .subheader#services {
-    background: #fff4e3 url(../img/services_bg.svg) no-repeat center bottom
+    background: #ffff url(../img/services_bg.svg) no-repeat center bottom
 }
 
 .subheader h3 {

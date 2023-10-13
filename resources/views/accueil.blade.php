@@ -143,16 +143,18 @@ endsection
                                     </div>
                                 </div>
 
-                                <form id="particulier" method="POST" action="{{ route('store') }}" style="display: none;">
+                                <form id="particulier" method="POST" action="{{ route('store') }}" style="display: none;" enctype="multipart/form-data">
                                     @csrf()
                                     <div id="middle-wizard">
                                         <div class="row add_bottom_30">
+
+                                            <input type="hidden" name="type_in_a" id="type_in_a">
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Photo <span style="color: red;">*</span></label>
                                                     <input type="file" name="photoidentite"
-                                                           class="form-control is-invalid" required>
+                                                           class="form-control @error('photoidentite') is-invalid @enderror" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Nom <span style="color: red;">*</span></label>
@@ -515,6 +517,7 @@ endsection
                                         <div class="row add_bottom_30">
 
                                             <div class="col-sm-6">
+                                                <input type="hidden" name="type_in_b" id="type_in_b">
                                                 <div class="form-group">
                                                     <label>Nom<span style="color: red;">*</span></label>
                                                     <input type="text" name="nom" value="{{ old('nom') }}"
@@ -1040,6 +1043,11 @@ endsection
 @endsection
 @section('js')
     <script type="text/javascript">
+
+        $('#type_inscription').on('change', function(){
+            $('#type_in_a').val($(this).val());
+            $('#type_in_b').val($(this).val());
+        })
 
         function displayform(form_id) {
             if (form_id == 2) {

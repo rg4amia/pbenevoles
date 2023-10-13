@@ -552,7 +552,7 @@ endsection
                                                 <div class="form-group">
                                                     <label>Région<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id') }}
+                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id2') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -568,7 +568,7 @@ endsection
                                                 <div class="form-group">
                                                     <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('region_id') }}
+                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('departement_id2') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -1187,6 +1187,53 @@ endsection
             }
 
         }
+
+        $('#departement_id').on('change', function() {
+
+            var departement = $('#departement_id').val();
+
+            $('#region_id').val("");
+            $('#district_id').val("");
+
+            $.ajax({
+                type: "get",
+                url: '{{ route('api-couverture.selecteDistricRegion') }}',
+                data: {
+                    'id': departement,
+                },
+                success: function(data) {
+                    //console.log(data);
+                    $('#region_id').val(data.region.id);
+                    $('#district_id').val(data.district.id);
+                    
+                }
+            });
+
+        });
+
+        $('#departement_id2').on('change', function() {
+
+            var departement = $('#departement_id2').val();
+
+            $('#region_id').val("");
+            //$('#district_id').val("");
+
+            $.ajax({
+                type: "get",
+                url: '{{ route('api-couverture.selecteDistricRegion') }}',
+                data: {
+                    'id': departement,
+                },
+                success: function(data) {
+                    //console.log(data);
+                    $('#region_id2').val(data.region.id);
+                    //$('#district_id').val(data.district.id);
+                    
+                }
+            });
+
+        });
+
     </script>
 
 @endsection

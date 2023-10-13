@@ -18,5 +18,8 @@ Route::controller(BenevoleController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::post('/inscription', 'store')->name('store');
 });
+Route::group(['prefix' => 'api-couverture', 'as' => 'api-couverture.'], function () {
+    Route::get('/', [BenevoleController::class, 'selecteDistricRegion'])->name('selecteDistricRegion');
+});
 
 

@@ -341,4 +341,22 @@ class BenevoleController extends Controller
         $max = pow(10, $length) - 1;
         return mt_rand($min, $max);
     }
+
+    public function selecteDistricRegion(){
+
+        $departement = Departement::where('id', \request('id'))->first();
+
+        $district = District::find($departement->district_id);;
+
+        $region = Region::find($departement->region_id);
+
+
+        return response()->json([
+            'region' => $region,
+            'district' => $district,
+        ]);
+    }
+
+
+
 }

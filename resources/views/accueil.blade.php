@@ -125,8 +125,7 @@
                                     </div>
                                 </div>
 
-                                <form id="particulier" method="POST" action="{{ route('store') }}"
-                                      style="display: none;">
+                                <form id="particulier" method="POST" action="{{ route('store') }}" style="display: none;">
                                     @csrf()
                                     <div id="middle-wizard">
                                         <div class="row add_bottom_30">
@@ -735,7 +734,7 @@
                                                                     </div>
                                                                     Autre : <span style="display:none"
                                                                                   id="precisedomaineintervention"><input
-                                                                            type="text" name="do_autre"
+                                                                            type="text" name="do_preciser_autre"
                                                                             class="required form-control"
                                                                             placeholder="Autre domaine"></span>
                                                                 </label>
@@ -866,7 +865,7 @@
                                                                     </div>
                                                                     Autre : <span style="display:none"
                                                                                   id="precisepopulationcible"> <input
-                                                                            type="text" name="pop_autre"
+                                                                            type="text" name="pop_preciser_autre"
                                                                             class="required form-control"
                                                                             placeholder="Autre population"></span>
                                                                 </label>

@@ -60,6 +60,8 @@ class AssociationBenevole extends Model
         'pop_personne_agees',
         'pop_personne_vivant_avec_handicap',
         'pop_autre',
+        'pop_preciser_autre',
+        'do_preciser_autre',
     ];
 
     protected $dispatchesEvents = [

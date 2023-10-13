@@ -104,10 +104,9 @@ class BenevoleController extends Controller
                 'adresse_postal' => 'required',
                 'departement_id' => 'required',
                 'email' => 'required|unique:App\Models\AssociationBenevole,email',
-                'site_web' => 'required_if:site_web',
                 'telephone' => 'required|digits:10|numeric|unique:App\Models\AssociationBenevole,telephone',
                 'email_repondant' => 'required|unique:App\Models\AssociationBenevole,email_repondant',
-                'fax' => 'required_if:fax,digits:10|numeric|unique:App\Models\AssociationBenevole,fax',
+                'fax' => 'required_if:fax,digits:10|required_if:fax,numeric|unique:App\Models\AssociationBenevole,fax',
                 'nom_repondant' => 'required',
                 'prenom_repondant' => 'required',
                 'fonction_repondant_org' => 'required',
@@ -128,7 +127,65 @@ class BenevoleController extends Controller
             try {
                 DB::beginTransaction();
                 $data = $request->except('_token');
-                dd($data);
+
+                foreach ($data['do'] as $item) {
+                    switch ($item){
+                        case 1:
+                            $data['do_education_formation'] = true;
+                            break;
+                        case 2:
+                            $data['do_sante_communautaire'] = true;
+                            break;
+                        case 3:
+                            $data['do_assainissement_environnement'] = true;
+                            break;
+                        case 4:
+                            $data['do_promotion_droits_humains'] = true;
+                            break;
+                        case 5:
+                            $data['do_agriculture'] = true;
+                            break;
+                        case 6:
+                            $data['do_appui_aux_organisation'] = true;
+                            break;
+                        case 7:
+                            $data['do_developpement_communauteire'] = true;
+                            break;
+                        case 8:
+                            $data['do_autre'] = true;
+                            break;
+                    }
+                }
+
+                foreach ($data['po'] as $item) {
+                    switch ($item){
+                        case 1:
+                            $data['pop_population_generale'] = true;
+                            break;
+                        case 2:
+                            $data['pop_homme'] = true;
+                            break;
+                        case 3:
+                            $data['pop_femme'] = true;
+                            break;
+                        case 4:
+                            $data['pop_jeunes'] = true;
+                            break;
+                        case 5:
+                            $data['pop_enfants'] = true;
+                            break;
+                        case 6:
+                            $data['pop_personne_agees'] = true;
+                            break;
+                        case 7:
+                            $data['pop_personne_vivant_avec_handicap'] = true;
+                            break;
+                        case 8:
+                            $data['pop_autre'] = true;
+                            break;
+                    }
+                }
+
                 $benevole = AssociationBenevole::create($data);
                 session()->flash('success','Vos informations on bien été pris en compte' . $benevole->matricule);
                 DB::commit();

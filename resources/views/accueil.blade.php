@@ -122,7 +122,7 @@
                                                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                                                             </svg>
                                                             <span>{{ Session::get($msg) }}</span><br>
-                                                            <a href="{{ \Illuminate\Support\Facades\Storage::disk('badgepdf')->url(Session::get('matricule')) }}">Télécharger
+                                                            <a href="{{ route('badgepdf',Session::get('matricule')) }}">Télécharger
                                                                 Fiche ici</a>
                                                         </div>
                                                     </div>
@@ -328,7 +328,7 @@
                                                         {{ html()->select('district_id', $districts, old('district_id'))->class('required')->placeholder('Selectionner districs')->id('district_id') }}
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label>Sous-Préfecture<span style="color: red;">*</span></label>
                                                     <input type="text" name="sous_prefecture"
@@ -584,7 +584,7 @@
                                                         {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id2') }}
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label>Email<span style="color: red;">*</span></label>
                                                     <input type="email" name="email" value="{{old('email') }}"

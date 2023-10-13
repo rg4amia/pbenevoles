@@ -21,6 +21,7 @@ use App\Models\TypePiece;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use PDF;
@@ -66,7 +67,6 @@ class BenevoleController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
         if ($request->type_in_b == 1) {
             //Association / Structure benevole
             ///validation
@@ -126,8 +126,6 @@ class BenevoleController extends Controller
                 'status_autreinfo' => 'required',
                 'preciser_autreinfo' => 'required_if:status_autreinfo,1',
             ], [])->validate();
-
-
 
             try {
                 DB::beginTransaction();
@@ -362,6 +360,7 @@ class BenevoleController extends Controller
         ]);
     }
 
-
-
+    public function badgepdf($matricule){
+         return Response::download(storage_path('app/badgepdf/'.$matricule));
+    }
 }

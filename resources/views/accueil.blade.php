@@ -366,7 +366,7 @@
                                     </div>
                                     <!-- /middle-wizard -->
                                     <div id="bottom-wizard">
-                                        <button type="submit" name="process" class="submit">Submit</button>
+                                        <button type="submit" name="process" class="submit">Enregistrer</button>
                                     </div><!-- /bottom-wizard -->
                                 </form>
 
@@ -834,7 +834,7 @@
 
                                     </div><!-- /middle-wizard -->
                                     <div id="bottom-wizard">
-                                        <button type="submit" name="process" class="submit">Submit</button>
+                                        <button type="submit" name="process" class="submit">Enregistrer</button>
                                     </div><!-- /bottom-wizard -->
                                 </form>
                             </div><!-- /Wizard container -->

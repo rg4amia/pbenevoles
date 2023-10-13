@@ -115,12 +115,12 @@
                                 <div class="form-group col-sm-6" style="margin: 20px;">
                                     <label>Type inscription <span style="color: red;">*</span></label>
                                     <div class="styled-select">
-                                        <select class="required" name="type_inscription"
-                                                onchange="displayform(this.value)" value="{{ old('type_inscription') }}"
+                                        <select class="required" name="type_inscription" id="type_inscription"
+                                                onchange="displayform(this.value)"
                                                 required="required">
-                                            <option value=""></option>
-                                            <option value="1">Association / Structure</option>
-                                            <option value="2">Particulier</option>
+                                            <option value="">Choisir Type Inscription</option>
+                                            <option value="1" {{ old('type_inscription') == '1' ? 'selected' : '' }}>Association / Structure</option>
+                                            <option value="2" {{ old('type_inscription') == '2' ? 'selected' : '' }}>Particulier</option>
                                         </select>
                                     </div>
                                 </div>
@@ -626,8 +626,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Custom interface and layout"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="1"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -640,8 +640,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Web site design"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="2"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -654,8 +654,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Seo optimization"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="3"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -668,8 +668,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Hosting plan" class="icheck required"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="4" class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
@@ -684,8 +684,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="CMS integrations (Wordpress)"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="5"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -698,8 +698,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Domain registration"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="6"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -712,8 +712,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Hosting plan" class="icheck required"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="7" class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
@@ -726,8 +726,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Hosting plan" class="icheck required"
+                                                                            name="do[]" type="checkbox"
+                                                                            value="8" class="icheck required"
                                                                             style="position: absolute; opacity: 0;"
                                                                             onclick="precisedomaineintervention(this.value)">
                                                                         <ins class="iCheck-helper"
@@ -757,8 +757,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Custom interface and layout"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="1"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -771,8 +771,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Web site design"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="2"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -785,8 +785,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Seo optimization"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="3"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -799,8 +799,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Hosting plan" class="icheck required"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="4" class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
@@ -815,8 +815,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="CMS integrations (Wordpress)"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="5"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -829,8 +829,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Domain registration"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="6"
                                                                             class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
@@ -843,8 +843,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Hosting plan" class="icheck required"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="7" class="icheck required"
                                                                             style="position: absolute; opacity: 0;">
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
@@ -857,8 +857,8 @@
                                                                 <label class="">
                                                                     <div class="icheckbox_square-yellow checked"
                                                                          style="position: relative;"><input
-                                                                            name="question_2[]" type="checkbox"
-                                                                            value="Hosting plan" class="icheck required"
+                                                                            name="po[]" type="checkbox"
+                                                                            value="8" class="icheck required"
                                                                             style="position: absolute; opacity: 0;"
                                                                             onclick="precisepopulationcible(this.value)">
                                                                         <ins class="iCheck-helper"
@@ -1008,22 +1008,12 @@
 @endsection
 @section('js')
     <script type="text/javascript">
-        $(function () {
-            @if(old('type_inscription') == null)
-            $("#structure").css("display", "none");
-            $("#particulier").css("display", "block");
-            @else
-            $("#particulier").css("display", "none");
-            $("#structure").css("display", "block");
-            @endif
-        });
 
         function displayform(form_id) {
             if (form_id == 2) {
                 $("#particulier").css("display", "block");
                 $("#structure").css("display", "none");
-
-            } else {
+            } else if(form_id == 1) {
                 $("#particulier").css("display", "none");
                 $("#structure").css("display", "block");
             }

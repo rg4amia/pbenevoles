@@ -44,6 +44,13 @@ return [
             'throw' => false,
         ],
 
+        'badgepdf' => [
+            'driver'        => 'local',
+            'root'          => storage_path('app/badgepdf'),
+            'url'           => env('APP_URL') . '/badgepdf',
+            'visibility'    => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -71,6 +78,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('badgepdf') => storage_path('app/badgepdf'),
     ],
 
 ];

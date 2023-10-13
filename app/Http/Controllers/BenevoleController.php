@@ -21,7 +21,9 @@ use App\Models\TypePiece;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class BenevoleController extends Controller
 {
@@ -193,7 +195,7 @@ class BenevoleController extends Controller
 
                 $benevole = AssociationBenevole::create($data);
                 $string = $benevole->id;
-                $benevole->matricule = 'BN-'. date('dmY') .'-CAN-2023';
+                $benevole->matricule = 'BN-'. $this->generateRandomNumber() . date('dmY') .'-CAN-2023';
                 $benevole->save();
 
                 session()->flash('success', 'VOTRE CANDIDATURE A ETE RETENUE AVEC SUCCES.' . $benevole->matricule);
@@ -309,12 +311,21 @@ class BenevoleController extends Controller
             try {
                 DB::beginTransaction();
                 $benevole = Benevole::create($data);
-                $benevole->matricule = 'BN-'. date('dmY') .'-CAN-2023';
+                $benevole->matricule = 'BN-'. $this->generateRandomNumber() . date('dmY') .'-CAN-2023';
                 $benevole->save();
+
+                $pdf = PDF::loadView('pdf.index', compact('benevole'))
+                    ->setPaper('a5', 'Portrait')
+                    ->setWarnings(false);
+
+                $content = $pdf->download()->getOriginalContent();
+                Storage::disk('badgepdf')->put('/' . $benevole->matricule .'.pdf', $content);
+
                 session()->flash('success','VOTRE CANDIDATURE A ETE RETENUE AVEC SUCCES.' . $benevole->matricule);
+                session()->put('badge_pdf', public_path("app/badgepdf/".$benevole->matricule));
                 DB::commit();
             } catch (\Exception $exception) {
-                dd($exception->getMessage());
+                //dd($exception->getMessage());
                 Log::info($exception->getMessage());
                 DB::rollBack();
                 session()->flash('warning','Erreur est survenu pendant l\' enregistrement du formulaire!!!');
@@ -322,5 +333,12 @@ class BenevoleController extends Controller
 
             return back();
         }
+
+    }
+
+    public function  generateRandomNumber($length = 6) {
+        $min = pow(10, $length - 1);
+        $max = pow(10, $length) - 1;
+        return mt_rand($min, $max);
     }
 }

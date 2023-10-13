@@ -50,4 +50,8 @@ class Benevole extends Model
         'preciser_autre_niveau_scolaire',
         'preciser_autre_diplome'
     ];
+
+    public function sexe(){
+        return $this->belongsTo(Sexe::class,'sexe_id');
+    }
 }

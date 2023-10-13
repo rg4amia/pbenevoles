@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Benevole;
 use App\Models\Commune;
 use App\Models\Departement;
 use App\Models\Diplome;
@@ -14,6 +15,7 @@ use App\Models\Region;
 use App\Models\Sexe;
 use App\Models\SituationMatrimoniale;
 use App\Models\SituationProfessionel;
+use App\Models\TypePiece;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -34,10 +36,11 @@ class BenevoleController extends Controller
         $nationnalites = Nationalite::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $niveauscolaires = NiveauScolaire::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $diplomes = Diplome::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $typepieces = TypePiece::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
 
         //paramètre association bénévole
-        $domaineinterventions = DomaineIntervention::pluck('libelle', 'id');
-        $populationcibles = PopulationCible::pluck('libelle', 'id');
+        $domaineinterventions = DomaineIntervention::get();
+        $populationcibles = PopulationCible::get();
 
 
         return view('accueil', [
@@ -53,6 +56,7 @@ class BenevoleController extends Controller
             'nationnalites' => $nationnalites,
             'niveauscolaires' => $niveauscolaires,
             'diplomes' => $diplomes,
+            'typepieces' => $typepieces,
 
         ]);
     }
@@ -86,10 +90,12 @@ class BenevoleController extends Controller
                     'nom' => $request->nom,
                     'prenoms' => $request->prenoms,
                     'sexe' => $request->sexe_id,
-                    'datedenaissance' => $request->datedenaissance,
+                    'datenaissance' => $request->datenaissance,
                     'lieudenaissance' => $request->lieu_naissance_id,
                     'nationalite' => $request->nationalite_id,
+                    'precisenationalite' => $request->precisenationalite,
                     'numero_piece' => $request->numero_piece,
+                    'autre_typepiece' => $request->autre_typepiece,
                     'telephone' => $request->telephone,
                     'telephonen' => $request->telephone,
                     'telephone_autre' => $request->telephone_autre,
@@ -97,37 +103,58 @@ class BenevoleController extends Controller
 
                     'lieuresidence' => $request->lieu_residence_id,
                     'situationmatrimoniale' => $request->situation_matrimoniale_id,
+                    'situation_professionel' => $request->situation_professionel_id,
 
                     'district' => $request->district_id,
                     'region' => $request->region_id,
                     'departement' => $request->departement_id,
                     'sous_prefecture' => $request->sous_prefecture,
+
+                    'preciser_type_handicap' => $request->preciser_type_handicap,
+                    'situation_handicap' => $request->situation_handicap,
+                    'scolarise' => $request->scolarise,
+                    'niveau_scolaire' => $request->niveau_scolaire_id,
+                    'membre_association' => $request->membre_association,
+                    'preciser_travail' => $request->preciser_travail,
+                    'preciser_association' => $request->preciser_association,
+                    'domaine_intervention_asso' => $request->domaine_intervention_asso,
                 ],
                 [   'nom' => 'required',
                     'prenoms' => 'required',
                     'sexe' => 'required',
                     'lieudenaissance' => 'required',
+                    'datenaissance' => 'required',
                     'nationalite' => 'required',
+                    'precisenationalite' => 'required_if:nationalite,2',
                     'numero_piece' => $rulesChar,
-                    'telephone' => 'required|unique:App\Models\Benevole,telephone',
-                    'telephonen' => 'required|unique:App\Models\Benevole,telephone_autre',
-                    'telephone_autre' => 'required|unique:App\Models\Benevole,telephone_autre',
-                    'telephone_autren' => 'required|unique:App\Models\Benevole,telephone_autre',
+                    'autre_typepiece' => 'required_if:type_piece_id,5',
+                    'telephone' => 'required|digits:10|numeric|unique:App\Models\Benevole,telephone',
+                    'telephonen' => 'digits:10|numeric|unique:App\Models\Benevole,telephone_autre',
+                    'telephone_autre' => 'digits:10|numeric|unique:App\Models\Benevole,telephone_autre',
+                    'telephone_autren' => 'digits:10|numeric|unique:App\Models\Benevole,telephone_autre',
                     'lieuresidence' => 'required',
                     'situationmatrimoniale' => 'required',
+                    'preciser_type_handicap' => 'required_if:situation_handicap,2',
+                    'situation_handicap' => 'required_if:preciser_type_handicap,1',
+                    'scolarise' => 'required',
                     'district' => 'required',
                     'region' => 'required',
                     'departement' => 'required',
                     'sous_prefecture' => 'required',
+                    'niveau_scolaire' => 'required_if:scolarise,1',
+                    'membre_association' => 'required',
+                    'preciser_travail' => 'required_if:situation_professionel,1',
+                    'preciser_association' => 'required_if:membre_association,1',
+                    'domaine_intervention_asso' => 'required_if:membre_association,1',
                 ], [
                     'npieceidentite.size' => 'Le numéro de cette pièce n\'est pas conforme.',
                     'npieceidentite.unique' => 'Le numéro de cette pièce a déjà été pris.',
                 ]
-            );
+            )->validate();
 
             try {
                 DB::beginTransaction();
-
+                    Benevole::create($request->all());
                 DB::commit();
             } catch (\Exception $exception) {
                 DB::rollBack();

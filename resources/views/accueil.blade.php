@@ -26,10 +26,20 @@
                                     <!-- <div id="progressbar"></div> -->
                                 </div><!-- /top-wizard-->
 
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
                                 <div class="form-group col-sm-6" style="margin: 20px;">
                                     <label>Type inscription <span style="color: red;">*</span></label>
                                     <div class="styled-select">
-                                        <select class="required" name="country" onchange="displayform(this.value)">
+                                        <select class="required" name="type_inscription" onchange="displayform(this.value)" value="{{ old('type_inscription') }}">
                                             <option value="" selected></option>
                                             <option value="1">Association / Structure</option>
                                             <option value="2">Particulier</option>
@@ -37,20 +47,20 @@
                                     </div>
                                 </div>
 
-                                <form id="particulier" method="POST" style="display: block;">
-
+                                <form id="particulier" method="POST" action="{{ route('store') }}" style="display: block;">
+                                    @csrf()
                                     <div id="middle-wizard">
                                         <div class="row add_bottom_30">
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Nom <span style="color: red;">*</span></label>
-                                                    <input type="text" name="nom" class="form-control"
-                                                           placeholder="Nom">
+                                                    <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"
+                                                           placeholder="Nom" value="{{ old('nom') }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Prénoms <span style="color: red;">*</span></label>
-                                                    <input type="text" name="prenoms" class="required form-control"
+                                                    <input type="text" name="prenoms" value="{{ old('prenoms') }}" class="required form-control @error('prenoms') is-invalid @enderror"
                                                            placeholder="Prénoms">
                                                 </div>
                                                 <div class="form-group">
@@ -61,7 +71,7 @@
                                                             <option value="1">Masculin</option>
                                                             <option value="2">Feminin</option>
                                                         </select>--}}
-                                                        {{ html()->select('sexe_id', $sexes, null)->class('required')->placeholder('Selectionner Sexe') }}
+                                                        {{ html()->select('sexe_id', $sexes, old('sexe_id'))->class('required')->placeholder('Selectionner Sexe') }}
                                                     </div>
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -69,20 +79,23 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Date de naissance <span style="color: red;">*</span></label>
-                                                    <input type="date" name="datedenaissance"
-                                                           class="required form-control"
-                                                           placeholder="Date de naissance">
+                                                    <input type="date" name="datenaissance"
+                                                           class="required form-control @error('datenaissance') is-invalid @enderror"
+                                                           placeholder="Date de naissance" value="{{ old('datenaissance') }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Lieu de Naissance <span style="color: red;">*</span></label>
-                                                    <input type="text" name="lieudenaissance"
+                                                    <div class="styled-select">
+                                                        {{ html()->select('lieu_naissance_id',$communes, old('lieu_naissance_id'))->class('required')->placeholder('Selection Lieu naissance') }}
+                                                    </div>
+                                                    {{-- <input type="text" name="lieudenaissance"
                                                            class="required form-control"
-                                                           placeholder="Lieu de naissance">
+                                                           placeholder="Lieu de naissance">--}}
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Nationalité <span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('nationalite_id', $nationnalites, null)->class('required')->placeholder('Selectionner Nationalité')->id('nationalite_id') }}
+                                                        {{ html()->select('nationalite_id', $nationnalites, old('nationalite_id'))->class('required')->placeholder('Selectionner Nationalité')->id('nationalite_id') }}
                                                         {{--<select class="required" name="country" onchange="precisenationalite(this.value)">
                                                             <option value="" selected></option>
                                                             <option value="1">Ivoirienne</option>
@@ -92,8 +105,8 @@
                                                 </div>
                                                 <div class="form-group" style="display:none;" id="precisenationalite">
                                                     <label>Précisez votre nationalité <span style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
-                                                           placeholder="Précisez votre nationalité">
+                                                    <input type="text" name="precisenationalite" class="required form-control @error('precisenationalite') is-invalid @enderror"
+                                                           placeholder="Précisez votre nationalité" value="{{ old('precisenationalite') }}">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
 
@@ -101,13 +114,13 @@
                                                 <div class="form-group">
                                                     <label>Téléphone personnel 1 <span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="telephone" class="required form-control"
+                                                    <input type="text" name="telephone" value="{{ old('telephone') }}" class="required form-control @error('telephone') is-invalid @enderror"
                                                            placeholder="Téléphone personnel 1">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Téléphone personnel 2 <span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="telephone2" class="required form-control"
+                                                    <input type="text" name="telephone_autre"  value="{{ old('telephone_autre') }}" class="required form-control"
                                                            placeholder="Téléphone personnel 2">
                                                 </div>
                                                 <div class="form-group">
@@ -122,14 +135,14 @@
                                                             <option value="5">Autre</option>
                                                             <option value="6">Aucune</option>
                                                         </select>--}}
-                                                        {{ html()->select('type_piece_id', $nationnalites, null)->class('required')->placeholder('Selectionner Nationalité') }}
+                                                        {{ html()->select('type_piece_id', $typepieces, old('type_piece_id'))->class('required')->placeholder('Selectionner Type pièces')->id('type_piece_id') }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group" style="display:none;" id="precisepiece">
                                                     <label>Précisez votre pièce <span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
+                                                    <input type="text" name="autre_typepiece" value="{{ old('autre_typepiece') }}" class="required form-control @error('autre_typepiece') is-invalid @enderror"
                                                            placeholder="Précisez votre pièce">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -137,19 +150,21 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Numéro de la pièce <span style="color: red;">*</span></label>
-                                                    <input type="text" name="numeropiece" class="required form-control"
-                                                           placeholder="Numéro de la pièce">
+                                                    <input type="text" name="numero_piece" value="{{ old('numero_piece') }}" class="required form-control @error('numero_piece') is-invalid @enderror" placeholder="Numéro de la pièce">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Lieu de résidence<span style="color: red;">*</span></label>
-                                                    <input type="text" name="residence" class="required form-control"
-                                                           placeholder="Lieu de résidence">
+                                                {{--    <input type="text" name="lieu_residence_id" class="required form-control"
+                                                           placeholder="Lieu de résidence">--}}
+                                                    <div class="styled-select">
+                                                        {{ html()->select('lieu_residence_id', $communes, old('lieu_residence_id'))->class('required')->placeholder('Selectionner Lieu de résidence') }}
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Situation matrimoniale <span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('situation_matrimoniale_id', $situationmatrimonial, null)->class('required')->placeholder('Selectionner Situation')->id('situation_matrimoniale_id') }}
+                                                        {{ html()->select('situation_matrimoniale_id', $situationmatrimonial, old('situation_matrimoniale_id'))->class('required')->placeholder('Selectionner Situation')->id('situation_matrimoniale_id') }}
                                                         {{--<select class="required" name="situationmatrimoniale">
                                                             <option value="" selected></option>
                                                             <option value="1">Célibataire</option>
@@ -166,19 +181,19 @@
                                                 <div class="form-group">
                                                     <label>District<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('district_id', $districts, null)->class('required')->placeholder('Selectionner districs')->id('district_id') }}
+                                                        {{ html()->select('district_id', $districts, old('district_id'))->class('required')->placeholder('Selectionner districs')->id('district_id') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Région<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('region_id', $regions, null)->class('required')->placeholder('Selectionner region')->id('region_id') }}
+                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('departement_id', $regions, null)->class('required')->placeholder('Selectionner departement')->id('departement_id') }}
+                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('departement_id') }}
                                                         {{-- <select class="required" name="situationmatrimoniale">
                                                              <option value="" selected></option>
                                                              <option value=""></option>
@@ -188,8 +203,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Sous-Préfecture<span style="color: red;">*</span></label>
-                                                    <input type="text" name="sousprefecture"
-                                                           class="required form-control" placeholder="Sous-Préfecture">
+                                                    <input type="text" name="sous_prefecture"
+                                                           class="required form-control @error('sous_prefecture') is-invalid @enderror" value="{{ old('sous_prefecture') }}" placeholder="Sous-Préfecture">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
 
@@ -198,7 +213,7 @@
                                                     <label>Situation de handicap<span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name=""
+                                                        <select class="required @error('situation_handicap') is-invalid @enderror" name="situation_handicap"
                                                                 onchange="precisehandicap(this.value)">
                                                             <option value=""></option>
                                                             <option value="1">OUI</option>
@@ -209,13 +224,13 @@
                                                 <div class="form-group" style="display:none;" id="precisehandicap">
                                                     <label>Précisez votre handicap <span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
+                                                    <input type="text" name="preciser_type_handicap" value="{{ old('preciser_type_handicap') }}" class="required form-control @error('preciser_type_handicap') is-invalid @enderror"
                                                            placeholder="Précisez votre handicap">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Scolarisé<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name=""
+                                                        <select class="required @error('scolarise') is-invalid @enderror" name="scolarise"
                                                                 onchange="precisescolarite(this.value)">
                                                             <option value="" selected></option>
                                                             <option value="1">Oui</option>
@@ -227,7 +242,7 @@
                                                 <div class="form-group" style="display:none;" id="preciseniveau">
                                                     <label>Niveau scolaire<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('niveau_scolaire_id', $niveauscolaires, null)->class('required')->placeholder('Selectionner niveau scolaire')->id('niveau_scolaire_id') }}
+                                                        {{ html()->select('niveau_scolaire_id', $niveauscolaires, old('niveau_scolaire_id'))->class('required')->placeholder('Selectionner niveau scolaire')->id('niveau_scolaire_id') }}
 
                                                         {{--<select class="required" name="">
                                                             <option value="" selected></option>
@@ -254,7 +269,7 @@
                                                     <label>Diplôme(s) obtenu(s)<span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('diplome_id', $diplomes, null)->class('required')->placeholder('Selectionner diplôme')->id('diplome_id') }}
+                                                        {{ html()->select('diplome_id', $diplomes, old('diplome_id'))->class('required')->placeholder('Selectionner diplôme')->id('diplome_id') }}
                                                         {{--<select class="required" name="">
                                                             <option value="" selected></option>
                                                             <option value="">Aucun</option>
@@ -277,7 +292,7 @@
                                                     <label>Situation professionnelle actuelle<span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('situation_professionel_id', $situationpros, null)->class('required')->placeholder('Selectionner situation professionelle')->id('situation_professionel_id') }}
+                                                        {{ html()->select('situation_professionel_id', $situationpros, old('situation_professionel_id'))->class('required')->placeholder('Selectionner situation professionelle')->id('situation_professionel_id') }}
 
                                                         {{--<select class="required" name="situationmatrimoniale"
                                                                 onchange="precisesituationprof(this.value)">
@@ -292,13 +307,12 @@
                                                 <div class="form-group" style="display:none;" id="precisesituationprof">
                                                     <label>Précisez votre emploi<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
-                                                           placeholder="Précisez votre emploi">
+                                                    <input type="text" name="preciser_travail"  class="required form-control @error('preciser_travail') is-invalid @enderror"  placeholder="Précisez votre emploi">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Êtes-vous membre d'une association?<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name=""
+                                                        <select class="required @error('membre_association') is-invalid @enderror" name="membre_association"
                                                                 onchange="preciseassociation(this.value)">
                                                             <option value=""></option>
                                                             <option value="1">Oui</option>
@@ -308,22 +322,21 @@
                                                 </div>
                                                 <div class="form-group" style="display:none;" id="preciseassociation">
                                                     <label>Laquelle des associations ?<span style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
+                                                    <input type="text" name="preciser_association"  class="required form-control  @error('preciser_association') is-invalid @enderror"
                                                            placeholder="Laquelle des associations ?">
                                                 </div>
                                                 <div class="form-group" style="display:none;" id="precisedomaine">
                                                     <label>Dans quel domaine intervenez-vous?<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
+                                                    <input type="text" name="domaine_intervention_asso"  class="required form-control @error('domaine_intervention_asso') is-invalid @enderror"
                                                            placeholder="Dans quel domaine intervenez-vous?">
                                                 </div>
 
                                             </div><!-- /col-sm-6 -->
 
                                         </div><!-- /row-->
-
-
-                                    </div><!-- /middle-wizard -->
+                                    </div>
+                                    <!-- /middle-wizard -->
                                     <div id="bottom-wizard">
                                         <button type="submit" name="process" class="submit">Submit</button>
                                     </div><!-- /bottom-wizard -->
@@ -846,15 +859,14 @@
             }
         })
 
-        function precisepiece(id) {
 
-            if (id == 5) {
+        $('#type_piece_id').on('change', function(){
+            if ($(this).val() == 5) {
                 $("#precisepiece").css("display", "block");
             } else {
                 $("#precisepiece").css("display", "none");
             }
-
-        }
+        })
 
         function precisehandicap(id) {
 
@@ -914,6 +926,20 @@
                 $("#preciseinformation").css("display", "block");
             } else {
                 $("#preciseinformation").css("display", "none");
+            }
+
+        }
+
+        clickCount = 0;
+        function precisepopulationcible(id){
+            var span = document.getElementById("precisepopulationcible");
+
+            clickCount++;
+
+            if (clickCount % 2 === 1) {
+                span.style.display = "inline-block"; // Affiche le span au premier clic
+            } else {
+                span.style.display = "none"; // Masque le span au deuxième clic
             }
 
         }

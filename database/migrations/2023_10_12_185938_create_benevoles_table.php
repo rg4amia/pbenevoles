@@ -69,6 +69,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('diplome_id');
             $table->foreign('diplome_id')->references('id')->on('diplomes');
+
             $table->string('preciser_diplome')->nullable();
 
             $table->unsignedBigInteger('situation_professionel_id');

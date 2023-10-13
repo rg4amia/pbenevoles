@@ -216,8 +216,8 @@
                                                         <select class="required @error('situation_handicap') is-invalid @enderror" name="situation_handicap"
                                                                 onchange="precisehandicap(this.value)">
                                                             <option value=""></option>
-                                                            <option value="1">OUI</option>
-                                                            <option value="2">NON</option>
+                                                            <option value="1" {{ old('situation_handicap') == '1' ? 'selected' : '' }}>OUI</option>
+                                                            <option value="2" {{ old('situation_handicap') == '2' ? 'selected' : '' }}>NON</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -233,8 +233,8 @@
                                                         <select class="required @error('scolarise') is-invalid @enderror" name="scolarise"
                                                                 onchange="precisescolarite(this.value)">
                                                             <option value="" selected></option>
-                                                            <option value="1">Oui</option>
-                                                            <option value="2">Non</option>
+                                                            <option value="1" {{ old('scolarise') == '1' ? 'selected' : '' }}>Oui</option>
+                                                            <option value="2" {{ old('scolarise') == '2' ? 'selected' : '' }}>Non</option>
 
                                                         </select>
                                                     </div>
@@ -315,8 +315,8 @@
                                                         <select class="required @error('membre_association') is-invalid @enderror" name="membre_association"
                                                                 onchange="preciseassociation(this.value)">
                                                             <option value=""></option>
-                                                            <option value="1">Oui</option>
-                                                            <option value="2">Non</option>
+                                                            <option value="1" {{ old('membre_association') == '1' ? 'selected' : '' }}>Oui</option>
+                                                            <option value="2" {{ old('membre_association') == '2' ? 'selected' : '' }}>Non</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -379,11 +379,7 @@
                                                 <div class="form-group">
                                                     <label>Région<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="situationmatrimoniale">
-                                                            <option value="" selected></option>
-                                                            <option value=""></option>
-
-                                                        </select>
+                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -397,11 +393,7 @@
                                                 <div class="form-group">
                                                     <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="situationmatrimoniale">
-                                                            <option value="" selected></option>
-                                                            <option value=""></option>
-
-                                                        </select>
+                                                        {{ html()->select('departement_id', $departements, old('region_id'))->class('required')->placeholder('Selectionner departement')->id('region_id') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

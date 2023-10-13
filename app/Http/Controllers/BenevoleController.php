@@ -63,6 +63,7 @@ class BenevoleController extends Controller
 
     public function store(Request $request)
     {
+       // dd($request->telephone);
 
         if ($request->type_inscription == 1) {
             //Association / Structure benevole
@@ -130,8 +131,8 @@ class BenevoleController extends Controller
                     'autre_typepiece' => 'required_if:type_piece_id,5',
                     'telephone' => 'required|digits:10|numeric|unique:App\Models\Benevole,telephone',
                     'telephonen' => 'digits:10|numeric|unique:App\Models\Benevole,telephone_autre',
-                    'telephone_autre' => 'digits:10|numeric|unique:App\Models\Benevole,telephone_autre',
-                    'telephone_autren' => 'digits:10|numeric|unique:App\Models\Benevole,telephone_autre',
+                    'telephone_autre' => 'required_if:telephone_autre,digits:10|required_if:telephone_autre,numeric|unique:App\Models\Benevole,telephone_autre',
+                    'telephone_autren' => 'required_if:telephone_autre,digits:10|required_if:telephone_autre,numeric|unique:App\Models\Benevole,telephone_autre',
                     'lieuresidence' => 'required',
                     'situationmatrimoniale' => 'required',
                     'preciser_type_handicap' => 'required_if:situation_handicap,2',
@@ -154,9 +155,10 @@ class BenevoleController extends Controller
 
             try {
                 DB::beginTransaction();
-                    Benevole::create($request->all());
+                    Benevole::create($request->except('_token'));
                 DB::commit();
             } catch (\Exception $exception) {
+                dd($exception->getMessage());
                 DB::rollBack();
             }
         }

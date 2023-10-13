@@ -104,10 +104,10 @@ class BenevoleController extends Controller
                 'adresse_postal' => 'required',
                 'departement_id' => 'required',
                 'email' => 'required|unique:App\Models\AssociationBenevole,email',
-                'site_web' => 'required',
+                'site_web' => 'required_if:site_web',
                 'telephone' => 'required|digits:10|numeric|unique:App\Models\AssociationBenevole,telephone',
                 'email_repondant' => 'required|unique:App\Models\AssociationBenevole,email_repondant',
-                'fax' => 'required|digits:10|numeric|unique:App\Models\AssociationBenevole,fax',
+                'fax' => 'required_if:fax,digits:10|numeric|unique:App\Models\AssociationBenevole,fax',
                 'nom_repondant' => 'required',
                 'prenom_repondant' => 'required',
                 'fonction_repondant_org' => 'required',
@@ -140,7 +140,7 @@ class BenevoleController extends Controller
 
             return back();
 
-        } else {
+        } else if($request->type_inscription ==2) {
             //Particulier benevole
             $rulesChar = "required_if:type_piece_id,";
 

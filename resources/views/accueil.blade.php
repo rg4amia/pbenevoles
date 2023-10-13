@@ -311,12 +311,6 @@
                                             <div class="col-sm-6">
 
                                                 <div class="form-group">
-                                                    <label>Région<span style="color: red;">*</span></label>
-                                                    <div class="styled-select">
-                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id') }}
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
                                                     <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
                                                         {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('departement_id') }}
@@ -327,6 +321,14 @@
                                                          </select>--}}
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label>Région<span style="color: red;">*</span></label>
+                                                    <div class="styled-select">
+                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id') }}
+                                                    </div>
+                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label>Sous-Préfecture<span style="color: red;">*</span></label>
                                                     <input type="text" name="sous_prefecture"
@@ -561,9 +563,9 @@
                                                            placeholder="Statut juridique">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Région<span style="color: red;">*</span></label>
+                                                    <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id2') }}
+                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('departement_id2') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -577,11 +579,12 @@
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>Département<span style="color: red;">*</span></label>
+                                                    <label>Région<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('departement_id2') }}
+                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id2') }}
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="form-group">
                                                     <label>Email<span style="color: red;">*</span></label>
                                                     <input type="email" name="email" value="{{old('email') }}"

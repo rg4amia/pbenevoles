@@ -1032,7 +1032,7 @@ endsection
                     <div class="col-sm-6">Téléphone <br><span style="color:green; font-size: small">+225-27-22-49-93-04</span></div>
                   </div>
                   <div class="footer-column" style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
-                    <img src="{{asset('assets/img/logo_ministere.jpeg')}}" alt="Image" class="responsive-image" style="max-width: 25%; height: auto; display: block;">
+                    <img src="{{asset('assets/img/logo_ministere.jpeg')}}" alt="Image" class="responsive-image" style="max-width: 40%; height: auto; display: block;">
                   </div>
                 </footer>
 

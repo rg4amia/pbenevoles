@@ -58,8 +58,7 @@ class BenevoleController extends Controller
             'nationnalites' => $nationnalites,
             'niveauscolaires' => $niveauscolaires,
             'diplomes' => $diplomes,
-            'typepieces' => $typepieces,
-
+            'typepieces' => $typepieces
         ]);
     }
 

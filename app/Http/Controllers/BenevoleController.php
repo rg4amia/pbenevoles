@@ -66,7 +66,7 @@ class BenevoleController extends Controller
 
     public function store(Request $request)
     {
-      // dd($request->all());
+        //dd($request->all());
         if ($request->type_in_b == 1) {
             //Association / Structure benevole
             ///validation
@@ -126,6 +126,8 @@ class BenevoleController extends Controller
                 'status_autreinfo' => 'required',
                 'preciser_autreinfo' => 'required_if:status_autreinfo,1',
             ], [])->validate();
+
+
 
             try {
                 DB::beginTransaction();
@@ -303,6 +305,8 @@ class BenevoleController extends Controller
                     'npieceidentite.unique' => 'Le numéro de cette pièce a déjà été pris.',
                 ]
             )->validate();
+
+
 
             $data = $request->except('_token');
             $fileName = 'PHOTO_IDENTITE_' . $request->nom . ' ' . $request->prenoms . '.' . $request->photoidentite->extension();

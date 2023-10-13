@@ -1,22 +1,22 @@
 @extends('layouts.main')
 @section('css')
-<style>
-  /* Style pour le pied de page */
-  footer {
-    background-color: #ccc; /* Fond gris */
-    padding: 20px;
-    color: #fff; /* Couleur du texte */
-  }
+    <style>
+        /* Style pour le pied de page */
+        footer {
+            background-color: #ccc; /* Fond gris */
+            padding: 20px;
+            color: #fff; /* Couleur du texte */
+        }
 
-  /* Style pour les colonnes du pied de page */
-  .footer-column {
-    width: 25%; /* Répartit l'espace en 4 colonnes égales */
-    display: inline-block;
-    vertical-align: top;
-    padding: 10px;
-  }
-</style>
-endsection
+        /* Style pour les colonnes du pied de page */
+        .footer-column {
+            width: 25%; /* Répartit l'espace en 4 colonnes égales */
+            display: inline-block;
+            vertical-align: top;
+            padding: 10px;
+        }
+    </style>
+    endsection
 @section('content')
     <div class="wrapper_in">
         <div class="container-fluid">
@@ -122,7 +122,8 @@ endsection
                                                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                                                             </svg>
                                                             <span>{{ Session::get($msg) }}</span><br>
-                                                            <a href="{{ \Illuminate\Support\Facades\Storage::disk('badgepdf')->url(Session::get('matricule')) }}">Télécharger Fiche ici</a>
+                                                            <a href="{{ \Illuminate\Support\Facades\Storage::disk('badgepdf')->url(Session::get('matricule')) }}">Télécharger
+                                                                Fiche ici</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -138,24 +139,31 @@ endsection
                                                 onchange="displayform(this.value)"
                                                 required="required">
                                             <option value="">Choisir Type Inscription</option>
-                                            <option value="1" {{ old('type_inscription') == '1' ? 'selected' : '' }}>Association / Structure</option>
-                                            <option value="2" {{ old('type_inscription') == '2' ? 'selected' : '' }}>Particulier</option>
+                                            <option value="1" {{ old('type_in_b') == '1' ? 'selected' : '' }}>
+                                                Association / Structure
+                                            </option>
+                                            <option value="2" {{ old('type_in_a') == '2' ? 'selected' : '' }}>
+                                                Particulier
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <form id="particulier" method="POST" action="{{ route('store') }}" style="display: none;" enctype="multipart/form-data">
+                                <form id="particulier" method="POST" action="{{ route('store') }}"
+                                      style="display: none;" enctype="multipart/form-data">
                                     @csrf()
                                     <div id="middle-wizard">
                                         <div class="row add_bottom_30">
 
-                                            <input type="hidden" name="type_in_a" id="type_in_a">
+                                            <input type="hidden" name="type_in_a" id="type_in_a"
+                                                   value="{{ old('type_in_a') }}">
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Photo <span style="color: red;">*</span></label>
                                                     <input type="file" name="photoidentite"
-                                                           class="form-control @error('photoidentite') is-invalid @enderror" required>
+                                                           class="form-control @error('photoidentite') is-invalid @enderror"
+                                                           required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Nom <span style="color: red;">*</span></label>
@@ -506,7 +514,9 @@ endsection
                                     </div>
                                     <!-- /middle-wizard -->
                                     <div id="bottom-wizard">
-                                        <button type="submit" class="btn btn-success" name="process" class="submit">Enregistrer</button>
+                                        <button type="submit" class="btn btn-success" name="process" class="submit">
+                                            Enregistrer
+                                        </button>
                                     </div><!-- /bottom-wizard -->
                                 </form>
 
@@ -516,7 +526,8 @@ endsection
                                     <div id="middle-wizard">
                                         <div class="row add_bottom_30">
                                             <div class="col-sm-6">
-                                                <input type="hidden" name="type_in_b" id="type_in_b">
+                                                <input type="hidden" name="type_in_b" id="type_in_b"
+                                                       value="{{ old('type_in_b') }}">
                                                 <div class="form-group">
                                                     <label>Nom<span style="color: red;">*</span></label>
                                                     <input type="text" name="nom" value="{{ old('nom') }}"
@@ -752,13 +763,14 @@ endsection
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                                     </div>
-                                                                    </label>
+                                                                </label>
 
-                                                                    Autre : <span style="display:none"
-                                                                                  id="precisedomaineintervention"><input
-                                                                            type="text" name="do_preciser_autre" value="{{old('do_preciser_autre')}}"
-                                                                            class="required form-control"
-                                                                            placeholder="Autre domaine">
+                                                                Autre : <span style="display:none"
+                                                                              id="precisedomaineintervention"><input
+                                                                        type="text" name="do_preciser_autre"
+                                                                        value="{{old('do_preciser_autre')}}"
+                                                                        class="required form-control"
+                                                                        placeholder="Autre domaine">
                                                                            </span>
 
                                                             </div>
@@ -884,12 +896,13 @@ endsection
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                                     </div>
-                                                                    </label>
-                                                                    Autre : <span style="display:none"
-                                                                                  id="precisepopulationcible"> <input
-                                                                            type="text" name="pop_preciser_autre" value="{{old('pop_preciser_autre')}}"
-                                                                            class="required form-control"
-                                                                            placeholder="Autre population"></span>
+                                                                </label>
+                                                                Autre : <span style="display:none"
+                                                                              id="precisepopulationcible"> <input
+                                                                        type="text" name="pop_preciser_autre"
+                                                                        value="{{old('pop_preciser_autre')}}"
+                                                                        class="required form-control"
+                                                                        placeholder="Autre population"></span>
 
                                                             </div>
 
@@ -1013,7 +1026,9 @@ endsection
 
                                     </div><!-- /middle-wizard -->
                                     <div id="bottom-wizard">
-                                        <button type="submit" class="btn btn-success" name="process" class="submit">Enregistrer</button>
+                                        <button type="submit" class="btn btn-success" name="process" class="submit">
+                                            Enregistrer
+                                        </button>
                                     </div><!-- /bottom-wizard -->
                                 </form>
                             </div><!-- /Wizard container -->
@@ -1022,19 +1037,27 @@ endsection
                     </div><!-- /row -->
                 </div><!-- /TAB 1:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 
-               <footer style="background-color: #EAEAEA; padding: 10px; color: orange;">
-                  <div class="footer-column" style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
-                    <img src="{{asset('assets/img/logo-benevole.png')}}" alt="Image" class="responsive-image" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
-                  </div>
-                  <div class="footer-column" style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box; text-align: left;">
-                    <strong><p>CONTACTS</p></strong>
-                    <div class="col-sm-7">Adresse <br><span style="color:green; font-size: small">COCODY Riviera Palmeraire 9ème Tranche, Rue Arrière au collège les figuiers</span></div>
-                    <div class="col-sm-7">Horaires <br><span style="color:green; font-size: small">Lun-Ven: 07h30 - 16h30</span></div>
-                    <div class="col-sm-7">Téléphone <br><span style="color:green; font-size: small">+225-27-22-49-93-04</span></div>
-                  </div>
-                  <div class="footer-column" style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
-                    <img src="{{asset('assets/img/logo_ministere.jpeg')}}" alt="Image" class="responsive-image" style="max-width: 40%; height: auto; display: block;">
-                  </div>
+                <footer style="background-color: #EAEAEA; padding: 10px; color: orange;">
+                    <div class="footer-column"
+                         style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
+                        <img src="{{asset('assets/img/logo-benevole.png')}}" alt="Image" class="responsive-image"
+                             style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                    </div>
+                    <div class="footer-column"
+                         style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box; text-align: left;">
+                        <strong><p>CONTACTS</p></strong>
+                        <div class="col-sm-7">Adresse <br><span style="color:green; font-size: small">COCODY Riviera Palmeraire 9ème Tranche, Rue Arrière au collège les figuiers</span>
+                        </div>
+                        <div class="col-sm-7">Horaires <br><span style="color:green; font-size: small">Lun-Ven: 07h30 - 16h30</span>
+                        </div>
+                        <div class="col-sm-7">Téléphone <br><span style="color:green; font-size: small">+225-27-22-49-93-04</span>
+                        </div>
+                    </div>
+                    <div class="footer-column"
+                         style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
+                        <img src="{{asset('assets/img/logo_ministere.jpeg')}}" alt="Image" class="responsive-image"
+                             style="max-width: 40%; height: auto; display: block;">
+                    </div>
                 </footer>
 
 
@@ -1044,8 +1067,22 @@ endsection
 @endsection
 @section('js')
     <script type="text/javascript">
+        $(function () {
+            var type_in_a = '{{ old('type_in_a') }}';
+            var type_in_b = '{{ old('type_in_b') }}';
 
-        $('#type_inscription').on('change', function(){
+            console.log(type_in_a, type_in_b);
+
+            if (type_in_a == 2) {
+                $("#particulier").css("display", "block");
+                $("#structure").css("display", "none");
+            } else if (type_in_b == 1) {
+                $("#particulier").css("display", "none");
+                $("#structure").css("display", "block");
+            }
+        });
+
+        $('#type_inscription').on('change', function () {
             $('#type_in_a').val($(this).val());
             $('#type_in_b').val($(this).val());
         })
@@ -1054,7 +1091,7 @@ endsection
             if (form_id == 2) {
                 $("#particulier").css("display", "block");
                 $("#structure").css("display", "none");
-            } else if(form_id == 1) {
+            } else if (form_id == 1) {
                 $("#particulier").css("display", "none");
                 $("#structure").css("display", "block");
             }
@@ -1188,7 +1225,7 @@ endsection
 
         }
 
-        $('#departement_id').on('change', function() {
+        $('#departement_id').on('change', function () {
 
             var departement = $('#departement_id').val();
 
@@ -1201,17 +1238,17 @@ endsection
                 data: {
                     'id': departement,
                 },
-                success: function(data) {
+                success: function (data) {
                     //console.log(data);
                     $('#region_id').val(data.region.id);
                     $('#district_id').val(data.district.id);
-                    
+
                 }
             });
 
         });
 
-        $('#departement_id2').on('change', function() {
+        $('#departement_id2').on('change', function () {
 
             var departement = $('#departement_id2').val();
 
@@ -1224,16 +1261,14 @@ endsection
                 data: {
                     'id': departement,
                 },
-                success: function(data) {
+                success: function (data) {
                     //console.log(data);
                     $('#region_id2').val(data.region.id);
                     //$('#district_id').val(data.district.id);
-                    
                 }
             });
 
         });
-
     </script>
 
 @endsection

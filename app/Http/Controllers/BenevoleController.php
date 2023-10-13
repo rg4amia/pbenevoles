@@ -42,7 +42,6 @@ class BenevoleController extends Controller
         $domaineinterventions = DomaineIntervention::get();
         $populationcibles = PopulationCible::get();
 
-
         return view('accueil', [
             'sexes' => $sexes,
             'situationpros' => $situationpros,
@@ -155,12 +154,15 @@ class BenevoleController extends Controller
 
             try {
                 DB::beginTransaction();
-                    Benevole::create($request->except('_token'));
+                    $benevole =  Benevole::create($request->except('_token'));
+                    $request->flash('success','Vos informations on bien été pris en compte'.$benevole->matricule);
                 DB::commit();
             } catch (\Exception $exception) {
-                dd($exception->getMessage());
                 DB::rollBack();
+                $request->flash('success','Erreur est survenu pendant l\' enregistrement du formulaire!!!');
             }
+
+            return back();
         }
     }
 }

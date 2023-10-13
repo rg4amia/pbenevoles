@@ -36,6 +36,23 @@
                                     </div>
                                 @endif
 
+                                <div>
+                                    <div>
+                                        @forelse(['danger', 'warning', 'success', 'info'] as $msg)
+                                            @if (Session::has($msg) )
+                                                <div class="demo-spacing-0">
+                                                    <div class="alert alert-{{$msg}} mt-1 alert-validation-msg" role="alert">
+                                                        <div class="alert-body">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info mr-50 align-middle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                                            <span>{{ Session::get($msg) }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @endforeach
+                                    </div>
+                                </div>
+
                                 <div class="form-group col-sm-6" style="margin: 20px;">
                                     <label>Type inscription <span style="color: red;">*</span></label>
                                     <div class="styled-select">
@@ -342,8 +359,7 @@
                                     </div><!-- /bottom-wizard -->
                                 </form>
 
-
-                                <form id="structure" method="POST" style="display: none;">
+                                <form id="structure" method="POST" action="{{ route('store') }}" style="display: none;">
                                     <input id="website" name="website" type="text" value="">
                                     <!-- Leave for security protection, read docs for details -->
                                     <div id="middle-wizard">
@@ -353,19 +369,19 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Nom<span style="color: red;">*</span></label>
-                                                    <input type="text" name="nom" class="form-control"
+                                                    <input type="text" name="nom" value="{{ old('nom') }}" class="form-control"
                                                            placeholder="Nom">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>N° d’enregistrement Pour les ONG et associations<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="prenoms" class="required form-control"
+                                                    <input type="text" name="numero_enregistrement" value="{{ old('numero_enregistrement') }}" class="required form-control"
                                                            placeholder="N° d’enregistrement Pour les ONG et associations">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>N° du texte de création Pour les structures et parapubliques<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="prenoms" class="required form-control"
+                                                    <input type="text" name="numero_creation"  value="{{ old('numero_creation') }}" class="required form-control"
                                                            placeholder="N° du texte de création Pour les structures et parapubliques">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -374,7 +390,7 @@
                                                 <div class="form-group">
                                                     <label>Statut juridique<span style="color: red;">*</span></label>
                                                     <input type="text" name="statut_juridique"
-                                                           class="required form-control" placeholder="Statut juridique">
+                                                           class="required form-control" value="{{ old('statut_juridique') }}" placeholder="Statut juridique">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Région<span style="color: red;">*</span></label>
@@ -385,7 +401,7 @@
                                                 <div class="form-group">
                                                     <label>Adresse postale<span style="color: red;">*</span></label>
                                                     <input type="text" name="adresse_postal"
-                                                           class="required form-control" placeholder="Adresse postale">
+                                                           class="required form-control" value="{{ old('adresse_postale') }}" placeholder="Adresse postale">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
 
@@ -393,61 +409,56 @@
                                                 <div class="form-group">
                                                     <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('departement_id', $departements, old('region_id'))->class('required')->placeholder('Selectionner departement')->id('region_id') }}
+                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('region_id') }}
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email<span style="color: red;">*</span></label>
-                                                    <input type="email" name="email" class="required form-control"
+                                                    <input type="email" name="email" value="{{ old('email') }}" class="required form-control"
                                                            placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Site web<span style="color: red;">*</span></label>
-                                                    <input type="text" name="siteweb" class="required form-control"
+                                                    <input type="text" name="site_web" value="{{ old('site_web') }}" class="required form-control"
                                                            placeholder="Site web">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Téléphone du répondant<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
+                                                    <input type="text" name="telephone" value="{{ old('telephone') }}" class="required form-control"
                                                            placeholder="Téléphone du répondant">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email du répondant<span style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
-                                                           placeholder="Email du répondant">
+                                                    <input type="text" name="email_repondant" class="required form-control"
+                                                           placeholder="Email du répondant" value="{{ old('email_repondant')}}">
                                                 </div>
 
                                             </div><!-- /col-sm-6 -->
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>Téléphone<span style="color: red;">*</span></label>
-                                                    <input type="text" name="telephone" class="required form-control"
-                                                           placeholder="Téléphone">
-                                                </div>
-                                                <div class="form-group">
                                                     <label>Fax<span style="color: red;">*</span></label>
                                                     <input type="text" name="fax" class="required form-control"
-                                                           placeholder="Fax">
+                                                           placeholder="Fax" value="{{ old('fax')}}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Nom du répondant<span style="color: red;">*</span></label>
                                                     <input type="text" name="nom_repondant"
-                                                           class="required form-control"
+                                                           class="required form-control" value="{{ old('nom_repondant')}}"
                                                            placeholder="Nom du répondant">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Prenoms du répondant<span
                                                             style="color: red;">*</span></label>
                                                     <input type="text" name="prenom_repondant"
-                                                           class="required form-control"
+                                                           class="required form-control" value="{{ old('prenom_repondant')}}"
                                                            placeholder="Prenoms du répondant">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Fonction du répondant dans l’organisation<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="" class="required form-control"
+                                                    <input type="text" value="{{ old('fonction_repondant_org') }}" name="fonction_repondant_org" class="required form-control"
                                                            placeholder="Fonction du répondant dans l’organisation">
                                                 </div>
 

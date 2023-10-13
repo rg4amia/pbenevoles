@@ -12,6 +12,40 @@ class AssociationBenevole extends Model
     use HasFactory,HasUuids;
 
 
+    protected $fillable = [
+        'matricule',
+        'nom',
+        'numero_enregistrement',
+        'numero_creation',
+        'statut_juridique',
+        'region_id',
+        'adresse_postale',
+        'departement_id',
+        'email',
+        'site_web',
+        'telephone',
+        'email_repondant',
+        'fax',
+        'nom_repondant',
+        'prenoms_repondant',
+        'fonction_repondant_org',
+        'telephone_repondant',
+        'domaine_intervention_id',
+        'population_cible_id',
+        'effectif_personnel',
+        'effectif_homme',
+        'effectif_femme',
+        'effectif_salaries',
+        'effectif_contractuels',
+        'effectif_benevoles',
+        'montant_budget_anneeencour',
+        'montant_budget_2019',
+        'montant_budget_2018',
+        'montant_budget_2017',
+        'status_autreinfo',
+        'preciser_autreinfo',
+    ];
+
     protected $dispatchesEvents = [
         'saved' => AssociationBenevoleSaved::class,
     ];

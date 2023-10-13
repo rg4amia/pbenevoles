@@ -793,7 +793,7 @@
                                                            class="required form-control @error('montant_budget_anneeencour') is-invalid @enderror"
                                                            placeholder="Montant du budget de l’année en cours">
                                                 </div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label>Année 2019<span style="color: red;">*</span></label>
                                                     <input type="text" name="montant_budget_2019" class="required form-control @error('montant_budget_2019') is-invalid @enderror" value="{{old('montant_budget_2019')}}"
                                                            placeholder="Année 2019">
@@ -802,15 +802,15 @@
                                                     <label>Année 2018<span style="color: red;">*</span></label>
                                                     <input type="text" name="montant_budget_2018" value="{{old('montant_budget_2018')}}" class="required form-control @error('montant_budget_2018') is-invalid @enderror"
                                                            placeholder="Année 2018">
-                                                </div>
+                                                </div> -->
                                             </div><!-- /col-sm-6 -->
 
                                             <div class="col-sm-6">
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label>Année 2017<span style="color: red;">*</span></label>
                                                     <input type="text" name="montant_budget_2017"  value="{{old('montant_budget_2017')}}" class="required form-control @error('montant_budget_2017') is-invalid @enderror"
                                                            placeholder="Année 2017">
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group">
                                                     <label>Désirez-vous nous communiquer d’autres informations ?<span
                                                             style="color: red;">*</span></label>

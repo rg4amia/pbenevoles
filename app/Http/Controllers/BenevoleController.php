@@ -64,7 +64,7 @@ class BenevoleController extends Controller
 
     public function store(Request $request)
     {
-       // dd($request->type_in_b,$request->type_in_a);
+      // dd($request->all());
         if ($request->type_in_b == 1) {
             //Association / Structure benevole
             ///validation

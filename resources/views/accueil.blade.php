@@ -513,9 +513,7 @@ endsection
                                 @csrf()
                                 <!-- Leave for security protection, read docs for details -->
                                     <div id="middle-wizard">
-
                                         <div class="row add_bottom_30">
-
                                             <div class="col-sm-6">
                                                 <input type="hidden" name="type_in_b" id="type_in_b">
                                                 <div class="form-group">
@@ -755,7 +753,7 @@ endsection
                                                                     </div>
                                                                     Autre : <span style="display:none"
                                                                                   id="precisedomaineintervention"><input
-                                                                            type="text" name="do_preciser_autre"
+                                                                            type="text" name="do_preciser_autre" value="{{old('do_preciser_autre')}}"
                                                                             class="required form-control"
                                                                             placeholder="Autre domaine"></span>
                                                                 </label>
@@ -769,9 +767,7 @@ endsection
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <h4>Population cible (plusieurs choix possibles) </h4>
-
                                                     <div class="row add_bottom_30">
-
                                                         <div class="col-sm-6">
                                                             <div class="form-group checkbox_questions">
                                                                 <label class="">
@@ -886,7 +882,7 @@ endsection
                                                                     </div>
                                                                     Autre : <span style="display:none"
                                                                                   id="precisepopulationcible"> <input
-                                                                            type="text" name="pop_preciser_autre"
+                                                                            type="text" name="pop_preciser_autre" value="{{old('pop_preciser_autre')}}"
                                                                             class="required form-control"
                                                                             placeholder="Autre population"></span>
                                                                 </label>

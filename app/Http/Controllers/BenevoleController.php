@@ -62,10 +62,45 @@ class BenevoleController extends Controller
 
     public function store(Request $request)
     {
-       // dd($request->telephone);
+        // dd($request->telephone);
 
-        if ($request->type_inscription == 1) {
+        if ($request->type_inscription == null) {
             //Association / Structure benevole
+
+            ///validation
+            $validation = Validator::make([
+                'nom' => $request->nom,
+                'numero_enregistrement' => $request->numero_enregistrement,
+                'numero_creation' => $request->numero_creation,
+                'statut_juridique' => $request->statut_juridique,
+                'region_id' => $request->region_id,
+                'adresse_postal' => $request->adresse_postal,
+                'departement_id' => $request->departement_id,
+                'email' => $request->email,
+                'site_web' => $request->site_web,
+                'telephone' => $request->telephone,
+                'email_repondant' => $request->email_repondant,
+                'fax' => $request->fax,
+                'nom_repondant' => $request->nom_repondant,
+                'prenom_repondant' => $request->prenom_repondant,
+                'fonction_repondant_org' => $request->fonction_repondant_org,
+            ], [
+                'nom' => 'required',
+                'numero_enregistrement' => 'required|unique:App\Models\AssociationBenevole,numero_enregistrement',
+                'numero_creation' => 'required|unique:App\Models\AssociationBenevole,numero_creation',
+                'statut_juridique' => 'required',
+                'region_id' => 'required',
+                'adresse_postale' => 'required',
+                'departement_id' => 'required',
+                'email' => 'required|unique:App\Models\AssociationBenevole,email',
+                'site_web' => 'required',
+                'telephone' => 'required|digits:10|numeric|unique:App\Models\AssociationBenevole,telephone',
+                'email_repondant' => 'required|unique:App\Models\AssociationBenevole,email_repondant',
+                'fax' => 'required|digits:10|numeric|unique:App\Models\AssociationBenevole,fax',
+                'nom_repondant' => 'required',
+                'prenom_repondant' => 'required',
+                'fonction_repondant_org' => 'required',
+            ], [])->validate();
         } else {
             //Particulier benevole
             $rulesChar = "required_if:type_piece_id,";
@@ -119,7 +154,7 @@ class BenevoleController extends Controller
                     'preciser_association' => $request->preciser_association,
                     'domaine_intervention_asso' => $request->domaine_intervention_asso,
                 ],
-                [   'nom' => 'required',
+                ['nom' => 'required',
                     'prenoms' => 'required',
                     'sexe' => 'required',
                     'lieudenaissance' => 'required',
@@ -154,12 +189,12 @@ class BenevoleController extends Controller
 
             try {
                 DB::beginTransaction();
-                    $benevole =  Benevole::create($request->except('_token'));
-                    $request->flash('success','Vos informations on bien été pris en compte'.$benevole->matricule);
+                $benevole = Benevole::create($request->except('_token'));
+                $request->flash('success', 'Vos informations on bien été pris en compte' . $benevole->matricule);
                 DB::commit();
             } catch (\Exception $exception) {
                 DB::rollBack();
-                $request->flash('success','Erreur est survenu pendant l\' enregistrement du formulaire!!!');
+                $request->flash('success', 'Erreur est survenu pendant l\' enregistrement du formulaire!!!');
             }
 
             return back();

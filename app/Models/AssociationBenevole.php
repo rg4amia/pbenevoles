@@ -44,6 +44,22 @@ class AssociationBenevole extends Model
         'montant_budget_2017',
         'status_autreinfo',
         'preciser_autreinfo',
+        'do_education_formation',
+        'do_sante_communautaire',
+        'do_assainissement_environnement',
+        'do_promotion_droits_humains',
+        'do_agriculture',
+        'do_appui_aux_organisation',
+        'do_developpement_communauteire',
+        'do_autre',
+        'pop_population_generale',
+        'pop_homme',
+        'pop_femme',
+        'pop_jeunes',
+        'pop_enfants',
+        'pop_personne_agees',
+        'pop_personne_vivant_avec_handicap',
+        'pop_autre',
     ];
 
     protected $dispatchesEvents = [

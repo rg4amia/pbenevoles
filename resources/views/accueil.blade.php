@@ -738,17 +738,17 @@
                                                     <label>Effectif du Personnel<span
                                                             style="color: red;">*</span></label>
                                                     <input type="text" name="effectif_personnel" value="{{old('effectif_personnel')}}"
-                                                           class="required form-control"
+                                                           class="required form-control @error('prenom_repondant') is-invalid @enderror"
                                                            placeholder="Effectif du Personnel">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Homme<span style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_homme" value="{{old('effectif_homme')}}" class="required form-control"
+                                                    <input type="text" name="effectif_homme" value="{{old('effectif_homme')}}" class="required form-control @error('prenom_repondant') is-invalid @enderror"
                                                            placeholder="Effectif Homme">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Femme<span style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_femme" value="{{old('effectif_femme')}}" class="required form-control"
+                                                    <input type="text" name="effectif_femme" value="{{old('effectif_femme')}}" class="required form-control @error('prenom_repondant') is-invalid @enderror"
                                                            placeholder="Effectif Femme">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -757,19 +757,19 @@
                                                 <div class="form-group">
                                                     <label>Effectif Salariés<span style="color: red;">*</span></label>
                                                     <input type="text" name="effectif_salaries" value="{{old('effectif_salaries')}}"
-                                                           class="required form-control"
+                                                           class="required form-control @error('effectif_salaries') is-invalid @enderror"
                                                            placeholder="Effectif Salariés">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Contractuels<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_contractuels" value="{{old('effectif_contractuels')}}" class="required form-control"
+                                                    <input type="text" name="effectif_contractuels" value="{{old('effectif_contractuels')}}" class="required form-control @error('effectif_contractuels') is-invalid @enderror"
                                                            placeholder="Effectif Contractuels">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Bénévoles<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_benevoles" value="{{old('effectif_benevoles')}}" class="required form-control"
+                                                    <input type="text" name="effectif_benevoles" value="{{old('effectif_benevoles')}}" class="required form-control @error('effectif_benevoles') is-invalid @enderror"
                                                            placeholder="Effectif Bénévoles">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -779,17 +779,17 @@
                                                     <label>Montant du budget de l’année en cours<span
                                                             style="color: red;">*</span></label>
                                                     <input type="text" name="montant_budget_anneeencour" value="{{old('montant_budget_anneeencour')}}"
-                                                           class="required form-control"
+                                                           class="required form-control @error('montant_budget_anneeencour') is-invalid @enderror"
                                                            placeholder="Montant du budget de l’année en cours">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Année 2019<span style="color: red;">*</span></label>
-                                                    <input type="text" name="montant_budget_2019" class="required form-control" value="{{old('montant_budget_2019')}}"
+                                                    <input type="text" name="montant_budget_2019" class="required form-control @error('montant_budget_2019') is-invalid @enderror" value="{{old('montant_budget_2019')}}"
                                                            placeholder="Année 2019">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Année 2018<span style="color: red;">*</span></label>
-                                                    <input type="text" name="montant_budget_2018" value="{{old('montant_budget_2018')}}" class="required form-control"
+                                                    <input type="text" name="montant_budget_2018" value="{{old('montant_budget_2018')}}" class="required form-control @error('montant_budget_2018') is-invalid @enderror"
                                                            placeholder="Année 2018">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -797,14 +797,14 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Année 2017<span style="color: red;">*</span></label>
-                                                    <input type="text" name="montant_budget_2017"  value="{{old('montant_budget_2017')}}" class="required form-control"
+                                                    <input type="text" name="montant_budget_2017"  value="{{old('montant_budget_2017')}}" class="required form-control @error('montant_budget_2017') is-invalid @enderror"
                                                            placeholder="Année 2017">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Désirez-vous nous communiquer d’autres informations ?<span
                                                             style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        <select class="required" name="status_autreinfo"
+                                                        <select class="required @error('status_autreinfo') is-invalid @enderror" name="status_autreinfo"
                                                                 onchange="preciseinformation(this.value)">
                                                             <option value="" selected></option>
                                                             <option value="1" {{ old('status_autreinfo') == '1' ? 'selected' : '' }}>Oui</option>
@@ -814,7 +814,7 @@
                                                 </div>
                                                 <div class="form-group" style="display:none;" id="preciseinformation">
                                                     <label>Quelles informations ?</label>
-                                                    <input type="text" name="preciser_autreinfo" value="{{old('preciser_autreinfo')}}" class="required form-control"
+                                                    <input type="text" name="preciser_autreinfo" value="{{old('preciser_autreinfo')}}" class="required form-control  @error('preciser_autreinfo') is-invalid @enderror"
                                                            placeholder="Quelles informations ?">
                                                 </div>
                                             </div><!-- /col-sm-6 -->

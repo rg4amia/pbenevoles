@@ -94,7 +94,7 @@ class BenevoleController extends Controller
                 /*'montant_budget_2019' => $request->montant_budget_2019,
                 'montant_budget_2018' => $request->montant_budget_2018,
                 'montant_budget_2017' => $request->montant_budget_2017,*/
-                'preciseinformation' => $request->preciseinformation,
+                'preciser_autreinfo' => $request->preciser_autreinfo,
             ], [
                 'nom' => 'required',
                 'numero_enregistrement' => 'required|unique:App\Models\AssociationBenevole,numero_enregistrement',
@@ -122,7 +122,7 @@ class BenevoleController extends Controller
                 'montant_budget_2018' => 'required',
                 'montant_budget_2017' => 'required',*/
                 'status_autreinfo' => 'required',
-                'preciseinformation' => 'required_if:status_autreinfo,1',
+                'preciser_autreinfo' => 'required_if:status_autreinfo,1',
             ], [])->validate();
 
             try {

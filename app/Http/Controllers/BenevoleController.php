@@ -326,7 +326,7 @@ class BenevoleController extends Controller
                 session()->put('matricule', $benevole->matricule .'.pdf');
                 DB::commit();
             } catch (\Exception $exception) {
-                //dd($exception->getMessage());
+
                 Log::info($exception->getMessage());
                 DB::rollBack();
                 session()->flash('warning','Erreur est survenu pendant l\' enregistrement du formulaire!!!');

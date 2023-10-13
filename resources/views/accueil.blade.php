@@ -900,7 +900,7 @@
         })
 
         $('#diplome_id').on('change', function(){
-            alert($(this).val());
+            
             if ($(this).val() == 10) {
 
                 $("#preciseautrediplome").css("display", "block");

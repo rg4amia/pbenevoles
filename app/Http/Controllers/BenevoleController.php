@@ -195,7 +195,7 @@ class BenevoleController extends Controller
 
                 $benevole = AssociationBenevole::create($data);
                 $string = $benevole->id;
-                $benevole->matricule = 'BN-'. $this->generateRandomNumber() . date('dmY') .'-CAN-2023';
+                $benevole->matricule = 'BN-'. $this->generateRandomNumber() .'-CAN-2023';
                 $benevole->save();
 
                 session()->flash('success', 'VOTRE CANDIDATURE A ETE RETENUE AVEC SUCCES.' . $benevole->matricule);
@@ -309,9 +309,10 @@ class BenevoleController extends Controller
             $data['photoidentite'] = FileUploader::upload($request, 'photoidentite', 'public', str_replace(" ", "_", $fileName));
 
             try {
+
                 DB::beginTransaction();
                 $benevole = Benevole::create($data);
-                $benevole->matricule = 'BN-'. $this->generateRandomNumber() . date('dmY') .'-CAN-2023';
+                $benevole->matricule = 'BN-'. $this->generateRandomNumber() .'-CAN-2023';
                 $benevole->save();
 
                 $pdf = PDF::loadView('pdf.index', compact('benevole'))
@@ -325,7 +326,7 @@ class BenevoleController extends Controller
                 session()->put('matricule', $benevole->matricule .'.pdf');
                 DB::commit();
             } catch (\Exception $exception) {
-                //dd($exception->getMessage());
+
                 Log::info($exception->getMessage());
                 DB::rollBack();
                 session()->flash('warning','Erreur est survenu pendant l\' enregistrement du formulaire!!!');

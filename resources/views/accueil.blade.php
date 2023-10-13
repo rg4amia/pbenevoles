@@ -1,4 +1,22 @@
 @extends('layouts.main')
+@section('css')
+<style>
+  /* Style pour le pied de page */
+  footer {
+    background-color: #ccc; /* Fond gris */
+    padding: 20px;
+    color: #fff; /* Couleur du texte */
+  }
+
+  /* Style pour les colonnes du pied de page */
+  .footer-column {
+    width: 25%; /* Répartit l'espace en 4 colonnes égales */
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+  }
+</style>
+endsection
 @section('content')
     <div class="wrapper_in">
         <div class="container-fluid">
@@ -999,6 +1017,21 @@
                         </div><!-- /col -->
                     </div><!-- /row -->
                 </div><!-- /TAB 1:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+               <footer style="background-color: #EAEAEA; padding: 10px; color: orange;">
+                  <div class="footer-column" style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
+                    <img src="{{asset('assets/img/logo-benevole.png')}}" alt="Image" class="responsive-image" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                  </div>
+                  <div class="footer-column" style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box; text-align: left;">
+                    <strong><p>CONTACTS</p></strong>
+                    <div class="col-sm-6">Adresse <br><span style="color:green; font-size: small">COCODY Riviera Palmeraire 9ème Tranche, Rue Arrière au collège les figuiers</span></div>
+                    <div class="col-sm-6">Horaires <br><span style="color:green; font-size: small">Lun-Ven: 07h30 - 16h30</span></div>
+                    <div class="col-sm-6">Téléphone <br><span style="color:green; font-size: small">+225-27-22-49-93-04</span></div>
+                  </div>
+                  <div class="footer-column" style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
+                    <img src="{{asset('assets/img/logo_ministere.jpeg')}}" alt="Image" class="responsive-image" style="max-width: 25%; height: auto; display: block;">
+                  </div>
+                </footer>
 
 
             </div><!-- /tab content -->

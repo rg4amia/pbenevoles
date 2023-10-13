@@ -20,6 +20,7 @@ use App\Models\SituationProfessionel;
 use App\Models\TypePiece;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class BenevoleController extends Controller
@@ -64,8 +65,6 @@ class BenevoleController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->telephone);
-
         if ($request->type_inscription == null) {
             //Association / Structure benevole
             ///validation
@@ -93,9 +92,9 @@ class BenevoleController extends Controller
                 'effectif_contractuels' => $request->effectif_contractuels,
                 'effectif_benevoles' => $request->effectif_benevoles,
                 'montant_budget_anneeencour' => $request->montant_budget_anneeencour,
-                'montant_budget_2019' => $request->montant_budget_2019,
+                /*'montant_budget_2019' => $request->montant_budget_2019,
                 'montant_budget_2018' => $request->montant_budget_2018,
-                'montant_budget_2017' => $request->montant_budget_2017,
+                'montant_budget_2017' => $request->montant_budget_2017,*/
                 'preciseinformation' => $request->preciseinformation,
             ], [
                 'nom' => 'required',
@@ -120,22 +119,24 @@ class BenevoleController extends Controller
                 'effectif_contractuels' => 'required',
                 'effectif_benevoles' => 'required',
                 'montant_budget_anneeencour' => 'required',
-                'montant_budget_2019' => 'required',
+                /*'montant_budget_2019' => 'required',
                 'montant_budget_2018' => 'required',
-                'montant_budget_2017' => 'required',
+                'montant_budget_2017' => 'required',*/
                 'status_autreinfo' => 'required',
                 'preciseinformation' => 'required_if:status_autreinfo,1',
             ], [])->validate();
 
             try {
                 DB::beginTransaction();
-                $benevole = AssociationBenevole::create($request->except('_token'));
-                $request->flash('success', 'Vos informations on bien été pris en compte' . $benevole->matricule);
+                $data = $request->except('_token');
+                dd($data);
+                $benevole = AssociationBenevole::create($data);
+                session()->flash('success','Vos informations on bien été pris en compte' . $benevole->matricule);
                 DB::commit();
             } catch (\Exception $e) {
-
                 DB::rollBack();
-                $request->flash('success', 'Erreur est survenu pendant l\' enregistrement du formulaire!!!');
+                Log::info($e->getMessage());
+                session()->flash('warning','Erreur est survenu pendant l\' enregistrement du formulaire!!!');
             }
 
             return back();
@@ -192,6 +193,10 @@ class BenevoleController extends Controller
                     'preciser_travail' => $request->preciser_travail,
                     'preciser_association' => $request->preciser_association,
                     'domaine_intervention_asso' => $request->domaine_intervention_asso,
+
+                    'preciser_autre_niveau_scolaire' => $request->preciser_autre_niveau_scolaire,
+                    'diplome_id' => $request->diplome_id,
+                    'preciser_autre_diplome' => $request->preciser_autre_diplome
                 ],
                 [   'nom' => 'required',
                     'prenoms' => 'required',
@@ -211,6 +216,7 @@ class BenevoleController extends Controller
                     'preciser_type_handicap' => 'required_if:situation_handicap,2',
                     'situation_handicap' => 'required_if:preciser_type_handicap,1',
                     'scolarise' => 'required',
+                    'diplome_id' => 'required',
                     'district' => 'required',
                     'region' => 'required',
                     'departement' => 'required',
@@ -219,6 +225,8 @@ class BenevoleController extends Controller
                     'membre_association' => 'required',
                     'preciser_travail' => 'required_if:situation_professionel,1',
                     'preciser_association' => 'required_if:membre_association,1',
+                    'preciser_autre_niveau_scolaire' => 'required_if:niveau_scolaire_id,10',
+                    'preciser_autre_diplome' => 'required_if:diplome_id,10',
                     'domaine_intervention_asso' => 'required_if:membre_association,1',
                 ], [
                     'npieceidentite.size' => 'Le numéro de cette pièce n\'est pas conforme.',

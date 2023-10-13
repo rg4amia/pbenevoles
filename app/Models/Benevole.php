@@ -47,5 +47,7 @@ class Benevole extends Model
         'preciser_association',
         'domaine_intervention_asso',
         'precisenationalite',
+        'preciser_autre_niveau_scolaire',
+        'preciser_autre_diplome'
     ];
 }

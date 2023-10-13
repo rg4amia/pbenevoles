@@ -752,12 +752,15 @@ endsection
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                                     </div>
+                                                                    </label>
+
                                                                     Autre : <span style="display:none"
                                                                                   id="precisedomaineintervention"><input
                                                                             type="text" name="do_preciser_autre" value="{{old('do_preciser_autre')}}"
                                                                             class="required form-control"
-                                                                            placeholder="Autre domaine"></span>
-                                                                </label>
+                                                                            placeholder="Autre domaine">
+                                                                           </span>
+                                                                
                                                             </div>
 
                                                         </div>
@@ -881,12 +884,13 @@ endsection
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                                     </div>
+                                                                    </label>
                                                                     Autre : <span style="display:none"
                                                                                   id="precisepopulationcible"> <input
                                                                             type="text" name="pop_preciser_autre" value="{{old('pop_preciser_autre')}}"
                                                                             class="required form-control"
                                                                             placeholder="Autre population"></span>
-                                                                </label>
+                                                                
                                                             </div>
 
                                                         </div>
@@ -1159,6 +1163,7 @@ endsection
             var span = document.getElementById("precisedomaineintervention");
 
             clickCount1++;
+            console.log(clickCount1);
 
             if (clickCount1 % 2 === 1) {
                 span.style.display = "inline-block"; // Affiche le span au premier clic

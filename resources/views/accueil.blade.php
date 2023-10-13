@@ -641,7 +641,7 @@
                                                                             name="question_2[]" type="checkbox"
                                                                             value="Hosting plan" class="icheck required"
                                                                             style="position: absolute; opacity: 0;"
-                                                                            onchange="precisedomaineintervention(this.value)">
+                                                                            onclick="precisedomaineintervention(this.value)">
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                                     </div>
@@ -772,7 +772,7 @@
                                                                             name="question_2[]" type="checkbox"
                                                                             value="Hosting plan" class="icheck required"
                                                                             style="position: absolute; opacity: 0;"
-                                                                            onchange="precisepopulationcible(this.value)">
+                                                                            onclick="precisepopulationcible(this.value)">
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                                     </div>
@@ -1016,12 +1016,18 @@
 
         }
 
+        clickCount1 = 0;
+
         function precisedomaineintervention(id) {
-            alert(id)
-            if (id == 1) {
-                $("#preciseinformation").css("display", "block");
+            
+            var span = document.getElementById("precisedomaineintervention");
+
+            clickCount1++;
+
+            if (clickCount1 % 2 === 1) {
+                span.style.display = "inline-block"; // Affiche le span au premier clic
             } else {
-                $("#preciseinformation").css("display", "none");
+                span.style.display = "none"; // Masque le span au deuxième clic
             }
 
         }

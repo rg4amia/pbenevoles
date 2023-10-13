@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FileUploader;
 use App\Models\AssociationBenevole;
 use App\Models\Benevole;
 use App\Models\Commune;
@@ -85,6 +86,7 @@ class BenevoleController extends Controller
                 'prenom_repondant' => $request->prenom_repondant,
                 'fonction_repondant_org' => $request->fonction_repondant_org,
                 'status_autreinfo' => $request->status_autreinfo,
+                'effectif_personnel' => $request->effectif_personnel,
                 'effectif_homme' => $request->effectif_homme,
                 'effectif_femme' => $request->effectif_femme,
                 'effectif_salaries' => $request->effectif_salaries,
@@ -101,7 +103,7 @@ class BenevoleController extends Controller
                 'numero_creation' => 'required|unique:App\Models\AssociationBenevole,numero_creation',
                 'statut_juridique' => 'required',
                 'region_id' => 'required',
-                'adresse_postale' => 'required',
+                'adresse_postal' => 'required',
                 'departement_id' => 'required',
                 'email' => 'required|unique:App\Models\AssociationBenevole,email',
                 'site_web' => 'required',
@@ -122,7 +124,7 @@ class BenevoleController extends Controller
                 'montant_budget_2018' => 'required',
                 'montant_budget_2017' => 'required',
                 'status_autreinfo' => 'required',
-                'preciseinformation' => 'required_if:status_autreinfo,2',
+                'preciseinformation' => 'required_if:status_autreinfo,1',
             ], [])->validate();
 
             try {
@@ -130,10 +132,13 @@ class BenevoleController extends Controller
                 $benevole = AssociationBenevole::create($request->except('_token'));
                 $request->flash('success', 'Vos informations on bien été pris en compte' . $benevole->matricule);
                 DB::commit();
-            } catch (\Exception $exception) {
+            } catch (\Exception $e) {
+
                 DB::rollBack();
                 $request->flash('success', 'Erreur est survenu pendant l\' enregistrement du formulaire!!!');
             }
+
+            return back();
 
         } else {
             //Particulier benevole
@@ -188,7 +193,7 @@ class BenevoleController extends Controller
                     'preciser_association' => $request->preciser_association,
                     'domaine_intervention_asso' => $request->domaine_intervention_asso,
                 ],
-                ['nom' => 'required',
+                [   'nom' => 'required',
                     'prenoms' => 'required',
                     'sexe' => 'required',
                     'lieudenaissance' => 'required',
@@ -221,9 +226,13 @@ class BenevoleController extends Controller
                 ]
             )->validate();
 
+            $data = $request->except('_token');
+            $fileName = 'PHOTO_IDENTITE_' . $request->nom . ' ' . $request->prenoms . '.' . $request->photoidentite->extension();
+            $data['photoidentite'] = FileUploader::upload($request, 'photoidentite', 'storage', str_replace(" ", "_", $fileName));
+
             try {
                 DB::beginTransaction();
-                $benevole = Benevole::create($request->except('_token'));
+                $benevole = Benevole::create($data);
                 $request->flash('success', 'Vos informations on bien été pris en compte' . $benevole->matricule);
                 DB::commit();
             } catch (\Exception $exception) {

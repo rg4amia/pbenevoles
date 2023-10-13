@@ -1035,7 +1035,7 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
 
 .box_contact h4 {
     font-size: 24px;
-    font-weight: 400
+    font-weight: 400;
 }
 
 #social ul {
@@ -1583,8 +1583,8 @@ ul.list_ok li:before {
     position: absolute;
     left: 0;
     top: -3px;
-    font-size: 21px;
-    color: #409fff
+    font-size: 18px;
+    color: #009244
 }
 
 .cmn-toggle-switch {

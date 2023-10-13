@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('adresse_postale')->nullable();
 
             $table->unsignedBigInteger('departement_id');
-            $table->foreign('departement_id')->references('id')->on('regions');
+            $table->foreign('departement_id')->references('id')->on('departements');
 
             $table->string('email')->unique()->nullable();
             $table->string('site_web')->unique()->nullable();
@@ -44,11 +44,29 @@ return new class extends Migration
             $table->string('email_repondant')->unique()->nullable();
 
 
-            $table->unsignedBigInteger('domaine_intervention_id');
-            $table->foreign('domaine_intervention_id')->references('id')->on('domaine_interventions');
+            //$table->unsignedBigInteger('domaine_intervention_id');
+            //$table->foreign('domaine_intervention_id')->references('id')->on('domaine_interventions');
 
-            $table->unsignedBigInteger('population_cible_id');
-            $table->foreign('population_cible_id')->references('id')->on('population_cibles');
+            //$table->unsignedBigInteger('population_cible_id');
+            //$table->foreign('population_cible_id')->references('id')->on('population_cibles');
+
+            $table->boolean('do_education_formation')->default(false);
+            $table->boolean('do_sante_communautaire')->default(false);
+            $table->boolean('do_assainissement_environnement')->default(false);
+            $table->boolean('do_promotion_droits_humains')->default(false);
+            $table->boolean('do_agriculture')->default(false);
+            $table->boolean('do_appui_aux_organisation')->default(false);
+            $table->boolean('do_developpement_communauteire')->default(false);
+            $table->boolean('do_autre')->default(false);
+
+            $table->boolean('pop_population_generale')->default(false);
+            $table->boolean('pop_homme')->default(false);
+            $table->boolean('pop_femme')->default(false);
+            $table->boolean('pop_jeunes')->default(false);
+            $table->boolean('pop_enfants')->default(false);
+            $table->boolean('pop_personne_agees')->default(false);
+            $table->boolean('pop_personne_vivant_avec_handicap')->default(false);
+            $table->boolean('pop_autre')->default(false);
 
             $table->integer('effectif_personnel')->nullable();
             $table->integer('effectif_homme')->nullable();

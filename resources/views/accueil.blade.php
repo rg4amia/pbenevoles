@@ -7,15 +7,56 @@
                     <div class="subheader" id="quote"></div>
                     <div class="row">
                         <aside class="col-xl-3 col-lg-4">
-                            <h2>Request a Quote and Compare prices!</h2>
-                            <p class="lead">An mei sadipscing dissentiet, eos ea partem viderer facilisi.</p>
+                            <br>
+                            <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
                             <ul class="list_ok">
-                                <li>Delicata persecuti ei nec, et his minim omnium, aperiam placerat ea vis.</li>
-                                <li>Suavitate vituperatoribus pro ad, cum in quis propriae abhorreant.</li>
-                                <li>Aperiri deterruisset ei mea, sed cu laudem intellegat, eu mutat iuvaret voluptatum
-                                    mei.
+                                <li style="font-weight: 400; text-align: justify">Dans le cadre de l’organisation de la CAN 2023, et conformément à l’axe  2 du Programme Jeunesse du Gouvernement (PJ-GOUV 2023-2025) qui vise le renforcement de l’engagement citoyen et l’éthique sociale de la jeunesse, l’Etat a décidé de la mobilisation de 30 000 jeunes dont 10 000 volontaires par le COCAN et 20 000 bénévoles confiée au Ministère de la Promotion de la Jeunesse, de l’Insertion Professionnelle et du Service Civique. </li>
+                            </ul>
+
+                            <h5 style="color:#ff8019;">QUI PEUT DEVENIR BÉNÉVOLE ? </h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400">
+                                    Peut devenir bénévole toute personne âgée d’au moins 16 ans, libre pendant les journées de la CAN.
                                 </li>
                             </ul>
+
+                            <h5 style="color:#ff8019;">QUELLES SONT LES MISSIONS DES BÉNÉVOLES ?</h5>
+                            <p> Les 20 000 bénévoles recrutés auront pour missions :</p>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400">
+                                    D’animer les stades et les villages CAN ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    De soutenir les équipes non ivoiriennes en compétition ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    D’animer les espaces de regroupements de supporters ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    D’être des guides touristiques, animateurs culturels ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    De conduire des missions d’assainissement et de salubrité des villes ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    Sensibiliser sur les sujets d’intérêt.
+                                </li>
+                            </ul>
+
+                            <h5 style="color:#ff8019;">QUELS SONT LES SITES OÙ INTERVIENNENT LES BÉNÉVOLES ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">
+                                    Les bénévoles interviendront dans les stades, les villages CAN et divers lieux de regroupement des supporters.
+                                </li>
+                            </ul>
+
+                            <h5 style="color:#ff8019;">COMMENT S’INSCRIRE AU PROGRAMME BÉNÉVOLES ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">
+                                    Pour devenir bénévole c’est simple, il suffit de se rendre sur le site benevoles-can.oscn.ci et renseigner le formulaire de candidature.
+                                </li>
+                            </ul>
+
                         </aside><!-- /aside -->
 
                         <div class="col-xl-9 col-lg-8">
@@ -30,7 +71,7 @@
                                     <div class="alert alert-danger">
                                         <ul>
                                             @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
+                                                <li style="font-size: 14px;">{{ $error }}</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -748,18 +789,18 @@
                                                 <div class="form-group">
                                                     <label>Effectif du Personnel<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_personnel" value="{{old('effectif_personnel')}}"
+                                                    <input type="number" name="effectif_personnel" value="{{old('effectif_personnel')}}"
                                                            class="required form-control @error('prenom_repondant') is-invalid @enderror"
                                                            placeholder="Effectif du Personnel">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Homme<span style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_homme" value="{{old('effectif_homme')}}" class="required form-control @error('prenom_repondant') is-invalid @enderror"
+                                                    <input type="number" name="effectif_homme" value="{{old('effectif_homme')}}" class="required form-control @error('prenom_repondant') is-invalid @enderror"
                                                            placeholder="Effectif Homme">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Femme<span style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_femme" value="{{old('effectif_femme')}}" class="required form-control @error('prenom_repondant') is-invalid @enderror"
+                                                    <input type="number" name="effectif_femme" value="{{old('effectif_femme')}}" class="required form-control @error('prenom_repondant') is-invalid @enderror"
                                                            placeholder="Effectif Femme">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -767,20 +808,20 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Effectif Salariés<span style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_salaries" value="{{old('effectif_salaries')}}"
+                                                    <input type="number" name="effectif_salaries" value="{{old('effectif_salaries')}}"
                                                            class="required form-control @error('effectif_salaries') is-invalid @enderror"
                                                            placeholder="Effectif Salariés">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Contractuels<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_contractuels" value="{{old('effectif_contractuels')}}" class="required form-control @error('effectif_contractuels') is-invalid @enderror"
+                                                    <input type="number" name="effectif_contractuels" value="{{old('effectif_contractuels')}}" class="required form-control @error('effectif_contractuels') is-invalid @enderror"
                                                            placeholder="Effectif Contractuels">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Effectif Bénévoles<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="effectif_benevoles" value="{{old('effectif_benevoles')}}" class="required form-control @error('effectif_benevoles') is-invalid @enderror"
+                                                    <input type="number" name="effectif_benevoles" value="{{old('effectif_benevoles')}}" class="required form-control @error('effectif_benevoles') is-invalid @enderror"
                                                            placeholder="Effectif Bénévoles">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
@@ -789,18 +830,18 @@
                                                 <div class="form-group">
                                                     <label>Montant du budget de l’année en cours<span
                                                             style="color: red;">*</span></label>
-                                                    <input type="text" name="montant_budget_anneeencour" value="{{old('montant_budget_anneeencour')}}"
+                                                    <input type="number" name="montant_budget_anneeencour" value="{{old('montant_budget_anneeencour')}}"
                                                            class="required form-control @error('montant_budget_anneeencour') is-invalid @enderror"
                                                            placeholder="Montant du budget de l’année en cours">
                                                 </div>
                                                 <!-- <div class="form-group">
                                                     <label>Année 2019<span style="color: red;">*</span></label>
-                                                    <input type="text" name="montant_budget_2019" class="required form-control @error('montant_budget_2019') is-invalid @enderror" value="{{old('montant_budget_2019')}}"
+                                                    <input type="number" name="montant_budget_2019" class="required form-control @error('montant_budget_2019') is-invalid @enderror" value="{{old('montant_budget_2019')}}"
                                                            placeholder="Année 2019">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Année 2018<span style="color: red;">*</span></label>
-                                                    <input type="text" name="montant_budget_2018" value="{{old('montant_budget_2018')}}" class="required form-control @error('montant_budget_2018') is-invalid @enderror"
+                                                    <input type="number" name="montant_budget_2018" value="{{old('montant_budget_2018')}}" class="required form-control @error('montant_budget_2018') is-invalid @enderror"
                                                            placeholder="Année 2018">
                                                 </div> -->
                                             </div><!-- /col-sm-6 -->
@@ -808,7 +849,7 @@
                                             <div class="col-sm-6">
                                                 <!-- <div class="form-group">
                                                     <label>Année 2017<span style="color: red;">*</span></label>
-                                                    <input type="text" name="montant_budget_2017"  value="{{old('montant_budget_2017')}}" class="required form-control @error('montant_budget_2017') is-invalid @enderror"
+                                                    <input type="number" name="montant_budget_2017"  value="{{old('montant_budget_2017')}}" class="required form-control @error('montant_budget_2017') is-invalid @enderror"
                                                            placeholder="Année 2017">
                                                 </div> -->
                                                 <div class="form-group">
@@ -849,11 +890,18 @@
     </div>
 @endsection
 @section('js')
-
     <script type="text/javascript">
+        $(function () {
+            @if(old('type_inscription') == null)
+                $("#structure").css("display", "none");
+                $("#particulier").css("display", "block");
+            @else
+                $("#particulier").css("display", "none");
+                $("#structure").css("display", "block");
+            @endif
+        });
 
         function displayform(form_id) {
-
             if (form_id == 2) {
                 $("#particulier").css("display", "block");
                 $("#structure").css("display", "none");
@@ -861,11 +909,8 @@
             } else {
                 $("#particulier").css("display", "none");
                 $("#structure").css("display", "block");
-
             }
-
         }
-
 
         $('#nationalite_id').on('change', function (e) {
             if ($(this).val() == 2) {
@@ -900,7 +945,7 @@
         })
 
         $('#diplome_id').on('change', function(){
-            
+
             if ($(this).val() == 10) {
 
                 $("#preciseautrediplome").css("display", "block");

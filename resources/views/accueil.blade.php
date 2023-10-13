@@ -135,9 +135,8 @@
                                                            placeholder="Téléphone personnel 1">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Téléphone personnel 2 <span
-                                                            style="color: red;">*</span></label>
-                                                    <input type="text" name="telephone_autre"  value="{{ old('telephone_autre') }}" class="required form-control"
+                                                    <label>Téléphone personnel 2 </label>
+                                                    <input type="text" name="telephone_autre"  value="{{ old('telephone_autre') }}" class="form-control"
                                                            placeholder="Téléphone personnel 2">
                                                 </div>
                                                 <div class="form-group">
@@ -165,7 +164,7 @@
                                             </div><!-- /col-sm-6 -->
 
                                             <div class="col-sm-6">
-                                                <div class="form-group">
+                                                <div class="form-group" id="numeropiece" style="display:block;">
                                                     <label>Numéro de la pièce <span style="color: red;">*</span></label>
                                                     <input type="text" name="numero_piece" value="{{ old('numero_piece') }}" class="required form-control @error('numero_piece') is-invalid @enderror" placeholder="Numéro de la pièce">
                                                 </div>
@@ -282,6 +281,12 @@
                                                         </select>--}}
                                                     </div>
                                                 </div>
+                                                <div class="form-group" style="display:none;" id="preciseniveauscolaire">
+                                                    <label>Précisez niveau scolaire <span
+                                                            style="color: red;">*</span></label>
+                                                    <input type="text" name="preciser_niveau_scolaire" value="{{ old('preciser_autre_niveau_scolaire') }}" class="required form-control @error('preciser_autre_niveau_scolaire') is-invalid @enderror"
+                                                           placeholder="Précisez niveau scolaire">
+                                                </div>
                                                 <div class="form-group" style="display:none;" id="precisediplome">
                                                     <label>Diplôme(s) obtenu(s)<span
                                                             style="color: red;">*</span></label>
@@ -301,6 +306,12 @@
                                                             <option value="">Autre (à préciser)</option>
                                                         </select>--}}
                                                     </div>
+                                                </div>
+                                                <div class="form-group" style="display:none;" id="preciseautrediplome">
+                                                    <label>Précisez autre diplome <span
+                                                            style="color: red;">*</span></label>
+                                                    <input type="text" name="preciser_autre_diplome" value="{{ old('preciser_autre_diplome') }}" class="required form-control @error('preciser_autre_diplome') is-invalid @enderror"
+                                                           placeholder="Précisez autre diplome">
                                                 </div>
                                             </div><!-- /col-sm-6 -->
 
@@ -416,12 +427,12 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email<span style="color: red;">*</span></label>
-                                                    <input type="email" name="email" value="{{old('email') }}" class="required form-control @error('email') is-invalid @enderror"
+                                                    <input type="email" name="email" value="{{old('email') }}" class="form-control @error('email') is-invalid @enderror"
                                                            placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Site web<span style="color: red;">*</span></label>
-                                                    <input type="text" name="site_web" value="{{old('site_web') }}" class="required form-control @error('site_web') is-invalid @enderror"
+                                                    <label>Site web</label>
+                                                    <input type="text" name="site_web" value="{{old('site_web') }}" class="form-control @error('site_web') is-invalid @enderror"
                                                            placeholder="Site web">
                                                 </div>
                                                 <div class="form-group">
@@ -440,8 +451,8 @@
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>Fax<span style="color: red;">*</span></label>
-                                                    <input type="text" name="fax" class="required form-control @error('fax') is-invalid @enderror"
+                                                    <label>Fax</label>
+                                                    <input type="text" name="fax" class="form-control @error('fax') is-invalid @enderror"
                                                            placeholder="Fax" value="{{old('fax')}}">
                                                 </div>
                                                 <div class="form-group">
@@ -871,6 +882,33 @@
             } else {
                 $("#precisepiece").css("display", "none");
             }
+
+            if ($(this).val() == 6) {
+                $("#numeropiece").css("display", "none");
+            } else {
+                $("#numeropiece").css("display", "block");
+            }
+        })
+
+        $('#niveau_scolaire_id').on('change', function(){
+            if ($(this).val() == 10) {
+                $("#preciseniveauscolaire").css("display", "block");
+            } else {
+                $("#preciseniveauscolaire").css("display", "none");
+            }
+
+        })
+
+        $('#diplome_id').on('change', function(){
+            alert($(this).val());
+            if ($(this).val() == 10) {
+
+                $("#preciseautrediplome").css("display", "block");
+
+            } else {
+                $("#preciseautrediplome").css("display", "none");
+            }
+
         })
 
         function precisehandicap(id) {

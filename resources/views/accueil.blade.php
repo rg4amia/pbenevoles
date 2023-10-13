@@ -753,11 +753,12 @@ endsection
                                                                         <ins class="iCheck-helper"
                                                                              style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                                     </div>
-                                                                    Autre : <span style="display:none"
-                                                                                  id="precisedomaineintervention"><input
-                                                                            type="text" name="do_preciser_autre"
+
+                                                                    Autre : <span style="display:none" id="precisedomaineintervention">
+                                                                            <input type="text" name="do_preciser_autre"
                                                                             class="required form-control"
-                                                                            placeholder="Autre domaine"></span>
+                                                                            placeholder="Autre domaine">
+                                                                           </span>
                                                                 </label>
                                                             </div>
 

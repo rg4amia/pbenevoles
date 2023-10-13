@@ -1045,6 +1045,7 @@
                          style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
                         <img src="{{asset('assets/img/logo-benevole.png')}}" alt="Image" class="responsive-image"
                              style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+
                     </div>
                     <div class="footer-column"
                          style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box; text-align: left;">
@@ -1054,6 +1055,8 @@
                         <div class="col-sm-7">Horaires <br><span style="color:green; font-size: small">Lun-Ven: 07h30 - 16h30</span>
                         </div>
                         <div class="col-sm-7">Téléphone <br><span style="color:green; font-size: small">+225-27-22-49-93-04</span>
+                        </div>
+                        <div class="col-sm-7">Bénévoles inscris <br><span style="color:green; font-size: medium">{{$totalinscris}}</span>
                         </div>
                     </div>
                     <div class="footer-column"

@@ -259,9 +259,14 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>District<span style="color: red;">*</span></label>
+                                                    <label>Département<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('district_id', $districts, old('district_id'))->class('required')->placeholder('Selectionner districs')->id('district_id') }}
+                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('departement_id') }}
+                                                        {{-- <select class="required" name="situationmatrimoniale">
+                                                             <option value="" selected></option>
+                                                             <option value=""></option>
+
+                                                         </select>--}}
                                                     </div>
                                                 </div>
 
@@ -311,21 +316,16 @@
                                             <div class="col-sm-6">
 
                                                 <div class="form-group">
-                                                    <label>Département<span style="color: red;">*</span></label>
+                                                    <label>Région<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('departement_id', $departements, old('departement_id'))->class('required')->placeholder('Selectionner departement')->id('departement_id') }}
-                                                        {{-- <select class="required" name="situationmatrimoniale">
-                                                             <option value="" selected></option>
-                                                             <option value=""></option>
-
-                                                         </select>--}}
+                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id') }}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>Région<span style="color: red;">*</span></label>
+                                                    <label>District<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('region_id', $regions, old('region_id'))->class('required')->placeholder('Selectionner region')->id('region_id') }}
+                                                        {{ html()->select('district_id', $districts, old('district_id'))->class('required')->placeholder('Selectionner districs')->id('district_id') }}
                                                     </div>
                                                 </div>
                                                 

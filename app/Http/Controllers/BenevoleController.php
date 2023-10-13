@@ -187,7 +187,7 @@ class BenevoleController extends Controller
                 }
 
                 $benevole = AssociationBenevole::create($data);
-                session()->flash('success','Vos informations on bien été pris en compte' . $benevole->matricule);
+                session()->flash('success','Votre FORMULAIRE D’INSCRIPTION a été soumis avec succès.' . $benevole->matricule);
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
@@ -297,7 +297,7 @@ class BenevoleController extends Controller
             try {
                 DB::beginTransaction();
                 $benevole = Benevole::create($data);
-                $request->flash('success', 'Vos informations on bien été pris en compte' . $benevole->matricule);
+                $request->flash('success', 'Votre FORMULAIRE D’INSCRIPTION a été soumis avec succès.' . $benevole->matricule);
                 DB::commit();
             } catch (\Exception $exception) {
                 DB::rollBack();

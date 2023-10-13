@@ -122,7 +122,7 @@ endsection
                                                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                                                             </svg>
                                                             <span>{{ Session::get($msg) }}</span><br>
-                                                            <a href="{{ Session::get('badge_pdf') }}">Télécharger Fiche ici</a>
+                                                            <a href="{{ \Illuminate\Support\Facades\Storage::disk('badgepdf')->url(Session::get('matricule')) }}">Télécharger Fiche ici</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -760,7 +760,7 @@ endsection
                                                                             class="required form-control"
                                                                             placeholder="Autre domaine">
                                                                            </span>
-                                                                
+
                                                             </div>
 
                                                         </div>
@@ -890,7 +890,7 @@ endsection
                                                                             type="text" name="pop_preciser_autre" value="{{old('pop_preciser_autre')}}"
                                                                             class="required form-control"
                                                                             placeholder="Autre population"></span>
-                                                                
+
                                                             </div>
 
                                                         </div>

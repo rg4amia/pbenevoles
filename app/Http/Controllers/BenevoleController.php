@@ -279,8 +279,8 @@ class BenevoleController extends Controller
                     'autre_typepiece' => 'required_if:type_piece_id,5',
                     'telephone' => 'required|digits:10|numeric|unique:App\Models\Benevole,telephone',
                     'telephonen' => 'digits:10|numeric|unique:App\Models\Benevole,telephone_autre',
-                    'telephone_autre' => 'required_if:telephone_autre,digits:10|required_if:telephone_autre,numeric|unique:App\Models\Benevole,telephone_autre',
-                    'telephone_autren' => 'required_if:telephone_autre,digits:10|required_if:telephone_autre,numeric|unique:App\Models\Benevole,telephone_autre',
+                    //'telephone_autre' => 'required_if:telephone_autre,digits:10|required_if:telephone_autre,numeric|unique:App\Models\Benevole,telephone_autre',
+                    //'telephone_autren' => 'required_if:telephone_autre,digits:10|required_if:telephone_autre,numeric|unique:App\Models\Benevole,telephone_autre',
                     'lieuresidence' => 'required',
                     'situationmatrimoniale' => 'required',
                     'preciser_type_handicap' => 'required_if:situation_handicap,1',
@@ -322,7 +322,7 @@ class BenevoleController extends Controller
                 Storage::disk('badgepdf')->put('/' . $benevole->matricule .'.pdf', $content);
 
                 session()->flash('success','VOTRE CANDIDATURE A ETE RETENUE AVEC SUCCES.' . $benevole->matricule);
-                session()->put('badge_pdf', public_path("app/badgepdf/".$benevole->matricule));
+                session()->put('matricule', $benevole->matricule .'.pdf');
                 DB::commit();
             } catch (\Exception $exception) {
                 //dd($exception->getMessage());

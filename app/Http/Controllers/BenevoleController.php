@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssociationBenevole;
 use App\Models\Benevole;
 use App\Models\Commune;
 use App\Models\Departement;
@@ -66,7 +67,6 @@ class BenevoleController extends Controller
 
         if ($request->type_inscription == null) {
             //Association / Structure benevole
-
             ///validation
             $validation = Validator::make([
                 'nom' => $request->nom,
@@ -84,6 +84,17 @@ class BenevoleController extends Controller
                 'nom_repondant' => $request->nom_repondant,
                 'prenom_repondant' => $request->prenom_repondant,
                 'fonction_repondant_org' => $request->fonction_repondant_org,
+                'status_autreinfo' => $request->status_autreinfo,
+                'effectif_homme' => $request->effectif_homme,
+                'effectif_femme' => $request->effectif_femme,
+                'effectif_salaries' => $request->effectif_salaries,
+                'effectif_contractuels' => $request->effectif_contractuels,
+                'effectif_benevoles' => $request->effectif_benevoles,
+                'montant_budget_anneeencour' => $request->montant_budget_anneeencour,
+                'montant_budget_2019' => $request->montant_budget_2019,
+                'montant_budget_2018' => $request->montant_budget_2018,
+                'montant_budget_2017' => $request->montant_budget_2017,
+                'preciseinformation' => $request->preciseinformation,
             ], [
                 'nom' => 'required',
                 'numero_enregistrement' => 'required|unique:App\Models\AssociationBenevole,numero_enregistrement',
@@ -100,7 +111,30 @@ class BenevoleController extends Controller
                 'nom_repondant' => 'required',
                 'prenom_repondant' => 'required',
                 'fonction_repondant_org' => 'required',
+                'effectif_personnel' => 'required',
+                'effectif_homme' => 'required',
+                'effectif_femme' => 'required',
+                'effectif_salaries' => 'required',
+                'effectif_contractuels' => 'required',
+                'effectif_benevoles' => 'required',
+                'montant_budget_anneeencour' => 'required',
+                'montant_budget_2019' => 'required',
+                'montant_budget_2018' => 'required',
+                'montant_budget_2017' => 'required',
+                'status_autreinfo' => 'required',
+                'preciseinformation' => 'required_if:status_autreinfo,2',
             ], [])->validate();
+
+            try {
+                DB::beginTransaction();
+                $benevole = AssociationBenevole::create($request->except('_token'));
+                $request->flash('success', 'Vos informations on bien été pris en compte' . $benevole->matricule);
+                DB::commit();
+            } catch (\Exception $exception) {
+                DB::rollBack();
+                $request->flash('success', 'Erreur est survenu pendant l\' enregistrement du formulaire!!!');
+            }
+
         } else {
             //Particulier benevole
             $rulesChar = "required_if:type_piece_id,";

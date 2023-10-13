@@ -97,33 +97,37 @@
                                 <div class="form-group col-sm-6" style="margin: 20px;">
                                     <label>Type inscription <span style="color: red;">*</span></label>
                                     <div class="styled-select">
-                                        <select class="required" name="type_inscription" onchange="displayform(this.value)" value="{{ old('type_inscription') }}">
-                                            <option value="" selected></option>
+                                        <select class="required" name="type_inscription" onchange="displayform(this.value)" value="{{ old('type_inscription') }}" required="required" >
+                                            <option value=""></option>
                                             <option value="1">Association / Structure</option>
                                             <option value="2">Particulier</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <form id="particulier" method="POST" action="{{ route('store') }}" style="display: block;">
+                                <form id="particulier" method="POST" action="{{ route('store') }}" style="display: none;">
                                     @csrf()
                                     <div id="middle-wizard">
                                         <div class="row add_bottom_30">
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
+                                                    <label>Photo <span style="color: red;">*</span></label>
+                                                    <input type="file" name="photoidentite" class="form-control is-invalid" required>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>Nom <span style="color: red;">*</span></label>
                                                     <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"
-                                                           placeholder="Nom" value="{{ old('nom') }}">
+                                                           placeholder="Nom" value="{{ old('nom') }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Prénoms <span style="color: red;">*</span></label>
                                                     <input type="text" name="prenoms" value="{{ old('prenoms') }}" class="required form-control @error('prenoms') is-invalid @enderror"
-                                                           placeholder="Prénoms">
+                                                           placeholder="Prénoms" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Sexe <span style="color: red;">*</span></label>
-                                                    <div class="styled-select">
+                                                    <div class="styled-select" required>
                                                         {{--<select class="required" name="country">
                                                             <option value="" selected></option>
                                                             <option value="1">Masculin</option>
@@ -139,12 +143,12 @@
                                                     <label>Date de naissance <span style="color: red;">*</span></label>
                                                     <input type="date" name="datenaissance"
                                                            class="required form-control @error('datenaissance') is-invalid @enderror"
-                                                           placeholder="Date de naissance" value="{{ old('datenaissance') }}">
+                                                           placeholder="Date de naissance" value="{{ old('datenaissance') }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Lieu de Naissance <span style="color: red;">*</span></label>
                                                     <div class="styled-select">
-                                                        {{ html()->select('lieu_naissance_id',$communes, old('lieu_naissance_id'))->class('required')->placeholder('Selection Lieu naissance') }}
+                                                        {{ html()->select('lieu_naissance_id',$communes, old('lieu_naissance_id'))->class('required')->placeholder('Selection Lieu naissance')->required(true) }}
                                                     </div>
                                                     {{-- <input type="text" name="lieudenaissance"
                                                            class="required form-control"
@@ -166,15 +170,16 @@
                                                     <input type="text" name="precisenationalite" class="required form-control @error('precisenationalite') is-invalid @enderror"
                                                            placeholder="Précisez votre nationalité" value="{{ old('precisenationalite') }}">
                                                 </div>
-                                            </div><!-- /col-sm-6 -->
-
-                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Téléphone personnel 1 <span
                                                             style="color: red;">*</span></label>
                                                     <input type="text" name="telephone" value="{{ old('telephone') }}" class="required form-control @error('telephone') is-invalid @enderror"
                                                            placeholder="Téléphone personnel 1">
                                                 </div>
+                                            </div><!-- /col-sm-6 -->
+
+                                            <div class="col-sm-6">
+                                                
                                                 <div class="form-group">
                                                     <label>Téléphone personnel 2 </label>
                                                     <input type="text" name="telephone_autre"  value="{{ old('telephone_autre') }}" class="form-control"
@@ -193,6 +198,13 @@
                                                             <option value="6">Aucune</option>
                                                         </select>--}}
                                                         {{ html()->select('type_piece_id', $typepieces, old('type_piece_id'))->class('required')->placeholder('Selectionner Type pièces')->id('type_piece_id') }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>District<span style="color: red;">*</span></label>
+                                                    <div class="styled-select">
+                                                        {{ html()->select('district_id', $districts, old('district_id'))->class('required')->placeholder('Selectionner districs')->id('district_id') }}
                                                     </div>
                                                 </div>
 
@@ -235,12 +247,7 @@
                                             </div><!-- /col-sm-6 -->
 
                                             <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>District<span style="color: red;">*</span></label>
-                                                    <div class="styled-select">
-                                                        {{ html()->select('district_id', $districts, old('district_id'))->class('required')->placeholder('Selectionner districs')->id('district_id') }}
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label>Région<span style="color: red;">*</span></label>
                                                     <div class="styled-select">
@@ -354,6 +361,17 @@
                                                     <input type="text" name="preciser_autre_diplome" value="{{ old('preciser_autre_diplome') }}" class="required form-control @error('preciser_autre_diplome') is-invalid @enderror"
                                                            placeholder="Précisez autre diplome">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label>Êtes-vous membre d'une association?<span style="color: red;">*</span></label>
+                                                    <div class="styled-select">
+                                                        <select class="required @error('membre_association') is-invalid @enderror" name="membre_association"
+                                                                onchange="preciseassociation(this.value)">
+                                                            <option value=""></option>
+                                                            <option value="1" {{ old('membre_association') == '1' ? 'selected' : '' }}>Oui</option>
+                                                            <option value="2" {{ old('membre_association') == '2' ? 'selected' : '' }}>Non</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div><!-- /col-sm-6 -->
 
                                             <div class="col-sm-6">
@@ -378,17 +396,7 @@
                                                             style="color: red;">*</span></label>
                                                     <input type="text" name="preciser_travail"  class="required form-control @error('preciser_travail') is-invalid @enderror"  placeholder="Précisez votre emploi">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Êtes-vous membre d'une association?<span style="color: red;">*</span></label>
-                                                    <div class="styled-select">
-                                                        <select class="required @error('membre_association') is-invalid @enderror" name="membre_association"
-                                                                onchange="preciseassociation(this.value)">
-                                                            <option value=""></option>
-                                                            <option value="1" {{ old('membre_association') == '1' ? 'selected' : '' }}>Oui</option>
-                                                            <option value="2" {{ old('membre_association') == '2' ? 'selected' : '' }}>Non</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="form-group" style="display:none;" id="preciseassociation">
                                                     <label>Laquelle des associations ?<span style="color: red;">*</span></label>
                                                     <input type="text" name="preciser_association"  class="required form-control  @error('preciser_association') is-invalid @enderror"

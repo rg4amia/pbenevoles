@@ -43,6 +43,7 @@ class BenevoleController extends Controller
         $niveauscolaires = NiveauScolaire::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $diplomes = Diplome::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $typepieces = TypePiece::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $totalinscris = Benevole::count();
 
         //paramètre association bénévole
         $domaineinterventions = DomaineIntervention::get();
@@ -61,7 +62,8 @@ class BenevoleController extends Controller
             'nationnalites' => $nationnalites,
             'niveauscolaires' => $niveauscolaires,
             'diplomes' => $diplomes,
-            'typepieces' => $typepieces
+            'typepieces' => $typepieces,
+            'totalinscris' => $totalinscris
         ]);
     }
 

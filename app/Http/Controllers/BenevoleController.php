@@ -211,7 +211,7 @@ class BenevoleController extends Controller
         } else if ($request->type_in_a == 2) {
 
             //Particulier benevole
-            $rulesChar = "required_if:type_piece_id,";
+            $rulesChar = "required_if:type_piece_id,1,3,2,4,5";
 
             if ($request->type_piece_id == "" || $request->type_piece_id == null) {
 

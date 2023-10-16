@@ -51,7 +51,7 @@
                                                 </div>
                                                 <div class="media-body my-auto">
                                                     <h4 class="font-weight-bolder mb-0">{{$totalHomme}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Total homme</p>
+                                                    <p class="card-text font-small-3 mb-0">Total hommes</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                                 </div>
                                                 <div class="media-body my-auto">
                                                     <h4 class="font-weight-bolder mb-0">{{$totalFemme}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Total femme</p>
+                                                    <p class="card-text font-small-3 mb-0">Total femmes</p>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,0 +1,3352 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-compact layout-navbar-fixed layout-menu-fixed   " dir="ltr" data-theme="theme-default" data-assets-path="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/" data-base-url="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1" data-framework="laravel" data-template="vertical-menu-theme-default-light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <title>eCommerce Order Details - Apps |
+    Vuexy -
+    Bootstrap Admin Template
+  </title>
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
+  <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+  <!-- laravel CRUD token -->
+  <meta name="csrf-token" content="X8JwJfRGKWBbhLvlzHm5zLOlGVBJd5kyp1GrLy5p">
+  <!-- Canonical SEO -->
+  <link rel="canonical" href="https://1.envato.market/vuexy_admin">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/favicon/favicon.ico" />
+
+  
+    <!-- Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5J3LMKC');
+  </script>
+  <!-- End Google Tag Manager -->
+    
+
+  <!-- Include Styles -->
+  <!-- $isFront is used to append the front layout styles only on the front layout otherwise the variable will be blank -->
+  <!-- BEGIN: Theme CSS-->
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/fonts/tabler-icons.css?id=6ad8bc28559d005d792d577cf02a2116" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/fonts/fontawesome.css?id=a2997cb6a1c98cc3c85f4c99cdea95b5" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/fonts/flag-icons.css?id=121bcc3078c6c2f608037fb9ca8bce8d" />
+<!-- Core CSS -->
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/core.css?id=9dd8321ea008145745a7d78e072a6e36" class="template-customizer-core-css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/theme-default.css?id=a4539ede8fbe0ee4ea3a81f2c89f07d9" class="template-customizer-theme-css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/css/demo.css?id=ddd2feb83a604f9e432cdcb29815ed44" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/node-waves/node-waves.css?id=aa72fb97dfa8e932ba88c8a3c04641bc" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css?id=280196ccb54c8ae7e29ea06932c9a4b6" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/typeahead-js/typeahead.css?id=2603197f6b29a6654cb700bd9367e2a3" />
+
+<!-- Vendor Styles -->
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/sweetalert2/sweetalert2.css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/select2/select2.css" />
+<link rel="stylesheet" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
+
+
+<!-- Page Styles -->
+
+  <!-- Include Scripts for customizer, helper, analytics, config -->
+  <!-- $isFront is used to append the front layout scriptsIncludes only on the front layout otherwise the variable will be blank -->
+  <!-- laravel style -->
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/js/helpers.js"></script>
+<!-- beautify ignore:start -->
+  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+  <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+  <script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/js/template-customizer.js"></script>
+
+  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+  <script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/js/config.js"></script>
+
+  <script>
+    window.templateCustomizer = new TemplateCustomizer({
+      cssPath: '',
+      themesPath: '',
+      defaultStyle: "light",
+      defaultShowDropdownOnHover: "true", // true/false (for horizontal layout only)
+      displayCustomizer: "true",
+      lang: 'en',
+      pathResolver: function(path) {
+        var resolvedPaths = {
+          // Core stylesheets
+                      'core.css': 'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/core.css?id=9dd8321ea008145745a7d78e072a6e36',
+            'core-dark.css': 'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/core-dark.css?id=d661bae1d0ada9f7e9e3685a3e1f427e',
+          
+          // Themes
+                      'theme-default.css': 'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/theme-default.css?id=a4539ede8fbe0ee4ea3a81f2c89f07d9',
+            'theme-default-dark.css':
+            'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/theme-default-dark.css?id=ce86d777a4c5030f51d0f609f202bcc5',
+                      'theme-bordered.css': 'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/theme-bordered.css?id=786794ca0c68d96058e8ceeb20f4e7c5',
+            'theme-bordered-dark.css':
+            'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/theme-bordered-dark.css?id=e7122ef6338b22f7cea9eaff5a96aa8b',
+                      'theme-semi-dark.css': 'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/theme-semi-dark.css?id=a0a317e88e943fdd62d514e00deebb22',
+            'theme-semi-dark-dark.css':
+            'https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/css/rtl/theme-semi-dark-dark.css?id=e9a2f7cd6ace727264936f6bf93ab1e2',
+                  }
+        return resolvedPaths[path] || path;
+      },
+      'controls': ["rtl","style","headerType","contentLayout","layoutCollapsed","layoutNavbarOptions","themes"],
+    });
+  </script>
+</head>
+
+<body>
+  
+    <!-- Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J3LMKC" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    
+
+  <!-- Layout Content -->
+  <div class="layout-wrapper layout-content-navbar ">
+  <div class="layout-container">
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
+  <!-- ! Hide app brand if navbar-full -->
+    <div class="app-brand demo">
+    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1" class="app-brand-link">
+      <span class="app-brand-logo demo">
+        <svg width="32" height="20" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z" fill="#7367F0" />
+  <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd" d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z" fill="#161616" />
+  <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd" d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z" fill="#161616" />
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z" fill="#7367F0" />
+</svg>
+      </span>
+      <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+    </a>
+
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+      <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+      <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+    </a>
+  </div>
+  
+
+  <div class="menu-inner-shadow"></div>
+
+  <ul class="menu-inner py-1">
+    
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>Dashboards</div>
+                <div class="badge bg-primary rounded-pill ms-auto">5</div>
+
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1" class="menu-link" >
+                    <div>Analytics</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/dashboard/crm" class="menu-link" >
+                    <div>CRM</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/dashboard" class="menu-link" >
+                    <div>eCommerce</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/logistics/dashboard" class="menu-link" >
+                    <div>Logistics</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/academy/dashboard" class="menu-link" >
+                    <div>Academy</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
+                <div>Layouts</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/collapsed-menu" class="menu-link" >
+                    <div>Collapsed menu</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/content-navbar" class="menu-link" >
+                    <div>Content navbar</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/content-nav-sidebar" class="menu-link" >
+                    <div>Content nav + Sidebar</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/horizontal" class="menu-link"  target="_blank" >
+                    <div>Horizontal</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/without-menu" class="menu-link" >
+                    <div>Without menu</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/without-navbar" class="menu-link" >
+                    <div>Without navbar</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/fluid" class="menu-link" >
+                    <div>Fluid</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/container" class="menu-link" >
+                    <div>Container</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/layouts/blank" class="menu-link"  target="_blank" >
+                    <div>Blank</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-files"></i>
+                <div>Front Pages</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/front-pages/landing" class="menu-link"  target="_blank" >
+                    <div>Landing</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/front-pages/pricing" class="menu-link"  target="_blank" >
+                    <div>Pricing</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/front-pages/payment" class="menu-link"  target="_blank" >
+                    <div>Payments</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/front-pages/checkout" class="menu-link"  target="_blank" >
+                    <div>Checkout</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/front-pages/help-center" class="menu-link"  target="_blank" >
+                    <div>Help Center</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-brand-php"></i>
+                <div>Laravel Example</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/laravel/user-management" class="menu-link" >
+                    <div>User Management</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+        <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Apps &amp; Pages</span>
+    </li>
+
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/email" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-mail"></i>
+                <div>Email</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/chat" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-messages"></i>
+                <div>Chat</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/calendar" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-calendar"></i>
+                <div>Calendar</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/kanban" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-layout-kanban"></i>
+                <div>Kanban</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item active open">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-building-factory-2"></i>
+                <div>eCommerce</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/dashboard" class="menu-link" >
+                    <div>Dashboard</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Products</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/product/list" class="menu-link" >
+                    <div>Product List</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/product/add" class="menu-link" >
+                    <div>Add Product</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/product/category" class="menu-link" >
+                    <div>Category List</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item active open">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Order</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/order/list" class="menu-link" >
+                    <div>Order List</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item active">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/order/details" class="menu-link" >
+                    <div> Order Details</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Customer</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/customer/all" class="menu-link" >
+                    <div>All Customers</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Customer Details</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/customer/details/overview" class="menu-link" >
+                    <div>Overview</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/customer/details/security" class="menu-link" >
+                    <div>Security</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/customer/details/billing" class="menu-link" >
+                    <div>Address &amp; Billing</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/customer/details/notifications" class="menu-link" >
+                    <div>Notifications</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/manage/reviews" class="menu-link" >
+                    <div>Manage Reviews</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/referrals" class="menu-link" >
+                    <div>Referrals</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Settings</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/settings/details" class="menu-link" >
+                    <div>Store details</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/settings/payments" class="menu-link" >
+                    <div>Payments</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/settings/checkout" class="menu-link" >
+                    <div>Checkout</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/settings/shipping" class="menu-link" >
+                    <div>Shipping &amp; Delivery</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/settings/locations" class="menu-link" >
+                    <div>Locations</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/ecommerce/settings/notifications" class="menu-link" >
+                    <div>Notifications</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-book"></i>
+                <div>Academy</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/academy/dashboard" class="menu-link" >
+                    <div>Dashboard</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/academy/course" class="menu-link" >
+                    <div>My Course</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/academy/course-details" class="menu-link" >
+                    <div>Course Details</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-truck"></i>
+                <div>Logistics</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/logistics/dashboard" class="menu-link" >
+                    <div>Dashboard</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/logistics/fleet" class="menu-link" >
+                    <div>Fleet</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-file-dollar"></i>
+                <div>Invoice</div>
+                <div class="badge bg-danger rounded-pill ms-auto">4</div>
+
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/invoice/list" class="menu-link" >
+                    <div>List</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/invoice/preview" class="menu-link" >
+                    <div>Preview</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/invoice/edit" class="menu-link" >
+                    <div>Edit</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/invoice/add" class="menu-link" >
+                    <div>Add</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-users"></i>
+                <div>Users</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/list" class="menu-link" >
+                    <div>List</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>View</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/view/account" class="menu-link" >
+                    <div>Account</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/view/security" class="menu-link" >
+                    <div>Security</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/view/billing" class="menu-link" >
+                    <div>Billing &amp; Plans</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/view/notifications" class="menu-link" >
+                    <div>Notifications</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/view/connections" class="menu-link" >
+                    <div>Connections</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-settings"></i>
+                <div>Roles &amp; Permissions</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/access-roles" class="menu-link" >
+                    <div>Roles</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/access-permission" class="menu-link" >
+                    <div>Permission</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-file"></i>
+                <div>Pages</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>User Profile</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-user" class="menu-link" >
+                    <div>Profile</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-teams" class="menu-link" >
+                    <div>Teams</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-projects" class="menu-link" >
+                    <div>Projects</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-connections" class="menu-link" >
+                    <div>Connections</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Account Settings</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/account-settings-account" class="menu-link" >
+                    <div>Account</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/account-settings-security" class="menu-link" >
+                    <div>Security</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/account-settings-billing" class="menu-link" >
+                    <div>Billing &amp; Plans</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/account-settings-notifications" class="menu-link" >
+                    <div>Notifications</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/account-settings-connections" class="menu-link" >
+                    <div>Connections</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/faq" class="menu-link" >
+                    <div>FAQ</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/pricing" class="menu-link" >
+                    <div>Pricing</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Misc</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/misc-error" class="menu-link"  target="_blank" >
+                    <div>Error</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/misc-under-maintenance" class="menu-link"  target="_blank" >
+                    <div>Under Maintenance</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/misc-comingsoon" class="menu-link"  target="_blank" >
+                    <div>Coming Soon</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/misc-not-authorized" class="menu-link"  target="_blank" >
+                    <div>Not Authorized</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-lock"></i>
+                <div>Authentications</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Login</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/login-basic" class="menu-link"  target="_blank" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/login-cover" class="menu-link"  target="_blank" >
+                    <div>Cover</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Register</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/register-basic" class="menu-link"  target="_blank" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/register-cover" class="menu-link"  target="_blank" >
+                    <div>Cover</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/register-multisteps" class="menu-link"  target="_blank" >
+                    <div>Multi-steps</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Verify Email</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/verify-email-basic" class="menu-link"  target="_blank" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/verify-email-cover" class="menu-link"  target="_blank" >
+                    <div>Cover</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Reset Password</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/reset-password-basic" class="menu-link"  target="_blank" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/reset-password-cover" class="menu-link"  target="_blank" >
+                    <div>Cover</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Forgot Password</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/forgot-password-basic" class="menu-link"  target="_blank" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/forgot-password-cover" class="menu-link"  target="_blank" >
+                    <div>Cover</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Two Steps</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/two-steps-basic" class="menu-link"  target="_blank" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/two-steps-cover" class="menu-link"  target="_blank" >
+                    <div>Cover</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-forms"></i>
+                <div>Wizard Examples</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/wizard/ex-checkout" class="menu-link" >
+                    <div>Checkout</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/wizard/ex-property-listing" class="menu-link" >
+                    <div>Property Listing</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/wizard/ex-create-deal" class="menu-link" >
+                    <div>Create Deal</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/modal-examples" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-square"></i>
+                <div>Modal Examples</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+        <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Components</span>
+    </li>
+
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-id"></i>
+                <div>Cards</div>
+                <div class="badge bg-primary rounded-pill ms-auto">5</div>
+
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/cards/basic" class="menu-link" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/cards/advance" class="menu-link" >
+                    <div>Advance</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/cards/statistics" class="menu-link" >
+                    <div>Statistics</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/cards/analytics" class="menu-link" >
+                    <div>Analytics</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/cards/actions" class="menu-link" >
+                    <div>Actions</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-color-swatch"></i>
+                <div>User interface</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/accordion" class="menu-link" >
+                    <div>Accordion</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/alerts" class="menu-link" >
+                    <div>Alerts</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/badges" class="menu-link" >
+                    <div>Badges</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/buttons" class="menu-link" >
+                    <div>Buttons</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/carousel" class="menu-link" >
+                    <div>Carousel</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/collapse" class="menu-link" >
+                    <div>Collapse</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/dropdowns" class="menu-link" >
+                    <div>Dropdowns</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/footer" class="menu-link" >
+                    <div>Footer</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/list-groups" class="menu-link" >
+                    <div>List groups</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/modals" class="menu-link" >
+                    <div>Modals</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/navbar" class="menu-link" >
+                    <div>Navbar</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/offcanvas" class="menu-link" >
+                    <div>Offcanvas</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/pagination-breadcrumbs" class="menu-link" >
+                    <div>Pagination &amp; Breadcrumbs</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/progress" class="menu-link" >
+                    <div>Progress</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/spinners" class="menu-link" >
+                    <div>Spinners</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/tabs-pills" class="menu-link" >
+                    <div>Tabs &amp; Pills</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/toasts" class="menu-link" >
+                    <div>Toasts</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/tooltips-popovers" class="menu-link" >
+                    <div>Tooltips &amp; popovers</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/ui/typography" class="menu-link" >
+                    <div>Typography</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-components"></i>
+                <div>Extended UI</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-avatar" class="menu-link" >
+                    <div>Avatar</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-blockui" class="menu-link" >
+                    <div>BlockUI</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-drag-and-drop" class="menu-link" >
+                    <div>Drag &amp; Drop</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-media-player" class="menu-link" >
+                    <div>Media Player</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-perfect-scrollbar" class="menu-link" >
+                    <div>Perfect scrollbar</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-star-ratings" class="menu-link" >
+                    <div>Star Ratings</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-sweetalert2" class="menu-link" >
+                    <div>SweetAlert2</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-text-divider" class="menu-link" >
+                    <div>Text Divider</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="javascript:void(0)" class="menu-link menu-toggle" >
+                    <div>Timeline</div>
+        </a>
+
+        
+                  <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-timeline-basic" class="menu-link" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-timeline-fullscreen" class="menu-link" >
+                    <div>Fullscreen</div>
+        </a>
+
+        
+              </li>
+      </ul>
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-tour" class="menu-link" >
+                    <div>Tour</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-treeview" class="menu-link" >
+                    <div>Treeview</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/extended/ui-misc" class="menu-link" >
+                    <div>Miscellaneous</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-brand-tabler"></i>
+                <div>Icons</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/icons/tabler" class="menu-link" >
+                    <div>Tabler</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/icons/font-awesome" class="menu-link" >
+                    <div>Fontawesome</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+        <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Forms &amp; Tables</span>
+    </li>
+
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-toggle-left"></i>
+                <div>Form Elements</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/basic-inputs" class="menu-link" >
+                    <div>Basic Inputs</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/input-groups" class="menu-link" >
+                    <div>Input groups</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/custom-options" class="menu-link" >
+                    <div>Custom Options</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/editors" class="menu-link" >
+                    <div>Editors</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/file-upload" class="menu-link" >
+                    <div>File Upload</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/pickers" class="menu-link" >
+                    <div>Pickers</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/selects" class="menu-link" >
+                    <div>Select &amp; Tags</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/sliders" class="menu-link" >
+                    <div>Sliders</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/switches" class="menu-link" >
+                    <div>Switches</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/forms/extras" class="menu-link" >
+                    <div>Extras</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-layout-navbar"></i>
+                <div>Form Layouts</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/form/layouts-vertical" class="menu-link" >
+                    <div>Vertical Form</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/form/layouts-horizontal" class="menu-link" >
+                    <div>Horizontal Form</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/form/layouts-sticky" class="menu-link" >
+                    <div>Sticky Actions</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-text-wrap-disabled"></i>
+                <div>Form Wizard</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/form/wizard-numbered" class="menu-link" >
+                    <div>Numbered</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/form/wizard-icons" class="menu-link" >
+                    <div>Icons</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/form/validation" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-checkbox"></i>
+                <div>Form Validation</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/tables/basic" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-table"></i>
+                <div>Tables</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-layout-grid"></i>
+                <div>Datatables</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/tables/datatables-basic" class="menu-link" >
+                    <div>Basic</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/tables/datatables-advanced" class="menu-link" >
+                    <div>Advanced</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/tables/datatables-extensions" class="menu-link" >
+                    <div>Extensions</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+        <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Charts &amp; Maps</span>
+    </li>
+
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="javascript:void(0);" class="menu-link menu-toggle" >
+                <i class="menu-icon tf-icons ti ti-chart-pie"></i>
+                <div>Charts</div>
+              </a>
+
+      
+            <ul class="menu-sub">
+      
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/charts/apex" class="menu-link" >
+                    <div>Apex Charts</div>
+        </a>
+
+        
+              </li>
+    
+    
+    
+      <li class="menu-item ">
+        <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/charts/chartjs" class="menu-link" >
+                    <div>ChartJS</div>
+        </a>
+
+        
+              </li>
+      </ul>
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/maps/leaflet" class="menu-link" >
+                <i class="menu-icon tf-icons ti ti-map"></i>
+                <div>Leaflet Maps</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+        <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Misc</span>
+    </li>
+
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://pixinvent.ticksy.com/" class="menu-link"  target="_blank" >
+                <i class="menu-icon tf-icons ti ti-lifebuoy"></i>
+                <div>Support</div>
+              </a>
+
+      
+          </li>
+        
+    
+
+    
+    
+    
+    
+    
+    <li class="menu-item ">
+      <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/laravel-introduction.html" class="menu-link"  target="_blank" >
+                <i class="menu-icon tf-icons ti ti-file-description"></i>
+                <div>Documentation</div>
+              </a>
+
+      
+          </li>
+          </ul>
+
+</aside>    
+
+    <!-- Layout page -->
+    <div class="layout-page">
+
+      
+      
+
+      <!-- BEGIN: Navbar-->
+            <!-- Navbar -->
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+    
+      <!--  Brand demo (display only for navbar-full and hide on below xl) -->
+      
+      <!-- ! Not required for layout-without-menu -->
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0  d-xl-none ">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+          <i class="ti ti-menu-2 ti-sm"></i>
+        </a>
+      </div>
+      
+      <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+                <!-- Search -->
+        <div class="navbar-nav align-items-center">
+          <div class="nav-item navbar-search-wrapper mb-0">
+            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+              <i class="ti ti-search ti-md me-2"></i>
+              <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
+            </a>
+          </div>
+        </div>
+        <!-- /Search -->
+                <ul class="navbar-nav flex-row align-items-center ms-auto">
+          <!-- Language -->
+          <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+              <i class='ti ti-language rounded-circle ti-md'></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item active" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/lang/en" data-language="en">
+                  <span class="align-middle">English</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item " href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/lang/fr" data-language="fr">
+                  <span class="align-middle">French</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item " href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/lang/de" data-language="de" >
+                  <span class="align-middle">German</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item " href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/lang/pt" data-language="pt">
+                  <span class="align-middle">Portuguese</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!--/ Language -->
+
+                              <!-- Style Switcher -->
+          <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+              <i class='ti ti-md'></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+              <li>
+                <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                  <span class="align-middle"><i class='ti ti-sun me-2'></i>Light</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                  <span class="align-middle"><i class="ti ti-moon me-2"></i>Dark</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                  <span class="align-middle"><i class="ti ti-device-desktop me-2"></i>System</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!--/ Style Switcher -->
+          
+          <!-- Quick links  -->
+          <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <i class='ti ti-layout-grid-add ti-md'></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end py-0">
+              <div class="dropdown-menu-header border-bottom">
+                <div class="dropdown-header d-flex align-items-center py-3">
+                  <h5 class="text-body mb-0 me-auto">Shortcuts</h5>
+                  <a href="javascript:void(0)" class="dropdown-shortcuts-add text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Add shortcuts"><i class="ti ti-sm ti-apps"></i></a>
+                </div>
+              </div>
+              <div class="dropdown-shortcuts-list scrollable-container">
+                <div class="row row-bordered overflow-visible g-0">
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-calendar fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/calendar" class="stretched-link">Calendar</a>
+                    <small class="text-muted mb-0">Appointments</small>
+                  </div>
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-file-invoice fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/invoice/list" class="stretched-link">Invoice App</a>
+                    <small class="text-muted mb-0">Manage Accounts</small>
+                  </div>
+                </div>
+                <div class="row row-bordered overflow-visible g-0">
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-users fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/list" class="stretched-link">User App</a>
+                    <small class="text-muted mb-0">Manage Users</small>
+                  </div>
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-lock fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/access-roles" class="stretched-link">Role Management</a>
+                    <small class="text-muted mb-0">Permission</small>
+                  </div>
+                </div>
+                <div class="row row-bordered overflow-visible g-0">
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-chart-bar fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1" class="stretched-link">Dashboard</a>
+                    <small class="text-muted mb-0">User Profile</small>
+                  </div>
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-settings fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/account-settings-account" class="stretched-link">Setting</a>
+                    <small class="text-muted mb-0">Account Settings</small>
+                  </div>
+                </div>
+                <div class="row row-bordered overflow-visible g-0">
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-help fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/faq" class="stretched-link">FAQs</a>
+                    <small class="text-muted mb-0">FAQs & Articles</small>
+                  </div>
+                  <div class="dropdown-shortcuts-item col">
+                    <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                      <i class="ti ti-square fs-4"></i>
+                    </span>
+                    <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/modal-examples" class="stretched-link">Modals</a>
+                    <small class="text-muted mb-0">Useful Popups</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- Quick links -->
+
+          <!-- Notification -->
+          <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <i class="ti ti-bell ti-md"></i>
+              <span class="badge bg-danger rounded-pill badge-notifications">5</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end py-0">
+              <li class="dropdown-menu-header border-bottom">
+                <div class="dropdown-header d-flex align-items-center py-3">
+                  <h5 class="text-body mb-0 me-auto">Notification</h5>
+                  <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i class="ti ti-mail-opened fs-4"></i></a>
+                </div>
+              </li>
+              <li class="dropdown-notifications-list scrollable-container">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt class="h-auto rounded-circle">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">Congratulation Lettie 🎉</h6>
+                        <p class="mb-0">Won the monthly best seller gold badge</p>
+                        <small class="text-muted">1h ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">Charles Franklin</h6>
+                        <p class="mb-0">Accepted your connection</p>
+                        <small class="text-muted">12hr ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/2.png" alt class="h-auto rounded-circle">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">New Message ✉️</h6>
+                        <p class="mb-0">You have new message from Natalie</p>
+                        <small class="text-muted">1h ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <span class="avatar-initial rounded-circle bg-label-success"><i class="ti ti-cart"></i></span>
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">Whoo! You have new order 🛒 </h6>
+                        <p class="mb-0">ACME Inc. made new order $1,154</p>
+                        <small class="text-muted">1 day ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/9.png" alt class="h-auto rounded-circle">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">Application has been approved 🚀 </h6>
+                        <p class="mb-0">Your ABC project application has been approved.</p>
+                        <small class="text-muted">2 days ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <span class="avatar-initial rounded-circle bg-label-success"><i class="ti ti-chart-pie"></i></span>
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">Monthly report is generated</h6>
+                        <p class="mb-0">July monthly financial report is generated </p>
+                        <small class="text-muted">3 days ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/5.png" alt class="h-auto rounded-circle">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">Send connection request</h6>
+                        <p class="mb-0">Peter sent you connection request</p>
+                        <small class="text-muted">4 days ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/6.png" alt class="h-auto rounded-circle">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">New message from Jane</h6>
+                        <p class="mb-0">Your have new message from Jane</p>
+                        <small class="text-muted">5 days ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar">
+                          <span class="avatar-initial rounded-circle bg-label-warning"><i class="ti ti-alert-triangle"></i></span>
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h6 class="mb-1">CPU is running high</h6>
+                        <p class="mb-0">CPU Utilization Percent is currently at 88.63%,</p>
+                        <small class="text-muted">5 days ago</small>
+                      </div>
+                      <div class="flex-shrink-0 dropdown-notifications-actions">
+                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                        <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="ti ti-x"></span></a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-menu-footer border-top">
+                <a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40 mb-1 align-items-center">
+                  View all notifications
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!--/ Notification -->
+
+          <!-- User -->
+          <li class="nav-item navbar-dropdown dropdown-user dropdown">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+              <div class="avatar avatar-online">
+                <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt class="h-auto rounded-circle">
+              </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-user">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                      <div class="avatar avatar-online">
+                        <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt class="h-auto rounded-circle">
+                      </div>
+                    </div>
+                    <div class="flex-grow-1">
+                      <span class="fw-medium d-block">
+                                                John Doe
+                                              </span>
+                      <small class="text-muted">Admin</small>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/pages/profile-user">
+                  <i class="ti ti-user-check me-2 ti-sm"></i>
+                  <span class="align-middle">My Profile</span>
+                </a>
+              </li>
+                            <li>
+                <a class="dropdown-item" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/invoice/list">
+                  <span class="d-flex align-items-center align-middle">
+                    <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
+                    <span class="flex-grow-1 align-middle">Billing</span>
+                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
+                  </span> </a>
+              </li>
+                            <li>
+                <div class="dropdown-divider"></div>
+              </li>
+                            <li>
+                <a class="dropdown-item" href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/auth/login-basic">
+                  <i class='ti ti-login me-2'></i>
+                  <span class="align-middle">Login</span>
+                </a>
+              </li>
+                          </ul>
+          </li>
+          <!--/ User -->
+        </ul>
+      </div>
+
+      <!-- Search Small Screens -->
+      <div class="navbar-search-wrapper search-input-wrapper  d-none">
+        <input type="text" class="form-control search-input container-xxl border-0" placeholder="Search..." aria-label="Search...">
+        <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+      </div>
+        </nav>
+  <!-- / Navbar -->
+            <!-- END: Navbar-->
+
+
+      <!-- Content wrapper -->
+      <div class="content-wrapper">
+
+        <!-- Content -->
+                  <div class="container-xxl flex-grow-1 container-p-y">
+            
+            <h4 class="py-3 mb-2">
+  <span class="text-muted fw-light">eCommerce /</span> Order Details
+</h4>
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
+
+  <div class="d-flex flex-column justify-content-center gap-2 gap-sm-0">
+    <h5 class="mb-1 mt-3 d-flex flex-wrap gap-2 align-items-end">Order #32543 <span class="badge bg-label-success">Paid</span> <span class="badge bg-label-info">Ready to Pickup</span></h5>
+    <p class="text-body">Aug 17, <span id="orderYear"></span>, 5:48 (ET)</p>
+  </div>
+  <div class="d-flex align-content-center flex-wrap gap-2">
+    <button class="btn btn-label-danger delete-order">Delete Order</button>
+  </div>
+</div>
+
+<!-- Order Details Table -->
+
+<div class="row">
+  <div class="col-12 col-lg-8">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title m-0">Order details</h5>
+        <h6 class="m-0"><a href=" javascript:void(0)">Edit</a></h6>
+      </div>
+      <div class="card-datatable table-responsive">
+        <table class="datatables-order-details table border-top">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th class="w-50">products</th>
+              <th class="w-25">price</th>
+              <th class="w-25">qty</th>
+              <th>total</th>
+            </tr>
+          </thead>
+        </table>
+        <div class="d-flex justify-content-end align-items-center m-3 mb-2 p-1">
+          <div class="order-calculations">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="w-px-100 text-heading">Subtotal:</span>
+              <h6 class="mb-0">$6398</h6>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span class="w-px-100 text-heading">Discount:</span>
+              <h6 class="mb-0">$22</h6>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span class="w-px-100 text-heading">Tax:</span>
+              <h6 class="mb-0">$30</h6>
+            </div>
+            <div class="d-flex justify-content-between">
+              <h6 class="w-px-100 mb-0">Total:</h6>
+              <h6 class="mb-0">$6450</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5 class="card-title m-0">Shipping activity</h5>
+      </div>
+      <div class="card-body">
+        <ul class="timeline pb-0 mb-0">
+          <li class="timeline-item timeline-item-transparent border-primary">
+            <span class="timeline-point timeline-point-primary"></span>
+            <div class="timeline-event">
+              <div class="timeline-header">
+                <h6 class="mb-0">Order was placed (Order ID: #32543)</h6>
+                <span class="text-muted">Tuesday 11:29 AM</span>
+              </div>
+              <p class="mt-2">Your order has been placed successfully</p>
+            </div>
+          </li>
+          <li class="timeline-item timeline-item-transparent border-primary">
+            <span class="timeline-point timeline-point-primary"></span>
+            <div class="timeline-event">
+              <div class="timeline-header">
+                <h6 class="mb-0">Pick-up</h6>
+                <span class="text-muted">Wednesday 11:29 AM</span>
+              </div>
+              <p class="mt-2">Pick-up scheduled with courier</p>
+            </div>
+          </li>
+          <li class="timeline-item timeline-item-transparent border-primary">
+            <span class="timeline-point timeline-point-primary"></span>
+            <div class="timeline-event">
+              <div class="timeline-header">
+                <h6 class="mb-0">Dispatched</h6>
+                <span class="text-muted">Thursday 11:29 AM</span>
+              </div>
+              <p class="mt-2">Item has been picked up by courier</p>
+            </div>
+          </li>
+          <li class="timeline-item timeline-item-transparent border-primary">
+            <span class="timeline-point timeline-point-primary"></span>
+            <div class="timeline-event">
+              <div class="timeline-header">
+                <h6 class="mb-0">Package arrived</h6>
+                <span class="text-muted">Saturday 15:20 AM</span>
+              </div>
+              <p class="mt-2">Package arrived at an Amazon facility, NY</p>
+            </div>
+          </li>
+          <li class="timeline-item timeline-item-transparent border-left-dashed">
+            <span class="timeline-point timeline-point-primary"></span>
+            <div class="timeline-event">
+              <div class="timeline-header">
+                <h6 class="mb-0">Dispatched for delivery</h6>
+                <span class="text-muted">Today 14:12 PM</span>
+              </div>
+              <p class="mt-2">Package has left an Amazon facility, NY</p>
+            </div>
+          </li>
+          <li class="timeline-item timeline-item-transparent border-transparent pb-0">
+            <span class="timeline-point timeline-point-secondary"></span>
+            <div class="timeline-event pb-0">
+              <div class="timeline-header">
+                <h6 class="mb-0">Delivery</h6>
+              </div>
+              <p class="mt-2 mb-0">Package will be delivered by tomorrow</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card mb-4">
+      <div class="card-header">
+        <h6 class="card-title m-0">Customer details</h6>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-start align-items-center mb-4">
+          <div class="avatar me-2">
+            <img src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/img/avatars/1.png" alt="Avatar" class="rounded-circle">
+          </div>
+          <div class="d-flex flex-column">
+            <a href="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo-1/app/user/view/account" class="text-body text-nowrap">
+              <h6 class="mb-0">Shamus Tuttle</h6>
+            </a>
+            <small class="text-muted">Customer ID: #58909</small></div>
+        </div>
+        <div class="d-flex justify-content-start align-items-center mb-4">
+          <span class="avatar rounded-circle bg-label-success me-2 d-flex align-items-center justify-content-center"><i class='ti ti-shopping-cart ti-sm'></i></span>
+          <h6 class="text-body text-nowrap mb-0">12 Orders</h6>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h6>Contact info</h6>
+          <h6><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editUser">Edit</a></h6>
+        </div>
+        <p class=" mb-1">Email: Shamus889@yahoo.com</p>
+        <p class=" mb-0">Mobile: +1 (609) 972-22-22</p>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+
+      <div class="card-header d-flex justify-content-between">
+        <h6 class="card-title m-0">Shipping address</h6>
+        <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6>
+      </div>
+      <div class="card-body">
+        <p class="mb-0">45 Roker Terrace <br>Latheronwheel <br>KW5 8NW,London <br>UK</p>
+      </div>
+
+    </div>
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between">
+        <h6 class="card-title m-0">Billing address</h6>
+        <h6 class="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6>
+      </div>
+      <div class="card-body">
+        <p class="mb-4">45 Roker Terrace <br>Latheronwheel <br>KW5 8NW,London <br>UK</p>
+        <h6 class="mb-0 pb-2">Mastercard</h6>
+        <p class="mb-0">Card Number: ******4291</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modals -->
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-4">
+          <h3 class="mb-2">Edit User Information</h3>
+          <p class="text-muted">Updating user details will receive a privacy audit.</p>
+        </div>
+        <form id="editUserForm" class="row g-3" onsubmit="return false">
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserFirstName">First Name</label>
+            <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="John" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserLastName">Last Name</label>
+            <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="modalEditUserName">Username</label>
+            <input type="text" id="modalEditUserName" name="modalEditUserName" class="form-control" placeholder="john.doe.007" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserEmail">Email</label>
+            <input type="text" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" placeholder="example@domain.com" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserStatus">Status</label>
+            <select id="modalEditUserStatus" name="modalEditUserStatus" class="select2 form-select" aria-label="Default select example">
+              <option selected>Status</option>
+              <option value="1">Active</option>
+              <option value="2">Inactive</option>
+              <option value="3">Suspended</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditTaxID">Tax ID</label>
+            <input type="text" id="modalEditTaxID" name="modalEditTaxID" class="form-control modal-edit-tax-id" placeholder="123 456 7890" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserPhone">Phone Number</label>
+            <div class="input-group">
+              <span class="input-group-text">US (+1)</span>
+              <input type="text" id="modalEditUserPhone" name="modalEditUserPhone" class="form-control phone-number-mask" placeholder="202 555 0111" />
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserLanguage">Language</label>
+            <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select" multiple>
+              <option value="">Select</option>
+              <option value="english" selected>English</option>
+              <option value="spanish">Spanish</option>
+              <option value="french">French</option>
+              <option value="german">German</option>
+              <option value="dutch">Dutch</option>
+              <option value="hebrew">Hebrew</option>
+              <option value="sanskrit">Sanskrit</option>
+              <option value="hindi">Hindi</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalEditUserCountry">Country</label>
+            <select id="modalEditUserCountry" name="modalEditUserCountry" class="select2 form-select" data-allow-clear="true">
+              <option value="">Select</option>
+              <option value="Australia">Australia</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="China">China</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Japan">Japan</option>
+              <option value="Korea">Korea, Republic of</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Russia">Russian Federation</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States">United States</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="switch">
+              <input type="checkbox" class="switch-input">
+              <span class="switch-toggle-slider">
+                <span class="switch-on"></span>
+                <span class="switch-off"></span>
+              </span>
+              <span class="switch-label">Use as a billing address?</span>
+            </label>
+          </div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Edit User Modal -->
+<!-- Add New Address Modal -->
+<div class="modal fade" id="addNewAddress" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-simple modal-add-new-address">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-4">
+          <h3 class="address-title mb-2">Add New Address</h3>
+          <p class="text-muted address-subtitle">Add new address for express delivery</p>
+        </div>
+        <form id="addNewAddressForm" class="row g-3" onsubmit="return false">
+
+          <div class="col-12">
+            <div class="row">
+              <div class="col-md mb-md-0 mb-3">
+                <div class="form-check custom-option custom-option-icon">
+                  <label class="form-check-label custom-option-content" for="customRadioHome">
+                    <span class="custom-option-body">
+                      <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24.25 33.75V23.75H16.75V33.75H6.75002V18.0469C6.7491 17.8733 6.78481 17.7015 6.85482 17.5426C6.92482 17.3838 7.02754 17.2415 7.15627 17.125L19.6563 5.76562C19.8841 5.5559 20.1825 5.43948 20.4922 5.43948C20.8019 5.43948 21.1003 5.5559 21.3281 5.76562L33.8438 17.125C33.9696 17.2438 34.0703 17.3866 34.1401 17.5449C34.2098 17.7032 34.2472 17.8739 34.25 18.0469V33.75H24.25Z" fill="currentColor" opacity="0.2" />
+                        <path d="M33.25 33.75C33.25 34.3023 33.6977 34.75 34.25 34.75C34.8023 34.75 35.25 34.3023 35.25 33.75H33.25ZM34.25 18.0469H35.25C35.25 18.0415 35.25 18.0361 35.2499 18.0307L34.25 18.0469ZM33.8437 17.125L34.5304 16.398C34.5256 16.3934 34.5207 16.389 34.5158 16.3845L33.8437 17.125ZM21.3281 5.76562L20.6509 6.50143L20.656 6.50611L21.3281 5.76562ZM19.6562 5.76562L20.3288 6.5057L20.3335 6.50141L19.6562 5.76562ZM7.15625 17.125L7.82712 17.8666L7.82878 17.8651L7.15625 17.125ZM6.75 18.0469H7.75001L7.74999 18.0416L6.75 18.0469ZM5.75 33.75C5.75 34.3023 6.19772 34.75 6.75 34.75C7.30228 34.75 7.75 34.3023 7.75 33.75H5.75ZM3 32.75C2.44772 32.75 2 33.1977 2 33.75C2 34.3023 2.44772 34.75 3 34.75V32.75ZM38 34.75C38.5523 34.75 39 34.3023 39 33.75C39 33.1977 38.5523 32.75 38 32.75V34.75ZM23.25 33.75C23.25 34.3023 23.6977 34.75 24.25 34.75C24.8023 34.75 25.25 34.3023 25.25 33.75H23.25ZM15.75 33.75C15.75 34.3023 16.1977 34.75 16.75 34.75C17.3023 34.75 17.75 34.3023 17.75 33.75H15.75ZM35.25 33.75V18.0469H33.25V33.75H35.25ZM35.2499 18.0307C35.2449 17.7243 35.1787 17.422 35.0551 17.1416L33.225 17.9481C33.2409 17.9844 33.2495 18.0235 33.2501 18.0631L35.2499 18.0307ZM35.0551 17.1416C34.9316 16.8612 34.7531 16.6084 34.5304 16.398L33.1571 17.852C33.1859 17.8792 33.209 17.9119 33.225 17.9481L35.0551 17.1416ZM34.5158 16.3845L22.0002 5.02514L20.656 6.50611L33.1717 17.8655L34.5158 16.3845ZM22.0053 5.02984C21.5929 4.6502 21.0528 4.43948 20.4922 4.43948V6.43948C20.551 6.43948 20.6076 6.46159 20.6509 6.50141L22.0053 5.02984ZM20.4922 4.43948C19.9316 4.43948 19.3915 4.6502 18.979 5.02984L20.3335 6.50141C20.3767 6.46159 20.4334 6.43948 20.4922 6.43948V4.43948ZM18.9837 5.02556L6.48371 16.3849L7.82878 17.8651L20.3288 6.50569L18.9837 5.02556ZM6.48538 16.3834C6.25236 16.5942 6.06642 16.8518 5.93971 17.1393L7.76988 17.9459C7.78318 17.9157 7.80268 17.8887 7.82712 17.8666L6.48538 16.3834ZM5.93971 17.1393C5.813 17.4269 5.74836 17.7379 5.75001 18.0521L7.74999 18.0416C7.74981 18.0087 7.75659 17.976 7.76988 17.9459L5.93971 17.1393ZM5.75 18.0469V33.75H7.75V18.0469H5.75ZM3 34.75H38V32.75H3V34.75ZM25.25 33.75V25H23.25V33.75H25.25ZM25.25 25C25.25 24.4033 25.013 23.831 24.591 23.409L23.1768 24.8232C23.2237 24.8701 23.25 24.9337 23.25 25H25.25ZM24.591 23.409C24.169 22.987 23.5967 22.75 23 22.75V24.75C23.0663 24.75 23.1299 24.7763 23.1768 24.8232L24.591 23.409ZM23 22.75H18V24.75H23V22.75ZM18 22.75C17.4033 22.75 16.831 22.9871 16.409 23.409L17.8232 24.8232C17.8701 24.7763 17.9337 24.75 18 24.75V22.75ZM16.409 23.409C15.9871 23.831 15.75 24.4033 15.75 25H17.75C17.75 24.9337 17.7763 24.8701 17.8232 24.8232L16.409 23.409ZM15.75 25V33.75H17.75V25H15.75Z" fill="currentColor" />
+                      </svg>
+
+                      <span class="custom-option-title">Home</span>
+                      <small> Delivery time (9am – 9pm) </small>
+                    </span>
+                    <input name="customRadioIcon" class="form-check-input" type="radio" value="" id="customRadioHome" checked />
+                  </label>
+                </div>
+              </div>
+              <div class="col-md mb-md-0 mb-3">
+                <div class="form-check custom-option custom-option-icon">
+                  <label class="form-check-label custom-option-content" for="customRadioOffice">
+                    <span class="custom-option-body">
+                      <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.75 33.75V6.25C22.75 5.91848 22.6183 5.60054 22.3839 5.36612C22.1495 5.1317 21.8315 5 21.5 5H6.5C6.16848 5 5.85054 5.1317 5.61612 5.36612C5.3817 5.60054 5.25 5.91848 5.25 6.25V33.75" fill="currentColor" fill-opacity="0.2" />
+                        <path d="M2.75 32.75C2.19772 32.75 1.75 33.1977 1.75 33.75C1.75 34.3023 2.19772 34.75 2.75 34.75V32.75ZM37.75 34.75C38.3023 34.75 38.75 34.3023 38.75 33.75C38.75 33.1977 38.3023 32.75 37.75 32.75V34.75ZM21.75 33.75C21.75 34.3023 22.1977 34.75 22.75 34.75C23.3023 34.75 23.75 34.3023 23.75 33.75H21.75ZM21.5 5V4V5ZM5.25 6.25H4.25H5.25ZM4.25 33.75C4.25 34.3023 4.69772 34.75 5.25 34.75C5.80228 34.75 6.25 34.3023 6.25 33.75H4.25ZM34.25 33.75C34.25 34.3023 34.6977 34.75 35.25 34.75C35.8023 34.75 36.25 34.3023 36.25 33.75H34.25ZM22.75 14C22.1977 14 21.75 14.4477 21.75 15C21.75 15.5523 22.1977 16 22.75 16V14ZM10.25 10.25C9.69772 10.25 9.25 10.6977 9.25 11.25C9.25 11.8023 9.69772 12.25 10.25 12.25V10.25ZM15.25 12.25C15.8023 12.25 16.25 11.8023 16.25 11.25C16.25 10.6977 15.8023 10.25 15.25 10.25V12.25ZM12.75 20.25C12.1977 20.25 11.75 20.6977 11.75 21.25C11.75 21.8023 12.1977 22.25 12.75 22.25V20.25ZM17.75 22.25C18.3023 22.25 18.75 21.8023 18.75 21.25C18.75 20.6977 18.3023 20.25 17.75 20.25V22.25ZM10.25 26.5C9.69772 26.5 9.25 26.9477 9.25 27.5C9.25 28.0523 9.69772 28.5 10.25 28.5V26.5ZM15.25 28.5C15.8023 28.5 16.25 28.0523 16.25 27.5C16.25 26.9477 15.8023 26.5 15.25 26.5V28.5ZM27.75 26.5C27.1977 26.5 26.75 26.9477 26.75 27.5C26.75 28.0523 27.1977 28.5 27.75 28.5V26.5ZM30.25 28.5C30.8023 28.5 31.25 28.0523 31.25 27.5C31.25 26.9477 30.8023 26.5 30.25 26.5V28.5ZM27.75 20.25C27.1977 20.25 26.75 20.6977 26.75 21.25C26.75 21.8023 27.1977 22.25 27.75 22.25V20.25ZM30.25 22.25C30.8023 22.25 31.25 21.8023 31.25 21.25C31.25 20.6977 30.8023 20.25 30.25 20.25V22.25ZM2.75 34.75H37.75V32.75H2.75V34.75ZM23.75 33.75V6.25H21.75V33.75H23.75ZM23.75 6.25C23.75 5.65326 23.5129 5.08097 23.091 4.65901L21.6768 6.07322C21.7237 6.12011 21.75 6.18369 21.75 6.25H23.75ZM23.091 4.65901C22.669 4.23705 22.0967 4 21.5 4V6C21.5663 6 21.6299 6.02634 21.6768 6.07322L23.091 4.65901ZM21.5 4H6.5V6H21.5V4ZM6.5 4C5.90326 4 5.33097 4.23705 4.90901 4.65901L6.32322 6.07322C6.37011 6.02634 6.4337 6 6.5 6V4ZM4.90901 4.65901C4.48705 5.08097 4.25 5.65326 4.25 6.25H6.25C6.25 6.1837 6.27634 6.12011 6.32322 6.07322L4.90901 4.65901ZM4.25 6.25V33.75H6.25V6.25H4.25ZM36.25 33.75V16.25H34.25V33.75H36.25ZM36.25 16.25C36.25 15.6533 36.013 15.081 35.591 14.659L34.1768 16.0732C34.2237 16.1201 34.25 16.1837 34.25 16.25H36.25ZM35.591 14.659C35.169 14.2371 34.5967 14 34 14V16C34.0663 16 34.1299 16.0263 34.1768 16.0732L35.591 14.659ZM34 14H22.75V16H34V14ZM10.25 12.25H15.25V10.25H10.25V12.25ZM12.75 22.25H17.75V20.25H12.75V22.25ZM10.25 28.5H15.25V26.5H10.25V28.5ZM27.75 28.5H30.25V26.5H27.75V28.5ZM27.75 22.25H30.25V20.25H27.75V22.25Z" fill="currentColor" />
+                      </svg>
+
+                      <span class="custom-option-title"> Office </span>
+                      <small> Delivery time (9am – 5pm) </small>
+                    </span>
+                    <input name="customRadioIcon" class="form-check-input" type="radio" value="" id="customRadioOffice" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressFirstName">First Name</label>
+            <input type="text" id="modalAddressFirstName" name="modalAddressFirstName" class="form-control" placeholder="John" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressLastName">Last Name</label>
+            <input type="text" id="modalAddressLastName" name="modalAddressLastName" class="form-control" placeholder="Doe" />
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="modalAddressCountry">Country</label>
+            <select id="modalAddressCountry" name="modalAddressCountry" class="select2 form-select" data-allow-clear="true">
+              <option value="">Select</option>
+              <option value="Australia">Australia</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="China">China</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Japan">Japan</option>
+              <option value="Korea">Korea, Republic of</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Russia">Russian Federation</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States">United States</option>
+            </select>
+          </div>
+          <div class="col-12 ">
+            <label class="form-label" for="modalAddressAddress1">Address Line 1</label>
+            <input type="text" id="modalAddressAddress1" name="modalAddressAddress1" class="form-control" placeholder="12, Business Park" />
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="modalAddressAddress2">Address Line 2</label>
+            <input type="text" id="modalAddressAddress2" name="modalAddressAddress2" class="form-control" placeholder="Mall Road" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressLandmark">Landmark</label>
+            <input type="text" id="modalAddressLandmark" name="modalAddressLandmark" class="form-control" placeholder="Nr. Hard Rock Cafe" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressCity">City</label>
+            <input type="text" id="modalAddressCity" name="modalAddressCity" class="form-control" placeholder="Los Angeles" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressLandmark">State</label>
+            <input type="text" id="modalAddressState" name="modalAddressState" class="form-control" placeholder="California" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="modalAddressZipCode">Zip Code</label>
+            <input type="text" id="modalAddressZipCode" name="modalAddressZipCode" class="form-control" placeholder="99950" />
+          </div>
+          <div class="col-12">
+            <label class="switch">
+              <input type="checkbox" class="switch-input">
+              <span class="switch-toggle-slider">
+                <span class="switch-on"></span>
+                <span class="switch-off"></span>
+              </span>
+              <span class="switch-label">Use as a billing address?</span>
+            </label>
+          </div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Add New Address Modal -->
+
+
+
+          </div>
+          <!-- / Content -->
+
+          <!-- Footer -->
+                    <!-- Footer-->
+<footer class="content-footer footer bg-footer-theme">
+  <div class="container-xxl">
+    <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+      <div>
+        © <script>
+          document.write(new Date().getFullYear())
+
+      </script>
+      , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="footer-link fw-medium">Pixinvent</a>
+      </div>
+      <div class="d-none d-lg-inline-block">
+        <a href="https://themeforest.net/licenses/standard" class="footer-link me-4" target="_blank">License</a>
+        <a href="https://1.envato.market/pixinvent_portfolio" target="_blank" class="footer-link me-4">More Themes</a>
+        <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/laravel-introduction.html" target="_blank" class="footer-link me-4">Documentation</a>
+        <a href="https://pixinvent.ticksy.com/" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--/ Footer-->
+                    <!-- / Footer -->
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!--/ Content wrapper -->
+      </div>
+      <!-- / Layout page -->
+    </div>
+
+        <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+  </div>
+  <!-- / Layout wrapper -->
+    <!--/ Layout Content -->
+
+  
+  <div class="buy-now">
+    <a href="https://1.envato.market/vuexy_admin" target="_blank" class="btn btn-danger btn-buy-now">Buy Now</a>
+  </div>
+  
+
+  <!-- Include Scripts -->
+  <!-- $isFront is used to append the front layout scripts only on the front layout otherwise the variable will be blank -->
+  <!-- BEGIN: Vendor JS-->
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/jquery/jquery.js?id=0f7eb1f3a93e3e19e8505fd8c175925a"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/popper/popper.js?id=baf82d96b7771efbcc05c3b77135d24c"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/js/bootstrap.js?id=9a6c701557297a042348b5aea69e9b76"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/node-waves/node-waves.js?id=4fae469a3ded69fb59fce3dcc14cd638"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js?id=44b8e955848dc0c56597c09f6aebf89a"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/hammer/hammer.js?id=0a520e103384b609e3c9eb3b732d1be8"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/typeahead-js/typeahead.js?id=f6bda588c16867a6cc4158cb4ed37ec6"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/js/menu.js?id=c6ce30ded4234d0c4ca0fb5f2a2990d8"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/cleavejs/cleave.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/select2/select2.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+<!-- END: Page Vendor JS-->
+<!-- BEGIN: Theme JS-->
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/js/main.js?id=8bd0165c1c4340f4d4a66add0761ae8a"></script>
+
+<!-- END: Theme JS-->
+<!-- Pricing Modal JS-->
+<!-- END: Pricing Modal JS-->
+<!-- BEGIN: Page JS-->
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/js/app-ecommerce-order-details.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/js/modal-edit-user.js"></script>
+<script src="https://demos.pixinvent.com/vuexy-html-laravel-admin-template/demo/assets/js/modal-add-new-address.js"></script>
+<!-- END: Page JS-->
+
+</body>
+
+</html>

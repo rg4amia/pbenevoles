@@ -54,4 +54,40 @@ class Benevole extends Model
     public function sexe(){
         return $this->belongsTo(Sexe::class,'sexe_id');
     }
+
+    public function diplome(){
+        return $this->belongsTo(Diplome::class,'diplome_id');
+    }
+
+    public function niveauscolaire(){
+        return $this->belongsTo(NiveauScolaire::class,'niveau_scolaire_id');
+    }
+
+    public function situationprofessionnel(){
+        return $this->belongsTo(SituationProfessionel::class,'situation_professionel_id');
+    }
+
+    public function situationmatrimoniale(){
+        return $this->belongsTo(SituationMatrimoniale::class,'situation_matrimoniale_id');
+    }
+
+    public function typepiece(){
+        return $this->belongsTo(TypePiece::class,'type_piece_id');
+    }
+
+    public function nationalite(){
+        return $this->belongsTo(Nationalite::class,'nationalite_id');
+    }
+
+    public function lieuresidence(){
+        return $this->belongsTo(Commune::class,'lieu_residence_id');
+    }
+
+    public function lieunaissance(){
+        return $this->belongsTo(Commune::class,'lieu_naissance_id');
+    }
+
+    public function region(){
+        return $this->belongsTo(Region::class,'region_id');
+    }
 }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\AssociationController;
 use App\Http\Controllers\Backend\AuthenticateController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ParticulierController;
 use App\Http\Controllers\BenevoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +30,19 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('index');
     });
+
+    Route::prefix('association')->name('association.')->controller(AssociationController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+    Route::prefix('particulier')->name('particulier.')->controller(ParticulierController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
 });
 
 Route::name('authenticate.')->prefix('authenticate')->controller(AuthenticateController::class)->group(function () {
     Route::get('/', 'login')->name('login');
+    Route::post('/authenticate', 'authenticate')->name('auth');
 });
 
 Route::group(['prefix' => 'api-couverture', 'as' => 'api-couverture.'], function () {

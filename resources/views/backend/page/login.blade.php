@@ -35,14 +35,14 @@
                             Connexion
                         </a>
                     </div>
-                    <form>
-                        <input class="form-control" type="text" name="username" placeholder="E-mail Address" required>
-                        <input class="form-control" type="password" name="password" placeholder="Mot de Passe" required>
+                    {{ html()->form('POST')->route('authenticate.auth')->open() }}
+                        {{ html()->text('email')->class('form-control')->placeholder('E-mail Address')->required(true) }}
+                        {{ html()->password('password')->class('form-control')->placeholder('Mot de Passe')->required(true) }}
                         <div class="form-button">
                             <button id="submit" type="submit" class="ibtn">Connexion</button>
                             <a href="forget5.html">Mot de passse oubliè?</a>
                         </div>
-                    </form>
+                    {{ html()->form()->close() }}
                     <div class="other-links">
                         {{--<span>Or login with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>--}}
                     </div>

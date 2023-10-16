@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Benevole;
 use App\Models\AssociationBenevole;
 
@@ -25,7 +27,17 @@ class DashboardController extends Controller
 
         $totalNonAssociation = AssociationBenevole::count();
 
+        $countDistinctRegions = Benevole::select(DB::raw('COUNT(DISTINCT region_id) as libelle'))->get();
+        $countDistinctDistricts = Benevole::select(DB::raw('COUNT(DISTINCT district_id) as libelle'))->get();
+        $countDistinctDepartement = Benevole::select(DB::raw('COUNT(DISTINCT departement_id) as libelle'))->get();
 
-        return view('backend.page.admin_dash', compact('totalInscrits','totalHomme','totalFemme','totalHandicap','totalNonHandicap','totalNonAssociation'));
+        $totalIvoirien = Benevole::where('nationalite_id',1)->count();
+        $totalNonIvoirien = Benevole::where('nationalite_id',2)->count();
+        $totalScolarise = Benevole::where('scolarise',1)->count();
+
+        //dd($countDistinctRegions->libelle,$countDistinctDistricts,$countDistinctDepartement);
+
+
+        return view('backend.page.admin_dash', compact('totalInscrits','totalHomme','totalFemme','totalHandicap','totalNonHandicap','totalNonAssociation','countDistinctRegions','countDistinctDistricts','countDistinctDepartement','totalIvoirien','totalNonIvoirien','totalScolarise'));
     }
 }

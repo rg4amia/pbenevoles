@@ -29,20 +29,8 @@
                                 </div>
                                 <div class="card-body statistics-body">
                                     <div class="row">
-                                        <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-xl-0">
-                                            <div class="media">
-                                                <div class="avatar bg-light-default mr-2">
-                                                    <div class="avatar-content">
-                                                        <i data-feather="trending-up" class="avatar-icon"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body my-auto">
-                                                    <h4 class="font-weight-bolder mb-0">{{$totalNonAssociation}}</h4>
-                                                    <p class="card-text font-small-3 mb-0">Total Associations</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-xl-0">
+                                        
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
                                             <div class="media">
                                                 <div class="avatar bg-light-warning mr-2">
                                                     <div class="avatar-content">
@@ -55,7 +43,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-xl-0">
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
                                             <div class="media">
                                                 <div class="avatar bg-light-info mr-2">
                                                     <div class="avatar-content">
@@ -104,6 +92,104 @@
                                                 <div class="media-body my-auto">
                                                     <h4 class="font-weight-bolder mb-0">{{$totalNonHandicap}}</h4>
                                                     <p class="card-text font-small-3 mb-0">Total non handicapés</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br><br>
+
+                                <div class="card-body statistics-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-default mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="trending-up" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0">{{$totalNonAssociation}}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Total Associations</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-xl-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-default mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="trending-up" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0">{{$countDistinctRegions}}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Total Régions</p>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-xl-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-warning mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="trending-up" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0">{{$countDistinctDistricts}}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Total Districts</p>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-xl-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-info mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="users" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0">{{$countDistinctDepartement}}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Total Departement</p>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-danger mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="users" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0">{{$totalIvoirien}}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Total Ivoirien</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-sm-0">
+                                            <div class="media">
+                                                <div class="avatar bg-light-success mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="user" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0">{{$totalNonIvoirien}}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Total Non Ivoiriens</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-sm-6 col-12">
+                                            <div class="media">
+                                                <div class="avatar bg-light-primary mr-2">
+                                                    <div class="avatar-content">
+                                                        <i data-feather="user" class="avatar-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="media-body my-auto">
+                                                    <h4 class="font-weight-bolder mb-0">{{$totalScolarise}}</h4>
+                                                    <p class="card-text font-small-3 mb-0">Total Scolarisés</p>
                                                 </div>
                                             </div>
                                         </div>

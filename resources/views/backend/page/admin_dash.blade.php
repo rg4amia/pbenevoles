@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-xl-0">
                                             <div class="media">
-                                                <div class="avatar bg-light-primary mr-2">
+                                                <div class="avatar bg-light-warning mr-2">
                                                     <div class="avatar-content">
                                                         <i data-feather="trending-up" class="avatar-icon"></i>
                                                     </div>
@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="col-xl-2 col-sm-6 col-12">
                                             <div class="media">
-                                                <div class="avatar bg-light-success mr-2">
+                                                <div class="avatar bg-light-primary mr-2">
                                                     <div class="avatar-content">
                                                         <i data-feather="user" class="avatar-icon"></i>
                                                     </div>

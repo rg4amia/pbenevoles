@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\AuthenticateController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\BenevoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,18 @@ Route::controller(BenevoleController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::post('/inscription', 'store')->name('store');
     Route::get('/get-badge/{matricule}', 'badgepdf')->name('badgepdf');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+});
+
+Route::name('authenticate.')->prefix('authenticate')->controller(AuthenticateController::class)->group(function () {
+    Route::get('/', 'login')->name('login');
 });
 
 Route::group(['prefix' => 'api-couverture', 'as' => 'api-couverture.'], function () {

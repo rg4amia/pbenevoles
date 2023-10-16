@@ -24,12 +24,12 @@ Route::controller(BenevoleController::class)->group(function () {
     Route::get('/get-badge/{matricule}', 'badgepdf')->name('badgepdf');
 });
 
+Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
+        Route::get('/', 'dasboard')->name('index');
+    });
+
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
 
     Route::prefix('association')->name('association.')->controller(AssociationController::class)->group(function () {
         Route::get('/', 'index')->name('index');

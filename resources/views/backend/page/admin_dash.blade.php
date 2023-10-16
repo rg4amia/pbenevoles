@@ -81,7 +81,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-2 col-sm-6 col-12">
+                                        <div class="col-xl-2 col-sm-6 col-12 mb-2 mb-sm-0">
                                             <div class="media">
                                                 <div class="avatar bg-light-success mr-2">
                                                     <div class="avatar-content">

@@ -34,10 +34,11 @@ class DashboardController extends Controller
         $totalIvoirien = Benevole::where('nationalite_id',1)->count();
         $totalNonIvoirien = Benevole::where('nationalite_id',2)->count();
         $totalScolarise = Benevole::where('scolarise',1)->count();
+        $totalNonScolarise = Benevole::where('scolarise',2)->count();
 
         //dd($countDistinctRegions->libelle,$countDistinctDistricts,$countDistinctDepartement);
 
 
-        return view('backend.page.admin_dash', compact('totalInscrits','totalHomme','totalFemme','totalHandicap','totalNonHandicap','totalNonAssociation','countDistinctRegions','countDistinctDistricts','countDistinctDepartement','totalIvoirien','totalNonIvoirien','totalScolarise'));
+        return view('backend.page.admin_dash', compact('totalInscrits','totalHomme','totalFemme','totalHandicap','totalNonHandicap','totalNonAssociation','countDistinctRegions','countDistinctDistricts','countDistinctDepartement','totalIvoirien','totalNonIvoirien','totalScolarise','totalNonScolarise'));
     }
 }

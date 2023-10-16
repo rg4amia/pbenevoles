@@ -46,7 +46,7 @@
                                             <div class="media">
                                                 <div class="avatar bg-light-info mr-2">
                                                     <div class="avatar-content">
-                                                        <i data-feather="user" class="avatar-icon"></i>
+                                                        <i data-feather="users" class="avatar-icon"></i>
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">
@@ -59,7 +59,7 @@
                                             <div class="media">
                                                 <div class="avatar bg-light-danger mr-2">
                                                     <div class="avatar-content">
-                                                        <i data-feather="box" class="avatar-icon"></i>
+                                                        <i data-feather="users" class="avatar-icon"></i>
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">
@@ -72,7 +72,7 @@
                                             <div class="media">
                                                 <div class="avatar bg-light-success mr-2">
                                                     <div class="avatar-content">
-                                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                                        <i data-feather="user" class="avatar-icon"></i>
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">
@@ -85,7 +85,7 @@
                                             <div class="media">
                                                 <div class="avatar bg-light-success mr-2">
                                                     <div class="avatar-content">
-                                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                                        <i data-feather="user" class="avatar-icon"></i>
                                                     </div>
                                                 </div>
                                                 <div class="media-body my-auto">

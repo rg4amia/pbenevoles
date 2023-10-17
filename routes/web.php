@@ -36,8 +36,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('particulier')->name('particulier.')->controller(ParticulierController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('benevole/export-excel/', 'benevoleExportExcel')->name('benevoleexportexcel');
-        Route::post('benevole/multiSearch/', 'multiSearch')->name('multisearch');
+        Route::get('benevole/export-excel/{region?}/{lieuresidence?}/{date_fin?}/{date_debut?}/{nationalite?}/{sexe?}/{scolarise?}/{handicap?}', 'benevoleExportExcel')->name('benevoleexportexcel');
+        Route::get('benevole/multiSearch/', 'multiSearch')->name('multisearch');
     });
 });
 

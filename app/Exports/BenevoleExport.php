@@ -5,16 +5,57 @@ namespace App\Exports;
 use App\Models\Benevole;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\Exportable;
 
 class BenevoleExport implements FromCollection,WithHeadings
 {
+    use Exportable;
+
+    protected $region;
+    protected $lieuresidence;
+    protected $date_fin;
+    protected $date_debut;
+    protected $nationalite;
+    protected $sexe;
+    protected $scolarise;
+    protected $handicap;
+
+    public function __construct(int $region,int $lieuresidence, $date_fin, $date_debut,int $nationalite,int $sexe, int $scolarise,int $handicap)
+    {
+        $this->etape = $region;
+        $this->lieuresidence = $lieuresidence;
+        $this->date_fin = $date_fin;
+        $this->date_debut = $date_debut;
+        $this->nationalite = $nationalite;
+        $this->sexe = $sexe;
+        $this->scolarise = $scolarise;
+        $this->handicap = $handicap;
+    }
+    /*$region,$lieuresidence,$date_fin,$date_debut,$nationalite,$sexe,$scolarise,$handicap*/
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
 
-        $benevoles = Benevole::with('sexe', 'diplome', 'niveauscolaire', 'situationprofessionnel', 'situationmatrimoniale', 'typepiece', 'nationalite', 'lieuresidence', 'lieunaissance','district' ,'region','departement')->get();
+        $benevoles = Benevole::when($this->region, function ($q) {
+            $q->where('region_id',$this->region);
+        })->when($this->lieuresidence, function ($q){
+            $q->where('lieu_residence_id',$this->lieuresidence);
+        })->when($this->date_debut && $this->date_fin, function ($q){
+            $q->whereBetween('created_at', [$this->date_debut.' 00:00:00', $this->date_fin.' 23:59:59']);
+        })->when($this->nationalite, function ($q) {
+            $q->where('nationalite_id', $this->nationalite);
+        })->when($this->sexe, function($q) {
+            $q->where('sexe_id', $this->sexe);
+        })->when($this->scolarise, function ($q) {
+            $q->where('scolarise', $this->scolarise);
+        })->when($this->handicap, function ($q) {
+            $q->where('situation_handicap', $this->handicap);
+        })->get();
+
+       // $benevoles = Benevole::with('sexe', 'diplome', 'niveauscolaire', 'situationprofessionnel', 'situationmatrimoniale', 'typepiece', 'nationalite', 'lieuresidence', 'lieunaissance','district' ,'region','departement')->get();
         $data = [];
         foreach ($benevoles as $benevole) {
             $data [] = [

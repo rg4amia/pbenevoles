@@ -122,71 +122,9 @@
                                                     data-dismiss="modal">Recherche
                                             </button>
                                         </form>
-                                        <div class="table-responsive mb-3 text-nowrap">
-                                            <table id="tableBenevole" class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Photo</th>
-                                                    <th>Nom</th>
-                                                    <th>Prenom(s)</th>
-                                                    <th>Tél.</th>
-                                                    <th>Matricule</th>
-                                                    <th>Nationnalité</th>
-                                                    <th>Sexe</th>
-                                                    <th>T. pièces</th>
-                                                    <th>CNI</th>
-                                                    <th>residence</th>
-                                                    <th>Région</th>
-                                                    <th>Département</th>
-                                                    <th>Scolarisé</th>
-                                                    <th>Niveau S.</th>
-                                                    <th>Diplôme</th>
-                                                    <th>Autre Diplôme</th>
-                                                    <th>Situation Pro.</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody class="table-border-bottom-0" id="tableBenevoleBody">
-                                                @forelse($benevoles as $key => $benevole)
-                                                    <tr>
-                                                        <td class="large-cell">{{ $key + 1 }}</td>
-                                                        <td class="large-cell">
-                                                        <span class="avatar">
-                                                            <img class="round"
-                                                                 src="{{ storage_path("app/public/".$benevole->photoidentite) }}"
-                                                                 alt="avatar" height="40" width="40">
-                                                        </span>
-                                                        </td>
-                                                        <td class="large-cell">{{ strtoupper($benevole->nom) }}</td>
-                                                        <td class="large-cell">{{ strtoupper($benevole->prenoms) }}</td>
-                                                        <td class="large-cell">{{ $benevole->telephone }}</td>
-                                                        <td class="large-cell">{{ $benevole->matricule }}</td>
-                                                        <td class="large-cell">{{ strtoupper($benevole->nationalite->libelle) }}</td>
-                                                        <td class="large-cell">{{ $benevole->sexe->libelle }}</td>
-                                                        <td class="large-cell">{{ $benevole->typepiece->libelle }}</td>
-                                                        <td class="large-cell">{{ $benevole->numero_piece }}</td>
-                                                        <td class="large-cell">{{ $benevole->lieuresidence->libelle }}</td>
-                                                        <td class="large-cell">{{ $benevole->region->libelle }}</td>
-                                                        <td class="large-cell">{{ $benevole->departement->libelle }}</td>
-                                                        @if($benevole->scolarise == 1)
-                                                            <td class="large-cell"><span
-                                                                    class="badge badge-success">OUI</span></td>
-                                                        @else
-                                                            <td class="large-cell"><span
-                                                                    class="badge badge-danger">NON</span></td>
-                                                        @endif
-                                                        <td class="large-cell">{{ @$benevole->niveauscolaire->libelle }}</td>
-                                                        <td class="large-cell">{{ @$benevole->diplome->libelle }}</td>
-                                                        <td class="large-cell">{{ @$benevole->preciser_autre_diplome }}</td>
-                                                        <td class="large-cell">{{ strtoupper($benevole->situationprofessionnel->libelle) }}</td>
-                                                    </tr>
-                                                @empty
-                                                @endforelse
-                                                </tbody>
-                                            </table>
-
+                                        <div id="benevoles">
+                                            @include('backend.page.particulier.benevoles')
                                         </div>
-                                        {{ $benevoles->links() }}
                                     </div>
                                 </div>
                             </div>
@@ -204,6 +142,29 @@
             $(this).val($(this).val().trim());
         });
 
+        $(function () {
+            loadTable();
+            $('body').on('click', '.pagination a', function (e) {
+                e.preventDefault();
+                $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 10000;" src="https://i.imgur.com/v3KWF05.gif />');
+                var url = $(this).attr('href');
+                window.history.pushState("", "", url);
+                loadBenevole(url);
+            });
+
+            function loadBenevole(url) {
+                $.ajax({
+                    url: url
+                }).done(function (data) {
+                    console.log('test' + data);
+                    $('#benevoles').html(data);
+                    loadTable();
+                }).fail(function () {
+                    console.log("Failed to load data!");
+                });
+            }
+        });
+
         $('#recherche_benevole').on('click', function () {
             let region = $('#region').val();
             let date_debut = $('#date_debut').val();
@@ -213,15 +174,12 @@
             let nationalite = $('#nationalite').val();
             let scolarise = $('#scolarise').val();
             let handicape = $('#handicape').val();
-            // let token = "@csrf";
 
             // récupérer les autres valeurs de filtre
-
             $.ajax({
-                url: "{{ route('particulier.multisearch') }}",
-                method: "POST",
+                url: "{{ route('particulier.index') }}",
+                method: "GET",
                 data: {
-                    _token: "{{ csrf_token() }}",
                     region: region,
                     lieuresidence: lieuresidence,
                     date_debut: date_debut,
@@ -230,53 +188,15 @@
                     nationalite: nationalite,
                     scolarise: scolarise,
                     handicape: handicape,
-                    // autres données de filtre
                 },
-                success: function (data) {
-                    // traiter la réponse
-                    const pageSize = 1;  // Number of items per page
-                    const startIdx = (1 - 1) * pageSize;
-                    const endIdx = startIdx + pageSize;
-                    const tableBody = $('#tableBenevoleBody');
-
-                    tableBody.empty();
-                    for (let i = startIdx; i < endIdx && i < Object.keys(data).length; i++) {
-                        const item = data[i];
-                        tableBody.append(`
-                              <tr>
-                                <td>${item.photoidentite}</td>
-                                <td>${item.nom}</td>
-                                <td>${item.prenoms}</td>
-                                <td>${item.telephone}</td>
-                                <td>${item.matricule}</td>
-                                <td>${item.nationalite}</td>
-                                <td>${item.sexe}</td>
-                                <td>${item.typepiece}</td>
-                                <td>${item.numero_piece}</td>
-                                <td>${item.lieuresidence}</td>
-                                <td>${item.region}</td>
-                                <td>${item.departement}</td>
-                                <td>${item.scolarise ? 'Oui' : 'Non'}</td>
-                                <td>${item.niveauscolaire}</td>
-                                <td>${item.diplome}</td>
-                                <td>${item.situationprofessionnel}</td>
-                              </tr>
-                            `);
-                    }
-
-                    // Add pagination buttons
-                    const pagination = $('#pagination');
-                    pagination.empty();
-                    for (let i = 1; i <= Math.ceil(Object.keys(data).length / pageSize); i++) {
-                        pagination.append(`<button onclick="loadData(${i})">${i}</button>`);
-                    }
+                success: function (response) {
+                    $('#benevoles').html(response);
+                    loadTable();
                 }
             });
         });
 
-        $(function () {
-           // loadData(1);
-            //Liste projets en attente de validation
+        function loadTable() {
             $('#tableBenevole').DataTable({
                 "language": {
                     "lengthMenu": "_MENU_",
@@ -314,7 +234,24 @@
                         text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
                         className: 'btn btn-relief-warning mr-2',
                         action: function (e, dt, node, config) {
-                            var link = "{{ route('particulier.benevoleexportexcel') }}";
+                            let region = $('#region').val();
+                            let date_debut = $('#date_debut').val();
+                            let date_fin = $('#date_fin').val();
+                            let lieuresidence = $('#lieuresidence').val();
+                            let sexe = $('#sexe').val();
+                            let nationalite = $('#nationalite').val();
+                            let scolarise = $('#scolarise').val();
+                            let handicape = $('#handicape').val();
+                            var link = "{{ route('particulier.benevoleexportexcel',['region' =>':region','lieuresidence' => ':lieuresidence','date_debut' => ':date_debut','date_fin' => ':date_fin','nationalite' => ':nationalite','sexe' => ':sexe','scolarise' => ':scolarise', 'handicap' => ':handicap']) }}";
+                            link.replace(':region', region)
+                                .replace(':lieuresidence', lieuresidence)
+                                .replace(':date_debut', date_debut)
+                                .replace(':date_fin', date_fin)
+                                .replace(':nationalite',nationalite)
+                                .replace(':sexe', sexe)
+                                .replace(':scolarise', scolarise)
+                                .replace(':handicap', handicape)
+
                             console.log(link);
                             location.href = link
                         }
@@ -347,6 +284,6 @@
                      },*/
                 ],
             });
-        });
+        }
     </script>
 @endsection

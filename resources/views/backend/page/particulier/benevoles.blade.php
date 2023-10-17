@@ -40,7 +40,7 @@
                     <td class="large-cell">{{ strtoupper($benevole->nationalite->libelle) }}</td>
                     <td class="large-cell">{{ $benevole->sexe->libelle }}</td>
                     <td class="large-cell">{{ $benevole->typepiece->libelle }}</td>
-                    <td class="large-cell">{{ $benevole->numero_piece }}</td>
+                    <td class="large-cell">{{ @$benevole->numero_piece ?: 'AUCUN' }}</td>
                     <td class="large-cell">{{ $benevole->lieuresidence->libelle }}</td>
                     <td class="large-cell">{{ $benevole->region->libelle }}</td>
                     <td class="large-cell">{{ $benevole->departement->libelle }}</td>
@@ -51,9 +51,9 @@
                         <td class="large-cell">
                             <span class="badge badge-danger">NON</span></td>
                     @endif
-                    <td class="large-cell">{{ @$benevole->niveauscolaire->libelle }}</td>
-                    <td class="large-cell">{{ @$benevole->diplome->libelle }}</td>
-                    <td class="large-cell">{{ @$benevole->preciser_autre_diplome }}</td>
+                    <td class="large-cell">{{ @$benevole->niveauscolaire->libelle ?: 'AUCUN' }}</td>
+                    <td class="large-cell">{{ @$benevole->diplome->libelle  ?: 'AUCUN' }}</td>
+                    <td class="large-cell">{{ @$benevole->preciser_autre_diplome ?: 'AUCUN' }}</td>
                     <td class="large-cell">{{ strtoupper($benevole->situationprofessionnel->libelle) }}</td>
                     <td class="large-cell">
                         <a class="dt-button buttons-collection buttons-colvis btn btn-relief-success mr-2" tabindex="0" aria-controls="tableBenevole" type="button" aria-haspopup="true" href="{{ route('badgepdf',$benevole->matricule .'.pdf') }}">

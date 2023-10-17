@@ -197,6 +197,7 @@
         });
 
         function loadTable() {
+
             $('#tableBenevole').DataTable({
                 "language": {
                     "lengthMenu": "_MENU_",
@@ -213,22 +214,12 @@
                         "previous": "Précédent"
                     },
                 },
+                pageLength: 25,
+                bPaginate:false,
                 processing: true,
-                serverSide: true,
-                ajax: '',
+              //  serverSide: false,
                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-                colVis: {
-                    exclude: [0]
-                },
                 buttons: [
-                   /* {
-                        extend: 'colvis',
-                        text: feather.icons['folder'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Badge',
-                        className: 'btn btn-relief-info mr-2',
-                        action: function (e, dt, node, config) {
-
-                        }
-                    },*/
                     {
                         extend: 'colvis',
                         text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
@@ -244,14 +235,14 @@
                             let handicape = $('#handicape').val();
 
                             let data = {
-                                'region' : region,
-                                'date_debut' : date_debut,
-                                'date_fin' : date_fin,
-                                'lieuresidence' : lieuresidence,
-                                'sexe' : sexe,
-                                'nationalite' : nationalite,
-                                'scolarise' : scolarise,
-                                'handicape' : handicape,
+                                'region': region,
+                                'date_debut': date_debut,
+                                'date_fin': date_fin,
+                                'lieuresidence': lieuresidence,
+                                'sexe': sexe,
+                                'nationalite': nationalite,
+                                'scolarise': scolarise,
+                                'handicape': handicape,
                             }
                             var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
                             link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
@@ -264,7 +255,74 @@
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',
                         className: 'btn btn-relief-success dropdown-toggle mr-2',
                     },
-                    /* {
+                ],
+            });
+
+            /* $('#tableBenevole').DataTable({
+                 "language": {
+                     "lengthMenu": "_MENU_",
+                     "zeroRecords": "Rien n'a été trouvé - désolé",
+                     "info": "_PAGE_ de _PAGES_",
+                     "infoEmpty": "Aucun dossier disponible",
+                     "processing": "Traitement...",
+                     "search": "Recherche:",
+                     "infoFiltered": "(filtré de _MAX_ total des enregistrements)",
+                     "paginate": {
+                         "first": "Premier",
+                         "last": "Dernier",
+                         "next": "Suivant",
+                         "previous": "Précédent"
+                     },
+                 },
+                 processing: true,
+                 serverSide: true,
+                 ajax: '',
+                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+                 buttons: [
+                    /!* {
+                         extend: 'colvis',
+                         text: feather.icons['folder'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Badge',
+                         className: 'btn btn-relief-info mr-2',
+                         action: function (e, dt, node, config) {
+
+                         }
+                     },*!/
+                     {
+                         extend: 'colvis',
+                         text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
+                         className: 'btn btn-relief-warning mr-2',
+                         action: function (e, dt, node, config) {
+                             let region = $('#region').val();
+                             let date_debut = $('#date_debut').val();
+                             let date_fin = $('#date_fin').val();
+                             let lieuresidence = $('#lieuresidence').val();
+                             let sexe = $('#sexe').val();
+                             let nationalite = $('#nationalite').val();
+                             let scolarise = $('#scolarise').val();
+                             let handicape = $('#handicape').val();
+
+                             let data = {
+                                 'region' : region,
+                                 'date_debut' : date_debut,
+                                 'date_fin' : date_fin,
+                                 'lieuresidence' : lieuresidence,
+                                 'sexe' : sexe,
+                                 'nationalite' : nationalite,
+                                 'scolarise' : scolarise,
+                                 'handicape' : handicape,
+                             }
+                             var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
+                            link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
+                            console.log(link);
+                            location.href = link
+                        }
+                    },
+                    {
+                        extend: 'colvis',
+                        text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',
+                        className: 'btn btn-relief-success dropdown-toggle mr-2',
+                    },
+                    /!* {
                          extend: 'collection',
                          className: 'btn btn-relief-primary dropdown-toggle mr-2',
                          text: feather.icons['share'].toSvg({ class: 'font-small-4 mr-50' }) + 'Extraction',
@@ -284,9 +342,9 @@
                              }, 50);
 
                          }
-                     },*/
+                     },*!/
                 ],
-            });
+            });*/
         }
     </script>
 @endsection

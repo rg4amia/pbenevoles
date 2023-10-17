@@ -56,6 +56,7 @@ class BenevoleExport implements FromCollection,WithHeadings
         })->get();
 
         $data = [];
+        
         foreach ($benevoles as $benevole) {
             $data [] = [
                 'nom' => $benevole->nom,

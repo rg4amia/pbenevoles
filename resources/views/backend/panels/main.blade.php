@@ -6,7 +6,7 @@
 @yield('css')
 
 <!-- BEGIN: Content-->
-
+z
 @yield('content')
 
 <!-- END: Content-->
@@ -18,7 +18,7 @@
 <footer class="footer footer-static footer-light">
     <p class="clearfix mb-0">
         <span class="float-md-left d-block d-md-inline-block mt-25">
-            COPYRIGHT &copy; 2022
+            COPYRIGHT &copy; {{ date('Y') }}
             <a class="ml-25" href="https://www.agenceemploijeunes.ci/site/" target="_blank">
                 Agence Emploi jeunes
             </a>

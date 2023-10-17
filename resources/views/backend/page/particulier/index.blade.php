@@ -221,14 +221,14 @@
                     exclude: [0]
                 },
                 buttons: [
-                    {
+                   /* {
                         extend: 'colvis',
                         text: feather.icons['folder'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Badge',
                         className: 'btn btn-relief-info mr-2',
                         action: function (e, dt, node, config) {
 
                         }
-                    },
+                    },*/
                     {
                         extend: 'colvis',
                         text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',

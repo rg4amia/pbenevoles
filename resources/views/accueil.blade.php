@@ -242,21 +242,15 @@
                                                            value="{{ old('telephone_autre') }}" class="form-control"
                                                            placeholder="Téléphone personnel 2">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Type de pièce <span style="color: red;">*</span></label>
-                                                    <div class="styled-select">
-                                                        {{--<select class="required" name="typepiece" onchange="precisepiece(this.value)">
-                                                            <option value="" selected></option>
-                                                            <option value="1">CNI</option>
-                                                            <option value="2">Attestation d'identité</option>
-                                                            <option value="3">Passeport</option>
-                                                            <option value="4">Extrait de Naissance</option>
-                                                            <option value="5">Autre</option>
-                                                            <option value="6">Aucune</option>
-                                                        </select>--}}
-                                                        {{ html()->select('type_piece_id', $typepieces, old('type_piece_id'))->class('required')->placeholder('Selectionner Type pièces')->id('type_piece_id') }}
-                                                    </div>
+
+                                                <div class="form-group" id="numeropiece" style="display:block;">
+                                                    <label>Numéro de la pièce <span style="color: red;">*</span></label>
+                                                    <input type="text" name="numero_piece" id="numero_piece_form"
+                                                           value="{{ old('numero_piece') }}"
+                                                           class="required form-control @error('numero_piece') is-invalid @enderror"
+                                                           placeholder="Numéro de la pièce">
                                                 </div>
+
 
                                                 <div class="form-group">
                                                     <label>Département<span style="color: red;">*</span></label>
@@ -281,12 +275,21 @@
                                             </div><!-- /col-sm-6 -->
 
                                             <div class="col-sm-6">
-                                                <div class="form-group" id="numeropiece" style="display:block;">
-                                                    <label>Numéro de la pièce <span style="color: red;">*</span></label>
-                                                    <input type="text" name="numero_piece"
-                                                           value="{{ old('numero_piece') }}"
-                                                           class="required form-control @error('numero_piece') is-invalid @enderror"
-                                                           placeholder="Numéro de la pièce">
+
+                                                <div class="form-group">
+                                                    <label>Type de pièce <span style="color: red;">*</span></label>
+                                                    <div class="styled-select">
+                                                        {{--<select class="required" name="typepiece" onchange="precisepiece(this.value)">
+                                                            <option value="" selected></option>
+                                                            <option value="1">CNI</option>
+                                                            <option value="2">Attestation d'identité</option>
+                                                            <option value="3">Passeport</option>
+                                                            <option value="4">Extrait de Naissance</option>
+                                                            <option value="5">Autre</option>
+                                                            <option value="6">Aucune</option>
+                                                        </select>--}}
+                                                        {{ html()->select('type_piece_id', $typepieces, old('type_piece_id'))->class('required')->placeholder('Selectionner Type pièces')->id('type_piece_id') }}
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Lieu de résidence<span style="color: red;">*</span></label>
@@ -1121,8 +1124,10 @@
 
             if ($(this).val() == 6) {
                 $("#numeropiece").css("display", "none");
+                $("#numero_piece_form").removeAttr("required");
             } else {
                 $("#numeropiece").css("display", "block");
+                $("#numero_piece_form").attr("required", true);
             }
         })
 

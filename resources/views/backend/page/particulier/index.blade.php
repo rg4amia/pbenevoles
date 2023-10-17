@@ -243,17 +243,11 @@
                             let scolarise = $('#scolarise').val();
                             let handicape = $('#handicape').val();
                             var link = "{{ route('particulier.benevoleexportexcel',['region' =>':region','lieuresidence' => ':lieuresidence','date_debut' => ':date_debut','date_fin' => ':date_fin','nationalite' => ':nationalite','sexe' => ':sexe','scolarise' => ':scolarise', 'handicap' => ':handicap']) }}";
-                            link.replace(':region', region)
-                                .replace(':lieuresidence', lieuresidence)
-                                .replace(':date_debut', date_debut)
-                                .replace(':date_fin', date_fin)
-                                .replace(':nationalite',nationalite)
-                                .replace(':sexe', sexe)
-                                .replace(':scolarise', scolarise)
-                                .replace(':handicap', handicape)
+
+                            link.replace(':region', region).replace(':lieuresidence', lieuresidence).replace(':date_debut', date_debut).replace(':date_fin', date_fin).replace(':nationalite',nationalite).replace(':sexe', sexe).replace(':scolarise', scolarise).replace(':handicap', handicape)
 
                             console.log(link);
-                            location.href = link
+                           // location.href = link
                         }
                     },
                     {

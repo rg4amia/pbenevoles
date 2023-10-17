@@ -46,7 +46,7 @@ class ParticulierController extends Controller
     }
 
     public function benevoleExportExcel($region,$lieuresidence,$date_fin,$date_debut,$nationalite,$sexe,$scolarise,$handicap){
-
-        return Excel::download(new BenevoleExport(), 'benevole.xlsx');
+        //dd($region);
+        return Excel::download(new BenevoleExport($region,$lieuresidence,$date_fin,$date_debut,$nationalite,$sexe,$scolarise,$handicap), 'benevole.xlsx');
     }
 }

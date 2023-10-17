@@ -20,16 +20,17 @@ class BenevoleExport implements FromCollection,WithHeadings
     protected $scolarise;
     protected $handicap;
 
-    public function __construct(int $region,int $lieuresidence, $date_fin, $date_debut,int $nationalite,int $sexe, int $scolarise,int $handicap)
+    public function __construct($response)
     {
-        $this->etape = $region;
-        $this->lieuresidence = $lieuresidence;
-        $this->date_fin = $date_fin;
-        $this->date_debut = $date_debut;
-        $this->nationalite = $nationalite;
-        $this->sexe = $sexe;
-        $this->scolarise = $scolarise;
-        $this->handicap = $handicap;
+       // dd($response);
+        $this->etape = $response->region;
+        $this->lieuresidence = $response->lieuresidence;
+        $this->date_fin = $response->date_fin;
+        $this->date_debut = $response->date_debut;
+        $this->nationalite = $response->nationalite;
+        $this->sexe = $response->sexe;
+        $this->scolarise = $response->scolarise;
+        $this->handicap = $response->handicape;
     }
     /*$region,$lieuresidence,$date_fin,$date_debut,$nationalite,$sexe,$scolarise,$handicap*/
 
@@ -54,6 +55,8 @@ class BenevoleExport implements FromCollection,WithHeadings
         })->when($this->handicap, function ($q) {
             $q->where('situation_handicap', $this->handicap);
         })->get();
+
+       // dd($benevoles->count());
 
        // $benevoles = Benevole::with('sexe', 'diplome', 'niveauscolaire', 'situationprofessionnel', 'situationmatrimoniale', 'typepiece', 'nationalite', 'lieuresidence', 'lieunaissance','district' ,'region','departement')->get();
         $data = [];

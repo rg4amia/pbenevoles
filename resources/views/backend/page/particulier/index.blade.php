@@ -104,7 +104,7 @@
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-md-3">
-                                                        {{ html()->select('sexe', $sexes, null)->class('form-control')->placeholder('Selectionner sexe')->id('region') }}
+                                                        {{ html()->select('sexe', $sexes, null)->class('form-control')->placeholder('Selectionner sexe')->id('sexe') }}
                                                     </div>
                                                     <div class="col-md-3">
                                                         {{ html()->select('nationalite', $nationalites, null)->class('form-control')->placeholder('Selectionner nationalité')->id('nationalite') }}
@@ -242,12 +242,21 @@
                             let nationalite = $('#nationalite').val();
                             let scolarise = $('#scolarise').val();
                             let handicape = $('#handicape').val();
-                            var link = "{{ route('particulier.benevoleexportexcel',['region' =>':region','lieuresidence' => ':lieuresidence','date_debut' => ':date_debut','date_fin' => ':date_fin','nationalite' => ':nationalite','sexe' => ':sexe','scolarise' => ':scolarise', 'handicap' => ':handicap']) }}";
 
-                            link.replace(':region', region).replace(':lieuresidence', lieuresidence).replace(':date_debut', date_debut).replace(':date_fin', date_fin).replace(':nationalite',nationalite).replace(':sexe', sexe).replace(':scolarise', scolarise).replace(':handicap', handicape)
-
+                            let data = {
+                                'region' : region,
+                                'date_debut' : date_debut,
+                                'date_fin' : date_fin,
+                                'lieuresidence' : lieuresidence,
+                                'sexe' : sexe,
+                                'nationalite' : nationalite,
+                                'scolarise' : scolarise,
+                                'handicape' : handicape,
+                            }
+                            var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
+                            link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
                             console.log(link);
-                           // location.href = link
+                            location.href = link
                         }
                     },
                     {

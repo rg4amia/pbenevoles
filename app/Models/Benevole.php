@@ -90,4 +90,12 @@ class Benevole extends Model
     public function region(){
         return $this->belongsTo(Region::class,'region_id');
     }
+
+    public function district(){
+        return $this->belongsTo(District::class,'district_id');
+    }
+
+    public function departement(){
+        return $this->belongsTo(Departement::class,'departement_id');
+    }
 }

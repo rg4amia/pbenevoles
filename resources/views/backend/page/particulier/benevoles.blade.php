@@ -30,7 +30,7 @@
                     <td class="large-cell">{{ $key + 1 }}</td>
                     <td class="large-cell">
                         <span class="avatar">
-                            <img class="round" src="{{ storage_path("app/public/".$benevole->photoidentite) }}" alt="avatar" height="40" width="40">
+                            <img class="round" src="{{  Illuminate\Support\Facades\Storage::disk('public')->url($benevole->photoidentite) }}" alt="avatar" height="40" width="40">
                         </span>
                     </td>
                     <td class="large-cell">{{ strtoupper($benevole->nom) }}</td>
@@ -56,16 +56,13 @@
                     <td class="large-cell">{{ @$benevole->preciser_autre_diplome }}</td>
                     <td class="large-cell">{{ strtoupper($benevole->situationprofessionnel->libelle) }}</td>
                     <td class="large-cell">
-                        <a class="dt-button buttons-collection buttons-colvis btn btn-relief-success mr-2" tabindex="0" aria-controls="tableBenevole" type="button" aria-haspopup="true" href="{{ route('badgepdf',$benevole->matricule) }}">
+                        <a class="dt-button buttons-collection buttons-colvis btn btn-relief-success mr-2" tabindex="0" aria-controls="tableBenevole" type="button" aria-haspopup="true" href="{{ route('badgepdf',$benevole->matricule .'.pdf') }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download">
                                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                     <polyline points="7 10 12 15 17 10"></polyline>
                                     <line x1="12" y1="15" x2="12" y2="3"></line>
                                 </svg>
-                                {{--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download font-small-4 mr-50">
-                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                                </svg>--}}
                                 Badge
                             </span>
                         </a>

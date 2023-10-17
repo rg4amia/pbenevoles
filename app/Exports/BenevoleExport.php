@@ -39,7 +39,6 @@ class BenevoleExport implements FromCollection,WithHeadings
     */
     public function collection()
     {
-
         $benevoles = Benevole::when($this->region, function ($q) {
             $q->where('region_id',$this->region);
         })->when($this->lieuresidence, function ($q){
@@ -55,8 +54,6 @@ class BenevoleExport implements FromCollection,WithHeadings
         })->when($this->handicap, function ($q) {
             $q->where('situation_handicap', $this->handicap);
         })->get();
-
-       // dd($benevoles->count());
 
        // $benevoles = Benevole::with('sexe', 'diplome', 'niveauscolaire', 'situationprofessionnel', 'situationmatrimoniale', 'typepiece', 'nationalite', 'lieuresidence', 'lieunaissance','district' ,'region','departement')->get();
         $data = [];

@@ -55,7 +55,6 @@ class BenevoleExport implements FromCollection,WithHeadings
             $q->where('situation_handicap', $this->handicap);
         })->get();
 
-       // $benevoles = Benevole::with('sexe', 'diplome', 'niveauscolaire', 'situationprofessionnel', 'situationmatrimoniale', 'typepiece', 'nationalite', 'lieuresidence', 'lieunaissance','district' ,'region','departement')->get();
         $data = [];
         foreach ($benevoles as $benevole) {
             $data [] = [

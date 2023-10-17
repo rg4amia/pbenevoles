@@ -41,18 +41,18 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     {{--@if(auth()->user()->hasRole('Super Admin'))--}}
-                        <a class="dropdown-item" href="{{--{{ route('users.profile') }}--}}">
+                        <a class="dropdown-item" href="{{ route('authenticate.logout') }}">
                             <i class="mr-50" data-feather="user"></i>
                             Mon Profil
                         </a>
                     {{--@endif--}}
-                    <a class="dropdown-item" href="{{--{{ route('logout') }}--}}"
+                    <a class="dropdown-item" href="{{route('authenticate.logout')}}"
                        onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         <i class="mr-50" data-feather="power"></i>
                         Déconnexion
                     </a>
-                    <form id="logout-form" action="{{--{{ route('logout') }}--}}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{route('authenticate.logout')}}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </div>

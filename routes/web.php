@@ -24,11 +24,19 @@ Route::controller(BenevoleController::class)->group(function () {
     Route::get('/get-badge/{matricule}', 'badgepdf')->name('badgepdf');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
+    Route::get('/', 'dasboard')->name('index');
+});
 
-    Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
+Route::get('/admin', function (){
+    return redirect()->intended('admin/dashboard');
+});
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+
+  /*  Route::prefix('/dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
         Route::get('/', 'dasboard')->name('index');
-    });
+    });*/
 
     Route::prefix('association')->name('association.')->controller(AssociationController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -44,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
 Route::name('authenticate.')->prefix('authenticate')->controller(AuthenticateController::class)->group(function () {
     Route::get('/', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('auth');
+    Route::post('/logout', 'logout')->name('logout');
 });
 
 Route::group(['prefix' => 'api-couverture', 'as' => 'api-couverture.'], function () {

@@ -23,12 +23,10 @@ class AuthenticateController extends Controller
             'password' => ['required'],
         ]);
 
-        //dd($credentials);
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('admin/dashboard');
         }
 
         return back()->withErrors([
@@ -44,6 +42,6 @@ class AuthenticateController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/admin/dashboard');
     }
 }

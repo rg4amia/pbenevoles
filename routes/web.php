@@ -29,7 +29,7 @@ Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::
 });
 
 Route::get('/admin', function (){
-    return redirect()->intended('admin/association/index');
+    return redirect()->intended('admin/particulier');
 });
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {

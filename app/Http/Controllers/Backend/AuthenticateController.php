@@ -26,7 +26,7 @@ class AuthenticateController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('admin/association/index');
+            return redirect()->intended('admin/particulier');
         }
 
         return back()->withErrors([
@@ -42,6 +42,6 @@ class AuthenticateController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('admin/association/index');
+        return redirect('admin/particulier');
     }
 }

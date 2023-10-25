@@ -1057,6 +1057,8 @@
                         </div>
                         <div class="col-sm-7">Horaires <br><span style="color:green; font-size: small">Lun-Ven: 07h30 - 16h30</span>
                         </div>
+                        <div class="col-sm-7">Céllulaire <br><span style="color:green; font-size: small">+225-07-02-67-67-67</span>
+                        </div>
                         <div class="col-sm-7">Téléphone <br><span style="color:green; font-size: small">+225-27-22-49-93-04</span>
                         </div>
                         <div class="col-sm-7">Bénévoles inscris <br><span style="color:green; font-size: medium">{{$totalinscris}}</span>

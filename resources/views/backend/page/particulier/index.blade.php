@@ -114,7 +114,7 @@
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        {{ html()->select('handicape', [1 => 'OUI', 2 => 'NON'], null)->class('form-control')->placeholder('Selectionner Situation handicap')->id('handicape') }}
+                                                        {{ html()->select('handicap', [1 => 'OUI', 2 => 'NON'], null)->class('form-control')->placeholder('Selectionner Situation handicap')->id('handicap') }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,6 +122,7 @@
                                                     data-dismiss="modal">Recherche
                                             </button>
                                         </form>
+
                                         <div id="benevoles">
                                             @include('backend.page.particulier.benevoles')
                                         </div>
@@ -173,7 +174,7 @@
             let sexe = $('#sexe').val();
             let nationalite = $('#nationalite').val();
             let scolarise = $('#scolarise').val();
-            let handicape = $('#handicape').val();
+            let handicap = $('#handicap').val();
 
             // récupérer les autres valeurs de filtre
             $.ajax({
@@ -187,7 +188,7 @@
                     sexe: sexe,
                     nationalite: nationalite,
                     scolarise: scolarise,
-                    handicape: handicape,
+                    handicap: handicap,
                 },
                 success: function (response) {
                     $('#benevoles').html(response);
@@ -220,35 +221,35 @@
               //  serverSide: false,
                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
                 buttons: [
-                    {
-                        extend: 'colvis',
-                        text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
-                        className: 'btn btn-relief-warning mr-2',
-                        action: function (e, dt, node, config) {
-                            let region = $('#region').val();
-                            let date_debut = $('#date_debut').val();
-                            let date_fin = $('#date_fin').val();
-                            let lieuresidence = $('#lieuresidence').val();
-                            let sexe = $('#sexe').val();
-                            let nationalite = $('#nationalite').val();
-                            let scolarise = $('#scolarise').val();
-                            let handicape = $('#handicape').val();
+                    // {
+                    //     extend: 'colvis',
+                    //     text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
+                    //     className: 'btn btn-relief-warning mr-2',
+                    //     action: function (e, dt, node, config) {
+                    //         let region = $('#region').val();
+                    //         let date_debut = $('#date_debut').val();
+                    //         let date_fin = $('#date_fin').val();
+                    //         let lieuresidence = $('#lieuresidence').val();
+                    //         let sexe = $('#sexe').val();
+                    //         let nationalite = $('#nationalite').val();
+                    //         let scolarise = $('#scolarise').val();
+                    //         let handicape = $('#handicape').val();
 
-                            let data = {
-                                'region': region,
-                                'date_debut': date_debut,
-                                'date_fin': date_fin,
-                                'lieuresidence': lieuresidence,
-                                'sexe': sexe,
-                                'nationalite': nationalite,
-                                'scolarise': scolarise,
-                                'handicape': handicape,
-                            }
-                            var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
-                            link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
-                            location.href = link
-                        }
-                    },
+                    //         let data = {
+                    //             'region': region,
+                    //             'date_debut': date_debut,
+                    //             'date_fin': date_fin,
+                    //             'lieuresidence': lieuresidence,
+                    //             'sexe': sexe,
+                    //             'nationalite': nationalite,
+                    //             'scolarise': scolarise,
+                    //             'handicape': handicape,
+                    //         }
+                    //         var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
+                    //         link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
+                    //         location.href = link
+                    //     }
+                    // },
                     {
                         extend: 'colvis',
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',

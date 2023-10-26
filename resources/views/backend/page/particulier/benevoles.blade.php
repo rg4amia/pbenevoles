@@ -5,6 +5,7 @@
             <tr>
                 <th>#</th>
                 <th>Photo</th>
+                <th>Date d'inscription</th>
                 <th>Nom</th>
                 <th>Prenom(s)</th>
                 <th>Tél.</th>
@@ -17,6 +18,7 @@
                 <th>Région</th>
                 <th>Département</th>
                 <th>Scolarisé</th>
+                <th>Handicap ?</th>
                 <th>Niveau S.</th>
                 <th>Diplôme</th>
                 <th>Autre Diplôme</th>
@@ -33,6 +35,7 @@
                             <img class="round" src="{{  Illuminate\Support\Facades\Storage::disk('public')->url($benevole->photoidentite) }}" alt="avatar" height="40" width="40">
                         </span>
                     </td>
+                    <td class="large-cell">{{ strtoupper($benevole->created_at->format('d M Y')) }}</td>
                     <td class="large-cell">{{ strtoupper($benevole->nom) }}</td>
                     <td class="large-cell">{{ strtoupper($benevole->prenoms) }}</td>
                     <td class="large-cell">{{ $benevole->telephone }}</td>
@@ -45,11 +48,14 @@
                     <td class="large-cell">{{ $benevole->region->libelle }}</td>
                     <td class="large-cell">{{ $benevole->departement->libelle }}</td>
                     @if($benevole->scolarise == 1)
-                        <td class="large-cell"><span
-                                class="badge badge-success">OUI</span></td>
+                        <td class="large-cell"><span class="badge badge-success">OUI</span></td>
                     @else
-                        <td class="large-cell">
-                            <span class="badge badge-danger">NON</span></td>
+                        <td class="large-cell"><span class="badge badge-danger">NON</span></td>
+                    @endif
+                    @if($benevole->situation_handicap == 1)
+                        <td class="large-cell"><span class="badge badge-danger">OUI</span> <br>({{$benevole->preciser_type_handicap}})</td>
+                    @else
+                        <td class="large-cell"><span class="badge badge-success">NON</span></td>
                     @endif
                     <td class="large-cell">{{ @$benevole->niveauscolaire->libelle ?: 'AUCUN' }}</td>
                     <td class="large-cell">{{ @$benevole->diplome->libelle  ?: 'AUCUN' }}</td>
@@ -72,8 +78,11 @@
             @endforelse
             </tbody>
         </table>
+
     </div>
-    {{ $benevoles->appends(request()->all())->links() }}
+    <div><button class="btn btn-warning">Total : {{$totalBenevoles}}</button></div>
+    <br>
+    <div>{{ $benevoles->appends(request()->all())->links() }}</div>
 @else
     <p>No results found.</p>
 @endif

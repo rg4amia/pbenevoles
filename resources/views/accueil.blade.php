@@ -15,6 +15,11 @@
             vertical-align: top;
             padding: 10px;
         }
+
+        .responsive {
+  width: 100%;
+  height: auto;
+}
     </style>
     endsection
 @section('content')
@@ -24,7 +29,8 @@
                 <div class="tab-pane fade show active" id="tab_1">
                     <div class="subheader" id="quote"></div>
                     <div class="row">
-                        <aside class="col-xl-3 col-lg-4">
+                        <div><img src="{{asset('oscn_fin.jpeg')}}" alt="fin inscription" class="responsive"></div>
+                        <aside class="col-xl-3 col-lg-4" style="display:none">
                             <br>
                             <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
                             <ul class="list_ok">
@@ -86,7 +92,7 @@
 
                         </aside><!-- /aside -->
 
-                        <div class="col-xl-9 col-lg-8">
+                        <div class="col-xl-9 col-lg-8" style="display:none">
                             <div id="wizard_container">
                                 <div id="top-wizard">
                                     <h3 class="main_question"><strong>FORMULAIRE D’INSCRIPTION AU PROGRAMME BENEVOLE CAN
@@ -132,7 +138,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-sm-6" style="margin: 20px; display:none">
+                                <div class="form-group col-sm-6" style="margin: 20px;">
                                     <label>Type inscription <span style="color: red;">*</span></label>
                                     <div class="styled-select">
                                         <select class="required" name="type_inscription" id="type_inscription"

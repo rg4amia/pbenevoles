@@ -76,7 +76,7 @@
                 </li>
 
                 <li class="nav-item @if(request()->is('/')) active @endif">
-                    <a class="nav-link d-flex align-items-center" href="{{ route('dashboard.index') }}">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('association.index') }}">
                         <i data-feather="home"></i>
                         <span data-i18n="Dashboards">
                             Association / Structure

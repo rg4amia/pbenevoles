@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Benevole;
 use App\Models\AssociationBenevole;
 
+use App\Models\District;
+use App\Models\Departement;
+use App\Models\Region;
+
 class DashboardController extends Controller
 {
 
@@ -36,9 +40,11 @@ class DashboardController extends Controller
         $totalScolarise = Benevole::where('scolarise',1)->count();
         $totalNonScolarise = Benevole::where('scolarise',2)->count();
 
-        //dd($countDistinctRegions->libelle,$countDistinctDistricts,$countDistinctDepartement);
+        $totalDistricts = District::All();
+        $totalDepartements = Departement::All();
+        $totalRegions = Region::All();
 
 
-        return view('backend.page.admin_dash', compact('totalInscrits','totalHomme','totalFemme','totalHandicap','totalNonHandicap','totalNonAssociation','countDistinctRegions','countDistinctDistricts','countDistinctDepartement','totalIvoirien','totalNonIvoirien','totalScolarise','totalNonScolarise'));
+        return view('backend.page.admin_dash', compact('totalInscrits','totalHomme','totalFemme','totalHandicap','totalNonHandicap','totalNonAssociation','countDistinctRegions','countDistinctDistricts','countDistinctDepartement','totalIvoirien','totalNonIvoirien','totalScolarise','totalNonScolarise','totalDistricts','totalDepartements','totalRegions'));
     }
 }

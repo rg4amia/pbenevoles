@@ -132,7 +132,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-sm-6" style="margin: 20px;">
+                                <div class="form-group col-sm-6" style="margin: 20px; display:none">
                                     <label>Type inscription <span style="color: red;">*</span></label>
                                     <div class="styled-select">
                                         <select class="required" name="type_inscription" id="type_inscription"

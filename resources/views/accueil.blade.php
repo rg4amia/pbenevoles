@@ -29,7 +29,7 @@
                 <div class="tab-pane fade show active" id="tab_1">
                     <div class="subheader" id="quote"></div>
                     <div class="row">
-                        <div><img src="{{asset('oscn_fin.jpeg')}}" alt="fin inscription" class="responsive"></div>
+                        <div><img src="{{asset('oscn_felic.jpeg')}}" alt="fin inscription" class="responsive"></div>
                         <aside class="col-xl-3 col-lg-4" style="display:none">
                             <br>
                             <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
@@ -629,7 +629,7 @@
                                                     <input type="text" name="fax"
                                                            class="form-control @error('fax') is-invalid @enderror"
                                                            placeholder="Fax" value="{{old('fax')}}">
-                                                </div>
+                                                </div>  
                                                 <div class="form-group">
                                                     <label>Nom du répondant<span style="color: red;">*</span></label>
                                                     <input type="text" name="nom_repondant"

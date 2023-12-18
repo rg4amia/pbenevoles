@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="description" content="Formulaire d'inscription au programme bénévole CAN 2023">
     <meta name="author" content="SDSI-AEJ">
-    <title>FORMULAIRE D’INSCRIPTION AU PROGRAMME BENEVOLE CAN 2023</title>
+    <title>LISTE DES BENEFICIAIRES AU PROGRAMME BENEVOLE CAN 2023</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{ asset('assets/img/logo-oscn.png') }}" type="image/x-icon">

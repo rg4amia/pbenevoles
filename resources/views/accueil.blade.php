@@ -39,6 +39,39 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                         <!-- <div><img src="{{asset('oscn_fin.jpeg')}}" alt="fin inscription" class="responsive"></div> -->
                         <aside class="col-xl-3 col-lg-4" style="display:block">
                             <br>
+                            <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 1 : Cliquer sur le bouton Réclamation
+                                    Cliquez sur le bouton de réclamation : <button class="col-sm-4 btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
+                                </li>
+                                 <li style="font-weight: 400; text-align: justify">
+                                    Étape 2 : Remplir le Formulaire
+                                    Dans le formulaire qui apparaît :
+                                    Saisissez correctement le nom de la personne.
+                                    Indiquez le numéro de téléphone.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 3 : Choisir le Type de Réclamation
+                                    Sélectionnez le type de réclamation dans les options disponibles.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 4 : Remplir le Champ Approprié
+                                    En fonction du type de réclamation choisi, un champ spécifique apparaîtra. Remplissez ce champ avec les informations nécessaires.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 5 : Envoyer la Réclamation
+                                    Cliquez sur le bouton <button type="button" class="btn btn-success btn-block">Envoyer</button> pour soumettre la réclamation.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 6 : Confirmation de la Réclamation
+                                    Une fois la réclamation soumise avec succès, une notification s'affichera, confirmant que "Votre réclamation a été enregistrée avec succès".
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    À noter : Seules les personnes retenues peuvent faire une réclamations.
+                
+                                </li>
+                            </ul>
                             <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
                             <ul class="list_ok">
                                 <li style="font-weight: 400; text-align: justify">Dans le cadre de l’organisation de la
@@ -94,40 +127,6 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                                 <li style="font-weight: 400; text-align: justify">
                                     Pour devenir bénévole c’est simple, il suffit de se rendre sur le site
                                     benevoles-can.oscn.ci et renseigner le formulaire de candidature.
-                                </li>
-                            </ul>
-
-                            <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
-                            <ul class="list_ok">
-                                <li style="font-weight: 400; text-align: justify">
-                                    Étape 1 : Cliquer sur le bouton Réclamation
-                                    Cliquez sur le bouton de réclamation : <button class="col-sm-3 btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
-                                </li>
-                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 2 : Remplir le Formulaire
-                                    Dans le formulaire qui apparaît :
-                                    Saisissez correctement le nom de la personne.
-                                    Indiquez le numéro de téléphone.
-                                </li>
-                                <li style="font-weight: 400; text-align: justify">
-                                    Étape 3 : Choisir le Type de Réclamation
-                                    Sélectionnez le type de réclamation dans les options disponibles.
-                                </li>
-                                <li style="font-weight: 400; text-align: justify">
-                                    Étape 4 : Remplir le Champ Approprié
-                                    En fonction du type de réclamation choisi, un champ spécifique apparaîtra. Remplissez ce champ avec les informations nécessaires.
-                                </li>
-                                <li style="font-weight: 400; text-align: justify">
-                                    Étape 5 : Envoyer la Réclamation
-                                    Cliquez sur le bouton <button type="button" class="btn btn-success btn-block">Envoyer</button> pour soumettre la réclamation.
-                                </li>
-                                <li style="font-weight: 400; text-align: justify">
-                                    Étape 6 : Confirmation de la Réclamation
-                                    Une fois la réclamation soumise avec succès, une notification s'affichera, confirmant que "Votre réclamation a été enregistrée avec succès".
-                                </li>
-                                <li style="font-weight: 400; text-align: justify">
-                                    À noter : Seules les personnes retenues peuvent faire une réclamations.
-                
                                 </li>
                             </ul>
 

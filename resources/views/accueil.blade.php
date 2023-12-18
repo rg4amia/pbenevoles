@@ -113,7 +113,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                         </div>
                         <div class="form-group col-sm-4" style="display:inline-block;">
                            <select class="form-control" id="lieu_residence_id" name="lieu_residence_id">
-                            <option value="">-</option>
+                            <option value="">Ville de résidence</option>
                            @foreach($communes_liste as $commune)
                            <option <?php if($lieu_residence_id==$commune->id){ echo 'selected';} ?> value="{{$commune->id}}">{{$commune->libelle}}</option>
                            @endforeach

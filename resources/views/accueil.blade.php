@@ -97,6 +97,40 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                                 </li>
                             </ul>
 
+                            <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 1 : Cliquer sur le bouton Réclamation
+                                    Cliquez sur le bouton de réclamation : <button class="col-sm-3 btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
+                                </li>
+                                 <li style="font-weight: 400; text-align: justify">
+                                    Étape 2 : Remplir le Formulaire
+                                    Dans le formulaire qui apparaît :
+                                    Saisissez correctement le nom de la personne.
+                                    Indiquez le numéro de téléphone.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 3 : Choisir le Type de Réclamation
+                                    Sélectionnez le type de réclamation dans les options disponibles.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 4 : Remplir le Champ Approprié
+                                    En fonction du type de réclamation choisi, un champ spécifique apparaîtra. Remplissez ce champ avec les informations nécessaires.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 5 : Envoyer la Réclamation
+                                    Cliquez sur le bouton <button type="button" class="btn btn-success btn-block">Envoyer</button> pour soumettre la réclamation.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    Étape 6 : Confirmation de la Réclamation
+                                    Une fois la réclamation soumise avec succès, une notification s'affichera, confirmant que "Votre réclamation a été enregistrée avec succès".
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    À noter : Seules les personnes retenues peuvent faire une réclamations.
+                
+                                </li>
+                            </ul>
+
                         </aside><!-- /aside -->
 
                         <button class="col-sm-1 btn btn-warning btn-sm btn-block rounded position-fixed" style="bottom: 310px; right: 20px;" onclick="afficherModal()">

@@ -118,7 +118,7 @@ class ParticulierController extends Controller
 
     public function reclamation(Request $request){
         $benevoles = Reclamation::with('lieuresidence')->paginate(25);
-        $totalBenevoles = Benevole::with('lieuresidence')->count();
+        $totalBenevoles = Reclamation::with('lieuresidence')->count();
         $regions = Region::pluck('libelle','id');
         $sexes = Sexe::pluck('libelle','id');
         $nationalites = Nationalite::pluck('libelle','id');

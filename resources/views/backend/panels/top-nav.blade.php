@@ -57,7 +57,7 @@
              style="overflow-x: visible;overflow-y: visible; ">
             <!-- include ../../../includes/mixins-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="nav-item @if(request()->is('/')) active @endif">
+                <li class="nav-item <?php if(request()->is('dashboard')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('dashboard.index') }}">
                         <i data-feather="home"></i>
                         <span data-i18n="Dashboards">
@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 {{--@if (auth()->user()->hasRole('Administrateur') || auth()->user()->hasRole('Admin'))--}}
-                <li class="nav-item @if(request()->is('/')) active @endif">
+                <li class="nav-item <?php if(request()->is('admin/particulier')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('particulier.index') }}">
                         <i data-feather="home"></i>
                         <span data-i18n="Dashboards">
@@ -75,11 +75,27 @@
                     </a>
                 </li>
 
-                <li class="nav-item @if(request()->is('/')) active @endif">
+                <li class="nav-item <?php if(request()->is('admin/association')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('association.index') }}">
                         <i data-feather="home"></i>
                         <span data-i18n="Dashboards">
                             Association / Structure
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item <?php if(request()->is('admin/beneficiaire')){ echo "active";} ?>">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('beneficiaire.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-i18n="Dashboards">
+                            Beneficiaires
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item <?php if(request()->is('admin/reclamation')){ echo "active";} ?>">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('reclamation.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-i18n="Dashboards">
+                            Reclamations
                         </span>
                     </a>
                 </li>

@@ -49,6 +49,14 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('benevole/export-excel/{data?}', 'benevoleExportExcel')->name('benevoleexportexcel');
         Route::get('benevole/multiSearch/', 'multiSearch')->name('multisearch');
     });
+
+     Route::prefix('beneficiaire')->name('beneficiaire.')->controller(ParticulierController::class)->group(function () {
+        Route::get('/', 'beneficiaire')->name('index');
+    });
+
+     Route::prefix('reclamation')->name('reclamation.')->controller(ParticulierController::class)->group(function () {
+        Route::get('/', 'reclamation')->name('index');
+    });
 });
 
 Route::name('authenticate.')->prefix('authenticate')->controller(AuthenticateController::class)->group(function () {

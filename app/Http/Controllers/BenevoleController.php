@@ -19,6 +19,7 @@ use App\Models\SituationMatrimoniale;
 use App\Models\SituationProfessionel;
 use App\Models\TypePiece;
 use App\Models\Reclamation;
+use App\Models\Beneficiaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -62,7 +63,7 @@ class BenevoleController extends Controller
         $diplomes = Diplome::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $typepieces = TypePiece::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $totalinscris = Benevole::count();
-        $benevoles = Benevole::when($lieu_residence_id, function ($query, $lieu_residence_id) 
+        $benevoles = Beneficiaire::when($lieu_residence_id, function ($query, $lieu_residence_id) 
                                                     {return $query->where('lieu_residence_id', $lieu_residence_id);}
                                                         )
                    ->when($nom, function ($query, $nom) 

@@ -154,24 +154,30 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                             </tr>
                           </thead>
                           <tbody>
+                            <tr>
+                              <td colspan="4" style="color:grey; text-align:center;">Aucune données retrouvée.</td>
+                            </tr>
                             @php $i = 1; @endphp
-                            @foreach($benevoles as $benevole)
+                            <!-- @foreach($benevoles as $benevole)
                             <tr>
                               <td>{{$i}}</td>
                               <td>{{$benevole->nom.' '.$benevole->prenoms}}</td>
                                <td>{{$benevole->lieu_residence_id}}</td>
                               <td>{{$benevole->region_id}}</td>
                             </tr>
-                           @php $i++; @endphp
+                           @php $i++; @endphp -->
                            @endforeach
                             <!-- Ajoutez autant de lignes que nécessaire -->
+                            <tr>
+                              <td colspan="4"></td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
                       
                       <!-- Pagination -->
                       <div>
-                        {{ $benevoles->links() }}
+                        <!-- {{ $benevoles->links() }} -->
                       </div>
                       
                      

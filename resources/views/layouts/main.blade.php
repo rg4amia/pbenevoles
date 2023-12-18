@@ -47,20 +47,93 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Terms and conditions</h5>
+                <h5 class="modal-title">Formulaire de Réclamation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in <strong>nec quod novum accumsan</strong>, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
-                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus. Lorem ipsum dolor sit amet, <strong>in porro albucius qui</strong>, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
-                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+                 <form method="POST" action="{{route('store.reclamation')}}">
+                      {{ csrf_field() }}
+                <div class="form-group">
+                  <label for="nom">Nom & prénoms <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                  <label for="nom">Téléphone <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Votre numero de Téléphone" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Motif <span style="color: red;">*</span></label>
+                  <select class="form-control" id="motif" name="motif" onchange="change_motif(this.value)" required>
+                    <option value="">-</option>
+                    <option value="1">Erreur sur le nom & prénoms</option>
+                    <option value="2">Erreur sur le lieu de résidence</option>
+                    <option value="3">Autre</option>
+                  </select>
+                </div>
+                <div class="form-group" id="nom_correct_form" style="display:none;">
+                  <label for="sujet">Nom correct <span style="color: red;">*</span></label>
+                  <input type="text" class="form-control" id="nom_correct" name="nom_correct" placeholder="Nom & prénoms correct">
+                </div>
+                <div class="form-group" id="lieu_residence_id_form" style="display:none;">
+                  <label for="email">Lieu de résidence <span style="color: red;">*</span></label>
+                  <select class="form-control" id="lieu_residence_id" name="lieu_residence_id">
+                    <option value="">-</option>
+                   @foreach($communes_liste as $commune)
+                   <option value="{{$commune->id}}">{{$commune->libelle}}</option>
+                   @endforeach
+                  </select>
+                </div>
+                <div class="form-group" id="message_form" style="display:none;">
+                  <label for="message">Message <span style="color: red;">*</span></label>
+                  <textarea class="form-control" id="message" name="message" rows="3" placeholder="Votre réclamation"></textarea>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success btn-block">Envoyer</button>
+               </div>
+               
+              </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn_1" data-bs-dismiss="modal">Close</button>
-            </div>
+            
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- Modal Réclamation -->
+  <div class="modal fade" id="reclamationModal" tabindex="-1" role="dialog" aria-labelledby="reclamationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reclamationModalLabel">Formulaire de Réclamation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de Réclamation -->
+          <form>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" class="form-control" id="nom" placeholder="Votre nom">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Votre email">
+            </div>
+            <div class="form-group">
+              <label for="sujet">Sujet</label>
+              <input type="text" class="form-control" id="sujet" placeholder="Sujet de la réclamation">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message" rows="3" placeholder="Votre réclamation"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- SCRIPTS -->
 @include('layouts.scripts')

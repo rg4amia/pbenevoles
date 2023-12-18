@@ -18,24 +18,42 @@ use App\Models\Sexe;
 use App\Models\SituationMatrimoniale;
 use App\Models\SituationProfessionel;
 use App\Models\TypePiece;
+use App\Models\Reclamation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use PDF;
+
+use Illuminate\Support\Facades\Session;
 
 class BenevoleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        $ob_param=$request->all();
+        $page=$request->get('page');
         // parametre bénévole
+        if($ob_param==[] && $page==''){ 
+              Session::forget('ob_param'); 
+            }elseif($ob_param && $page==''){
+                   Session::put('ob_param', $ob_param);
+            }else{
+                  $ob_param=Session::get('ob_param');
+            }
+
+        $nom = $request->get('nom');
+        $lieu_residence_id = $request->get('lieu_residence_id');
         $sexes = Sexe::pluck('libelle', 'id');
         $situationpros = SituationProfessionel::pluck('libelle', 'id');
         $situationmatrimonial = SituationMatrimoniale::pluck('libelle', 'id');
 
         $communes = Commune::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $communes_liste = Commune::orderBy('libelle', 'ASC')->get();
         $regions = Region::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $departements = Departement::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $districts = District::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
@@ -44,6 +62,13 @@ class BenevoleController extends Controller
         $diplomes = Diplome::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $typepieces = TypePiece::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $totalinscris = Benevole::count();
+        $benevoles = Benevole::when($lieu_residence_id, function ($query, $lieu_residence_id) 
+                                                    {return $query->where('lieu_residence_id', $lieu_residence_id);}
+                                                        )
+                   ->when($nom, function ($query, $nom) 
+                                                    {return $query->where('nom', $nom)->orwhere('prenoms', $nom)->orwhere('telephone', $nom);}
+                                                        )
+                   ->paginate(30);
 
         //paramètre association bénévole
         $domaineinterventions = DomaineIntervention::get();
@@ -63,7 +88,9 @@ class BenevoleController extends Controller
             'niveauscolaires' => $niveauscolaires,
             'diplomes' => $diplomes,
             'typepieces' => $typepieces,
-            'totalinscris' => $totalinscris
+            'totalinscris' => $totalinscris,
+            'benevoles'=> $benevoles,
+            'communes_liste'=> $communes_liste
         ]);
     }
 
@@ -365,4 +392,39 @@ class BenevoleController extends Controller
     public function badgepdf($matricule){
          return Response::download(storage_path('app/badgepdf/'.$matricule));
     }
+
+    public function store_reclamation(Request $request){
+        
+        DB::beginTransaction();
+        try
+        {
+            $reclamation = new Reclamation();
+
+            $reclamation->nom = $request->get('nom');
+            $reclamation->telephone = $request->get('telephone');
+            $reclamation->type_reclamation = $request->get('motif');
+            $reclamation->nom_correct =$request->get('nom_correct');
+            $reclamation->lieu_residence_id = $request->get('lieu_residence_id');
+            $reclamation->autre = $request->get('message');
+            $reclamation->state =  1;
+            
+            $reclamation->save();
+        }
+        catch (Exception $e)
+         {
+                  DB::rollback();
+                 //Session::flash('error',"Une erreur s'est produite ".$e->getMessage().", Réessayer svp");
+                 return Redirect::back()->with('error',"Une erreur s'est produite ".$e->getMessage().", Réessayer svp");
+         }   
+                 DB::commit();
+                 //session()->flash('success','VOTRE RECLAMATION A ETE ENREGISTREE AVEC SUCCES.');
+                return Redirect::back()->with('success',"VOTRE RECLAMATION A ETE ENREGISTREE AVEC SUCCES.");
+
+
+    }
+
+
+
+
+
 }

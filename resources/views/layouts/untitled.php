@@ -17,18 +17,11 @@
         }
 
         .responsive {
-  width: 100%;
-  height: auto;
-}
+          width: 100%;
+          height: auto;
+        }
     </style>
-@endsection
-@php 
-
-$ob_param=Session::get('ob_param');
-$nom=$ob_param['nom'] ?? '';
-$lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
-
-@endphp
+    endsection
 @section('content')
     <div class="wrapper_in">
         <div class="container-fluid">
@@ -99,83 +92,86 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
 
                         </aside><!-- /aside -->
 
-                        <button class="col-sm-1 btn btn-warning btn-sm btn-block rounded position-fixed" style="bottom: 310px; right: 20px;" onclick="afficherModal()">
-                        Réclamation
-                      </button>
+                        <div class="col-xl-9 col-lg-8" style="display:block;"> <!--listes des beneficiaire-->
 
-                      <div class="col-xl-9 col-lg-8"><!-- /content -->
-                       <h2 style="color:#ff8019;">Liste des bénéficiaires</h2>
-                      <form method="post" action="{{route('liste')}}">
-                      {{ csrf_field() }}
-
-                       <div class="form-group col-sm-4" style="display:inline-block;">
-                           <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom / Téléphone" value="{{$nom}}">
-                        </div>
-                        <div class="form-group col-sm-4" style="display:inline-block;">
-                           <select class="form-control" id="lieu_residence_id" name="lieu_residence_id">
-                            <option value="">-</option>
-                           @foreach($communes_liste as $commune)
-                           <option <?php if($lieu_residence_id==$commune->id){ echo 'selected';} ?> value="{{$commune->id}}">{{$commune->libelle}}</option>
-                           @endforeach
-                          </select>
-                        </div>
-                        <div class="form-group col-sm-3" style="display:inline-block;">
-                            <button type="submit" class="btn btn-success" >Rechercher</button>
-                        </div>        
-                      </form>  
-
-                       @if (session('success'))
-                             <div class="form-group ">
-                              <div class="col-xs-12">
-                                <div class="alert alert-success">
-                                       {{ session('success') }}
-                                </div>
+                            <div class="wizard_container">
+                             <h2 style="color:#ff8019;">Liste des bénéficiaires</h2>
+                             <br>
+                              <div class="table-responsive">
+                                <table class="table table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Nom & prénoms</th>
+                                      <th>Lieu de résidence</th>
+                                      <th>Région de résidence</th>
+                                      
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    @php $i = 1; @endphp
+                                    @foreach($benevoles as $benevole)
+                                    <tr>
+                                      <td>{{$i}}</td>
+                                      <td>{{$benevole->nom.' '.$benevole->prenoms}}</td>
+                                      <td>{{$benevole->lieu_naissance_id}}</td>
+                                      <td>{{$benevole->lieu_residence_id}}</td>
+                                    </tr>
+                                   @php $i++; @endphp
+                                   @endforeach
+                                    <!-- Ajoutez autant de lignes que nécessaire -->
+                                  </tbody>
+                                </table>
                               </div>
+
+                              <nav aria-label="Page navigation example">
+                               {{ $benevoles->links() }}
+                              </nav>
                             </div>
-                        @endif
-                         @if (session('error'))
-                             <div class="form-group ">
-                              <div class="col-xs-12">
-                                <div class="alert alert-danger">
-                                       {{ session('error') }}
+
+                        </div>
+
+                          <!-- Bouton flottant Réclamation -->
+                          <!-- <button type="button" class="btn btn-primary btn-sm btn-block rounded-circle position-fixed" style="bottom: 20px; right: 20px;" data-toggle="modal" data-target="#reclamationModal"> -->
+                         <button class="col-sm-2 btn btn-primary btn-sm btn-block rounded position-fixed" style="bottom: 350px; right: 20px;" onclick="afficherModal()">
+                            Réclamation
+                          </button>
+
+                        <div class="modal fade" id="reclamationModal" tabindex="-1" role="dialog" aria-labelledby="reclamationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="reclamationModalLabel">Formulaire de Réclamation</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <!-- Formulaire de Réclamation -->
+                              <form>
+                                <div class="form-group">
+                                  <label for="nom">Nom</label>
+                                  <input type="text" class="form-control" id="nom" placeholder="Votre nom">
                                 </div>
-                              </div>
+                                <div class="form-group">
+                                  <label for="email">Email</label>
+                                  <input type="email" class="form-control" id="email" placeholder="Votre email">
+                                </div>
+                                <div class="form-group">
+                                  <label for="sujet">Sujet</label>
+                                  <input type="text" class="form-control" id="sujet" placeholder="Sujet de la réclamation">
+                                </div>
+                                <div class="form-group">
+                                  <label for="message">Message</label>
+                                  <textarea class="form-control" id="message" rows="3" placeholder="Votre réclamation"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+                              </form>
                             </div>
-                    @endif
-              
-                      <div class="table-responsive">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Nom & prénoms</th>
-                              <th>Lieu de résidence</th>
-                              <th>Région de résidence</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @php $i = 1; @endphp
-                            @foreach($benevoles as $benevole)
-                            <tr>
-                              <td>{{$i}}</td>
-                              <td>{{$benevole->nom.' '.$benevole->prenoms}}</td>
-                               <td>{{$benevole->lieu_residence_id}}</td>
-                              <td>{{$benevole->region_id}}</td>
-                            </tr>
-                           @php $i++; @endphp
-                           @endforeach
-                            <!-- Ajoutez autant de lignes que nécessaire -->
-                          </tbody>
-                        </table>
+                          </div>
+                        </div>
                       </div>
-                      
-                      <!-- Pagination -->
-                      <div>
-                        {{ $benevoles->links() }}
-                      </div>
-                      
-                     
-                    </div>
+        
 
                         <div class="col-xl-9 col-lg-8" style="display:none;">
                             <div id="wizard_container">
@@ -213,7 +209,8 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                                                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                                                             </svg>
                                                             <span>{{ Session::get($msg) }}</span><br>
-                                                            
+                                                            <a href="{{ route('badgepdf',Session::get('matricule')) }}">Télécharger
+                                                                Fiche ici</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1165,6 +1162,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
             </div><!-- /tab content -->
         </div><!-- /container-fluid -->
     </div>
+
 @endsection
 @section('js')
     <script type="text/javascript">
@@ -1372,41 +1370,12 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
             });
 
         });
-
-          function afficherModal() {
-    $('#terms-txt').modal('show');
-  }
-
-  function change_motif(motif){
-
-     if (motif == 1) {
-            $("#nom_correct_form").css("display","block");
-            $("#lieu_residence_id_form").css("display","none");
-            $("#message_form").css("display","none");
-            $('#nom_correct').attr('required','true');
-            $('#lieu_residence_id').removeAttr('required');
-            $('#message').removeAttr('required');
-
-         } else if (motif == 2){
-            $("#nom_correct_form").css("display","none");
-            $("#lieu_residence_id_form").css("display","block");
-            $("#message_form").css("display","none");
-            $('#lieu_residence_id').attr('required','true');
-            $('#nom_correct').removeAttr('required');
-            $('#message').removeAttr('required');
-
-           }else{
-            $("#nom_correct_form").css("display","none");
-            $("#lieu_residence_id_form").css("display","none");
-            $("#message_form").css("display","block");
-            $('#message').attr('required','true');
-            $('#nom_correct').removeAttr('required');
-            $('#lieu_residence_id').removeAttr('required');
-
-           }
-
-
-  }
     </script>
+
+    <script>
+  function afficherModal() {
+    $('#reclamationModal').modal('show');
+  }
+</script>
 
 @endsection

@@ -237,5 +237,21 @@
                 ],
             });
         }
+
+        function changestate(reclamation_id,state){
+            //alert(state);
+            if(state == 2){
+                  rep = confirm('Cette reclamation a t\'elle été traité ?')
+                }else{
+                  rep = confirm('Voulez-vous annulé le traitement ?')
+                }
+
+              var url = "{{ url('admin/reclamation/traitement_reclamation') }}/"+reclamation_id+"/"+state;
+             
+              if(rep){
+                       window.location.href = url;
+                     }
+
+        }
     </script>
 @endsection

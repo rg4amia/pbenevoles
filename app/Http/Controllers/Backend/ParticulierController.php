@@ -13,6 +13,8 @@ use App\Models\Beneficiaire;
 use App\Models\Reclamation;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ParticulierController extends Controller
 {
@@ -148,6 +150,13 @@ class ParticulierController extends Controller
         }
 
         return view('backend.page.particulier.index_reclamation', compact('benevoles','regions','sexes','nationalites','communes','totalBenevoles'));
+    }
+
+    public function traitement_reclamation($reclamation_id,$state){
+
+        $affected = DB::table('reclamation')->where('id',$reclamation_id)->update(['state' =>$state]);
+
+            return Redirect::back()->with('success','Reclamation modifié avec succès !');
     }
 
     public function benevoleExportExcel($data){

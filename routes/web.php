@@ -56,6 +56,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
      Route::prefix('reclamation')->name('reclamation.')->controller(ParticulierController::class)->group(function () {
         Route::get('/', 'reclamation')->name('index');
+        Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
     });
 });
 

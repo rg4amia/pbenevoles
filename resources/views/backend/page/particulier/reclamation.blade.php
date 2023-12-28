@@ -31,7 +31,15 @@
                     <td class="large-cell">{{ @strtoupper($benevole->nom_correct) }}</td>
                     <td class="large-cell">{{ @$benevole->lieuresidence->libelle }}</td>
                     <td class="large-cell">{{ @$benevole->autre }}</td>
-                    <td class="large-cell"></td>
+                    <td class="large-cell">
+                        @if($benevole->state == 1)
+                        <button class="btn btn-warning" onclick="changestate({{$benevole->id}},2)">en attente</button>
+                        @elseif($benevole->state == 2)
+                        <button class="btn btn-success" onclick="changestate({{$benevole->id}},1)">Traité</button>
+                        @elseif($benevole->state == 3)
+                        <button class="btn btn-danger" onclick="changestate({{$benevole->id}},1)">Réjété</button>
+                        @endif
+                    </td>
                 </tr>
             @empty
             @endforelse

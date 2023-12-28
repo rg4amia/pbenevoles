@@ -91,20 +91,26 @@ class ParticulierController extends Controller
             $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
             $region = $ob_param['region'] ?? $request->get('region');
 
+
+
         if ($request->ajax()) {
 
-            //dd($request->all());
+            //dd($lieuresidence,$region);
 
-            $benevoles = Beneficiaire::when($region, function ($q) use ($request) {
+            $benevoles = Beneficiaire::when($region, function ($q) use ($region) {
                 $q->where('region',$region);
-            })->when($lieuresidence, function ($q) use ($request){
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%')->orwhere('telephone','like','%'.$nom.'%');
             })->paginate(25);
 
-            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($request) {
+            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
                 $q->where('region',$region);
-            })->when($lieuresidence, function ($q) use ($request){
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%')->orwhere('telephone','like','%'.$nom.'%');
             })->count();
 
             return view('backend.page.particulier.beneficiaire', compact('benevoles','totalBenevoles'));

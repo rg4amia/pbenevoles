@@ -20,10 +20,11 @@ use Illuminate\Support\Facades\Route;
 //prefix('inscription')->name('inscription.')->
 Route::controller(BenevoleController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::post('/', 'index')->name('liste');
+    Route::post('/liste', 'liste_beneficiaire')->name('liste');
     Route::post('/inscription', 'store')->name('store');
     Route::get('/get-badge/{matricule}', 'badgepdf')->name('badgepdf');
     Route::post('/reclamation', 'store_reclamation')->name('store.reclamation');
+    Route::get('/liste', 'liste_beneficiaire')->name('liste.benef');
 });
 
 Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {

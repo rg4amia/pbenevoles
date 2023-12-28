@@ -36,7 +36,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                 <div class="tab-pane fade show active" id="tab_1">
                     <div class="subheader" id="quote"></div>
                     <div class="row">
-                        <!-- <div><img src="{{asset('oscn_fin.jpeg')}}" alt="fin inscription" class="responsive"></div> -->
+        
                         <aside class="col-xl-3 col-lg-4" style="display:block">
                             <br>
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
@@ -148,7 +148,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                            <select class="form-control" id="lieu_residence_id" name="lieu_residence_id">
                             <option value="">Ville de résidence</option>
                            @foreach($communes_liste as $commune)
-                           <option <?php if($lieu_residence_id==$commune->id){ echo 'selected';} ?> value="{{$commune->id}}">{{$commune->libelle}}</option>
+                           <option <?php if($lieu_residence_id==$commune->libelle){ echo 'selected';} ?> value="{{$commune->libelle}}">{{$commune->libelle}}</option>
                            @endforeach
                           </select>
                         </div>
@@ -187,18 +187,15 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td colspan="4" style="color:grey; text-align:center;">Aucune données retrouvée.</td>
-                            </tr>
                             @php $i = 1; @endphp
-                            <!-- @foreach($benevoles as $benevole)
+                            @foreach($benevoles as $benevole)
                             <tr>
                               <td>{{$i}}</td>
-                              <td>{{$benevole->nom.' '.$benevole->prenoms}}</td>
-                               <td>{{$benevole->lieu_residence_id}}</td>
-                              <td>{{$benevole->region_id}}</td>
+                              <td>{{$benevole->nom}}</td>
+                               <td>{{$benevole->lieu_residence}}</td>
+                              <td>{{$benevole->region}}</td>
                             </tr>
-                           @php $i++; @endphp -->
+                           @php $i++; @endphp
                            @endforeach
                             <!-- Ajoutez autant de lignes que nécessaire -->
                             <tr>
@@ -210,7 +207,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                       
                       <!-- Pagination -->
                       <div>
-                        <!-- {{ $benevoles->links() }} -->
+                        {{ $benevoles->links() }}
                       </div>
                       
                      

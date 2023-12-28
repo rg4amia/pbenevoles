@@ -183,7 +183,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                               <th>#</th>
                               <th>Nom & prénoms</th>
                               <th>Lieu de résidence</th>
-                              <th>Région de résidence</th>
+                              <th>Région / District</th>
                             </tr>
                           </thead>
                           <tbody>

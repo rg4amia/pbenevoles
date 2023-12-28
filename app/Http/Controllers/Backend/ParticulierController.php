@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ParticulierController extends Controller
 {
@@ -69,47 +70,41 @@ class ParticulierController extends Controller
     }
 
     public function beneficiaire(Request $request){
-        $benevoles = Beneficiaire::with('sexe', 'diplome', 'niveauscolaire', 'situationprofessionnel', 'situationmatrimoniale', 'typepiece', 'nationalite', 'lieuresidence', 'lieunaissance', 'region','departement')->paginate(25);
-        $totalBenevoles = Beneficiaire::with('sexe', 'diplome', 'niveauscolaire', 'situationprofessionnel', 'situationmatrimoniale', 'typepiece', 'nationalite', 'lieuresidence', 'lieunaissance', 'region','departement')->count();
-        $regions = Region::pluck('libelle','id');
+        $benevoles = Beneficiaire::paginate(25);
+        $totalBenevoles = Beneficiaire::count();
+        $regions = Region::pluck('libelle','libelle');
         $sexes = Sexe::pluck('libelle','id');
         $nationalites = Nationalite::pluck('libelle','id');
-        $communes = Commune::pluck('libelle','id');
+        $communes = Commune::pluck('libelle','libelle');
+
+        $ob_param=$request->all();
+        $page=$request->get('page');
+        if($ob_param==[] && $page==''){ 
+              Session::forget('ob_param'); 
+            }elseif($ob_param && $page==''){
+                   Session::put('ob_param', $ob_param);
+            }else{
+                  $ob_param=Session::get('ob_param');
+            }
+
+            $nom = $ob_param['nom'] ?? $request->get('nom');
+            $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
+            $region = $ob_param['region'] ?? $request->get('region');
 
         if ($request->ajax()) {
 
             //dd($request->all());
 
-            $benevoles = Beneficiaire::when($request->region, function ($q) use ($request) {
-                $q->where('region_id',$request->region);
-            })->when($request->lieuresidence, function ($q) use ($request){
-                $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
-            })->when($request->nationalite, function ($q) use ($request){
-                $q->where('nationalite_id', $request->nationalite);
-            })->when($request->sexe, function($q) use ($request) {
-                $q->where('sexe_id', $request->sexe);
-            })->when($request->scolarise, function ($q) use ($request) {
-                $q->where('scolarise', $request->scolarise);
-            })->when($request->handicap, function ($q) use ($request) {
-                $q->where('situation_handicap', $request->handicap);
+            $benevoles = Beneficiaire::when($region, function ($q) use ($request) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($request){
+                $q->where('lieu_residence',$lieuresidence);
             })->paginate(25);
 
-            $totalBenevoles = Beneficiaire::when($request->region, function ($q) use ($request) {
-                $q->where('region_id',$request->region);
-            })->when($request->lieuresidence, function ($q) use ($request){
-                $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
-            })->when($request->nationalite, function ($q) use ($request){
-                $q->where('nationalite_id', $request->nationalite);
-            })->when($request->sexe, function($q) use ($request) {
-                $q->where('sexe_id', $request->sexe);
-            })->when($request->scolarise, function ($q) use ($request) {
-                $q->where('scolarise', $request->scolarise);
-            })->when($request->handicap, function ($q) use ($request) {
-                $q->where('situation_handicap', $request->handicap);
+            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($request) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($request){
+                $q->where('lieu_residence',$lieuresidence);
             })->count();
 
             return view('backend.page.particulier.beneficiaire', compact('benevoles','totalBenevoles'));

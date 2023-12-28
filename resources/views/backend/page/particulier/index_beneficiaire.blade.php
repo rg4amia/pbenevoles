@@ -88,12 +88,12 @@
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                   <!--  <div class="col-md-3">
                                                         {{ html()->date('date_debut')->class('form-control')->id('date_debut') }}
                                                     </div>
                                                     <div class="col-md-3">
                                                         {{ html()->date('date_fin')->class('form-control')->id('date_fin') }}
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-3">
                                                         {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu residence')->id('lieuresidence') }}
                                                     </div>
@@ -101,8 +101,11 @@
                                                     <div class="col-md-3">
                                                         {{ html()->select('region', $regions, null)->class('form-control')->placeholder('Selectionner region')->id('region') }}
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" name="nom" placeholder="Nom / Téléphone" class="form-control">
+                                                    </div>
                                                 </div>
-                                                <div class="row mt-2">
+                                                <!-- <div class="row mt-2">
                                                     <div class="col-md-3">
                                                         {{ html()->select('sexe', $sexes, null)->class('form-control')->placeholder('Selectionner sexe')->id('sexe') }}
                                                     </div>
@@ -116,7 +119,7 @@
                                                     <div class="col-md-3">
                                                         {{ html()->select('handicap', [1 => 'OUI', 2 => 'NON'], null)->class('form-control')->placeholder('Selectionner Situation handicap')->id('handicap') }}
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
                                                     data-dismiss="modal">Recherche
@@ -168,13 +171,8 @@
 
         $('#recherche_beneficiaire').on('click', function () {
             let region = $('#region').val();
-            let date_debut = $('#date_debut').val();
-            let date_fin = $('#date_fin').val();
+            let nom = $('#nom').val();
             let lieuresidence = $('#lieuresidence').val();
-            let sexe = $('#sexe').val();
-            let nationalite = $('#nationalite').val();
-            let scolarise = $('#scolarise').val();
-            let handicap = $('#handicap').val();
 
             // récupérer les autres valeurs de filtre
             $.ajax({
@@ -183,12 +181,7 @@
                 data: {
                     region: region,
                     lieuresidence: lieuresidence,
-                    date_debut: date_debut,
-                    date_fin: date_fin,
-                    sexe: sexe,
-                    nationalite: nationalite,
-                    scolarise: scolarise,
-                    handicap: handicap,
+                    nom: nom
                 },
                 success: function (response) {
                     $('#benevoles').html(response);

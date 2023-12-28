@@ -36,8 +36,8 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                 <div class="tab-pane fade show active" id="tab_1">
                     <div class="subheader" id="quote"></div>
                     <div class="row">
-                        <div><img src="{{asset('oscn_fin.jpeg')}}" alt="fin inscription" class="responsive"></div> 
-                        <aside class="col-xl-3 col-lg-4" style="display:none">
+                        <!-- <div><img src="{{asset('oscn_fin.jpeg')}}" alt="fin inscription" class="responsive"></div> -->
+                        <aside class="col-xl-3 col-lg-4" style="display:block">
                             <br>
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
                             <ul class="list_ok">
@@ -132,11 +132,11 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
 
                         </aside><!-- /aside -->
 
-                       <!--  <button class="col-sm-1 btn btn-warning btn-sm btn-block rounded position-fixed" style="bottom: 310px; right: 20px;" onclick="afficherModal()">
+                        <button class="col-sm-1 btn btn-warning btn-sm btn-block rounded position-fixed" style="bottom: 310px; right: 20px;" onclick="afficherModal()">
                         Réclamation
-                      </button> -->
+                      </button>
 
-                      <div class="col-xl-9 col-lg-8" style="display:none;">
+                      <div class="col-xl-9 col-lg-8"><!-- /content -->
                        <h2 style="color:#ff8019;">Liste des bénéficiaires</h2>
                       <form method="post" action="{{route('liste')}}">
                       {{ csrf_field() }}

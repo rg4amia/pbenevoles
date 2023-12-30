@@ -212,19 +212,20 @@ $departement=$ob_param['departement'] ?? '';
                             </tr>
                            @php $i++; @endphp
                           @empty
-                                <tr>
-                                  <td colspan="5">
-                                      
-                                  </td>
-                                </tr>
-                         @endforelse
-                            <!-- Ajoutez autant de lignes que nécessaire -->
-                            <tr>
+                           <tr>
                               <td colspan="5">
                                     @if($nom)<p style="color:#ff8019;text-align: center;">Le nom renseigné ne figure pas dans la base de données</p> @endif
                                     @if($lieu_residence_id) <p style="color:#ff8019;text-align: center;">Le lieu de résidence renseigné ne figure pas dans la base de données</p>  @endif
                                     @if($telephone_search) <p style="color:#ff8019;text-align: center;">Le numéro téléphone renseigné ne figure pas dans la base de données</p>  @endif
                                     @if($departement) <p style="color:#ff8019;text-align: center;">Le département renseigné ne figure pas dans la base de données</p>  @endif
+                              </td>
+                            </tr>
+                               
+                         @endforelse
+                            <!-- Ajoutez autant de lignes que nécessaire -->
+                            <tr>
+                              <td colspan="5">
+                                  
                               </td>
                             </tr>
                           </tbody>

@@ -52,7 +52,7 @@ $departement=$ob_param['departement'] ?? '';
                                     Dans le formulaire qui apparaît :
                                     Saisissez correctement le nom de la personne.
                                     Indiquez le numéro de téléphone.
-                                    Sélectionner la ville de résidence à l'inscription.
+                                    Sélectionnez la ville de résidence à l'inscription.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
                                     Étape 3 : Choisir le Type de Réclamation

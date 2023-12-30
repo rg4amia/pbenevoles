@@ -52,6 +52,7 @@ $departement=$ob_param['departement'] ?? '';
                                     Dans le formulaire qui apparaît :
                                     Saisissez correctement le nom de la personne.
                                     Indiquez le numéro de téléphone.
+                                    Sélectionner la ville de résidence à l'inscription.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
                                     Étape 3 : Choisir le Type de Réclamation
@@ -70,7 +71,7 @@ $departement=$ob_param['departement'] ?? '';
                                     Une fois la réclamation soumise avec succès, une notification s'affichera, confirmant que "Votre réclamation a été enregistrée avec succès".
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    À noter : Seules les personnes retenues peuvent faire une réclamations.
+                                    À noter : Seules les personnes retenues peuvent faire une réclamation.
                 
                                 </li>
                             </ul>

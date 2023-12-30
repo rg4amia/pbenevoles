@@ -111,12 +111,21 @@ class BenevoleController extends Controller
 
         $nom = $ob_param['nom'] ?? $request->get('nom');
         $lieu_residence_id = $ob_param['lieu_residence_id'] ?? $request->get('lieu_residence_id');
+        $telephone_search = $ob_param['telephone_search'] ?? $request->get('telephone_search');
+        $departement = $ob_param['departement'] ?? $request->get('departement');
         $sexes = Sexe::pluck('libelle', 'id');
         $situationpros = SituationProfessionel::pluck('libelle', 'id');
         $situationmatrimonial = SituationMatrimoniale::pluck('libelle', 'id');
 
         $communes = Commune::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
-        $communes_liste = Commune::orderBy('libelle', 'ASC')->get();
+        $communes_liste = Beneficiaire::selectRaw('lieu_residence')
+    ->groupBy('lieu_residence')
+    ->orderBy('lieu_residence', 'ASC')
+    ->get();
+        $departements_liste = Beneficiaire::selectRaw('departement')
+    ->groupBy('departement')
+    ->orderBy('departement', 'ASC')
+    ->get();
         $regions = Region::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $departements = Departement::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $districts = District::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
@@ -129,7 +138,13 @@ class BenevoleController extends Controller
                                                     {return $query->where('lieu_residence', $lieu_residence_id);}
                                                         )
                    ->when($nom, function ($query, $nom) 
-                                                    {return $query->where('nom', $nom)->orwhere('telephone', $nom);}
+                                                    {return $query->where('nom','like', '%'.$nom.'%');}
+                                                        )
+                   ->when($telephone_search, function ($query, $telephone_search) 
+                                                    {return $query->where('telephone', $telephone_search);}
+                                                        )
+                   ->when($departement, function ($query, $departement) 
+                                                    {return $query->where('departement', $departement);}
                                                         )
                    ->paginate(30);
 
@@ -153,7 +168,9 @@ class BenevoleController extends Controller
             'typepieces' => $typepieces,
             'totalinscris' => $totalinscris,
             'benevoles'=> $benevoles,
-            'communes_liste'=> $communes_liste
+            'communes_liste'=> $communes_liste,
+            'departements_liste'=> $departements_liste,
+            'departement'=> $departement
         ]);
     }
 
@@ -465,6 +482,7 @@ class BenevoleController extends Controller
 
             $reclamation->nom = $request->get('nom');
             $reclamation->telephone = $request->get('telephone');
+            $reclamation->lieu_residence_ins = $request->get('lieu_residence_ins');
             $reclamation->type_reclamation = $request->get('motif');
             $reclamation->nom_correct =$request->get('nom_correct');
             $reclamation->lieu_residence_id = $request->get('lieu_residence_id');

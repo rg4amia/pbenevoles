@@ -27,6 +27,8 @@
 $ob_param=Session::get('ob_param');
 $nom=$ob_param['nom'] ?? '';
 $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
+$telephone_search=$ob_param['telephone_search'] ?? '';
+$departement=$ob_param['departement'] ?? '';
 
 @endphp
 @section('content')
@@ -137,18 +139,29 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                       </button>
 
                       <div class="col-xl-9 col-lg-8"><!-- /content -->
-                       <h2 style="color:#ff8019;">Liste des bénéficiaires</h2>
+                       <h2 style="color:#ff8019;text-align: center;">Liste des bénéficiaires</h2>
                       <form method="post" action="{{route('liste')}}">
                       {{ csrf_field() }}
 
-                       <div class="form-group col-sm-4" style="display:inline-block;">
-                           <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom / Téléphone" value="{{$nom}}">
+                       <div class="form-group col-sm-3" style="display:inline-block;">
+                           <input type="text" class="" id="nom" name="nom" placeholder="Nom & prénom" value="{{$nom}}">
                         </div>
-                        <div class="form-group col-sm-4" style="display:inline-block;">
-                           <select class="form-control" id="lieu_residence_id" name="lieu_residence_id">
+                        <div class="form-group col-sm-3" style="display:inline-block;">
+                           <input type="text" class="" id="telephone_search" name="telephone_search" placeholder="Téléphone" value="{{$telephone_search}}">
+                        </div>
+                        <div class="form-group col-sm-3" style="display:inline-block;">
+                           <select  class=" select2" id="lieu_residence_id" name="lieu_residence_id">
                             <option value="">Ville de résidence</option>
                            @foreach($communes_liste as $commune)
-                           <option <?php if($lieu_residence_id==$commune->libelle){ echo 'selected';} ?> value="{{$commune->libelle}}">{{$commune->libelle}}</option>
+                           <option <?php if($lieu_residence_id==$commune->lieu_residence){ echo 'selected';} ?> value="{{$commune->lieu_residence}}">{{$commune->lieu_residence}}</option>
+                           @endforeach
+                          </select>
+                        </div>
+                        <div class="form-group col-sm-3" style="display:inline-block;">
+                           <select class="select2_dep" name="departement">
+                            <option value="">Département</option>
+                           @foreach($departements_liste as $departement_liste)
+                           <option <?php if($departement==$departement_liste->departement){ echo 'selected';} ?> value="{{$departement_liste->departement}}">{{$departement_liste->departement}}</option>
                            @endforeach
                           </select>
                         </div>
@@ -184,22 +197,35 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                               <th>Nom & prénoms</th>
                               <th>Lieu de résidence</th>
                               <th>Région / District</th>
+                              <th>Répartement</th>
                             </tr>
                           </thead>
                           <tbody>
                             @php $i = 1; @endphp
-                            @foreach($benevoles as $benevole)
+                            @forelse($benevoles as $benevole)
                             <tr>
                               <td>{{$i}}</td>
-                              <td>{{$benevole->nom}}</td>
-                               <td>{{$benevole->lieu_residence}}</td>
-                              <td>{{$benevole->region}}</td>
+                              <td>{{@$benevole->nom}}</td>
+                               <td>{{@$benevole->lieu_residence}}</td>
+                              <td>{{@$benevole->region}}</td>
+                              <td>{{@$benevole->departement}}</td>
                             </tr>
                            @php $i++; @endphp
-                           @endforeach
+                          @empty
+                                <tr>
+                                  <td colspan="5">
+                                      
+                                  </td>
+                                </tr>
+                         @endforelse
                             <!-- Ajoutez autant de lignes que nécessaire -->
                             <tr>
-                              <td colspan="4"></td>
+                              <td colspan="5">
+                                    @if($nom)<p style="color:#ff8019;text-align: center;">Le nom renseigné ne figure pas dans la base de données</p> @endif
+                                    @if($lieu_residence_id) <p style="color:#ff8019;text-align: center;">Le lieu de résidence renseigné ne figure pas dans la base de données</p>  @endif
+                                    @if($telephone_search) <p style="color:#ff8019;text-align: center;">Le numéro téléphone renseigné ne figure pas dans la base de données</p>  @endif
+                                    @if($departement) <p style="color:#ff8019;text-align: center;">Le département renseigné ne figure pas dans la base de données</p>  @endif
+                              </td>
                             </tr>
                           </tbody>
                         </table>
@@ -1203,6 +1229,18 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
     </div>
 @endsection
 @section('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script type="text/javascript">
+      // Initialisation de Select2
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+
+     $(document).ready(function() {
+        $('.select2_dep').select2();
+    });
+</script>
     <script type="text/javascript">
         $(function () {
             var type_in_a = '{{ old('type_in_a') }}';
@@ -1443,6 +1481,8 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
 
 
   }
+
+ 
     </script>
 
 @endsection

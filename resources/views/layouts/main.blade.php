@@ -17,6 +17,7 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
     <!-- BASE CSS -->
     @include('layouts.styles')
@@ -55,11 +56,20 @@
                       
                 <div class="form-group">
                   <label for="nom">Nom & prénoms <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom" required>
+                  <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom & prénoms" required>
                 </div>
                 <div class="form-group">
                   <label for="nom">Téléphone <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Votre numero de Téléphone" required>
+                  <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Votre numero de Téléphone" pattern="[0-9]{10}" title="Le numéro de téléphone doit contenir 10 chiffres" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Lieu de résidence à l'inscription <span style="color: red;">*</span></label>
+                  <select class="form-control" id="lieu_residence_ins" name="lieu_residence_ins">
+                    <option value="">-</option>
+                   @foreach($communes_liste as $commune)
+                   <option value="{{$commune->id}}">{{$commune->libelle}}</option>
+                   @endforeach
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="email">Motif <span style="color: red;">*</span></label>

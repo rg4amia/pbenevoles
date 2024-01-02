@@ -99,6 +99,46 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item <?php if(request()->is('admin/benevole')){ echo "active";} ?>">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('benevole.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-i18n="Liste benevoles">
+                            Bénévoles
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item <?php if(request()->is('admin/chefequipe')){ echo "active";} ?>">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('chefequipe.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-i18n="Liste chef-equipe">
+                            Chef d'équipes
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item <?php if(request()->is('admin/superviseur')){ echo "active";} ?>">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('superviseur.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-i18n="Liste superviseur">
+                            Superviseurs
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item <?php if(request()->is('admin/pointage')){ echo "active";} ?>">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('pointage.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-i18n="Liste pointage">
+                            Pointages
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item <?php if(request()->is('admin/utilisateur') || request()->is('admin/utilisateur/nouveau')){ echo "active";} ?>">
+                    <a class="nav-link d-flex align-items-center" href="{{ route('utilisateur.index') }}">
+                        <i data-feather="home"></i>
+                        <span data-i18n="Liste utilisateur">
+                            Utilisateurs
+                        </span>
+                    </a>
+                </li>
                 {{-- @endif--}}
             </ul>
         </div>

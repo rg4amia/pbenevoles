@@ -59,6 +59,31 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/', 'reclamation')->name('index');
         Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
     });
+
+    Route::prefix('utilisateur')->name('utilisateur.')->controller(AuthenticateController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/nouveau', 'nouvel_utilisateur')->name('nouveau');
+    });
+
+    Route::prefix('benevole')->name('benevole.')->controller(AuthenticateController::class)->group(function () {
+        Route::get('/', 'index_benevole')->name('index');
+        //Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
+    });
+
+    Route::prefix('chefequipe')->name('chefequipe.')->controller(AuthenticateController::class)->group(function () {
+        Route::get('/', 'index_chefequipe')->name('index');
+        //Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
+    });
+
+    Route::prefix('superviseur')->name('superviseur.')->controller(AuthenticateController::class)->group(function () {
+        Route::get('/', 'index_superviseur')->name('index');
+        //Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
+    });
+
+    Route::prefix('pointage')->name('pointage.')->controller(AuthenticateController::class)->group(function () {
+        Route::get('/', 'index_pointage')->name('index');
+        //Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
+    });
 });
 
 Route::name('authenticate.')->prefix('authenticate')->controller(AuthenticateController::class)->group(function () {

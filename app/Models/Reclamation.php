@@ -24,6 +24,9 @@ class Reclamation extends Model
     public function lieuresidence(){
         return $this->belongsTo(Commune::class,'lieu_residence_id');
     }
+    public function residenceInscrit(){
+        return $this->belongsTo(Commune::class,'lieu_residence_ins');
+    }
 
     // public function lieunaissance(){
     //     return $this->belongsTo(Commune::class,'lieu_naissance_id');

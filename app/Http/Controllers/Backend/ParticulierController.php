@@ -70,7 +70,7 @@ class ParticulierController extends Controller
     }
 
     public function beneficiaire(Request $request){
-        $benevoles = Beneficiaire::paginate(25);
+        $benevoles = Beneficiaire::paginate(30);
         $totalBenevoles = Beneficiaire::count();
         $regions = Region::pluck('libelle','libelle');
         $sexes = Sexe::pluck('libelle','id');
@@ -88,6 +88,7 @@ class ParticulierController extends Controller
             }
 
             $nom = $ob_param['nom'] ?? $request->get('nom');
+            $telephone = $ob_param['telephone'] ?? $request->get('telephone');
             $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
             $region = $ob_param['region'] ?? $request->get('region');
 
@@ -102,15 +103,19 @@ class ParticulierController extends Controller
             })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
             })->when($nom, function ($q) use ($nom){
-                $q->where('nom','like','%'.$nom.'%')->orwhere('telephone','like','%'.$nom.'%');
-            })->paginate(25);
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
+            })->paginate(30);
 
             $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
                 $q->where('region',$region);
             })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
             })->when($nom, function ($q) use ($nom){
-                $q->where('nom','like','%'.$nom.'%')->orwhere('telephone','like','%'.$nom.'%');
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
             })->count();
 
             return view('backend.page.particulier.beneficiaire', compact('benevoles','totalBenevoles'));
@@ -120,7 +125,7 @@ class ParticulierController extends Controller
     }
 
     public function reclamation(Request $request){
-        $benevoles = Reclamation::with('lieuresidence')->paginate(25);
+        $benevoles = Reclamation::with('lieuresidence')->paginate(30);
         $totalBenevoles = Reclamation::with('lieuresidence')->count();
         $regions = Region::pluck('libelle','id');
         $sexes = Sexe::pluck('libelle','id');

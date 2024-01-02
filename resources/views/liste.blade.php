@@ -141,31 +141,29 @@ $departement=$ob_param['departement'] ?? '';
 
                       <div class="col-xl-9 col-lg-8"><!-- /content -->
                        <h2 style="color:#ff8019;text-align: center;">Liste des bénéficiaires</h2>
-                      <form method="post" action="{{route('liste')}}">
-                      {{ csrf_field() }}
+                      <form method="get" action="{{route('liste')}}">
 
-                       <div class="form-group col-sm-3" style="display:inline-block;">
-                           <input type="text" class="" id="nom" name="nom" placeholder="Nom & prénom" value="{{$nom}}">
-                        </div>
-                        <div class="form-group col-sm-3" style="display:inline-block;">
-                           <input type="text" class="" id="telephone_search" name="telephone_search" placeholder="Téléphone" value="{{$telephone_search}}">
-                        </div>
-                        <div class="form-group col-sm-3" style="display:inline-block;">
-                           <select  class=" select2" id="lieu_residence_id" name="lieu_residence_id">
+                       <div class="form-group">
+                           <input type="text" class="col-sm-2" id="nom" name="nom" placeholder="Nom & prénom" value="{{$nom}}">
+                    
+                           <input type="text" class="col-sm-2" id="telephone_search" name="telephone_search" placeholder="Téléphone" value="{{$telephone_search}}">
+                        
+                           <select  class="select2 col-sm-2" id="lieu_residence_id" name="lieu_residence_id">
                             <option value="">Ville de résidence</option>
                            @foreach($communes_liste as $commune)
                            <option <?php if($lieu_residence_id==$commune->lieu_residence){ echo 'selected';} ?> value="{{$commune->lieu_residence}}">{{$commune->lieu_residence}}</option>
                            @endforeach
                           </select>
-                        </div>
-                        <div class="form-group col-sm-3" style="display:inline-block;">
-                           <select class="select2_dep" name="departement">
+                       
+                           <select class="select2_dep col-sm-2" name="departement" id="departement">
                             <option value="">Département</option>
                            @foreach($departements_liste as $departement_liste)
                            <option <?php if($departement==$departement_liste->departement){ echo 'selected';} ?> value="{{$departement_liste->departement}}">{{$departement_liste->departement}}</option>
                            @endforeach
                           </select>
-                        </div>
+                      </div>
+
+                        
                         <div class="form-group col-sm-3" style="display:inline-block;">
                             <button type="submit" class="btn btn-success" >Rechercher</button>
                         </div>        
@@ -205,7 +203,7 @@ $departement=$ob_param['departement'] ?? '';
                             @php $i = 1; @endphp
                             @forelse($benevoles as $benevole)
                             <tr>
-                              <td>{{$i}}</td>
+                              <td>{{@$benevole->code}}</td>
                               <td>{{@$benevole->nom}}</td>
                                <td>{{@$benevole->lieu_residence}}</td>
                               <td>{{@$benevole->region}}</td>
@@ -238,7 +236,6 @@ $departement=$ob_param['departement'] ?? '';
                         {{ $benevoles->links() }}
                       </div>
                       
-                     
                     </div>
 
                         <div class="col-xl-9 col-lg-8" style="display:none;">

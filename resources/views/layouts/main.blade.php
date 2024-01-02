@@ -63,13 +63,11 @@
                   <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Votre numero de Téléphone" pattern="[0-9]{10}" title="Le numéro de téléphone doit contenir 10 chiffres" required>
                 </div>
                 <div class="form-group">
-                  <label for="email">Lieu de résidence à l'inscription <span style="color: red;">*</span></label>
-                  <select class="form-control" id="lieu_residence_ins" name="lieu_residence_ins">
-                    <option value="">-</option>
-                   @foreach($communes_liste as $commune)
-                   <option value="{{$commune->id}}">{{$commune->libelle}}</option>
-                   @endforeach
-                  </select>
+                   <label>Lieu de résidence à l'inscription <span style="color: red;">*</span></label>
+                                                    <div class="styled-select">
+                                                        {{ html()->select('lieu_residence_ins',$communes, old('lieu_residence_ins'))->class('required')->placeholder('Lieu de résidence à l\'inscription')->required(true) }}
+                                                    </div>
+                 
                 </div>
                 <div class="form-group">
                   <label for="email">Motif <span style="color: red;">*</span></label>
@@ -86,12 +84,9 @@
                 </div>
                 <div class="form-group" id="lieu_residence_id_form" style="display:none;">
                   <label for="email">Lieu de résidence <span style="color: red;">*</span></label>
-                  <select class="form-control" id="lieu_residence_id" name="lieu_residence_id">
-                    <option value="">-</option>
-                   @foreach($communes_liste as $commune)
-                   <option value="{{$commune->id}}">{{$commune->libelle}}</option>
-                   @endforeach
-                  </select>
+                  <div class="styled-select">
+                                                        {{ html()->select('lieu_residence_id',$communes, old('lieu_residence_id'))->class('required')->placeholder('Lieu de résidence')->required(true) }}
+                                                    </div>
                 </div>
                 <div class="form-group" id="message_form" style="display:none;">
                   <label for="message">Message <span style="color: red;">*</span></label>

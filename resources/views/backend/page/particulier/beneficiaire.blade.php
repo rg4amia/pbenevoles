@@ -28,7 +28,7 @@
             <tbody class="table-border-bottom-0" id="tableBenevoleBody">
             @forelse($benevoles as $key => $benevole)
                 <tr>
-                    <td class="large-cell">{{ $key + 1 }}</td>
+                    <td class="large-cell">{{ $benevole->code}}</td>
                     <td class="large-cell">{{ strtoupper($benevole->nom) }}</td>
                     <td class="large-cell">{{ $benevole->telephone }}</td>
                     <td class="large-cell">{{ $benevole->lieu_residence }}</td>

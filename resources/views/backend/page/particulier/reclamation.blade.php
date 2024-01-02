@@ -7,9 +7,10 @@
                 <th>Date d'enregistrement</th>
                 <th>Nom</th>
                 <th>Tél.</th>
+                <th>Lieu de résidence a l'inscription</th>
                 <th>Type reclamation</th>
                 <th>Nom correct</th>
-                <th>Lieu de residence</th>
+                <th>Lieu de residence correct</th>
                 <th>Autre reclamation</th>
                 <th></th>
             </tr>
@@ -21,6 +22,7 @@
                     <td class="large-cell">{{ strtoupper($benevole->created_at->format('d M Y')) }}</td>
                     <td class="large-cell">{{ strtoupper($benevole->nom) }}</td>
                     <td class="large-cell">{{ $benevole->telephone }}</td>
+                    <td class="large-cell">{{ @$benevole->residenceInscrit->libelle }}</td>
                     @if($benevole->type_reclamation == 1)
                     <td class="large-cell">Erreur sur le nom</td>
                     @elseif($benevole->type_reclamation == 2)

@@ -102,7 +102,10 @@
                                                         {{ html()->select('region', $regions, null)->class('form-control')->placeholder('Selectionner region / district')->id('region') }}
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom / Téléphone" class="form-control">
+                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -157,7 +160,10 @@
         $('#recherche_beneficiaire').on('click', function () {
             let region = $('#region').val();
             let nom = $('#nom').val();
+            let telephone = $('#telephone').val();
             let lieuresidence = $('#lieuresidence').val();
+
+            //console.log(telephone);
 
             // récupérer les autres valeurs de filtre
             $.ajax({
@@ -166,7 +172,8 @@
                 data: {
                     region: region,
                     lieuresidence: lieuresidence,
-                    nom: nom
+                    nom: nom,
+                    telephone: telephone
                 },
                 success: function (response) {
                     $('#benevoles').html(response);

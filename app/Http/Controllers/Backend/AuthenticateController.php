@@ -269,48 +269,63 @@ class AuthenticateController extends Controller
 
      public function index_benevole(Request $request){
 
-        $utilisateurs = User::paginate(25);
-        $totalutilisateur = User::count();
-        
+        $benevoles = Beneficiaire::where('state',1)->paginate(50);
+        $totalBenevoles = Beneficiaire::where('state',1)->count();
+        $communes = Beneficiaire::selectRaw('lieu_residence')
+                                            ->groupBy('lieu_residence')
+                                            ->orderBy('lieu_residence', 'ASC')
+                                            ->get();
+        $regions = Beneficiaire::selectRaw('region')
+                                            ->groupBy('region')
+                                            ->orderBy('region', 'ASC')
+                                            ->get();
+        $departements = Beneficiaire::selectRaw('departement')
+                                            ->groupBy('departement')
+                                            ->orderBy('departement', 'ASC')
+                                            ->get();
+        $chefequipes = User::where('state',2)->get();
+
+        $ob_param=$request->all();
+        $page=$request->get('page');
+        if($ob_param==[] && $page==''){ 
+              Session::forget('ob_param'); 
+            }elseif($ob_param && $page==''){
+                   Session::put('ob_param', $ob_param);
+            }else{
+                  $ob_param=Session::get('ob_param');
+            }
+
+            $nom = $ob_param['nom'] ?? $request->get('nom');
+            $telephone = $ob_param['telephone'] ?? $request->get('telephone');
+            $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
+            $region = $ob_param['region'] ?? $request->get('region');
 
         if ($request->ajax()) {
 
-            $utilisateurs = User::when($request->region, function ($q) use ($request) {
-                $q->where('region_id',$request->region);
-            })->when($request->lieuresidence, function ($q) use ($request){
-                $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
-            })->when($request->nationalite, function ($q) use ($request){
-                $q->where('nationalite_id', $request->nationalite);
-            })->when($request->sexe, function($q) use ($request) {
-                $q->where('sexe_id', $request->sexe);
-            })->when($request->scolarise, function ($q) use ($request) {
-                $q->where('scolarise', $request->scolarise);
-            })->when($request->handicap, function ($q) use ($request) {
-                $q->where('situation_handicap', $request->handicap);
-            })->paginate(25);
+            $benevoles = Beneficiaire::when($region, function ($q) use ($region) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
+                $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
+            })->paginate(50);
 
-            $totalutilisateur = User::when($request->region, function ($q) use ($request) {
-                $q->where('region_id',$request->region);
-            })->when($request->lieuresidence, function ($q) use ($request){
-                $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
-            })->when($request->nationalite, function ($q) use ($request){
-                $q->where('nationalite_id', $request->nationalite);
-            })->when($request->sexe, function($q) use ($request) {
-                $q->where('sexe_id', $request->sexe);
-            })->when($request->scolarise, function ($q) use ($request) {
-                $q->where('scolarise', $request->scolarise);
-            })->when($request->handicap, function ($q) use ($request) {
-                $q->where('situation_handicap', $request->handicap);
+            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
+                $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
             })->count();
 
-            return view('backend.page.particulier.benevole', compact('utilisateurs','totalutilisateur'));
+            return view('backend.page.particulier.benevole', compact('benevoles','regions','departements','communes','chefequipes','totalBenevoles'));
         }
 
-        return view('backend.page.particulier.index_benevole', compact('utilisateurs','totalutilisateur'));
+        return view('backend.page.particulier.index_benevole', compact('benevoles','regions','departements','communes','chefequipes','totalBenevoles'));
 
      }
 

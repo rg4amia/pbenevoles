@@ -155,7 +155,7 @@
 
             // récupérer les autres valeurs de filtre
             $.ajax({
-                url: "{{ route('beneficiaire.index') }}",
+                url: "{{ route('benevole.index') }}",
                 method: "GET",
                 data: {
                     region: region,
@@ -231,5 +231,30 @@
                 ],
             });
         }
+    </script>
+    <script>
+        var checkedValues = [];
+        $('.select-row:checked').each(function () {
+            checkedValues.push($(this).val());
+        });
+
+        //console.log(checkedValues);
+
+
+        // Code jQuery pour la sélection de tous les éléments
+        $('#select-all').click(function () {
+            $('.select-row').prop('checked', this.checked);
+        });
+
+        // Code jQuery pour la sélection d'un élément à la fois avec une action multiple
+        $('.select-row').click(function () {
+            if ($('.select-row:checked').length == $('.select-row').length) {
+                $('#select-all').prop('checked', true);
+            } else {
+                $('#select-all').prop('checked', false);
+            }
+        });
+
+        
     </script>
 @endsection

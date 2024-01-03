@@ -85,15 +85,25 @@
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">
                                         <form action="#">
-                                            <input type="hidden" id="type_valider" name="type" value="valider">
+                                            <input type="hidden" id="ce_id" name="ce_id" value="{{$chefequipe->id}}">
                                             <div class="mb-2">
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu residence')->id('lieuresidence') }}
+                                                       <select class="form-control" id="lieuresidence" name="lieuresidence">
+                                                           <option>Selectionnez lieu de résidence</option>
+                                                           @foreach($communes as $commune)
+                                                           <option value="{{$commune->lieu_residence}}">{{$commune->lieu_residence}}</option>
+                                                           @endforeach
+                                                       </select>
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        {{ html()->select('region', $regions, null)->class('form-control')->placeholder('Selectionner region / district')->id('region') }}
+                                                        <select class="form-control" id="region" name="region">
+                                                           <option>Selectionnez région / district</option>
+                                                           @foreach($regions as $region)
+                                                           <option value="{{$region->region}}">{{$region->region}}</option>
+                                                           @endforeach
+                                                       </select>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
@@ -156,12 +166,13 @@
             let nom = $('#nom').val();
             let telephone = $('#telephone').val();
             let lieuresidence = $('#lieuresidence').val();
+            let ce_id = $('#ce_id').val();
 
             //console.log(telephone);
 
             // récupérer les autres valeurs de filtre
             $.ajax({
-                url: "{{ route('beneficiaire.index') }}",
+                url: "{{ route('utilisateur.affectation.benevole',"+ce_id+") }}",
                 method: "GET",
                 data: {
                     region: region,

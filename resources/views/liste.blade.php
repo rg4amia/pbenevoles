@@ -44,34 +44,34 @@ $departement=$ob_param['departement'] ?? '';
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
                             <ul class="list_ok">
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 1 : Cliquer sur le bouton Réclamation
+                                    <strong>Étape 1 : Cliquez sur le bouton Réclamation</strong><br>
                                     Cliquez sur le bouton de réclamation : <button class="col-sm-4 btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
                                 </li>
                                  <li style="font-weight: 400; text-align: justify">
-                                    Étape 2 : Remplir le Formulaire
+                                    <strong>Étape 2 : Remplir le Formulaire</strong><br>
                                     Dans le formulaire qui apparaît :
                                     Saisissez correctement le nom de la personne.
                                     Indiquez le numéro de téléphone.
-                                    Sélectionnez la ville de résidence à l'inscription.
+                                    Sélectionnez le lieu de résidence à l'inscription.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 3 : Choisir le Type de Réclamation
+                                    <strong>Étape 3 : Choisir le motif de la réclamation</strong><br>
                                     Sélectionnez le type de réclamation dans les options disponibles.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 4 : Remplir le Champ Approprié
+                                    <strong>Étape 4 : Remplir le Champ Approprié</strong><br>
                                     En fonction du type de réclamation choisi, un champ spécifique apparaîtra. Remplissez ce champ avec les informations nécessaires.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 5 : Envoyer la Réclamation
+                                    <strong>Étape 5 : Envoyer la Réclamation</strong><br>
                                     Cliquez sur le bouton <button type="button" class="btn btn-success btn-block">Envoyer</button> pour soumettre la réclamation.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 6 : Confirmation de la Réclamation
+                                    <strong>Étape 6 : Confirmation de la Réclamation</strong><br>
                                     Une fois la réclamation soumise avec succès, une notification s'affichera, confirmant que "Votre réclamation a été enregistrée avec succès".
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    À noter : Seules les personnes retenues peuvent faire une réclamation.
+                                    <strong>À noter : Seules les personnes retenues peuvent faire une réclamation.</strong>
                 
                                 </li>
                             </ul>
@@ -144,7 +144,7 @@ $departement=$ob_param['departement'] ?? '';
                       <form method="get" action="{{route('liste')}}">
 
                        <div class="form-group">
-                           <input type="text" class="col-sm-2" id="nom" name="nom" placeholder="Nom & prénom" value="{{$nom}}">
+                           <input type="text" class="col-sm-2" id="nom" name="nom" placeholder="Nom & prénoms" value="{{$nom}}">
                     
                            <input type="text" class="col-sm-2" id="telephone_search" name="telephone_search" placeholder="Téléphone" value="{{$telephone_search}}">
                         

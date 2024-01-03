@@ -53,11 +53,11 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">BÉNÉVOLES</h2>
+                            <h2 class="content-header-title float-left mb-0">AFFECTATION</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a>LISTE DES BENEFICIAIRES CAN-2023</a>
+                                        <a>LISTE DES BENEFICIAIRES</a>
                                     </li>
                                 </ol>
                             </div>
@@ -88,12 +88,6 @@
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                   <!--  <div class="col-md-3">
-                                                        {{ html()->date('date_debut')->class('form-control')->id('date_debut') }}
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        {{ html()->date('date_fin')->class('form-control')->id('date_fin') }}
-                                                    </div> -->
                                                     <div class="col-md-3">
                                                         {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu residence')->id('lieuresidence') }}
                                                     </div>
@@ -115,7 +109,7 @@
                                         </form>
 
                                         <div id="benevoles">
-                                            @include('backend.page.particulier.beneficiaire')
+                                            @include('backend.page.particulier.affectation_benevole')
                                         </div>
                                     </div>
                                 </div>
@@ -257,5 +251,30 @@
 
         }
 
+    </script>
+    <script>
+        var checkedValues = [];
+        $('.select-row:checked').each(function () {
+            checkedValues.push($(this).val());
+        });
+
+        //console.log(checkedValues);
+
+
+        // Code jQuery pour la sélection de tous les éléments
+        $('#select-all').click(function () {
+            $('.select-row').prop('checked', this.checked);
+        });
+
+        // Code jQuery pour la sélection d'un élément à la fois avec une action multiple
+        $('.select-row').click(function () {
+            if ($('.select-row:checked').length == $('.select-row').length) {
+                $('#select-all').prop('checked', true);
+            } else {
+                $('#select-all').prop('checked', false);
+            }
+        });
+
+        
     </script>
 @endsection

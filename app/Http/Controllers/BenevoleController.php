@@ -119,13 +119,13 @@ class BenevoleController extends Controller
 
         $communes = Commune::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $communes_liste = Beneficiaire::selectRaw('lieu_residence')
-    ->groupBy('lieu_residence')
-    ->orderBy('lieu_residence', 'ASC')
-    ->get();
+                                            ->groupBy('lieu_residence')
+                                            ->orderBy('lieu_residence', 'ASC')
+                                            ->get();
         $departements_liste = Beneficiaire::selectRaw('departement')
-    ->groupBy('departement')
-    ->orderBy('departement', 'ASC')
-    ->get();
+                                            ->groupBy('departement')
+                                            ->orderBy('departement', 'ASC')
+                                            ->get();
         $regions = Region::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $departements = Departement::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
         $districts = District::orderBy('libelle', 'ASC')->pluck('libelle', 'id');

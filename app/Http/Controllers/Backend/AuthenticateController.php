@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use DB;
 use App\Models\User;
+use App\Models\Beneficiaire;
 
 class AuthenticateController extends Controller
 {
@@ -94,8 +98,172 @@ class AuthenticateController extends Controller
      }
 
      public function nouvel_utilisateur(){
+        $beneficiaires = Beneficiaire::where('state',1)->get();
+        $communes = Beneficiaire::selectRaw('lieu_residence')
+                                            ->groupBy('lieu_residence')
+                                            ->orderBy('lieu_residence', 'ASC')
+                                            ->get();
+        $regions = Beneficiaire::selectRaw('region')
+                                            ->groupBy('region')
+                                            ->orderBy('region', 'ASC')
+                                            ->get();
+        $departements = Beneficiaire::selectRaw('departement')
+                                            ->groupBy('departement')
+                                            ->orderBy('departement', 'ASC')
+                                            ->get();
 
-        return view('backend.page.utilisateur.nouvel_utilisateur');
+        return view('backend.page.utilisateur.nouvel_utilisateur',compact('beneficiaires','regions','departements','communes'));
+
+     }
+
+     public function nommer_utilisateur($id,$state){
+        $beneficiaires = Beneficiaire::where('id',$id)->first();
+        if($state == 2){$type = 1;}else{$type = 2;}
+        
+        if($beneficiaires){
+            $user = new User();
+                $user->name = $beneficiaires->nom;
+                $user->password = bcrypt($beneficiaires->telephone);
+                $user->email = bcrypt($beneficiaires->telephone);
+                $user->type = $type;
+                $user->telephone = $beneficiaires->telephone;
+                $user->state = 1;
+               
+                $response = $user->save();
+
+                DB::table('beneficiaire')->where('id',$id)->update(['state' => $state]);
+
+
+            return Redirect::back()->with('success',"Direction ajoutée avec succès");
+
+        }else{
+
+            return Redirect::back()->with('error',"Une erreur s'est produite, réessayer svp");
+        }
+        
+        
+
+     }
+
+     public function affectation_benevole(Request $request,$id){
+        $benevoles = Beneficiaire::where('state',1)->paginate(50);
+        $totalBenevoles = Beneficiaire::where('state',1)->count();
+        $communes = Beneficiaire::selectRaw('lieu_residence')
+                                            ->groupBy('lieu_residence')
+                                            ->orderBy('lieu_residence', 'ASC')
+                                            ->get();
+        $regions = Beneficiaire::selectRaw('region')
+                                            ->groupBy('region')
+                                            ->orderBy('region', 'ASC')
+                                            ->get();
+        $departements = Beneficiaire::selectRaw('departement')
+                                            ->groupBy('departement')
+                                            ->orderBy('departement', 'ASC')
+                                            ->get();
+        $chefequipe = User::where('id',$id)->first();
+
+        $ob_param=$request->all();
+        $page=$request->get('page');
+        if($ob_param==[] && $page==''){ 
+              Session::forget('ob_param'); 
+            }elseif($ob_param && $page==''){
+                   Session::put('ob_param', $ob_param);
+            }else{
+                  $ob_param=Session::get('ob_param');
+            }
+
+            $nom = $ob_param['nom'] ?? $request->get('nom');
+            $telephone = $ob_param['telephone'] ?? $request->get('telephone');
+            $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
+            $region = $ob_param['region'] ?? $request->get('region');
+
+        if ($request->ajax()) {
+
+            $benevoles = Beneficiaire::when($region, function ($q) use ($region) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
+                $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
+            })->paginate(50);
+
+            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
+                $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
+            })->count();
+
+            return view('backend.page.particulier.affectation_benevole', compact('benevoles','regions','departements','communes','chefequipe','totalBenevoles'));
+        }
+
+        return view('backend.page.particulier.index_affectation_benevole',compact('benevoles','regions','departements','communes','chefequipe','totalBenevoles'));
+
+     }
+
+     public function affectation_chefequipe(Request $request,$id){
+        $benevoles = Beneficiaire::where('state',2)->paginate(50);
+        $totalBenevoles = Beneficiaire::where('state',2)->count();
+        $communes = Beneficiaire::selectRaw('lieu_residence')
+                                            ->groupBy('lieu_residence')
+                                            ->orderBy('lieu_residence', 'ASC')
+                                            ->get();
+        $regions = Beneficiaire::selectRaw('region')
+                                            ->groupBy('region')
+                                            ->orderBy('region', 'ASC')
+                                            ->get();
+        $departements = Beneficiaire::selectRaw('departement')
+                                            ->groupBy('departement')
+                                            ->orderBy('departement', 'ASC')
+                                            ->get();
+        $superviseur = User::where('id',$id)->first();
+
+        $ob_param=$request->all();
+        $page=$request->get('page');
+        if($ob_param==[] && $page==''){ 
+              Session::forget('ob_param'); 
+            }elseif($ob_param && $page==''){
+                   Session::put('ob_param', $ob_param);
+            }else{
+                  $ob_param=Session::get('ob_param');
+            }
+
+            $nom = $ob_param['nom'] ?? $request->get('nom');
+            $telephone = $ob_param['telephone'] ?? $request->get('telephone');
+            $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
+            $region = $ob_param['region'] ?? $request->get('region');
+
+        if ($request->ajax()) {
+
+            $benevoles = Beneficiaire::when($region, function ($q) use ($region) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
+                $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
+            })->paginate(50);
+
+            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
+                $q->where('region',$region);
+            })->when($lieuresidence, function ($q) use ($lieuresidence){
+                $q->where('lieu_residence',$lieuresidence);
+            })->when($nom, function ($q) use ($nom){
+                $q->where('nom','like','%'.$nom.'%');
+            })->when($telephone, function ($q) use ($telephone){
+                $q->where('telephone',$telephone);
+            })->count();
+
+            return view('backend.page.particulier.affectation_chefequipe', compact('benevoles','regions','departements','communes','superviseur','totalBenevoles'));
+        }
+
+        return view('backend.page.particulier.index_affectation_chefequipe',compact('benevoles','regions','departements','communes','superviseur','totalBenevoles'));
 
      }
 

@@ -193,6 +193,7 @@ $departement=$ob_param['departement'] ?? '';
                           <thead>
                             <tr>
                               <th>#</th>
+                              <th>Matricule</th>
                               <th>Nom & prénoms</th>
                               <th>Lieu de résidence</th>
                               <th>Région / District</th>
@@ -204,6 +205,7 @@ $departement=$ob_param['departement'] ?? '';
                             @forelse($benevoles as $benevole)
                             <tr>
                               <td>{{@$benevole->code}}</td>
+                              <td>{{@$benevole->matricule}}</td>
                               <td>{{@$benevole->nom}}</td>
                                <td>{{@$benevole->lieu_residence}}</td>
                               <td>{{@$benevole->region}}</td>

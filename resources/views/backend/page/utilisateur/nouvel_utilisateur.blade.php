@@ -65,7 +65,6 @@
                     </div>
                 </div>
             </div>
-
             @include('backend.panels.inc.flash')
             @include('backend.panels.inc.flash_admin')
             <div class="content-body">
@@ -73,6 +72,47 @@
                     <div class="col-12">
                         <div class="card user-profile-list">
                             <div class="card-body">
+
+                                <div class="form-group col-sm-3" style="margin: 20px;">
+                                    <label>Type utilisateur <span style="color: red;">*</span></label>
+                                    <div class="styled-select">
+                                        <select class="form-control" name="type_inscription" id="type_inscription"
+                                                onchange="displayform(this.value)"
+                                                required="required">
+                                            <option value="">Choisir le type d'utilisateur</option>
+                                            <option value="1" {{ old('type_in_b') == '1' ? 'selected' : '' }}>
+                                                Chef d'équipe
+                                            </option>
+                                            <option value="2" {{ old('type_in_a') == '2' ? 'selected' : '' }}>
+                                                Superviseur
+                                            </option>
+                                            <option value="3" {{ old('type_in_a') == '3' ? 'selected' : '' }}>
+                                                Coordinateur
+                                            </option>
+                                            <option value="4" {{ old('type_in_a') == '4' ? 'selected' : '' }}>
+                                                Directeur départemental
+                                            </option>
+                                            <option value="6" {{ old('type_in_a') == '5' ? 'selected' : '' }}>
+                                                Directeur régional
+                                            </option>
+                                            <option value="2" {{ old('type_in_a') == '6' ? 'selected' : '' }}>
+                                                Administrateur
+                                            </option>
+                                        </select>
+                                    </div>
+                                
+                                    <label>Bénévole <span style="color: red;">*</span></label>
+                                    <div class="styled-select">
+                                        <select class="form-control" name="type_inscription" id="type_inscription"
+                                                onchange="displayform(this.value)"
+                                                required="required">
+                                            <option value="">Choisir le bénévole</option>
+                                            @foreach($beneficiaires as $beneficiaire)
+                                            <option value="{{$beneficiaire->id}}">{{$beneficiaire->nom}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
     
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">

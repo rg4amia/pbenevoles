@@ -1,9 +1,7 @@
 @extends('layouts.main')
 @section('css')
 <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
-    <!-- END: Vendor CSS-->
+    
     <style>
         /* Style pour le pied de page */
         footer {
@@ -159,14 +157,14 @@ $departement=$ob_param['departement'] ?? '';
                                 </div>
                                 <div class="col-md-3">
                                     <label>Ville de résidence</label>
-                                   <select  class="select2 form-control" id="lieu_residence_id" name="lieu_residence_id">
+                                   <select  class="form-control select2" id="lieu_residence_id" name="lieu_residence_id">
                                     <option value=""></option>
                                    @foreach($communes_liste as $commune)
                                    <option <?php if($lieu_residence_id==$commune->lieu_residence){ echo 'selected';} ?> value="{{$commune->lieu_residence}}">{{$commune->lieu_residence}}</option>
                                    @endforeach
                                   </select>
                                </div>
-                               <div class="col-md-3">
+                               <div class="col-md-3 mb-1">
                                  <label>Département</label>
                                    <select class="select2 form-control" name="departement" id="departement">
                                     <option value=""></option>
@@ -178,18 +176,17 @@ $departement=$ob_param['departement'] ?? '';
                       </div>
                   </div>
 
-                        
                         <div class="form-group col-sm-3" style="display:inline-block;">
                             <button type="submit" class="btn btn-success" >Rechercher</button>
                         </div> 
+                      
+                    
                         <div class="form-group col-sm-3" style="display:inline-block; float: right;">
-                        <button type="button" class="btn btn-warning" onclick="afficherModal()">
+                        <button type="button" class="btn btn-warning" onclick="afficherModal()" style="float: right;">
                         Réclamation
                           </button>  
                         </div>      
                       </form> 
-
-
 
                        @if (session('success'))
                              <div class="form-group ">
@@ -1252,22 +1249,8 @@ $departement=$ob_param['departement'] ?? '';
     </div>
 @endsection
 @section('js')
-<!-- BEGIN: Vendor JS-->
-    <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
-    <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="{{asset('app-assets/js/core/app-menu.js')}}"></script>
-    <script src="{{asset('app-assets/js/core/app.js')}}"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
-    <!-- END: Page JS-->
+    
 
     <script type="text/javascript">
         $(function () {
@@ -1512,5 +1495,13 @@ $departement=$ob_param['departement'] ?? '';
 
  
     </script>
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
+    <!-- END: Page JS-->
 
 @endsection

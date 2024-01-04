@@ -134,6 +134,24 @@ class AuthenticateController extends Controller
 
      }
 
+     public function enregistrer_affectation_benevole(Request $request){
+
+        //dd($request);
+        $checkedValues = $request->get('checkedValues');
+        $nb = count($checkedValues);
+        $chefequipe = $request->get('chefequipe');
+
+        for ($i=0; $i < $nb; $i++) { 
+            
+            DB::table('beneficiaire')->where('id',$checkedValues[$i])->update(['chefequipe_id' => $chefequipe]);
+
+        }
+        
+
+        Redirect::back()->with('success',"Affectation ajoutée avec succès");
+
+     }
+
      public function nommer_utilisateur($id,$state){
         $beneficiaires = Beneficiaire::where('id',$id)->first();
         if($state == 2){$type = 1;}else{$type = 2;}

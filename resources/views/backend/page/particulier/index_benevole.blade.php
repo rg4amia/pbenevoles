@@ -248,7 +248,7 @@
                         action: function (e, dt, node, config) {
                             var checkedValues = [];
                             var chefequipe = $('#chefequipe').val();
-                            var url = {{route('utilisateur.affectation.benevole')}};
+                    
                             //alert(chefequipe);
                             $('.select-row:checked').each(function () {
                                     checkedValues.push($(this).val());
@@ -260,7 +260,20 @@
                             else{
                                 var string = checkedValues.toString();
                                 console.log(string);
-                            }
+
+                                $.ajax({
+                                            url: "{{ route('utilisateur.affecter.benevole') }}",
+                                            method: "GET",
+                                            data: {
+                                                checkedValues: checkedValues,
+                                                chefequipe: chefequipe,
+                                            },
+                                            success: function (response) {
+                                                location.reload();
+                                            }
+                                        });
+
+                               }
                             
                         }
                     },

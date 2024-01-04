@@ -42,7 +42,9 @@ $departement=$ob_param['departement'] ?? '';
                     <div class="row">
         
                         <aside class="col-xl-3 col-lg-4" style="display:block">
-                            <br>
+                            <div style="display:none">
+
+                                <br>
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
                             <ul class="list_ok">
                                 <li style="font-weight: 400; text-align: justify">
@@ -77,6 +79,10 @@ $departement=$ob_param['departement'] ?? '';
                 
                                 </li>
                             </ul>
+                                
+                            </div>
+                            <br>
+                            
                             <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
                             <ul class="list_ok">
                                 <li style="font-weight: 400; text-align: justify">Dans le cadre de l’organisation de la

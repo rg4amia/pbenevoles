@@ -3,6 +3,7 @@
     LISTE DES BENEVOLES CAN-2023
 @endsection
 @section('css')
+
     <style>
         .card-body-custom {
             -webkit-box-flex: 1;
@@ -72,65 +73,78 @@
                     <div class="col-12">
                         <div class="card user-profile-list">
                             <div class="card-body">
-
-                                <div class="form-group col-sm-3" style="margin: 20px;">
-                                    <label>Type utilisateur <span style="color: red;">*</span></label>
-                                    <div class="styled-select">
-                                        <select class="form-control" name="type_inscription" id="type_inscription"
-                                                onchange="displayform(this.value)"
-                                                required="required">
-                                            <option value="">Choisir le type d'utilisateur</option>
-                                            <option value="1" {{ old('type_in_b') == '1' ? 'selected' : '' }}>
-                                                Chef d'équipe
-                                            </option>
-                                            <option value="2" {{ old('type_in_a') == '2' ? 'selected' : '' }}>
-                                                Superviseur
-                                            </option>
-                                            <option value="3" {{ old('type_in_a') == '3' ? 'selected' : '' }}>
-                                                Coordinateur
-                                            </option>
-                                            <option value="4" {{ old('type_in_a') == '4' ? 'selected' : '' }}>
-                                                Directeur départemental
-                                            </option>
-                                            <option value="6" {{ old('type_in_a') == '5' ? 'selected' : '' }}>
-                                                Directeur régional
-                                            </option>
-                                            <option value="2" {{ old('type_in_a') == '6' ? 'selected' : '' }}>
-                                                Administrateur
-                                            </option>
-                                        </select>
-                                    </div>
-                                
-                                    <label>Bénévole <span style="color: red;">*</span></label>
-                                    <div class="styled-select">
-                                        <select class="form-control" name="type_inscription" id="type_inscription"
-                                                onchange="displayform(this.value)"
-                                                required="required">
-                                            <option value="">Choisir le bénévole</option>
-                                            @foreach($beneficiaires as $beneficiaire)
-                                            <option value="{{$beneficiaire->id}}">{{$beneficiaire->nom}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
     
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">
-                                        <form action="#">
-                                            
+                                        <form action="{{route('utilisateur.enregistrer')}}" method="POST">
+                                            @csrf()
                                             <div class="mb-2">
                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
+                                                    <div class="col-md-4">
+                                                        <label>Nom & prénoms</label>
+                                                        <input type="text" name="nom" id="nom" placeholder="Nom & prénom" required class="form-control">
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
+                                                    <div class="col-md-4">
+                                                        <label>Téléphone</label>
+                                                        <input type="text" name="telephone" id="telephone" placeholder="Téléphone" required class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Email</label>
+                                                        <input type="email" name="email" id="email" placeholder="email" required class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
-                                                    data-dismiss="modal">Recherche
-                                            </button>
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Mot de passe</label>
+                                                        <input type="password" name="password" id="password" placeholder="Mot de passe" required class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Repeter mot de passe</label>
+                                                        <input type="password" name="rep_password" id="rep_password" placeholder="Repéter mot de passe" required class="form-control">
+                                                    </div>
+                                                    <!-- type utilisateur (1=> chef equipe; 2 => superviseur; 3=> Coordinateur; 4=> DD; 5=> DR ; 6=> Admin) -->
+                                                    <div class="col-md-4">
+                                                         <label>Type d'utilisateur</label>
+                                                        <select class="form-control" name="type_utilisateur" id="type_utilisateur" required="required">
+                                                            <option value="3" {{ old('type_in_a') == '3' ? 'selected' : '' }}>
+                                                                Coordinateur
+                                                            </option>
+                                                            <option value="4" {{ old('type_in_a') == '4' ? 'selected' : '' }}>
+                                                                Directeur départemental
+                                                            </option>
+                                                            <option value="5" {{ old('type_in_a') == '5' ? 'selected' : '' }}>
+                                                                Directeur régional
+                                                            </option>
+                                                            <option value="6" {{ old('type_in_a') == '6' ? 'selected' : '' }}>
+                                                                Administrateur
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
+                                              <div class="row">
+                                               <div class="col-md-4">
+                                                    <label>Département</label>
+                                                    <select class="select2 form-control" id="departement" name="departement">
+                                                        @foreach($departements as $departement)
+                                                        <option value="{{$departement->departement}}">{{$departement->departement}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Région</label>
+                                                    <select class="select2 form-control" id="region" name="region">
+                                                         @foreach($regions as $region)
+                                                        <option value="{{$region->region}}">{{$region->region}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                             </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" id="recherche_beneficiaire">Enrégistrer</button>
                                         </form>
                                     </div>
                                 </div>
@@ -144,6 +158,23 @@
     </div>
 @endsection
 @section('js')
+<!-- BEGIN: Vendor JS-->
+    <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{{asset('app-assets/js/core/app-menu.js')}}"></script>
+    <script src="{{asset('app-assets/js/core/app.js')}}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
+    <!-- END: Page JS-->
+
     <script>
         /*initialisation des champs textarea*/
         $('textarea').each(function () {

@@ -155,7 +155,7 @@
 
             // récupérer les autres valeurs de filtre
             $.ajax({
-                url: "{{ route('beneficiaire.index') }}",
+                url: "{{ route('benevole.index') }}",
                 method: "GET",
                 data: {
                     region: region,
@@ -225,11 +225,58 @@
                     // },
                     {
                         extend: 'colvis',
+                        text: feather.icons['plus'].toSvg({class: 'font-small-4 mr-50'}) + 'Affecter',
+                        className: 'btn btn-relief-danger',
+                        action: function (e, dt, node, config) {
+                            var checkedValues = [];
+                            $('.select-row:checked').each(function () {
+                                    checkedValues.push($(this).val());
+                                });
+                            if(checkedValues.length < 1){
+                            swal('Aucun projet selectionné!!!');
+                            return false
+                            } else {
+                                var string = checkedValues.toString();
+                                //$('#projet_ids').val(string);
+
+                                console.log(string);
+                            }
+                            
+                        }
+                    },
+                    {
+                        extend: 'colvis',
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',
                         className: 'btn btn-relief-success dropdown-toggle mr-2',
                     },
                 ],
             });
         }
+    </script>
+    <script>
+        var checkedValues = [];
+        $('.select-row:checked').each(function () {
+            checkedValues.push($(this).val());
+        });
+
+        //console.log(checkedValues);
+
+
+        // Code jQuery pour la sélection de tous les éléments
+        $('#select-all').click(function () {
+            $('.select-row').prop('checked', this.checked);
+            console.log('check');
+        });
+
+        // Code jQuery pour la sélection d'un élément à la fois avec une action multiple
+        $('.select-row').click(function () {
+            if ($('.select-row:checked').length == $('.select-row').length) {
+                $('#select-all').prop('checked', true);
+            } else {
+                $('#select-all').prop('checked', false);
+            }
+        });
+
+        
     </script>
 @endsection

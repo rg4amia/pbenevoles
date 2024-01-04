@@ -63,6 +63,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::prefix('utilisateur')->name('utilisateur.')->controller(AuthenticateController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/nouveau', 'nouvel_utilisateur')->name('nouveau');
+        Route::post('/enregistrer/utilisateur', 'enregistrer_utilisateur')->name('enregistrer');
         Route::get('/nommer/{id}/{state}', 'nommer_utilisateur')->name('nommer');
         Route::get('/affectation/benevole/{id}', 'affectation_benevole')->name('affectation.benevole');
         Route::get('/affectation/chefequipe/{id}', 'affectation_chefequipe')->name('affectation.chefequipe');

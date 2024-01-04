@@ -83,14 +83,7 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item <?php if(request()->is('admin/beneficiaire')){ echo "active";} ?>">
-                    <a class="nav-link d-flex align-items-center" href="{{ route('beneficiaire.index') }}">
-                        <i data-feather="home"></i>
-                        <span data-i18n="Dashboards">
-                            Beneficiaires
-                        </span>
-                    </a>
-                </li>
+                
                 <li class="nav-item <?php if(request()->is('admin/reclamation')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('reclamation.index') }}">
                         <i data-feather="home"></i>
@@ -99,30 +92,49 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item <?php if(request()->is('admin/benevole')){ echo "active";} ?>">
-                    <a class="nav-link d-flex align-items-center" href="{{ route('benevole.index') }}">
+                <li class="dropdown nav-item <?php if(request()->is('admin/benevole')|| request()->is('admin/beneficiaire') || request()->is('admin/chefequipe') || request()->is('admin/superviseur') ){ echo "active";} ?>" data-menu="dropdown">
+                    <a class="dropdown-item d-flex align-items-center" href="#">
                         <i data-feather="home"></i>
                         <span data-i18n="Liste benevoles">
                             Bénévoles
                         </span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li data-menu="">
+                            <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('beneficiaire.index') }}">
+                                <i data-feather="home"></i>
+                                <span data-i18n="Dashboards">
+                                    Tous les bénévoles
+                                </span>
+                            </a>
+                        </li>
+                        <li data-menu="">
+                            <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('benevole.index') }}">
+                                <i data-feather="home"></i>
+                                <span data-i18n="Dashboards">
+                                    Affectation des bénévoles
+                                </span>
+                            </a>
+                        </li>
+                        <li data-menu="">
+                            <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('chefequipe.index') }}">
+                                <i data-feather="home"></i>
+                                <span data-i18n="Liste chef-equipe">
+                                    Chef d'équipes
+                                </span>
+                            </a>
+                        </li>
+                        <li data-menu="">
+                            <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('superviseur.index') }}">
+                                <i data-feather="home"></i>
+                                <span data-i18n="Liste superviseur">
+                                    Superviseurs
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item <?php if(request()->is('admin/chefequipe')){ echo "active";} ?>">
-                    <a class="nav-link d-flex align-items-center" href="{{ route('chefequipe.index') }}">
-                        <i data-feather="home"></i>
-                        <span data-i18n="Liste chef-equipe">
-                            Chef d'équipes
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item <?php if(request()->is('admin/superviseur')){ echo "active";} ?>">
-                    <a class="nav-link d-flex align-items-center" href="{{ route('superviseur.index') }}">
-                        <i data-feather="home"></i>
-                        <span data-i18n="Liste superviseur">
-                            Superviseurs
-                        </span>
-                    </a>
-                </li>
+                
                 <li class="nav-item <?php if(request()->is('admin/pointage')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('pointage.index') }}">
                         <i data-feather="home"></i>

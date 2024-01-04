@@ -16,7 +16,7 @@
                 <tr>
                     <td class="large-cell">{{ strtoupper($utilisateur->name) }}</td>
                     <td class="large-cell">{{ $utilisateur->telephone }}</td>
-                    <td class="large-cell">{{ $utilisateur->mail }}</td>
+                    <td class="large-cell">{{ $utilisateur->email }}</td>
                     <td class="large-cell">@php
                        if($utilisateur->type == 1){echo 'Chef d\'équipe';}
                        elseif($utilisateur->type == 2){echo 'Superviseur';}

@@ -1,5 +1,9 @@
 @extends('layouts.main')
 @section('css')
+<!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
+    <!-- END: Vendor CSS-->
     <style>
         /* Style pour le pied de page */
         footer {
@@ -142,26 +146,37 @@ $departement=$ob_param['departement'] ?? '';
                       <div class="col-xl-9 col-lg-8"><!-- /content -->
                        <h2 style="color:#ff8019;text-align: center;">Liste des bénéficiaires</h2>
                       <form method="get" action="{{route('liste')}}">
-
-                       <div class="form-group">
-                           <input type="text" class="col-sm-2" id="nom" name="nom" placeholder="Nom & prénoms" value="{{$nom}}">
-                    
-                           <input type="text" class="col-sm-2" id="telephone_search" name="telephone_search" placeholder="Téléphone" value="{{$telephone_search}}">
-                        
-                           <select  class="select2 col-sm-2" id="lieu_residence_id" name="lieu_residence_id">
-                            <option value="">Ville de résidence</option>
-                           @foreach($communes_liste as $commune)
-                           <option <?php if($lieu_residence_id==$commune->lieu_residence){ echo 'selected';} ?> value="{{$commune->lieu_residence}}">{{$commune->lieu_residence}}</option>
-                           @endforeach
-                          </select>
-                       
-                           <select class="select2_dep col-sm-2" name="departement" id="departement">
-                            <option value="">Département</option>
-                           @foreach($departements_liste as $departement_liste)
-                           <option <?php if($departement==$departement_liste->departement){ echo 'selected';} ?> value="{{$departement_liste->departement}}">{{$departement_liste->departement}}</option>
-                           @endforeach
-                          </select>
+                     
+                     <div class="mb-2">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Nom & prénoms</label>
+                                  <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom & prénoms" value="{{$nom}}">
+                                </div>
+                                 <div class="col-md-3">
+                                    <label>Téléphone</label>
+                                   <input type="text" class="form-control" id="telephone_search" name="telephone_search" placeholder="Téléphone" value="{{$telephone_search}}">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Ville de résidence</label>
+                                   <select  class="select2 form-control" id="lieu_residence_id" name="lieu_residence_id">
+                                    <option value=""></option>
+                                   @foreach($communes_liste as $commune)
+                                   <option <?php if($lieu_residence_id==$commune->lieu_residence){ echo 'selected';} ?> value="{{$commune->lieu_residence}}">{{$commune->lieu_residence}}</option>
+                                   @endforeach
+                                  </select>
+                               </div>
+                               <div class="col-md-3">
+                                 <label>Département</label>
+                                   <select class="select2 form-control" name="departement" id="departement">
+                                    <option value=""></option>
+                                   @foreach($departements_liste as $departement_liste)
+                                   <option <?php if($departement==$departement_liste->departement){ echo 'selected';} ?> value="{{$departement_liste->departement}}">{{$departement_liste->departement}}</option>
+                                   @endforeach
+                                  </select>
+                             </div>
                       </div>
+                  </div>
 
                         
                         <div class="form-group col-sm-3" style="display:inline-block;">
@@ -1230,18 +1245,23 @@ $departement=$ob_param['departement'] ?? '';
     </div>
 @endsection
 @section('js')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script type="text/javascript">
-      // Initialisation de Select2
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
+<!-- BEGIN: Vendor JS-->
+    <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
+    <!-- BEGIN Vendor JS-->
 
-     $(document).ready(function() {
-        $('.select2_dep').select2();
-    });
-</script>
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{{asset('app-assets/js/core/app-menu.js')}}"></script>
+    <script src="{{asset('app-assets/js/core/app.js')}}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
+    <!-- END: Page JS-->
+
     <script type="text/javascript">
         $(function () {
             var type_in_a = '{{ old('type_in_a') }}';

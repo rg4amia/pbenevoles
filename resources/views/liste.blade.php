@@ -41,7 +41,7 @@ $departement=$ob_param['departement'] ?? '';
                     <div class="subheader" id="quote"></div>
                     <div class="row">
         
-                        <aside class="col-xl-3 col-lg-4" style="display:block">
+                        <aside class="col-xl-3 col-lg-4" style="display:none;">
                             <div style="display:none">
 
                                 <br>
@@ -147,7 +147,7 @@ $departement=$ob_param['departement'] ?? '';
                         Réclamation
                       </button> -->
 
-                      <div class="col-xl-9 col-lg-8"><!-- /content -->
+                      <div class="col-xl-12 col-lg-12"><!-- /content -->
                        <h2 style="color:#ff8019;text-align: center;">Liste des bénéficiaires</h2>
                       <form method="get" action="{{route('liste')}}">
                      

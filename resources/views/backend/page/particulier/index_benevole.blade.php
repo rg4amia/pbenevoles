@@ -102,6 +102,23 @@
                                             </button>
                                         </form>
 
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-4"></div>
+                                               <div class="col-md-4">
+                                                    <label><strong>Sélectionnez Chef d'équipe</strong></label>
+                                                    <select class="select2 form-control" id="chefequipe" name="chefequipe">
+                                                        <option value="0"></option>
+                                                        @foreach($chefequipes as $chefequipe)
+                                                        <option value="{{$chefequipe->id}}">{{$chefequipe->name}} ({{$chefequipe->telephone}})</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                            
+                                        </div>
+
                                         <div id="benevoles">
                                             @include('backend.page.particulier.benevole')
                                         </div>
@@ -116,6 +133,7 @@
     </div>
 @endsection
 @section('js')
+
     <script>
         /*initialisation des champs textarea*/
         $('textarea').each(function () {
@@ -229,16 +247,18 @@
                         className: 'btn btn-relief-danger',
                         action: function (e, dt, node, config) {
                             var checkedValues = [];
+                            var chefequipe = $('#chefequipe').val();
+                            var url = {{route('utilisateur.affectation.benevole')}};
+                            //alert(chefequipe);
                             $('.select-row:checked').each(function () {
                                     checkedValues.push($(this).val());
                                 });
                             if(checkedValues.length < 1){
-                            swal('Aucun projet selectionné!!!');
+                            alert('Aucun bénévole selectionné!!!');
                             return false
-                            } else {
+                            } else if(chefequipe == 0){alert('Aucun chef d\'équipe selectionné!!!');} 
+                            else{
                                 var string = checkedValues.toString();
-                                //$('#projet_ids').val(string);
-
                                 console.log(string);
                             }
                             
@@ -261,7 +281,6 @@
 
         //console.log(checkedValues);
 
-
         // Code jQuery pour la sélection de tous les éléments
         $('#select-all').click(function () {
             $('.select-row').prop('checked', this.checked);
@@ -279,4 +298,10 @@
 
         
     </script>
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Page JS-->
+    <script src="{{asset('app-assets/js/scripts/forms/form-select2.js')}}"></script>
+    <!-- END: Page JS-->
 @endsection

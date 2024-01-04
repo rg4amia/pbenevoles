@@ -301,7 +301,7 @@ class AuthenticateController extends Controller
                                             ->groupBy('departement')
                                             ->orderBy('departement', 'ASC')
                                             ->get();
-        $chefequipes = User::where('state',2)->get();
+        $chefequipes = User::where('type',1)->get();
 
         $ob_param=$request->all();
         $page=$request->get('page');

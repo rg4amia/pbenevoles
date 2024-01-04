@@ -49,7 +49,7 @@ $departement=$ob_param['departement'] ?? '';
                             <ul class="list_ok">
                                 <li style="font-weight: 400; text-align: justify">
                                     <strong>Étape 1 : Cliquez sur le bouton Réclamation</strong><br>
-                                    Cliquez sur le bouton de réclamation : <button class="col-sm-4 btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
+                                    Cliquez sur le bouton de réclamation : <button class="btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
                                 </li>
                                  <li style="font-weight: 400; text-align: justify">
                                     <strong>Étape 2 : Remplir le Formulaire</strong><br>
@@ -139,9 +139,9 @@ $departement=$ob_param['departement'] ?? '';
 
                         </aside><!-- /aside -->
 
-                        <button class="col-sm-1 btn btn-warning btn-sm btn-block rounded position-fixed" style="bottom: 310px; right: 20px;" onclick="afficherModal()">
+                        <!-- <button class="col-sm-1 btn btn-warning btn-sm btn-block rounded position-fixed" style="bottom: 310px; right: 20px;" onclick="afficherModal()">
                         Réclamation
-                      </button>
+                      </button> -->
 
                       <div class="col-xl-9 col-lg-8"><!-- /content -->
                        <h2 style="color:#ff8019;text-align: center;">Liste des bénéficiaires</h2>
@@ -181,8 +181,15 @@ $departement=$ob_param['departement'] ?? '';
                         
                         <div class="form-group col-sm-3" style="display:inline-block;">
                             <button type="submit" class="btn btn-success" >Rechercher</button>
-                        </div>        
-                      </form>  
+                        </div> 
+                        <div class="form-group col-sm-3" style="display:inline-block; float: right;">
+                        <button class="btn btn-warning" onclick="afficherModal()">
+                        Réclamation
+                          </button>  
+                        </div>      
+                      </form> 
+
+
 
                        @if (session('success'))
                              <div class="form-group ">

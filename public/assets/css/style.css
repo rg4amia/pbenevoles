@@ -620,6 +620,7 @@ footer ul li:first-child {
 
 .subheader#quote {
     background: #ffff url(../img/banatext.jpeg) no-repeat center bottom;
+    background-size: cover;
 }
 
 .subheader#services {

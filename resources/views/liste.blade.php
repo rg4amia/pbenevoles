@@ -34,7 +34,7 @@ $departement=$ob_param['departement'] ?? '';
 
 @endphp
 @section('content')
-    <div class="wrapper_in">
+    <div class="wrapper_in" style="display:none;">
         <div class="container-fluid">
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab_1">

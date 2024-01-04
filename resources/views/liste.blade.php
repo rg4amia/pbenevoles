@@ -183,7 +183,7 @@ $departement=$ob_param['departement'] ?? '';
                             <button type="submit" class="btn btn-success" >Rechercher</button>
                         </div> 
                         <div class="form-group col-sm-3" style="display:inline-block; float: right;">
-                        <button class="btn btn-warning" onclick="afficherModal()">
+                        <button type="button" class="btn btn-warning" onclick="afficherModal()">
                         Réclamation
                           </button>  
                         </div>      

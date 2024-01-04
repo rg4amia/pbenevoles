@@ -42,8 +42,6 @@ $departement=$ob_param['departement'] ?? '';
                     <div class="row">
         
                         <aside class="col-xl-3 col-lg-4" style="display:none;">
-                            <div style="display:none">
-
                                 <br>
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
                             <ul class="list_ok">
@@ -79,8 +77,7 @@ $departement=$ob_param['departement'] ?? '';
                 
                                 </li>
                             </ul>
-                                
-                            </div>
+                   
                             <br>
                             
                             <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
@@ -214,49 +211,51 @@ $departement=$ob_param['departement'] ?? '';
                     @endif
               
                       <div class="table-responsive">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>Matricule</th>
-                              <th>Nom & prénoms</th>
-                              <th>Lieu de résidence</th>
-                              <th>Région / District</th>
-                              <th>Répartement</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @php $i = 1; @endphp
-                            @forelse($benevoles as $benevole)
-                            <tr>
-                              <td>{{@$benevole->code}}</td>
-                              <td>{{@$benevole->matricule}}</td>
-                              <td>{{@$benevole->nom}}</td>
-                               <td>{{@$benevole->lieu_residence}}</td>
-                              <td>{{@$benevole->region}}</td>
-                              <td>{{@$benevole->departement}}</td>
-                            </tr>
-                           @php $i++; @endphp
-                          @empty
-                           <tr>
-                              <td colspan="5">
-                                    @if($nom)<p style="color:#ff8019;text-align: center;">Le nom renseigné ne figure pas dans la base de données</p> @endif
-                                    @if($lieu_residence_id) <p style="color:#ff8019;text-align: center;">Le lieu de résidence renseigné ne figure pas dans la base de données</p>  @endif
-                                    @if($telephone_search) <p style="color:#ff8019;text-align: center;">Le numéro téléphone renseigné ne figure pas dans la base de données</p>  @endif
-                                    @if($departement) <p style="color:#ff8019;text-align: center;">Le département renseigné ne figure pas dans la base de données</p>  @endif
-                              </td>
-                            </tr>
-                               
-                         @endforelse
-                            <!-- Ajoutez autant de lignes que nécessaire -->
-                            <tr>
-                              <td colspan="5">
-                                  
-                              </td>
-                            </tr>
-                          </tbody>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Matricule</th>
+                                  <th>Nom & prénoms</th>
+                                  <th>Lieu de résidence</th>
+                                  <th>Région / District</th>
+                                  <th>Répartement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                @php $i = 1; @endphp
+                                    @forelse($benevoles as $benevole)
+                                    <tr>
+                                      <td>{{@$benevole->code}}</td>
+                                      <td>{{@$benevole->matricule}}</td>
+                                      <td>{{@$benevole->nom}}</td>
+                                       <td>{{@$benevole->lieu_residence}}</td>
+                                      <td>{{@$benevole->region}}</td>
+                                      <td>{{@$benevole->departement}}</td>
+                                    </tr>
+                                   @php $i++; @endphp
+                                  @empty
+                                   <tr>
+                                      <td colspan="5">
+                                            @if($nom)<p style="color:#ff8019;text-align: center;">Le nom renseigné ne figure pas dans la base de données</p> @endif
+                                            @if($lieu_residence_id) <p style="color:#ff8019;text-align: center;">Le lieu de résidence renseigné ne figure pas dans la base de données</p>  @endif
+                                            @if($telephone_search) <p style="color:#ff8019;text-align: center;">Le numéro téléphone renseigné ne figure pas dans la base de données</p>  @endif
+                                            @if($departement) <p style="color:#ff8019;text-align: center;">Le département renseigné ne figure pas dans la base de données</p>  @endif
+                                      </td>
+                                    </tr>
+                                       
+                                 @endforelse
+                                    <!-- Ajoutez autant de lignes que nécessaire -->
+                                    <tr>
+                                      <td colspan="5">
+                                          
+                                      </td>
+                                    </tr>
+                                
+                            </tbody>
                         </table>
-                      </div>
+                    </div>
                       
                       <!-- Pagination -->
                       <div>

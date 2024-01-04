@@ -36,42 +36,49 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                 <div class="tab-pane fade show active" id="tab_1">
                     <div class="subheader" id="quote"></div>
                     <div class="row">
-                        <div><img src="{{asset('oscn_fin.jpeg')}}" alt="fin inscription" class="responsive"></div> 
-                        <aside class="col-xl-3 col-lg-4" style="display:none">
-                            <br>
+                        <div><a href="{{route('liste')}}"><img src="{{asset('oscn_felic4.jpeg')}}" alt="fin inscription" class="responsive"></a></div> 
+                        
+                        <div style="text-align:center;padding: 20px;"><a class="btn btn-success rounded" href="{{route('liste')}}">Cliquez pour accéder à la liste des bénéficiaires.</a></div>
+                        
+                        <aside class="col-xl-6 col-lg-6" style="display:block;">
+                             <!--    <br>
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
                             <ul class="list_ok">
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 1 : Cliquer sur le bouton Réclamation
-                                    Cliquez sur le bouton de réclamation : <button class="col-sm-4 btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
+                                    <strong>Étape 1 : Cliquez sur le bouton Réclamation</strong><br>
+                                    Cliquez sur le bouton de réclamation : <button class="btn btn-warning rounded" onclick="afficherModal()">Réclamation</button>
                                 </li>
                                  <li style="font-weight: 400; text-align: justify">
-                                    Étape 2 : Remplir le Formulaire
+                                    <strong>Étape 2 : Remplir le Formulaire</strong><br>
                                     Dans le formulaire qui apparaît :
                                     Saisissez correctement le nom de la personne.
                                     Indiquez le numéro de téléphone.
+                                    Sélectionnez le lieu de résidence à l'inscription.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 3 : Choisir le Type de Réclamation
+                                    <strong>Étape 3 : Choisir le motif de la réclamation</strong><br>
                                     Sélectionnez le type de réclamation dans les options disponibles.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 4 : Remplir le Champ Approprié
+                                    <strong>Étape 4 : Remplir le Champ Approprié</strong><br>
                                     En fonction du type de réclamation choisi, un champ spécifique apparaîtra. Remplissez ce champ avec les informations nécessaires.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 5 : Envoyer la Réclamation
+                                    <strong>Étape 5 : Envoyer la Réclamation</strong><br>
                                     Cliquez sur le bouton <button type="button" class="btn btn-success btn-block">Envoyer</button> pour soumettre la réclamation.
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    Étape 6 : Confirmation de la Réclamation
+                                    <strong>Étape 6 : Confirmation de la Réclamation</strong><br>
                                     Une fois la réclamation soumise avec succès, une notification s'affichera, confirmant que "Votre réclamation a été enregistrée avec succès".
                                 </li>
                                 <li style="font-weight: 400; text-align: justify">
-                                    À noter : Seules les personnes retenues peuvent faire une réclamations.
+                                    <strong>À noter : Seules les personnes retenues peuvent faire une réclamation.</strong>
                 
                                 </li>
-                            </ul>
+                            </ul> -->
+                   
+                            <br>
+                            
                             <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
                             <ul class="list_ok">
                                 <li style="font-weight: 400; text-align: justify">Dans le cadre de l’organisation de la
@@ -129,6 +136,104 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                                     benevoles-can.oscn.ci et renseigner le formulaire de candidature.
                                 </li>
                             </ul>
+
+                        </aside><!-- /aside -->
+                        <aside class="col-xl-6 col-lg-6" style="display:block;">
+                                <br>
+                            <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">
+                                    <strong>Étape 1 : Cliquez sur le bouton Réclamation</strong><br>
+                                    Cliquez sur le bouton de réclamation : <button class="btn btn-warning rounded">Réclamation</button> au-dessus de la liste des bénévoles retenues
+                                </li>
+                                 <li style="font-weight: 400; text-align: justify">
+                                    <strong>Étape 2 : Remplir le Formulaire</strong><br>
+                                    Dans le formulaire qui apparaît :
+                                    Saisissez correctement le nom de la personne.
+                                    Indiquez le numéro de téléphone.
+                                    Sélectionnez le lieu de résidence à l'inscription.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    <strong>Étape 3 : Choisir le motif de la réclamation</strong><br>
+                                    Sélectionnez le type de réclamation dans les options disponibles.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    <strong>Étape 4 : Remplir le Champ Approprié</strong><br>
+                                    En fonction du type de réclamation choisi, un champ spécifique apparaîtra. Remplissez ce champ avec les informations nécessaires.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    <strong>Étape 5 : Envoyer la Réclamation</strong><br>
+                                    Cliquez sur le bouton <button type="button" class="btn btn-success btn-block">Envoyer</button> pour soumettre la réclamation.
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    <strong>Étape 6 : Confirmation de la Réclamation</strong><br>
+                                    Une fois la réclamation soumise avec succès, une notification s'affichera, confirmant que "Votre réclamation a été enregistrée avec succès".
+                                </li>
+                                <li style="font-weight: 400; text-align: justify">
+                                    <strong>À noter : Seules les personnes retenues peuvent faire une réclamation.</strong>
+                
+                                </li>
+                            </ul>
+                   
+                            <!-- <br>
+                            
+                            <h5 style="color:#ff8019;">QU’EST CE QUE LE PROGRAMME BÉNÉVOLES ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">Dans le cadre de l’organisation de la
+                                    CAN 2023, et conformément à l’axe 2 du Programme Jeunesse du Gouvernement (PJ-GOUV
+                                    2023-2025) qui vise le renforcement de l’engagement citoyen et l’éthique sociale de
+                                    la jeunesse, l’Etat a décidé de la mobilisation de 30 000 jeunes dont 10 000
+                                    volontaires par le COCAN et 20 000 bénévoles confiée au Ministère de la Promotion de
+                                    la Jeunesse, de l’Insertion Professionnelle et du Service Civique.
+                                </li>
+                            </ul>
+
+                            <h5 style="color:#ff8019;">QUI PEUT DEVENIR BÉNÉVOLE ? </h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400">
+                                    Peut devenir bénévole toute personne âgée d’au moins 16 ans, libre pendant les
+                                    journées de la CAN.
+                                </li>
+                            </ul>
+
+                            <h5 style="color:#ff8019;">QUELLES SONT LES MISSIONS DES BÉNÉVOLES ?</h5>
+                            <p> Les 20 000 bénévoles recrutés auront pour missions :</p>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400">
+                                    D’animer les stades et les villages CAN ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    De soutenir les équipes non ivoiriennes en compétition ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    D’animer les espaces de regroupements de supporters ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    D’être des guides touristiques, animateurs culturels ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    De conduire des missions d’assainissement et de salubrité des villes ;
+                                </li>
+                                <li style="font-weight: 400">
+                                    Sensibiliser sur les sujets d’intérêt.
+                                </li>
+                            </ul>
+
+                            <h5 style="color:#ff8019;">QUELS SONT LES SITES OÙ INTERVIENNENT LES BÉNÉVOLES ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">
+                                    Les bénévoles interviendront dans les stades, les villages CAN et divers lieux de
+                                    regroupement des supporters.
+                                </li>
+                            </ul>
+
+                            <h5 style="color:#ff8019;">COMMENT S’INSCRIRE AU PROGRAMME BÉNÉVOLES ?</h5>
+                            <ul class="list_ok">
+                                <li style="font-weight: 400; text-align: justify">
+                                    Pour devenir bénévole c’est simple, il suffit de se rendre sur le site
+                                    benevoles-can.oscn.ci et renseigner le formulaire de candidature.
+                                </li>
+                            </ul> -->
 
                         </aside><!-- /aside -->
 
@@ -1190,8 +1295,8 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                         </div>
                         <div class="col-sm-7">Téléphone <br><span style="color:green; font-size: small">+225-27-22-49-93-04</span>
                         </div>
-                        <div class="col-sm-7">Bénévoles inscris <br><span style="color:green; font-size: medium">{{$totalinscris}}</span>
-                        </div>
+                        <!-- <div class="col-sm-7">Bénévoles inscris <br><span style="color:green; font-size: medium">{{$totalinscris}}</span>
+                        </div> -->
                     </div>
                     <div class="footer-column"
                          style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">

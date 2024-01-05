@@ -217,9 +217,9 @@ $departement=$ob_param['departement'] ?? '';
                                   <th>#</th>
                                   <th>Matricule</th>
                                   <th>Nom & prénoms</th>
-                                  <th>Lieu de résidence</th>
+                                  <th>Ville de résidence</th>
+                                  <th>Département</th>
                                   <th>Région / District</th>
-                                  <th>Répartement</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -231,8 +231,8 @@ $departement=$ob_param['departement'] ?? '';
                                       <td>{{@$benevole->matricule}}</td>
                                       <td>{{@$benevole->nom}}</td>
                                        <td>{{@$benevole->lieu_residence}}</td>
+                                       <td>{{@$benevole->departement}}</td>
                                       <td>{{@$benevole->region}}</td>
-                                      <td>{{@$benevole->departement}}</td>
                                     </tr>
                                    @php $i++; @endphp
                                   @empty

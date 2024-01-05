@@ -34,7 +34,7 @@ $departement=$ob_param['departement'] ?? '';
 
 @endphp
 @section('content')
-    <div class="wrapper_in" style="display:none;">
+    <div class="wrapper_in" style="display:block;">
         <div class="container-fluid">
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab_1">
@@ -180,7 +180,7 @@ $departement=$ob_param['departement'] ?? '';
                   </div>
 
                         <div class="form-group col-sm-3" style="display:inline-block;">
-                            <button type="button" class="btn btn-warning" onclick="afficherModal()">Réclammation</button>
+                            <button type="button" class="btn btn-warning" onclick="afficherModal()">Réclamation</button>
                         </div> 
                       
                     
@@ -248,7 +248,7 @@ $departement=$ob_param['departement'] ?? '';
                                  @endforelse
                                     <!-- Ajoutez autant de lignes que nécessaire -->
                                     <tr>
-                                      <td colspan="5">
+                                      <td colspan="6">
                                           
                                       </td>
                                     </tr>
@@ -1223,8 +1223,8 @@ $departement=$ob_param['departement'] ?? '';
                 <footer style="background-color: #EAEAEA; padding: 10px; color: orange;">
                     <div class="footer-column"
                          style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
-                        <img src="{{asset('assets/img/logo-benevole.png')}}" alt="Image" class="responsive-image"
-                             style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                        <img src="{{asset('assets/img/LOGOS-BENEVOLES.png')}}" alt="Image" class="responsive-image"
+                             style="max-width: 55%; height: auto; display: block; margin: 0 auto;">
 
                     </div>
                     <div class="footer-column"
@@ -1244,7 +1244,7 @@ $departement=$ob_param['departement'] ?? '';
                     <div class="footer-column"
                          style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
                         <img src="{{asset('assets/img/logo_ministere.jpeg')}}" alt="Image" class="responsive-image"
-                             style="max-width: 40%; height: auto; display: block;">
+                             style="max-width: 35%; height: auto; display: block;">
                     </div>
                 </footer>
 

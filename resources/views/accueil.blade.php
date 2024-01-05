@@ -36,12 +36,12 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                 <div class="tab-pane fade show active" id="tab_1">
                     <div class="subheader" id="quote"></div>
                     <div class="row">
-                        <!-- <div><a href="{{route('liste')}}"><img src="{{asset('oscn_felic4.jpeg')}}" alt="fin inscription" class="responsive"></a></div>  -->
-                        <div><a href="#"><img src="{{asset('oscn_felic4.jpeg')}}" alt="fin inscription" class="responsive"></a></div> 
+                        <div><a href="{{route('liste')}}"><img src="{{asset('oscn_felic7.jpeg')}}" alt="fin inscription" class="responsive"></a></div> 
+                        <!-- <div><a href="#"><img src="{{asset('oscn_felic4.jpeg')}}" alt="fin inscription" class="responsive"></a></div>  -->
 
-                        <div style="text-align:center;padding: 20px;"><a class="btn btn-success rounded" href="#">Cliquez pour accéder à la liste des bénéficiaires.</a></div>
+                        <!-- <div style="text-align:center;padding: 20px;"><a class="btn btn-success rounded" href="#">Cliquez pour accéder à la liste des bénéficiaires.</a></div> -->
                         
-                        <!-- <div style="text-align:center;padding: 20px;"><a class="btn btn-success rounded" href="{{route('liste')}}">Cliquez pour accéder à la liste des bénéficiaires.</a></div> -->
+                        <div style="text-align:center;padding: 20px;"><a class="btn btn-success rounded" href="{{route('liste')}}">Cliquez pour accéder à la liste des bénéficiaires.</a></div>
                         
                         <aside class="col-xl-6 col-lg-6" style="display:block;">
                              <!--    <br>
@@ -1283,8 +1283,8 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                 <footer style="background-color: #EAEAEA; padding: 10px; color: orange;">
                     <div class="footer-column"
                          style="width: 33%; display: inline-block; vertical-align: top; padding: 5px; box-sizing: border-box;">
-                        <img src="{{asset('assets/img/logo-benevole.png')}}" alt="Image" class="responsive-image"
-                             style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                        <img src="{{asset('assets/img/LOGOS-BENEVOLES.png')}}" alt="Image" class="responsive-image"
+                             style="max-width: 55%; height: auto; display: block; margin: 0 auto;">
 
                     </div>
                     <div class="footer-column"

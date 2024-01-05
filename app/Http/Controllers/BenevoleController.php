@@ -174,6 +174,85 @@ class BenevoleController extends Controller
         ]);
     }
 
+    public function liste_beneficiaire2(Request $request)
+    {
+
+        $ob_param=$request->all();
+        $page=$request->get('page');
+        // parametre bénévole
+        if($ob_param==[] && $page==''){ 
+              Session::forget('ob_param'); 
+            }elseif($ob_param && $page==''){
+                   Session::put('ob_param', $ob_param);
+            }else{
+                  $ob_param=Session::get('ob_param');
+            }
+
+        $nom = $ob_param['nom'] ?? $request->get('nom');
+        $lieu_residence_id = $ob_param['lieu_residence_id'] ?? $request->get('lieu_residence_id');
+        $telephone_search = $ob_param['telephone_search'] ?? $request->get('telephone_search');
+        $departement = $ob_param['departement'] ?? $request->get('departement');
+        $sexes = Sexe::pluck('libelle', 'id');
+        $situationpros = SituationProfessionel::pluck('libelle', 'id');
+        $situationmatrimonial = SituationMatrimoniale::pluck('libelle', 'id');
+
+        $communes = Commune::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $communes_liste = Beneficiaire::selectRaw('lieu_residence')
+                                            ->groupBy('lieu_residence')
+                                            ->orderBy('lieu_residence', 'ASC')
+                                            ->get();
+        $departements_liste = Beneficiaire::selectRaw('departement')
+                                            ->groupBy('departement')
+                                            ->orderBy('departement', 'ASC')
+                                            ->get();
+        $regions = Region::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $departements = Departement::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $districts = District::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $nationnalites = Nationalite::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $niveauscolaires = NiveauScolaire::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $diplomes = Diplome::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $typepieces = TypePiece::orderBy('libelle', 'ASC')->pluck('libelle', 'id');
+        $totalinscris = Benevole::count();
+        $benevoles = Beneficiaire::when($lieu_residence_id, function ($query, $lieu_residence_id) 
+                                                    {return $query->where('lieu_residence', $lieu_residence_id);}
+                                                        )
+                   ->when($nom, function ($query, $nom) 
+                                                    {return $query->where('nom','like', '%'.$nom.'%');}
+                                                        )
+                   ->when($telephone_search, function ($query, $telephone_search) 
+                                                    {return $query->where('telephone', $telephone_search);}
+                                                        )
+                   ->when($departement, function ($query, $departement) 
+                                                    {return $query->where('departement', $departement);}
+                                                        )
+                   ->paginate(30);
+
+        //paramètre association bénévole
+        $domaineinterventions = DomaineIntervention::get();
+        $populationcibles = PopulationCible::get();
+
+        return view('liste2', [
+            'sexes' => $sexes,
+            'situationpros' => $situationpros,
+            'situationmatrimonial' => $situationmatrimonial,
+            'communes' => $communes,
+            'regions' => $regions,
+            'departements' => $departements,
+            'districts' => $districts,
+            'populationcible' => $populationcibles,
+            'domaineinterventions' => $domaineinterventions,
+            'nationnalites' => $nationnalites,
+            'niveauscolaires' => $niveauscolaires,
+            'diplomes' => $diplomes,
+            'typepieces' => $typepieces,
+            'totalinscris' => $totalinscris,
+            'benevoles'=> $benevoles,
+            'communes_liste'=> $communes_liste,
+            'departements_liste'=> $departements_liste,
+            'departement'=> $departement
+        ]);
+    }
+
     public function store(Request $request)
     {
         if ($request->type_in_b == 1) {

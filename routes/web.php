@@ -25,6 +25,7 @@ Route::controller(BenevoleController::class)->group(function () {
     Route::get('/get-badge/{matricule}', 'badgepdf')->name('badgepdf');
     Route::get('/reclamation', 'store_reclamation')->name('store.reclamation');
     Route::get('/liste', 'liste_beneficiaire')->name('liste.benef');
+    Route::get('/test/liste', 'liste_beneficiaire2')->name('liste.test');
 });
 
 Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {

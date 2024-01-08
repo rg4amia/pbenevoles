@@ -88,7 +88,7 @@
                 <div class="form-group" id="lieu_residence_id_form" style="display:none;">
                   <label for="email">Lieu de résidence <span style="color: red;">*</span></label>
                   <div class="styled-select">
-                                                        {{ html()->select('lieu_residence_id',$communes, old('lieu_residence_id'))->class('required')->placeholder('Lieu de résidence')->required(true) }}
+                                                        {{ html()->select('lieu_residence_id',$communes, old('lieu_residence_id'))->class('required')->placeholder('Lieu de résidence') }}
                                                     </div>
                 </div>
                 <div class="form-group" id="message_form" style="display:none;">

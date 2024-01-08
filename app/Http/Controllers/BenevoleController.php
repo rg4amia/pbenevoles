@@ -553,8 +553,13 @@ class BenevoleController extends Controller
     }
 
     public function store_reclamation(Request $request){
+
+        $telephone = $request->get('telephone');
+        $checkphone = Beneficiaire::where('telephone',$telephone)->first();
         
-        DB::beginTransaction();
+        if($checkphone){
+
+            DB::beginTransaction();
         try
         {
             $reclamation = new Reclamation();
@@ -575,10 +580,17 @@ class BenevoleController extends Controller
                   DB::rollback();
                  //Session::flash('error',"Une erreur s'est produite ".$e->getMessage().", Réessayer svp");
                  return Redirect::back()->with('error',"Une erreur s'est produite ".$e->getMessage().", Réessayer svp");
-         }   
-                 DB::commit();
+         } 
+
+         DB::commit();
                  //session()->flash('success','VOTRE RECLAMATION A ETE ENREGISTREE AVEC SUCCES.');
                 return Redirect::back()->with('success',"VOTRE RECLAMATION A ETE ENREGISTREE AVEC SUCCES.");
+
+        }else{
+          
+                return Redirect::back()->with('error',"DESOLE ! VOTRE RECLAMATION NE PEUT ETRE PRIX EN COMPTE.");
+        }
+                
 
 
     }

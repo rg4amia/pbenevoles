@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use DB;
 use App\Models\User;
 use App\Models\Beneficiaire;
+use App\Models\Pointage;
 
 class AuthenticateController extends Controller
 {
@@ -23,15 +24,18 @@ class AuthenticateController extends Controller
      */
     public function authenticate(Request $request): RedirectResponse
     {
+        
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+
+        if (Auth::guard()->attempt(['email' => $request->input('email'),'password' => $request->password,]) ||
+                Auth::guard()->attempt(['telephone' => $request->input('email'),'password' => $request->password,])) {
             $request->session()->regenerate();
 
-            return redirect()->intended('admin/particulier');
+            return redirect()->intended('admin/beneficiaire');
         }
 
         return back()->withErrors([
@@ -143,7 +147,7 @@ class AuthenticateController extends Controller
 
         for ($i=0; $i < $nb; $i++) { 
             
-            DB::table('beneficiaire')->where('id',$checkedValues[$i])->update(['chefequipe_id' => $chefequipe]);
+            DB::table('beneficiaire')->where('id',$checkedValues[$i])->update(['chefequipe_id' => $chefequipe,'is_affected' => 2]);
 
         }
         
@@ -305,8 +309,8 @@ class AuthenticateController extends Controller
 
      public function index_benevole(Request $request){
 
-        $benevoles = Beneficiaire::where('state',1)->paginate(50);
-        $totalBenevoles = Beneficiaire::where('state',1)->count();
+        $benevoles = Beneficiaire::where(['state'=>1,'is_affected'=>1])->paginate(50);
+        $totalBenevoles = Beneficiaire::where(['state'=>1,'is_affected'=>1])->count();
         $communes = Beneficiaire::selectRaw('lieu_residence')
                                             ->groupBy('lieu_residence')
                                             ->orderBy('lieu_residence', 'ASC')
@@ -338,7 +342,8 @@ class AuthenticateController extends Controller
 
         if ($request->ajax()) {
 
-            $benevoles = Beneficiaire::when($region, function ($q) use ($region) {
+            $benevoles = Beneficiaire::where(['state'=>1,'is_affected'=>1])
+            ->when($region, function ($q) use ($region) {
                 $q->where('region',$region);
             })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
@@ -348,7 +353,8 @@ class AuthenticateController extends Controller
                 $q->where('telephone',$telephone);
             })->paginate(50);
 
-            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
+            $totalBenevoles = Beneficiaire::where(['state'=>1,'is_affected'=>1])
+            ->when($region, function ($q) use ($region) {
                 $q->where('region',$region);
             })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
@@ -367,7 +373,7 @@ class AuthenticateController extends Controller
 
      public function index_chefequipe(Request $request){
 
-       $benevoles = Beneficiaire::where('state',2)->paginate(50);
+        $benevoles = Beneficiaire::where('state',2)->paginate(50);
         $totalBenevoles = Beneficiaire::where('state',2)->count();
         $communes = Beneficiaire::selectRaw('lieu_residence')
                                             ->groupBy('lieu_residence')
@@ -381,7 +387,7 @@ class AuthenticateController extends Controller
                                             ->groupBy('departement')
                                             ->orderBy('departement', 'ASC')
                                             ->get();
-        $superviseurs = User::where('state',2)->get();
+        $superviseurs = User::where('type',2)->get();
 
         $ob_param=$request->all();
         $page=$request->get('page');
@@ -491,48 +497,20 @@ class AuthenticateController extends Controller
 
      public function index_pointage(Request $request){
 
-        $utilisateurs = User::paginate(25);
-        $totalutilisateur = User::count();
+        $pointages = Pointage::paginate(25);
+        $totalpointage = Pointage::count();
         
 
         if ($request->ajax()) {
 
-            $utilisateurs = User::when($request->region, function ($q) use ($request) {
-                $q->where('region_id',$request->region);
-            })->when($request->lieuresidence, function ($q) use ($request){
-                $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
-            })->when($request->nationalite, function ($q) use ($request){
-                $q->where('nationalite_id', $request->nationalite);
-            })->when($request->sexe, function($q) use ($request) {
-                $q->where('sexe_id', $request->sexe);
-            })->when($request->scolarise, function ($q) use ($request) {
-                $q->where('scolarise', $request->scolarise);
-            })->when($request->handicap, function ($q) use ($request) {
-                $q->where('situation_handicap', $request->handicap);
-            })->paginate(25);
+            $pointages = Pointage::paginate(25);
 
-            $totalutilisateur = User::when($request->region, function ($q) use ($request) {
-                $q->where('region_id',$request->region);
-            })->when($request->lieuresidence, function ($q) use ($request){
-                $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
-            })->when($request->nationalite, function ($q) use ($request){
-                $q->where('nationalite_id', $request->nationalite);
-            })->when($request->sexe, function($q) use ($request) {
-                $q->where('sexe_id', $request->sexe);
-            })->when($request->scolarise, function ($q) use ($request) {
-                $q->where('scolarise', $request->scolarise);
-            })->when($request->handicap, function ($q) use ($request) {
-                $q->where('situation_handicap', $request->handicap);
-            })->count();
+            $totalpointage = Pointage::count();
 
-            return view('backend.page.utilisateur.pointage', compact('utilisateurs','totalutilisateur'));
+            return view('backend.page.utilisateur.pointage', compact('pointages','totalpointage'));
         }
 
-        return view('backend.page.utilisateur.index_pointage', compact('utilisateurs','totalutilisateur'));
+        return view('backend.page.utilisateur.index_pointage', compact('pointages','totalpointage'));
 
      }
 }

@@ -51,7 +51,10 @@
                 <h5 class="modal-title">Formulaire de Réclamation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
+              <span style="color:red">Seules les personnes retenues peuvent faire une réclamation.<span>
+              <br><br>
                  <form method="get" action="{{route('store.reclamation')}}">
                       
                 <div class="form-group">

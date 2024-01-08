@@ -31,21 +31,18 @@
                     <h3>Acceder au back-office du module</h3>
                     <p>des inscriptions des bénévoles</p>
                     <div class="page-links">
-                        <a href="login5.html" class="active">
+                        <a href="#" class="active">
                             Connexion
                         </a>
                     </div>
-                    {{ html()->form('POST')->route('authenticate.auth')->open() }}
-                        {{ html()->text('email')->class('form-control')->placeholder('E-mail Address')->required(true) }}
+                        {{ html()->form('POST')->route('authenticate.auth')->open() }}
+                        {{ html()->text('email')->class('form-control')->placeholder('E-mail / Téléphone')->required(true) }}
                         {{ html()->password('password')->class('form-control')->placeholder('Mot de Passe')->required(true) }}
                         <div class="form-button">
                             <button id="submit" type="submit" class="ibtn">Connexion</button>
-                            <a href="forget5.html">Mot de passse oubliè?</a>
                         </div>
-                    {{ html()->form()->close() }}
-                    <div class="other-links">
-                        {{--<span>Or login with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>--}}
-                    </div>
+                       {{ html()->form()->close() }}
+                    
                 </div>
             </div>
         </div>

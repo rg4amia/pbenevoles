@@ -57,7 +57,7 @@
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a>LISTE DES BENEVOLES</a>
+                                        <a>AFFECTATION DES BENEVOLES</a>
                                     </li>
                                 </ol>
                             </div>
@@ -90,10 +90,10 @@
                                                 <div class="row">
                                                    
                                                     <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
+                                                        <input type="text" name="nom" id="nom" placeholder="Nom & prénom" class="form-control">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
+                                                        <input type="text" name="telephone" id="telephone" placeholder="Téléphone" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>

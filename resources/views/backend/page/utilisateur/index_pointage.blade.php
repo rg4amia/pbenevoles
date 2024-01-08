@@ -1,6 +1,6 @@
 @extends('backend.panels.main')
 @section('title')
-    LISTE DES BENEVOLES CAN-2023
+    LISTE DES POINTAGES
 @endsection
 @section('css')
     <style>

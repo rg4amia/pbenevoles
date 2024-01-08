@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Exports\BenevoleExport;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Benevole;
 use App\Models\Commune;
 use App\Models\Nationalite;
@@ -70,8 +71,15 @@ class ParticulierController extends Controller
     }
 
     public function beneficiaire(Request $request){
-        $benevoles = Beneficiaire::paginate(30);
-        $totalBenevoles = Beneficiaire::count();
+
+        //dd(Auth::user()->type,Auth::id());
+        if(Auth::user()->type == 1){$user_id = Auth::id();}else{$user_id = null;}
+        $benevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->paginate(40);
+        $totalBenevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->count();
         $regions = Region::pluck('libelle','libelle');
         $sexes = Sexe::pluck('libelle','id');
         $nationalites = Nationalite::pluck('libelle','id');
@@ -106,7 +114,7 @@ class ParticulierController extends Controller
                 $q->where('nom','like','%'.$nom.'%');
             })->when($telephone, function ($q) use ($telephone){
                 $q->where('telephone',$telephone);
-            })->paginate(30);
+            })->paginate(40);
 
             $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
                 $q->where('region',$region);

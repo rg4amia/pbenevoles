@@ -57,6 +57,7 @@
              style="overflow-x: visible;overflow-y: visible; ">
             <!-- include ../../../includes/mixins-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                @if(Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                 <li class="nav-item <?php if(request()->is('dashboard')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('dashboard.index') }}">
                         <i data-feather="home"></i>
@@ -65,33 +66,40 @@
                         </span>
                     </a>
                 </li>
-                {{--@if (auth()->user()->hasRole('Administrateur') || auth()->user()->hasRole('Admin'))--}}
+                @endif
+                @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                 <li class="nav-item <?php if(request()->is('admin/particulier')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('particulier.index') }}">
                         <i data-feather="home"></i>
-                        <span data-i18n="Dashboards">
+                        <span data-i18n="Particulier">
                             Particuliers
                         </span>
                     </a>
                 </li>
-
+                @endif
+                
+                @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                 <li class="nav-item <?php if(request()->is('admin/association')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('association.index') }}">
                         <i data-feather="home"></i>
-                        <span data-i18n="Dashboards">
+                        <span data-i18n="Association">
                             Association / Structure
                         </span>
                     </a>
                 </li>
+                @endif
                 
+                @if(Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                 <li class="nav-item <?php if(request()->is('admin/reclamation')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('reclamation.index') }}">
                         <i data-feather="home"></i>
-                        <span data-i18n="Dashboards">
+                        <span data-i18n="Reclamation">
                             Reclamations
                         </span>
                     </a>
                 </li>
+                @endif
+                
                 <li class="dropdown nav-item <?php if(request()->is('admin/benevole')|| request()->is('admin/beneficiaire') || request()->is('admin/chefequipe') || request()->is('admin/superviseur') ){ echo "active";} ?>" data-menu="dropdown">
                     <a class="dropdown-item d-flex align-items-center" href="#">
                         <i data-feather="home"></i>
@@ -100,6 +108,7 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu">
+
                         <li data-menu="">
                             <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('beneficiaire.index') }}">
                                 <i data-feather="home"></i>
@@ -108,6 +117,7 @@
                                 </span>
                             </a>
                         </li>
+                        @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                         <li data-menu="">
                             <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('benevole.index') }}">
                                 <i data-feather="home"></i>
@@ -132,6 +142,7 @@
                                 </span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </li>
                 
@@ -143,6 +154,8 @@
                         </span>
                     </a>
                 </li>
+
+               @if(Auth::user()->type==6)
                 <li class="nav-item <?php if(request()->is('admin/utilisateur') || request()->is('admin/utilisateur/nouveau')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('utilisateur.index') }}">
                         <i data-feather="home"></i>
@@ -151,7 +164,7 @@
                         </span>
                     </a>
                 </li>
-                {{-- @endif--}}
+              @endif
             </ul>
         </div>
     </div>

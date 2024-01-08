@@ -73,15 +73,6 @@
                     <div class="col-12">
                         <div class="card user-profile-list">
                             <div class="card-body">
-                                <div class="float-right">
-                                    {{-- <button type="button"
-                                             data-toggle="modal"
-                                             data-target="#addcolonne"
-                                             class="btn btn-icon btn-icon btn-primary mr-0 waves-effect waves-light">
-                                         <i data-feather="list"></i>
-                                         Ajouter Colonne
-                                     </button>--}}
-                                </div>
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">
                                         <form action="#">
@@ -90,10 +81,10 @@
                                                 <div class="row">
                                                    
                                                     <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
+                                                        <input type="text" name="nom" id="nom" placeholder="Nom & prénom" class="form-control">
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
+                                                        <input type="text" name="telephone" id="telephone" placeholder="Téléphone" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,6 +92,23 @@
                                                     data-dismiss="modal">Recherche
                                             </button>
                                         </form>
+
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-4"></div>
+                                               <div class="col-md-4">
+                                                    <label><strong>Sélectionnez superviseur</strong></label>
+                                                    <select class="select2 form-control" id="chefequipe" name="chefequipe">
+                                                        <option value="0"></option>
+                                                        @foreach($superviseurs as $superviseur)
+                                                        <option value="{{$superviseur->id}}">{{$superviseur->name}} ({{$superviseur->telephone}})</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                            
+                                        </div>
 
                                         <div id="benevoles">
                                             @include('backend.page.utilisateur.chefequipe')
@@ -229,18 +237,33 @@
                         className: 'btn btn-relief-danger',
                         action: function (e, dt, node, config) {
                             var checkedValues = [];
+                            var chefequipe = $('#chefequipe').val();
+                    
+                            //alert(chefequipe);
                             $('.select-row:checked').each(function () {
                                     checkedValues.push($(this).val());
                                 });
                             if(checkedValues.length < 1){
-                            swal('Aucun projet selectionné!!!');
+                            alert('Aucun bénévole selectionné!!!');
                             return false
-                            } else {
+                            } else if(chefequipe == 0){alert('Aucun chef d\'équipe selectionné!!!');} 
+                            else{
                                 var string = checkedValues.toString();
-                                //$('#projet_ids').val(string);
-
                                 console.log(string);
-                            }
+
+                                $.ajax({
+                                            url: "{{ route('utilisateur.affecter.benevole') }}",
+                                            method: "GET",
+                                            data: {
+                                                checkedValues: checkedValues,
+                                                chefequipe: chefequipe,
+                                            },
+                                            success: function (response) {
+                                                location.reload();
+                                            }
+                                        });
+
+                               }
                             
                         }
                     },

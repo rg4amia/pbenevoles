@@ -53,7 +53,7 @@
             </div>
 
             <div class="modal-body">
-              <span style="color:red">Seules les personnes retenues peuvent faire une réclamation.<span>
+              A NOTER :<span style="color:red">Seules les personnes retenues peuvent faire une réclamation.<span>
               <br><br>
                  <form method="get" action="{{route('store.reclamation')}}">
                       

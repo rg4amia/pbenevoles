@@ -287,7 +287,7 @@
                     //         location.href = link
                     //     }
                     // },
-                    @if(Auth::user()->type==2)
+                    @if(Auth::user()->type==1)
                     {
                         extend: 'colvis',
                         text: feather.icons['plus'].toSvg({class: 'font-small-4 mr-50'}) + 'Nouveau pointage',

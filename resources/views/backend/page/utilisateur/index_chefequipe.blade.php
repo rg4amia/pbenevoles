@@ -92,7 +92,7 @@
                                                     data-dismiss="modal">Recherche
                                             </button>
                                         </form>
-
+                                        @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                                         <div class="mb-2">
                                             <div class="row">
                                                 <div class="col-md-4"></div>
@@ -109,6 +109,7 @@
                                             </div>
                                             
                                         </div>
+                                        @endif
 
                                         <div id="benevoles">
                                             @include('backend.page.utilisateur.chefequipe')
@@ -231,6 +232,7 @@
                     //         location.href = link
                     //     }
                     // },
+                    @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                     {
                         extend: 'colvis',
                         text: feather.icons['plus'].toSvg({class: 'font-small-4 mr-50'}) + 'Affecter',
@@ -267,6 +269,7 @@
                             
                         }
                     },
+                    @endif
                     {
                         extend: 'colvis',
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',

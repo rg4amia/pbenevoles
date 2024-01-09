@@ -73,22 +73,14 @@
                     <div class="col-12">
                         <div class="card user-profile-list">
                             <div class="card-body">
-                                <div class="float-right">
-                                    {{-- <button type="button"
-                                             data-toggle="modal"
-                                             data-target="#addcolonne"
-                                             class="btn btn-icon btn-icon btn-primary mr-0 waves-effect waves-light">
-                                         <i data-feather="list"></i>
-                                         Ajouter Colonne
-                                     </button>--}}
-                                </div>
+
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">
                                         <form action="#">
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                   
+
                                                     <div class="col-md-3">
                                                         <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
                                                     </div>
@@ -100,6 +92,13 @@
                                             <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
                                                     data-dismiss="modal">Recherche
                                             </button>
+                                           @if( Auth::user()->type==1)
+                                            <div class="form-group col-sm-3" style="display:inline-block; float: right;">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inlineForm" style="float: right;">
+                                            + pointage
+                                              </button>
+                                            </div>
+                                            @endif
                                         </form>
 
                                         <div id="benevoles">
@@ -142,6 +141,7 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Enrégistrer</button>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -177,6 +177,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
     <script>
@@ -286,6 +287,7 @@
                     //         location.href = link
                     //     }
                     // },
+                    @if(Auth::user()->type==2)
                     {
                         extend: 'colvis',
                         text: feather.icons['plus'].toSvg({class: 'font-small-4 mr-50'}) + 'Nouveau pointage',
@@ -294,6 +296,7 @@
                                                 $('#inlineForm').modal('show');
                                             }
                     },
+                    @endif
                     {
                         extend: 'colvis',
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',

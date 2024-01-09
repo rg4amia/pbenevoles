@@ -28,6 +28,10 @@ class Reclamation extends Model
         return $this->belongsTo(Commune::class,'lieu_residence_ins');
     }
 
+    public function beneficiaire(){
+        return $this->hasMany(Beneficiaire::class,'telephone','telephone');
+    }
+
     // public function lieunaissance(){
     //     return $this->belongsTo(Commune::class,'lieu_naissance_id');
     // }

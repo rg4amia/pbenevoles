@@ -73,12 +73,22 @@ class ParticulierController extends Controller
     public function beneficiaire(Request $request){
 
         //dd(Auth::user()->type,Auth::id());
-        if(Auth::user()->type == 1){$user_id = Auth::id();}else{$user_id = null;}
+        if(Auth::user()->type == 1){$user_id = [Auth::id()];}
+        elseif(Auth::user()->type == 2){
+        $chefs = Beneficiaire::join('users','users.telephone','beneficiaire.telephone')->select('users.id')->where('chefequipe_id',Auth::id())->get();
+            //dd($chefs);
+            $user_id =[];
+              foreach($chefs as $chef){
+                 array_push($user_id, $chef->id);
+              }
+             
+        }else{$user_id = [];}
+        //dd($user_id);
         $benevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
-                $q->where('chefequipe_id',$user_id);
+                $q->wherein('chefequipe_id',$user_id);
             })->paginate(40);
         $totalBenevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
-                $q->where('chefequipe_id',$user_id);
+                $q->wherein('chefequipe_id',$user_id);
             })->count();
         $regions = Region::pluck('libelle','libelle');
         $sexes = Sexe::pluck('libelle','id');
@@ -133,11 +143,11 @@ class ParticulierController extends Controller
     }
 
     public function reclamation(Request $request){
-        $benevoles = Reclamation::with('lieuresidence')
-                                  ->join('beneficiaire','beneficiaire.telephone','reclamation.telephone')
+        $benevoles = Reclamation::with('lieuresidence','beneficiaire')
+                                 
                                   ->paginate(30);
-        $totalBenevoles = Reclamation::with('lieuresidence')
-                                       ->join('beneficiaire','beneficiaire.telephone','reclamation.telephone')
+        $totalBenevoles = Reclamation::with('lieuresidence','beneficiaire')
+                                       
                                        ->count();
         $regions = Region::pluck('libelle','id');
         $sexes = Sexe::pluck('libelle','id');
@@ -180,6 +190,7 @@ class ParticulierController extends Controller
     }
 
     public function benevoleExportExcel($data){
+        //dd($data);
         $response = json_decode($data);
         return Excel::download(new BenevoleExport($response), 'benevole.xlsx');
     }

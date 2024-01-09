@@ -379,8 +379,14 @@ class AuthenticateController extends Controller
 
      public function index_chefequipe(Request $request){
 
-        $benevoles = Beneficiaire::where('state',2)->paginate(50);
-        $totalBenevoles = Beneficiaire::where('state',2)->count();
+        // if(Auth::user()->type == 2){$benevoles = Beneficiaire::join('users','users.telephone','beneficiaire.telephone')->select('users.id','beneficiaire.nom','users.telephone','beneficiaire.region','beneficiaire.departement','beneficiaire.chefequipe_id','beneficiaire.matricule')->where('chefequipe_id',Auth::id())->paginate(50);}
+        if(Auth::user()->type == 2){$user_id = Auth::id();}else{$user_id = null;}
+        $benevoles = Beneficiaire::where('state',2)->when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->paginate(50);
+        $totalBenevoles = Beneficiaire::where('state',2)->when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->count();
         $communes = Beneficiaire::selectRaw('lieu_residence')
                                             ->groupBy('lieu_residence')
                                             ->orderBy('lieu_residence', 'ASC')
@@ -412,7 +418,9 @@ class AuthenticateController extends Controller
 
         if ($request->ajax()) {
 
-            $benevoles = Beneficiaire::when($region, function ($q) use ($region) {
+            $benevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->when($region, function ($q) use ($region) {
                 $q->where('region',$region);
             })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
@@ -422,7 +430,9 @@ class AuthenticateController extends Controller
                 $q->where('telephone',$telephone);
             })->paginate(50);
 
-            $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
+            $totalBenevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->when($region, function ($q) use ($region) {
                 $q->where('region',$region);
             })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);
@@ -502,24 +512,32 @@ class AuthenticateController extends Controller
      }
 
      public function index_pointage(Request $request){
-        if(Auth::user()->type == 1){$user_id = Auth::id();}else{$user_id = null;}
+        if(Auth::user()->type == 1){$user_id = [Auth::id()];}elseif(Auth::user()->type == 2){
+
+            $chefs = Beneficiaire::join('users','users.telephone','beneficiaire.telephone')->select('users.id')->where('chefequipe_id',Auth::id())->get();
+            $user_id =[];
+              foreach($chefs as $chef){
+                 array_push($user_id, $chef->id);
+              }
+
+        }else{$user_id = [];}
         
         $pointages = Pointage::when($user_id, function ($q) use ($user_id){
-                $q->where('author_id',$user_id);
+                $q->wherein('author_id',$user_id);
             })->paginate(25);
         $totalpointage = Pointage::when($user_id, function ($q) use ($user_id){
-                $q->where('author_id',$user_id);
+                $q->wherein('author_id',$user_id);
             })->count();
         
 
         if ($request->ajax()) {
 
             $pointages = Pointage::when($user_id, function ($q) use ($user_id){
-                $q->where('author_id',$user_id);
+                $q->wherein('author_id',$user_id);
             })->paginate(25);
 
             $totalpointage = Pointage::when($user_id, function ($q) use ($user_id){
-                $q->where('author_id',$user_id);
+                $q->wherein('author_id',$user_id);
             })->count();
 
             return view('backend.page.utilisateur.pointage', compact('pointages','totalpointage'));

@@ -19,7 +19,7 @@
                     <td class="large-cell">
                         <a class="btn btn-warning" href="{{route('pointage.remplir',$pointage->id)}}">Détail</a>
                     
-                    @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6) 
+                    @if(Auth::user()->type==2 ||Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6) 
                         <button type="button" class="btn btn-info" onclick="showFileModal({{$pointage->id}})">Fiche</button> 
                     @endif
                         @if($pointage->file_pointage)

@@ -88,18 +88,25 @@
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         {{ html()->date('date_debut')->class('form-control')->id('date_debut') }}
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         {{ html()->date('date_fin')->class('form-control')->id('date_fin') }}
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         {{ html()->select('departement', $departements, null)->class('form-control')->placeholder('Selectionner département')->id('departement') }}
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
 
-                                                    <div class="col-md-3">
+                                                 <div class="row">
+                                                    <div class="col-md-4">
                                                         {{ html()->select('region', $regions, null)->class('form-control')->placeholder('Selectionner region')->id('region') }}
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu de residence')->id('lieuresidence') }}
                                                     </div>
                                                 </div>
                 

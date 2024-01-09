@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 @endif
-                @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
+                @if(Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                 <li class="nav-item <?php if(request()->is('admin/particulier')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('particulier.index') }}">
                         <i data-feather="home"></i>
@@ -78,7 +78,7 @@
                 </li>
                 @endif
                 
-                @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
+                @if(Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                 <li class="nav-item <?php if(request()->is('admin/association')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('association.index') }}">
                         <i data-feather="home"></i>
@@ -117,7 +117,7 @@
                                 </span>
                             </a>
                         </li>
-                        @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
+                        @if( Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                         <li data-menu="">
                             <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('benevole.index') }}">
                                 <i data-feather="home"></i>
@@ -126,6 +126,8 @@
                                 </span>
                             </a>
                         </li>
+                        @endif
+                        @if(Auth::user()->type==2 || Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                         <li data-menu="">
                             <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('chefequipe.index') }}">
                                 <i data-feather="home"></i>
@@ -134,6 +136,8 @@
                                 </span>
                             </a>
                         </li>
+                        @endif
+                        @if( Auth::user()->type==3 ||Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                         <li data-menu="">
                             <a class="dropdown-item d-flex align-items-center" data-toggle="dropdown" href="{{ route('superviseur.index') }}">
                                 <i data-feather="home"></i>

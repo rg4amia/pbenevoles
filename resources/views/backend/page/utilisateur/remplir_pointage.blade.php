@@ -1,6 +1,6 @@
 @extends('backend.panels.main')
 @section('title')
-    LISTE DES POINTAGES
+  POINTAGES
 @endsection
 @section('css')
     <style>
@@ -57,7 +57,7 @@
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a>LISTE DES POINTAGES</a>
+                                        <a>Du {{$pointage->date}} - {{$pointage->periode}}</a>
                                     </li>
                                 </ol>
                             </div>
@@ -73,37 +73,45 @@
                     <div class="col-12">
                         <div class="card user-profile-list">
                             <div class="card-body">
-                                <div class="float-right">
-                                    {{-- <button type="button"
-                                             data-toggle="modal"
-                                             data-target="#addcolonne"
-                                             class="btn btn-icon btn-icon btn-primary mr-0 waves-effect waves-light">
-                                         <i data-feather="list"></i>
-                                         Ajouter Colonne
-                                     </button>--}}
-                                </div>
+                        
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">
-                                        <form action="#">
-                                            <input type="hidden" id="type_valider" name="type" value="valider">
-                                            <div class="mb-2">
-                                                <div class="row">
-                                                   
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
-                                                    data-dismiss="modal">Recherche
-                                            </button>
-                                        </form>
-
+                                    
                                         <div id="benevoles">
-                                            @include('backend.page.utilisateur.pointage')
+                                            
+                                            <div class="table-responsive mb-3 text-nowrap">
+                                                <table id="tableBenevole" class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Nom & prénoms</th>
+                                                        <th>Téléphone</th>
+                                                        <th>Pointage</th>
+                                                        
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="table-border-bottom-0" id="tableBenevoleBody">
+                                                    @forelse($benevoles as $key => $benevole)
+                                                    @php $benevole_check = App\Helpers\Helper::get_eleve_pointage($benevole->id,$pointage->id); @endphp
+                                                        <tr>
+                                                            <td class="large-cell">{{ $benevole->nom }}</td>
+                                                            <td class="large-cell">{{ $benevole->telephone }}</td>
+                                                            <td class="large-cell">
+                                                                <select class="form-control" id="check{{$benevole->id}}" name="check{{$benevole->id}}" onchange="updateChecking({{$benevole->id}},{{$pointage->id}},this.value)" <?php if($pointage->file_pointage){echo 'disabled';} ?>>
+                                                                    <option value=""></option>
+                                                                    <option value="1" <?php if($benevole_check==1){echo 'selected';} ?> >Présent</option>
+                                                                    <option value="2" <?php if($benevole_check==2){echo 'selected';} ?> >Absent</option>
+                                                                    <option value="3" <?php if($benevole_check==3){echo 'selected';} ?> >Permissionnaire</option>
+                                                                </select>
+                                                                <span id="load{{$benevole->id}}" style="display:none"><img src="{{asset('loading_2.gif')}}" width="25" height="25"> </span><span id="done{{$benevole->id}}" style="display:none; color: green;">Enrégistré ..</span>
+                                                            </td>
+                                                        </tr>
+                                                    @empty
+                                                    @endforelse
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                            <div><button class="btn btn-warning">Total : {{$totalbenevole}}</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -114,69 +122,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel33">Nouveau pointage</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{route('pointage.create')}}" method="GET">
-                    <input type="hidden" name="author_id" value="{{Auth::id()}}" />
-                    <div class="modal-body">
-                        <label>Date du pointage: </label>
-                        <div class="form-group">
-                            <input type="date" placeholder="Date du pointage" class="form-control" id="pointage_date" name="pointage_date" />
-                        </div>
 
-                        <label>Période: </label>
-                        <div class="form-group">
-                            <select class="form-control" id="pointage_periode" name="pointage_periode">
-                                <option value="Matin">MATIN</option>
-                                <option value="Soir">SOIR</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Enrégistrer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade text-left" id="pointageFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel33">Ajouter Fiche de pointage</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{route('pointage.file_update')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="author_id" value="{{Auth::id()}}" />
-                    <input type="hidden" name="pointage_id" id="pointage_id" />
-                    <div class="modal-body">
-                        <label>Ajouter fiche <span style="color:red">*</span>: </label>
-                        <div class="form-group">
-                            <input type="file" placeholder="Sélectionner la fiche de pointage" class="form-control" id="fichepointage" name="fichepointage" required />
-                        </div>
-
-                        <div class="form-group">
-                            <h6 style="color:red">Ajouter un fichier de taille maximun de 8Mo.</h6>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Enrégistrer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 @section('js')
     <script>
@@ -286,26 +232,35 @@
                     //         location.href = link
                     //     }
                     // },
-                    {
-                        extend: 'colvis',
-                        text: feather.icons['plus'].toSvg({class: 'font-small-4 mr-50'}) + 'Nouveau pointage',
-                        className: 'btn btn-warning',
-                        action:function () {
-                                                $('#inlineForm').modal('show');
-                                            }
-                    },
-                    {
-                        extend: 'colvis',
-                        text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',
-                        className: 'btn btn-relief-success dropdown-toggle mr-2',
-                    },
+                    // {
+                    //     extend: 'colvis',
+                    //     text: feather.icons['plus'].toSvg({class: 'font-small-4 mr-50'}) + 'Nouveau pointage',
+                    //     className: 'btn btn-warning',
+                    //     action:function () {
+                    //                             $('#inlineForm').modal('show');
+                    //                         }
+                    // },
+                    // {
+                    //     extend: 'colvis',
+                    //     text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',
+                    //     className: 'btn btn-relief-success dropdown-toggle mr-2',
+                    // },
                 ],
             });
         }
 
-        function showFileModal(pointage_id) {
-             $('#pointage_id').val(pointage_id);
-            $('#pointageFile').modal('show');
-        }
+        function updateChecking(eleve,cour_id,check){
+
+        $('#load'+eleve).fadeIn();
+         
+        var url_note = "{{ url('admin/pointage/save_pointage') }}/"+eleve+"/"+cour_id+"/"+check;
+        $.ajax({type: "get",url: url_note,success: function(data){
+          $('#load'+eleve).fadeOut(1000);
+          $('#done'+eleve).fadeIn(3000);
+          $('#done'+eleve).fadeOut(2000);
+        }});
+
+    
+     }
     </script>
 @endsection

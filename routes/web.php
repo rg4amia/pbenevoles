@@ -89,7 +89,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::prefix('pointage')->name('pointage.')->controller(AuthenticateController::class)->group(function () {
         Route::get('/', 'index_pointage')->name('index');
-        //Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
+        Route::get('/create_pointage/', 'create_pointage')->name('create');
+        Route::get('/remplir/pointage/{id}', 'remplir_pointage')->name('remplir');
+        Route::post('pointage/file_update', 'file_update')->name('file_update');
+        Route::get('/save_pointage/{benevole}/{poitage_id}/{pointage}','save_pointage')->name('save');
     });
 });
 

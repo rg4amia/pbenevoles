@@ -146,7 +146,7 @@
                     </ul>
                 </li>
                 
-                <li class="nav-item <?php if(request()->is('admin/pointage')){ echo "active";} ?>">
+                <li class="nav-item <?php if(request()->is('admin/pointage') || request()->is('admin/pointage/remplir/pointage/*')){ echo "active";} ?>">
                     <a class="nav-link d-flex align-items-center" href="{{ route('pointage.index') }}">
                         <i data-feather="home"></i>
                         <span data-i18n="Liste pointage">

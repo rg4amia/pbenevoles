@@ -12,6 +12,12 @@ use DB;
 use App\Models\User;
 use App\Models\Beneficiaire;
 use App\Models\Pointage;
+use App\Models\Pointage_benevole;
+
+use App\Helpers\Helper;
+use App\Helpers\FileUploader;
+
+use Carbon\Carbon;
 
 class AuthenticateController extends Controller
 {
@@ -496,16 +502,25 @@ class AuthenticateController extends Controller
      }
 
      public function index_pointage(Request $request){
-
-        $pointages = Pointage::paginate(25);
-        $totalpointage = Pointage::count();
+        if(Auth::user()->type == 1){$user_id = Auth::id();}else{$user_id = null;}
+        
+        $pointages = Pointage::when($user_id, function ($q) use ($user_id){
+                $q->where('author_id',$user_id);
+            })->paginate(25);
+        $totalpointage = Pointage::when($user_id, function ($q) use ($user_id){
+                $q->where('author_id',$user_id);
+            })->count();
         
 
         if ($request->ajax()) {
 
-            $pointages = Pointage::paginate(25);
+            $pointages = Pointage::when($user_id, function ($q) use ($user_id){
+                $q->where('author_id',$user_id);
+            })->paginate(25);
 
-            $totalpointage = Pointage::count();
+            $totalpointage = Pointage::when($user_id, function ($q) use ($user_id){
+                $q->where('author_id',$user_id);
+            })->count();
 
             return view('backend.page.utilisateur.pointage', compact('pointages','totalpointage'));
         }
@@ -513,4 +528,85 @@ class AuthenticateController extends Controller
         return view('backend.page.utilisateur.index_pointage', compact('pointages','totalpointage'));
 
      }
+
+     public function create_pointage(Request $request,Helper $helper){
+
+                $checkpointage = $helper->checkPointage($request->get('pointage_date'),$request->get('pointage_periode'));
+                
+                if($checkpointage){
+
+                    return Redirect::route('pointage.remplir',$checkpointage)->with('success',"Pointage déja existant");
+
+                }else{
+
+                    $pointage = new Pointage();
+                    $pointage->date = $request->get('pointage_date');
+                    $pointage->periode =$request->get('pointage_periode');
+                    $pointage->author_id = $request->get('author_id');
+                    $pointage->state = 1;
+                    $pointage->save();
+                    return Redirect::route('pointage.remplir',$pointage->id)->with('success',"Pointage ajouté avec succès");
+                } 
+     }
+
+     public function remplir_pointage($pointage_id){
+
+        $pointage = Pointage::where('id',$pointage_id)->first();
+        $author = User::where('id',$pointage->author_id)->first();
+        $user_id = $author->id;
+        $benevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->get();
+        $totalbenevole = Beneficiaire::when($user_id, function ($q) use ($user_id){
+                $q->where('chefequipe_id',$user_id);
+            })->count();
+
+        return view('backend.page.utilisateur.remplir_pointage', compact('benevoles','totalbenevole','pointage'));
+
+     }
+
+     public function file_update(Request $request,Helper $helper){
+        
+        //dd($request);
+         
+         $today = Carbon::today();
+         $fileName = '/POINTAGE/FICHE_POINTAGE' . $request->pointage_id .'.'. $request->fichepointage->extension();
+         $fichiePointage = FileUploader::upload($request, 'fichepointage', 'public', str_replace(" ", "_", $fileName));
+
+         $affected = DB::table('pointages')->where('id', $request->pointage_id)->update([
+                                                                                         'file_pointage' => $fichiePointage,
+                                                                                         'author_file' => Auth::id(),
+                                                                                         'file_ceated_date' => $today,
+                                                                                     ]);
+         //dd($fichiePointage);
+        return Redirect::back()->with('success',"Fiche ajouté avec succès");
+
+     }
+
+     public function save_pointage($benevole_id,$pointage_id,$pointage_ben){
+        
+        $pointage = new Pointage_benevole();
+        $check_pointage = DB::table('pointage_benevoles')
+                      ->where(['pointage_id'=>$pointage_id,'benevole_id'=>$benevole_id])->count();
+        if($check_pointage == 0){
+            $pointage->pointage_id = $pointage_id;
+            $pointage->benevole_id = $benevole_id;
+            $pointage->pointage = $pointage_ben;
+            $pointage->author_id = Auth::user()->id;
+            //$pointage->state = 1;
+            $pointage->save();
+        }else{
+            $affected = DB::table('pointage_benevoles')->where(['pointage_id'=> $pointage_id,'benevole_id'=>$benevole_id])->update(['pointage' =>$pointage_ben]);
+        }
+    
+
+     }
+
+
+
+
+
+
+
+
 }

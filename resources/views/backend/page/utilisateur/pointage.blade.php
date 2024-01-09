@@ -14,9 +14,18 @@
             @forelse($pointages as $key => $pointage)
                 <tr>
                     <td class="large-cell">{{ $pointage->created_at }}</td>
-                    <td class="large-cell">{{ $pointage->date }}</td>
-                    <td class="large-cell">{{ strtoupper($pointage->author_id) }}</td>
-                    <td class="large-cell"></td>
+                    <td class="large-cell">{{ $pointage->date }} {{ $pointage->periode }}</td>
+                    <td class="large-cell">{{ App\Helpers\Helper::getInstanceName('users','id',$pointage->author_id,'name') }}</td>
+                    <td class="large-cell">
+                        <a class="btn btn-warning" href="{{route('pointage.remplir',$pointage->id)}}">Détail</a>
+                    
+                    @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6) 
+                        <button type="button" class="btn btn-info" onclick="showFileModal({{$pointage->id}})">Fiche</button> 
+                    @endif
+                        @if($pointage->file_pointage)
+                        <a class="btn btn-success" href="{{  \Illuminate\Support\Facades\Storage::disk('public')->url($pointage->file_pointage)  }}">Télécharger fichier</a>
+                        @endif
+                    </td>
                 </tr>
             @empty
             @endforelse

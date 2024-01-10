@@ -36,6 +36,9 @@ class BeneficiaireExport implements FromCollection,WithHeadings
     */
     public function collection()
     {
+        ini_set("memory_limit", "-1"); set_time_limit(0);
+    ini_set('max_execution_time', 500);
+    
         $region = $this->region;
         $nom = $this->nom;
         $telephone = $this->telephone;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Exports\BenevoleExport;
+use App\Exports\BeneficiaireExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Benevole;
@@ -209,7 +210,7 @@ class ParticulierController extends Controller
     public function beneficiaireExportExcel($data){
         //dd($data);
         $response = json_decode($data);
-        return Excel::download(new BenevoleExport($response), 'beneficiaire.xlsx');
+        return Excel::download(new BeneficiaireExport($response), 'beneficiaire.xlsx');
     }
 
 

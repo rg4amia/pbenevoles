@@ -173,7 +173,7 @@
             let departement = $('#departement').val();
             let chefequipe = $('#chefequipe').val();
 
-            console.log(chefequipe);
+            //console.log(chefequipe);
 
             // récupérer les autres valeurs de filtre
             $.ajax({
@@ -224,23 +224,20 @@
                         className: 'btn btn-relief-warning mr-2',
                         action: function (e, dt, node, config) {
                             let region = $('#region').val();
-                            let date_debut = $('#date_debut').val();
-                            let date_fin = $('#date_fin').val();
+                            let nom = $('#nom').val();
+                            let telephone = $('#telephone').val();
                             let lieuresidence = $('#lieuresidence').val();
-                            let sexe = $('#sexe').val();
-                            let nationalite = $('#nationalite').val();
-                            let scolarise = $('#scolarise').val();
-                            let handicape = $('#handicape').val();
+                            let departement = $('#departement').val();
+                            let chefequipe = $('#chefequipe').val();
 
                             let data = {
                                 'region': region,
-                                'date_debut': date_debut,
-                                'date_fin': date_fin,
+                                'nom': nom,
+                                'telephone': telephone,
                                 'lieuresidence': lieuresidence,
-                                'sexe': sexe,
-                                'nationalite': nationalite,
-                                'scolarise': scolarise,
-                                'handicape': handicape,
+                                'departement': departement,
+                                'chefequipe': chefequipe,
+                                
                             }
                             var link = "{{ route('beneficiaire.beneficiaireexportexcel',['data' =>':data']) }}";
                             link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));

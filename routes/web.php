@@ -54,6 +54,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
      Route::prefix('beneficiaire')->name('beneficiaire.')->controller(ParticulierController::class)->group(function () {
         Route::get('/', 'beneficiaire')->name('index');
+        Route::get('beneficiaire/export-excel/{data?}', 'beneficiaireExportExcel')->name('beneficiaireexportexcel');
     });
 
      Route::prefix('reclamation')->name('reclamation.')->controller(ParticulierController::class)->group(function () {

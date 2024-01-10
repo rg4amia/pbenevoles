@@ -596,7 +596,7 @@ class AuthenticateController extends Controller
                                                                                          'author_file' => Auth::id(),
                                                                                          'file_ceated_date' => $today,
                                                                                      ]);
-         //dd($fichiePointage);
+         //dd($fichiePointage,$affected);
         return Redirect::back()->with('success',"Fiche ajouté avec succès");
 
      }

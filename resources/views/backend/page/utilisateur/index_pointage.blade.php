@@ -127,12 +127,13 @@
                     <div class="modal-body">
                         <label>Date du pointage: </label>
                         <div class="form-group">
-                            <input type="date" placeholder="Date du pointage" class="form-control" id="pointage_date" name="pointage_date" />
+                            <input type="date" placeholder="Date du pointage" class="form-control" id="pointage_date" name="pointage_date" required />
                         </div>
 
                         <label>Période: </label>
                         <div class="form-group">
-                            <select class="form-control" id="pointage_periode" name="pointage_periode">
+                            <select class="form-control" id="pointage_periode" name="pointage_periode" required>
+                                <option value="">-</option>
                                 <option value="Matin">MATIN</option>
                                 <option value="Soir">SOIR</option>
                             </select>

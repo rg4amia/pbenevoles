@@ -12,6 +12,7 @@ use App\Models\Region;
 use App\Models\Sexe;
 use App\Models\Beneficiaire;
 use App\Models\Reclamation;
+use App\Models\Departement;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
@@ -91,9 +92,11 @@ class ParticulierController extends Controller
                 $q->wherein('chefequipe_id',$user_id);
             })->count();
         $regions = Region::pluck('libelle','libelle');
-        $sexes = Sexe::pluck('libelle','id');
-        $nationalites = Nationalite::pluck('libelle','id');
+        //$sexes = Sexe::pluck('libelle','id');
+        //$nationalites = Nationalite::pluck('libelle','id');
         $communes = Commune::pluck('libelle','libelle');
+        $departements = Departement::pluck('libelle','libelle');
+        $chefequipes = Beneficiaire::join('users','users.telephone','beneficiaire.telephone')->where('beneficiaire.state',2)->pluck('beneficiaire.nom','users.id');
 
         $ob_param=$request->all();
         $page=$request->get('page');
@@ -109,6 +112,8 @@ class ParticulierController extends Controller
             $telephone = $ob_param['telephone'] ?? $request->get('telephone');
             $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
             $region = $ob_param['region'] ?? $request->get('region');
+            $departement = $ob_param['departement'] ?? $request->get('departement');
+            $chefequipe = $ob_param['chefequipe'] ?? $request->get('chefequipe');
 
 
 
@@ -124,6 +129,10 @@ class ParticulierController extends Controller
                 $q->where('nom','like','%'.$nom.'%');
             })->when($telephone, function ($q) use ($telephone){
                 $q->where('telephone',$telephone);
+            })->when($departement, function ($q) use ($departement){
+                $q->where('departement',$departement);
+            })->when($chefequipe, function ($q) use ($chefequipe){
+                $q->where('chefequipe_id',$chefequipe);
             })->paginate(40);
 
             $totalBenevoles = Beneficiaire::when($region, function ($q) use ($region) {
@@ -134,12 +143,16 @@ class ParticulierController extends Controller
                 $q->where('nom','like','%'.$nom.'%');
             })->when($telephone, function ($q) use ($telephone){
                 $q->where('telephone',$telephone);
+            })->when($departement, function ($q) use ($departement){
+                $q->where('departement',$departement);
+            })->when($chefequipe, function ($q) use ($chefequipe){
+                $q->where('chefequipe_id',$chefequipe);
             })->count();
 
             return view('backend.page.particulier.beneficiaire', compact('benevoles','totalBenevoles'));
         }
 
-        return view('backend.page.particulier.index_beneficiaire', compact('benevoles','regions','sexes','nationalites','communes','totalBenevoles'));
+        return view('backend.page.particulier.index_beneficiaire', compact('benevoles','regions','communes','totalBenevoles','departements','chefequipes'));
     }
 
     public function reclamation(Request $request){
@@ -155,8 +168,6 @@ class ParticulierController extends Controller
         $communes = Commune::pluck('libelle','id');
 
         if ($request->ajax()) {
-
-            //dd($request->all());
 
             $benevoles = Reclamation::join('beneficiaire','beneficiaire.telephone','reclamation.telephone')
             ->when($request->lieuresidence, function ($q) use ($request){
@@ -194,4 +205,15 @@ class ParticulierController extends Controller
         $response = json_decode($data);
         return Excel::download(new BenevoleExport($response), 'benevole.xlsx');
     }
+
+    public function beneficiaireExportExcel($data){
+        //dd($data);
+        $response = json_decode($data);
+        return Excel::download(new BenevoleExport($response), 'beneficiaire.xlsx');
+    }
+
+
+
+
+
 }

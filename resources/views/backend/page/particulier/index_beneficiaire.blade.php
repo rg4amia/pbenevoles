@@ -88,27 +88,35 @@
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                   <!--  <div class="col-md-3">
-                                                        {{ html()->date('date_debut')->class('form-control')->id('date_debut') }}
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        {{ html()->date('date_fin')->class('form-control')->id('date_fin') }}
-                                                    </div> -->
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu residence')->id('lieuresidence') }}
                                                     </div>
 
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         {{ html()->select('region', $regions, null)->class('form-control')->placeholder('Selectionner region / district')->id('region') }}
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
+                                                        {{ html()->select('departement', $departements, null)->class('form-control')->placeholder('Selectionner département')->id('departement') }}
+                                                    </div>
+                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-4">
+                                                        {{ html()->select('chefequipe', $chefequipes, null)->class('form-control')->placeholder('Selectionner chef d\'équipe')->id('chefequipe') }}
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
                                                     data-dismiss="modal">Recherche
                                             </button>
@@ -162,8 +170,10 @@
             let nom = $('#nom').val();
             let telephone = $('#telephone').val();
             let lieuresidence = $('#lieuresidence').val();
+            let departement = $('#departement').val();
+            let chefequipe = $('#chefequipe').val();
 
-            //console.log(telephone);
+            console.log(chefequipe);
 
             // récupérer les autres valeurs de filtre
             $.ajax({
@@ -173,7 +183,9 @@
                     region: region,
                     lieuresidence: lieuresidence,
                     nom: nom,
-                    telephone: telephone
+                    telephone: telephone,
+                    departement: departement,
+                    chefequipe: chefequipe
                 },
                 success: function (response) {
                     $('#benevoles').html(response);
@@ -206,35 +218,35 @@
               //  serverSide: false,
                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
                 buttons: [
-                    // {
-                    //     extend: 'colvis',
-                    //     text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
-                    //     className: 'btn btn-relief-warning mr-2',
-                    //     action: function (e, dt, node, config) {
-                    //         let region = $('#region').val();
-                    //         let date_debut = $('#date_debut').val();
-                    //         let date_fin = $('#date_fin').val();
-                    //         let lieuresidence = $('#lieuresidence').val();
-                    //         let sexe = $('#sexe').val();
-                    //         let nationalite = $('#nationalite').val();
-                    //         let scolarise = $('#scolarise').val();
-                    //         let handicape = $('#handicape').val();
+                    {
+                        extend: 'colvis',
+                        text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
+                        className: 'btn btn-relief-warning mr-2',
+                        action: function (e, dt, node, config) {
+                            let region = $('#region').val();
+                            let date_debut = $('#date_debut').val();
+                            let date_fin = $('#date_fin').val();
+                            let lieuresidence = $('#lieuresidence').val();
+                            let sexe = $('#sexe').val();
+                            let nationalite = $('#nationalite').val();
+                            let scolarise = $('#scolarise').val();
+                            let handicape = $('#handicape').val();
 
-                    //         let data = {
-                    //             'region': region,
-                    //             'date_debut': date_debut,
-                    //             'date_fin': date_fin,
-                    //             'lieuresidence': lieuresidence,
-                    //             'sexe': sexe,
-                    //             'nationalite': nationalite,
-                    //             'scolarise': scolarise,
-                    //             'handicape': handicape,
-                    //         }
-                    //         var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
-                    //         link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
-                    //         location.href = link
-                    //     }
-                    // },
+                            let data = {
+                                'region': region,
+                                'date_debut': date_debut,
+                                'date_fin': date_fin,
+                                'lieuresidence': lieuresidence,
+                                'sexe': sexe,
+                                'nationalite': nationalite,
+                                'scolarise': scolarise,
+                                'handicape': handicape,
+                            }
+                            var link = "{{ route('beneficiaire.beneficiaireexportexcel',['data' =>':data']) }}";
+                            link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
+                            location.href = link
+                        }
+                    },
                     {
                         extend: 'colvis',
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',

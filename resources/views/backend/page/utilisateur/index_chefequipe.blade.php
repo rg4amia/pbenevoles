@@ -79,16 +79,46 @@
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                   
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" placeholder="Nom & prénom" class="form-control">
+                                                    <div class="col-md-4">
+                                                        <label>Lieu de résidence</label>
+                                                        {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu residence')->id('lieuresidence') }}
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="telephone" id="telephone" placeholder="Téléphone" class="form-control">
+
+                                                    <div class="col-md-4">
+                                                        <label>Région</label>
+                                                        {{ html()->select('region', $regions, null)->class('form-control')->placeholder('Selectionner region / district')->id('region') }}
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Département</label>
+                                                        {{ html()->select('departement', $departements, null)->class('form-control')->placeholder('Selectionner département')->id('departement') }}
+                                                    </div>
+                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-4">
+                                                        <label>Superviseur</label>
+                                                       <select class="select2 form-control" id="superviseur" name="superviseur">
+                                                        <option value="0"></option>
+                                                        @foreach($superviseurs as $superviseur)
+                                                        <option value="{{$superviseur->id}}">{{$superviseur->name}} ({{$superviseur->telephone}})</option>
+                                                        @endforeach
+                                                    </select>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Nom & prénoms</label>
+                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénoms" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Téléphone</label>
+                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
+                                            <button type="button" class="btn btn-primary" id="recherche_chefequipe"
                                                     data-dismiss="modal">Recherche
                                             </button>
                                         </form>
@@ -97,7 +127,7 @@
                                             <div class="row">
                                                 <div class="col-md-4"></div>
                                                <div class="col-md-4">
-                                                    <label><strong>Sélectionnez superviseur</strong></label>
+                                                    <label><strong style="color:red;">Sélectionnez un superviseur pour affécter des chefs d'équipe</strong></label>
                                                     <select class="select2 form-control" id="chefequipe" name="chefequipe">
                                                         <option value="0"></option>
                                                         @foreach($superviseurs as $superviseur)
@@ -154,20 +184,24 @@
             }
         });
 
-        $('#recherche_beneficiaire').on('click', function () {
+        $('#recherche_chefequipe').on('click', function () {
             let region = $('#region').val();
+            let departement = $('#departement').val();
+            let superviseur = $('#superviseur').val();
+            let lieuresidence = $('#lieuresidence').val();
             let nom = $('#nom').val();
             let telephone = $('#telephone').val();
-            let lieuresidence = $('#lieuresidence').val();
 
             //console.log(telephone);
 
             // récupérer les autres valeurs de filtre
             $.ajax({
-                url: "{{ route('benevole.index') }}",
+                url: "{{ route('chefequipe.index') }}",
                 method: "GET",
                 data: {
                     region: region,
+                    departement: departement,
+                    superviseur: superviseur,
                     lieuresidence: lieuresidence,
                     nom: nom,
                     telephone: telephone
@@ -203,35 +237,7 @@
               //  serverSide: false,
                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
                 buttons: [
-                    // {
-                    //     extend: 'colvis',
-                    //     text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
-                    //     className: 'btn btn-relief-warning mr-2',
-                    //     action: function (e, dt, node, config) {
-                    //         let region = $('#region').val();
-                    //         let date_debut = $('#date_debut').val();
-                    //         let date_fin = $('#date_fin').val();
-                    //         let lieuresidence = $('#lieuresidence').val();
-                    //         let sexe = $('#sexe').val();
-                    //         let nationalite = $('#nationalite').val();
-                    //         let scolarise = $('#scolarise').val();
-                    //         let handicape = $('#handicape').val();
-
-                    //         let data = {
-                    //             'region': region,
-                    //             'date_debut': date_debut,
-                    //             'date_fin': date_fin,
-                    //             'lieuresidence': lieuresidence,
-                    //             'sexe': sexe,
-                    //             'nationalite': nationalite,
-                    //             'scolarise': scolarise,
-                    //             'handicape': handicape,
-                    //         }
-                    //         var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
-                    //         link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
-                    //         location.href = link
-                    //     }
-                    // },
+                    
                     @if(Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6)
                     {
                         extend: 'colvis',
@@ -270,6 +276,33 @@
                         }
                     },
                     @endif
+                    {
+                        extend: 'colvis',
+                        text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
+                        className: 'btn btn-relief-warning mr-2',
+                        action: function (e, dt, node, config) {
+                            let region = $('#region').val();
+                            let departement = $('#departement').val();
+                            let superviseur = $('#superviseur').val();
+                            let lieuresidence = $('#lieuresidence').val();
+                            let nom = $('#nom').val();
+                            let telephone = $('#telephone').val();
+                            
+
+                            let data = {
+                                'region': region,
+                                'departement': departement,
+                                'superviseur': superviseur,
+                                'lieuresidence': lieuresidence,
+                                'nom': nom,
+                                'telephone': telephone,
+                                
+                            }
+                            var link = "{{ route('chefequipe.chefequipeexportexcel',['data' =>':data']) }}";
+                            link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
+                            location.href = link
+                        }
+                    },
                     {
                         extend: 'colvis',
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',

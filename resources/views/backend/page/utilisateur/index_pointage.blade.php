@@ -80,16 +80,29 @@
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénom" class="form-control">
+                                                    <div class="col-md-4">
+                                                        <label>Date début:</label>
+                                                        {{ html()->date('date_debut')->class('form-control')->id('date_debut') }}
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                         <label>Date fin:</label>
+                                                        {{ html()->date('date_fin')->class('form-control')->id('date_fin') }}
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
+                                                        <label>Auteur:</label>
+                                                        <select class="form-control" id="author_id" name="author_id">
+                                                            <option value=""></option>
+                                                            @foreach($authors as $author)
+                                                            <option value="{{$author->id}}">{{$author->name}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
+                                                    
                                                 </div>
+                                                
                                             </div>
-                                            <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
+                                            
+                                            <button type="button" class="btn btn-primary" id="recherche_pointage"
                                                     data-dismiss="modal">Recherche
                                             </button>
                                            @if( Auth::user()->type==1)
@@ -210,23 +223,20 @@
             }
         });
 
-        $('#recherche_beneficiaire').on('click', function () {
-            let region = $('#region').val();
-            let nom = $('#nom').val();
-            let telephone = $('#telephone').val();
-            let lieuresidence = $('#lieuresidence').val();
+        $('#recherche_pointage').on('click', function () {
+            let date_debut = $('#date_debut').val();
+            let date_fin = $('#date_fin').val();
+            let author_id = $('#author_id').val();
+            
 
-            //console.log(telephone);
-
-            // récupérer les autres valeurs de filtre
             $.ajax({
-                url: "{{ route('beneficiaire.index') }}",
+                url: "{{ route('pointage.index') }}",
                 method: "GET",
                 data: {
-                    region: region,
-                    lieuresidence: lieuresidence,
-                    nom: nom,
-                    telephone: telephone
+                    date_debut: date_debut,
+                    date_fin: date_fin,
+                    author_id: author_id,
+                   
                 },
                 success: function (response) {
                     $('#benevoles').html(response);
@@ -234,6 +244,25 @@
                 }
             });
         });
+
+        function telecharge_pointage(pointage_id) {
+
+            let date_debut = $('#date_debut').val();
+            let date_fin = $('#date_fin').val();
+            let author_id = $('#author_id').val();
+    
+            
+            let data = {
+                'date_debut': date_debut,
+                'date_fin': date_fin,
+                'author_id': author_id,
+                'pointage_id': pointage_id,
+            }
+            var link = "{{ route('pointage.pointageexportexcel',['data' =>':data']) }}";
+            link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
+            location.href = link
+            
+        }
 
         function loadTable() {
 

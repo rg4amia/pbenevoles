@@ -81,6 +81,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::prefix('chefequipe')->name('chefequipe.')->controller(AuthenticateController::class)->group(function () {
         Route::get('/', 'index_chefequipe')->name('index');
+        Route::get('chefequipe/export-excel/{data?}', 'chefequipeExportExcel')->name('chefequipeexportexcel');
         //Route::get('/traitement_reclamation/{reclamation_id}/{state}', 'traitement_reclamation')->name('traitement');
     });
 
@@ -95,6 +96,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/remplir/pointage/{id}', 'remplir_pointage')->name('remplir');
         Route::post('pointage/file_update', 'file_update')->name('file_update');
         Route::get('/save_pointage/{benevole}/{poitage_id}/{pointage}','save_pointage')->name('save');
+        Route::get('pointage/export-excel/{data?}', 'pointageExportExcel')->name('pointageexportexcel');
     });
 });
 

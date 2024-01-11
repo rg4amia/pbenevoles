@@ -17,13 +17,14 @@
                     <td class="large-cell">{{ $pointage->date }} {{ $pointage->periode }}</td>
                     <td class="large-cell">{{ App\Helpers\Helper::getInstanceName('users','id',$pointage->author_id,'name') }}</td>
                     <td class="large-cell">
+                        <a class="btn btn-danger" href="#" id="telecharge_pointage" onclick="telecharge_pointage({{$pointage->id}})">Télécharger pointage</a>
                         <a class="btn btn-warning" href="{{route('pointage.remplir',$pointage->id)}}">Détail</a>
                     
                     @if(Auth::user()->type==2 ||Auth::user()->type==3 || Auth::user()->type==4 || Auth::user()->type==5 || Auth::user()->type==6) 
                         <button type="button" class="btn btn-info" onclick="showFileModal({{$pointage->id}})">Fiche</button> 
                     @endif
                         @if($pointage->file_pointage)
-                        <a class="btn btn-success" href="{{  \Illuminate\Support\Facades\Storage::disk('public')->url($pointage->file_pointage)  }}">Télécharger fichier</a>
+                        <a class="btn btn-success" href="{{  \Illuminate\Support\Facades\Storage::disk('public')->url($pointage->file_pointage)  }}">Télécharger fiche</a>
                         @endif
                     </td>
                 </tr>

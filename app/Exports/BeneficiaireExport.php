@@ -6,6 +6,7 @@ use App\Models\Beneficiaire;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Illuminate\Support\Facades\Auth;
 
 class BeneficiaireExport implements FromCollection,WithHeadings
 {
@@ -37,7 +38,18 @@ class BeneficiaireExport implements FromCollection,WithHeadings
     public function collection()
     {
         ini_set("memory_limit", "-1"); set_time_limit(0);
-    ini_set('max_execution_time', 500);
+        ini_set('max_execution_time', 500);
+
+        if(Auth::user()->type == 1){$user_id = [Auth::id()];}
+
+        elseif(Auth::user()->type == 2){
+        $chefs = Beneficiaire::join('users','users.telephone','beneficiaire.telephone')->select('users.id')->where('chefequipe_id',Auth::id())->get();
+        $user_id =[];
+              foreach($chefs as $chef){
+                                         array_push($user_id, $chef->id);
+                                      }
+             
+        }else{$user_id = [];}
     
         $region = $this->region;
         $nom = $this->nom;
@@ -46,7 +58,9 @@ class BeneficiaireExport implements FromCollection,WithHeadings
         $departement = $this->departement;
         $chefequipe = $this->chefequipe;
 
-        $benevoles = Beneficiaire::when($region, function ($q) use ($region) {
+        $benevoles = Beneficiaire::when($user_id, function ($q) use ($user_id){
+                $q->wherein('chefequipe_id',$user_id);
+            })->when($region, function ($q) use ($region) {
                 $q->where('region',$region);
             })->when($lieuresidence, function ($q) use ($lieuresidence){
                 $q->where('lieu_residence',$lieuresidence);

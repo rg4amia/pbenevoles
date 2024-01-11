@@ -57,7 +57,7 @@ class AuthenticateController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('admin/particulier');
+        return redirect('admin/beneficiaire');
     }
 
      public function index(Request $request){

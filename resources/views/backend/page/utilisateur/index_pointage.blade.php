@@ -105,7 +105,7 @@
                                             <button type="button" class="btn btn-primary" id="recherche_pointage"
                                                     data-dismiss="modal">Recherche
                                             </button>
-                                           @if( Auth::user()->type==1)
+                                           @if( Auth::user()->type==1 && $totalpointage==0)
                                             <div class="form-group col-sm-3" style="display:inline-block; float: right;">
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inlineForm" style="float: right;">
                                             + pointage
@@ -288,35 +288,12 @@
               //  serverSide: false,
                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
                 buttons: [
-                    // {
-                    //     extend: 'colvis',
-                    //     text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
-                    //     className: 'btn btn-relief-warning mr-2',
-                    //     action: function (e, dt, node, config) {
-                    //         let region = $('#region').val();
-                    //         let date_debut = $('#date_debut').val();
-                    //         let date_fin = $('#date_fin').val();
-                    //         let lieuresidence = $('#lieuresidence').val();
-                    //         let sexe = $('#sexe').val();
-                    //         let nationalite = $('#nationalite').val();
-                    //         let scolarise = $('#scolarise').val();
-                    //         let handicape = $('#handicape').val();
-
-                    //         let data = {
-                    //             'region': region,
-                    //             'date_debut': date_debut,
-                    //             'date_fin': date_fin,
-                    //             'lieuresidence': lieuresidence,
-                    //             'sexe': sexe,
-                    //             'nationalite': nationalite,
-                    //             'scolarise': scolarise,
-                    //             'handicape': handicape,
-                    //         }
-                    //         var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
-                    //         link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
-                    //         location.href = link
-                    //     }
-                    // },
+                    {
+                        extend: 'colvis',
+                        text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
+                        className: 'btn btn-relief-warning mr-2',
+                        action: function (e, dt, node, config) {telecharge_pointage(null)}
+                    },
                     @if(Auth::user()->type==1)
                     {
                         extend: 'colvis',

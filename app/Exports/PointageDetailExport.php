@@ -41,7 +41,8 @@ class PointageDetailExport implements FromCollection,WithHeadings
 
         $pointages =Pointage::join('pointage_benevoles','pointages.id','pointage_benevoles.pointage_id')
                 ->leftjoin('beneficiaire','pointage_benevoles.benevole_id','beneficiaire.id')
-                ->select('pointages.date','pointages.periode','beneficiaire.nom','beneficiaire.telephone','pointage_benevoles.pointage')
+                ->leftjoin('users','pointages.author_id','users.id')
+                ->select('users.name','pointages.date','pointages.periode','beneficiaire.nom','beneficiaire.telephone','pointage_benevoles.pointage')
                 ->when($pointage_id, function ($q) use ($pointage_id){
                 $q->where('pointages.id', $pointage_id);
             })->when($date_debut, function ($q) use ($date_debut){
@@ -59,6 +60,7 @@ class PointageDetailExport implements FromCollection,WithHeadings
             $check = '';
             if($pointage->pointage == 1){ $check='PRESENT';}elseif($pointage->pointage == 2){$check='ABSENT';}else{$check='PERMISSIONNAIRE';}
             $data [] = [
+                'Auteur' => $pointage->name,
                 'date' => $pointage->date,
                 'periode' => $pointage->periode,
                 'nom' => $pointage->nom,
@@ -83,6 +85,7 @@ class PointageDetailExport implements FromCollection,WithHeadings
     public function headings(): array
     {
         return [
+            'Chef d\équipe',
             'Date',
             'Période',
             'Nom',

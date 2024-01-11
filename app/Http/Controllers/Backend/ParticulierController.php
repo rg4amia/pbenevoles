@@ -39,8 +39,6 @@ class ParticulierController extends Controller
                 $q->where('region_id',$request->region);
             })->when($request->lieuresidence, function ($q) use ($request){
                 $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
             })->when($request->nationalite, function ($q) use ($request){
                 $q->where('nationalite_id', $request->nationalite);
             })->when($request->sexe, function($q) use ($request) {
@@ -55,8 +53,6 @@ class ParticulierController extends Controller
                 $q->where('region_id',$request->region);
             })->when($request->lieuresidence, function ($q) use ($request){
                 $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
             })->when($request->nationalite, function ($q) use ($request){
                 $q->where('nationalite_id', $request->nationalite);
             })->when($request->sexe, function($q) use ($request) {
@@ -159,8 +155,8 @@ class ParticulierController extends Controller
 
     public function reclamation(Request $request){
 
-        $benevoles = Reclamation::with('lieuresidence','beneficiaire')->paginate(30);
-        $totalBenevoles = Reclamation::with('lieuresidence','beneficiaire')->count();
+        $benevoles = Reclamation::join('beneficiaire','beneficiaire.telephone','reclamation.telephone')->paginate(30);
+        $totalBenevoles = Reclamation::join('beneficiaire','beneficiaire.telephone','reclamation.telephone')->count();
         $regions = Region::pluck('libelle','id');
         $sexes = Sexe::pluck('libelle','id');
         $nationalites = Nationalite::pluck('libelle','id');
@@ -171,8 +167,10 @@ class ParticulierController extends Controller
             $benevoles = Reclamation::join('beneficiaire','beneficiaire.telephone','reclamation.telephone')
             ->when($request->lieuresidence, function ($q) use ($request){
                 $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
+            })->when($request->date_debut, function ($q) use ($request){
+                $q->where('reclamation.created_at','>=', $request->date_debut);
+            })->when($request->date_fin, function ($q) use ($request){
+                $q->where('reclamation.created_at','<=',$request->date_fin);
             })->when($request->nom, function ($q) use ($request){
                 $q->where('nom','like','%'.$request->nom.'%' )->orwhere('telephone','like','%'.$request->nom.'%' );
             })->paginate(25);
@@ -180,8 +178,10 @@ class ParticulierController extends Controller
             $totalBenevoles = Reclamation::join('beneficiaire','beneficiaire.telephone','reclamation.telephone')
             ->when($request->lieuresidence, function ($q) use ($request){
                 $q->where('lieu_residence_id',$request->lieuresidence);
-            })->when($request->date_debut && $request->date_fin, function ($q) use ($request){
-                $q->whereBetween('created_at', [$request->date_debut.' 00:00:00', $request->date_fin.' 23:59:59']);
+            })->when($request->date_debut, function ($q) use ($request){
+                $q->where('reclamation.created_at','>=', $request->date_debut);
+            })->when($request->date_fin, function ($q) use ($request){
+                $q->where('reclamation.created_at','<=',$request->date_fin);
             })->when($request->nom, function ($q) use ($request){
                 $q->where('nom','like','%'.$request->nom.'%' )->orwhere('telephone','like','%'.$request->nom.'%' );
             })->count();

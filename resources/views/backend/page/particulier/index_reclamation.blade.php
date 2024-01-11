@@ -178,22 +178,25 @@
         });
 
         $('#recherche_reclamation').on('click', function () {
-            let region = $('#region').val();
+            
             let date_debut = $('#date_debut').val();
             let date_fin = $('#date_fin').val();
             let lieuresidence = $('#lieuresidence').val();
             let nom = $('#nom').val();
+            let telephone = $('#telephone').val();
+            let type_reclamation = $('#type_reclamation').val();
 
             // récupérer les autres valeurs de filtre
             $.ajax({
                 url: "{{ route('reclamation.index') }}",
                 method: "GET",
                 data: {
-                    region: region,
-                    lieuresidence: lieuresidence,
                     date_debut: date_debut,
                     date_fin: date_fin,
+                    lieuresidence: lieuresidence,
                     nom: nom,
+                    telephone: telephone,
+                    type_reclamation:type_reclamation
                 },
                 success: function (response) {
                     $('#benevoles').html(response);

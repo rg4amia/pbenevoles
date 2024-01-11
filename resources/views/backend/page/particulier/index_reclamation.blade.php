@@ -88,21 +88,47 @@
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
+                                                        <label>Date début:</label>
                                                         {{ html()->date('date_debut')->class('form-control')->id('date_debut') }}
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
+                                                         <label>Date fin:</label>
                                                         {{ html()->date('date_fin')->class('form-control')->id('date_fin') }}
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
+                                                         <label>Lieu de résidence:</label>
                                                         {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu residence')->id('lieuresidence') }}
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-4">
+                                                         <label>Nom & prénom:</label>
                                                        <input type="text" name="nom" id="nom" placeholder="Nom & téléphone" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                         <label>Téléphone:</label>
+                                                       <input type="text" name="telephone" id="telephone" placeholder="Téléphone" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                         <label>Type de réclamation:</label>
+                                                         <select name="type_reclamation" id="type_reclamation" class="form-control">
+                                                            <option value="">Selectionner type de reclamation</option>
+                                                             <option value="1">Erreur sur le nom</option>
+                                                             <option value="2">Erreur sur le lieu de residence</option>
+                                                             <option value="3">Autre</option>
+                                                         </select>
                                                     </div>
                                                 </div>
                                                 
                                             </div>
+
                                             <button type="button" class="btn btn-primary" id="recherche_reclamation"
                                                     data-dismiss="modal">Recherche
                                             </button>
@@ -200,35 +226,31 @@
               //  serverSide: false,
                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
                 buttons: [
-                    // {
-                    //     extend: 'colvis',
-                    //     text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
-                    //     className: 'btn btn-relief-warning mr-2',
-                    //     action: function (e, dt, node, config) {
-                    //         let region = $('#region').val();
-                    //         let date_debut = $('#date_debut').val();
-                    //         let date_fin = $('#date_fin').val();
-                    //         let lieuresidence = $('#lieuresidence').val();
-                    //         let sexe = $('#sexe').val();
-                    //         let nationalite = $('#nationalite').val();
-                    //         let scolarise = $('#scolarise').val();
-                    //         let handicape = $('#handicape').val();
+                    {
+                        extend: 'colvis',
+                        text: feather.icons['file'].toSvg({class: 'font-small-4 mr-50'}) + 'Extrait Excel',
+                        className: 'btn btn-relief-warning mr-2',
+                        action: function (e, dt, node, config) {
+                            let date_debut = $('#date_debut').val();
+                            let date_fin = $('#date_fin').val();
+                            let lieuresidence = $('#lieuresidence').val();
+                            let nom = $('#nom').val();
+                            let telephone = $('#telephone').val();
+                            let type_reclamation = $('#type_reclamation').val();
 
-                    //         let data = {
-                    //             'region': region,
-                    //             'date_debut': date_debut,
-                    //             'date_fin': date_fin,
-                    //             'lieuresidence': lieuresidence,
-                    //             'sexe': sexe,
-                    //             'nationalite': nationalite,
-                    //             'scolarise': scolarise,
-                    //             'handicape': handicape,
-                    //         }
-                    //         var link = "{{ route('particulier.benevoleexportexcel',['data' =>':data']) }}";
-                    //         link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
-                    //         location.href = link
-                    //     }
-                    // },
+                            let data = {
+                                'date_debut': date_debut,
+                                'date_fin': date_fin,
+                                'lieuresidence': lieuresidence,
+                                'nom': nom,
+                                'telephone': telephone,
+                                'type_reclamation': type_reclamation,
+                            }
+                            var link = "{{ route('reclamation.reclamationexportexcel',['data' =>':data']) }}";
+                            link = link.replace(':data', encodeURIComponent(JSON.stringify(data)));
+                            location.href = link
+                        }
+                    },
                     {
                         extend: 'colvis',
                         text: feather.icons['eye'].toSvg({class: 'font-small-4 mr-50'}) + 'Colonne',

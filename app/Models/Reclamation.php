@@ -28,6 +28,10 @@ class Reclamation extends Model
         return $this->belongsTo(Commune::class,'lieu_residence_ins');
     }
 
+    public function typeReclamation(){
+        return $this->belongsTo(Type_reclamation::class,'type_reclamation');
+    }
+
     public function beneficiaire(){
         return $this->hasMany(Beneficiaire::class,'telephone','telephone');
     }

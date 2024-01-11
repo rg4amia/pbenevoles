@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Exports\BenevoleExport;
 use App\Exports\BeneficiaireExport;
+use App\Exports\ReclamationExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Benevole;
@@ -157,12 +158,9 @@ class ParticulierController extends Controller
     }
 
     public function reclamation(Request $request){
-        $benevoles = Reclamation::with('lieuresidence','beneficiaire')
-                                 
-                                  ->paginate(30);
-        $totalBenevoles = Reclamation::with('lieuresidence','beneficiaire')
-                                       
-                                       ->count();
+
+        $benevoles = Reclamation::with('lieuresidence','beneficiaire')->paginate(30);
+        $totalBenevoles = Reclamation::with('lieuresidence','beneficiaire')->count();
         $regions = Region::pluck('libelle','id');
         $sexes = Sexe::pluck('libelle','id');
         $nationalites = Nationalite::pluck('libelle','id');
@@ -211,6 +209,12 @@ class ParticulierController extends Controller
         //dd($data);
         $response = json_decode($data);
         return Excel::download(new BeneficiaireExport($response), 'beneficiaire.xlsx');
+    }
+
+    public function reclamationExportExcel($data){
+        //dd($data);
+        $response = json_decode($data);
+        return Excel::download(new ReclamationExport($response), 'reclamation.xlsx');
     }
 
 

@@ -172,7 +172,11 @@ class ParticulierController extends Controller
             })->when($request->date_fin, function ($q) use ($request){
                 $q->where('reclamation.created_at','<=',$request->date_fin);
             })->when($request->nom, function ($q) use ($request){
-                $q->where('nom','like','%'.$request->nom.'%' )->orwhere('telephone','like','%'.$request->nom.'%' );
+                $q->where('beneficiaire.nom','like','%'.$request->nom.'%' );
+            })->when($request->telephone, function ($q) use ($request){
+                $q->where('reclamation.telephone',$request->telephone );
+            })->when($request->type_reclamation, function ($q) use ($request){
+                $q->where('type_reclamation',$request->type_reclamation );
             })->paginate(25);
 
             $totalBenevoles = Reclamation::join('beneficiaire','beneficiaire.telephone','reclamation.telephone')
@@ -183,7 +187,11 @@ class ParticulierController extends Controller
             })->when($request->date_fin, function ($q) use ($request){
                 $q->where('reclamation.created_at','<=',$request->date_fin);
             })->when($request->nom, function ($q) use ($request){
-                $q->where('nom','like','%'.$request->nom.'%' )->orwhere('telephone','like','%'.$request->nom.'%' );
+                $q->where('beneficiaire.nom','like','%'.$request->nom.'%' );
+            })->when($request->telephone, function ($q) use ($request){
+                $q->where('reclamation.telephone',$request->telephone );
+            })->when($request->type_reclamation, function ($q) use ($request){
+                $q->where('type_reclamation',$request->type_reclamation);
             })->count();
 
             return view('backend.page.particulier.reclamation', compact('benevoles','totalBenevoles'));

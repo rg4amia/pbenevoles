@@ -53,5 +53,5 @@
     <br>
     <div>{{ $benevoles->appends(request()->all())->links() }}</div>
 @else
-    <p>No results found.</p>
+    <p>Aucun résultat.</p>
 @endif

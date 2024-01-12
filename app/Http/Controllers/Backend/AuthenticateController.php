@@ -324,15 +324,15 @@ class AuthenticateController extends Controller
         $communes = Beneficiaire::selectRaw('lieu_residence')
                                             ->groupBy('lieu_residence')
                                             ->orderBy('lieu_residence', 'ASC')
-                                            ->get();
+                                            ->pluck('lieu_residence','lieu_residence');
         $regions = Beneficiaire::selectRaw('region')
                                             ->groupBy('region')
                                             ->orderBy('region', 'ASC')
-                                            ->get();
+                                            ->pluck('region','region');
         $departements = Beneficiaire::selectRaw('departement')
                                             ->groupBy('departement')
                                             ->orderBy('departement', 'ASC')
-                                            ->get();
+                                            ->pluck('departement','departement');
         $chefequipes = User::where('type',1)->get();
 
         $ob_param=$request->all();
@@ -349,6 +349,7 @@ class AuthenticateController extends Controller
             $telephone = $ob_param['telephone'] ?? $request->get('telephone');
             $lieuresidence = $ob_param['lieuresidence'] ?? $request->get('lieuresidence');
             $region = $ob_param['region'] ?? $request->get('region');
+            $departement = $ob_param['departement'] ?? $request->get('departement');
 
         if ($request->ajax()) {
 
@@ -361,6 +362,8 @@ class AuthenticateController extends Controller
                 $q->where('nom','like','%'.$nom.'%');
             })->when($telephone, function ($q) use ($telephone){
                 $q->where('telephone',$telephone);
+            })->when($departement, function ($q) use ($departement) {
+                $q->where('departement',$departement);
             })->paginate(50);
 
             $totalBenevoles = Beneficiaire::where(['state'=>1,'is_affected'=>1])
@@ -372,6 +375,8 @@ class AuthenticateController extends Controller
                 $q->where('nom','like','%'.$nom.'%');
             })->when($telephone, function ($q) use ($telephone){
                 $q->where('telephone',$telephone);
+            })->when($departement, function ($q) use ($departement) {
+                $q->where('departement',$departement);
             })->count();
 
             return view('backend.page.particulier.benevole', compact('benevoles','regions','departements','communes','chefequipes','totalBenevoles'));

@@ -5,7 +5,7 @@
             <tr>
                 <!-- <th>#</th> -->
                 <th>
-                    <!-- <input type="checkbox" id="select-all"> -->
+                    <input type="checkbox" id="select-all">
                 </th>
                 <th>Matricule</th>
                 <th>Nom &Prenom(s)</th>

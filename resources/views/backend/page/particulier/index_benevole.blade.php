@@ -73,30 +73,44 @@
                     <div class="col-12">
                         <div class="card user-profile-list">
                             <div class="card-body">
-                                <div class="float-right">
-                                    {{-- <button type="button"
-                                             data-toggle="modal"
-                                             data-target="#addcolonne"
-                                             class="btn btn-icon btn-icon btn-primary mr-0 waves-effect waves-light">
-                                         <i data-feather="list"></i>
-                                         Ajouter Colonne
-                                     </button>--}}
-                                </div>
+                                
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">
                                         <form action="#">
                                             <input type="hidden" id="type_valider" name="type" value="valider">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                   
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="nom" id="nom" placeholder="Nom & prénom" class="form-control">
+                                                    <div class="col-md-4">
+                                                        <label>Lieu de résidence</label>
+                                                        {{ html()->select('lieuresidence', $communes, null)->class('form-control')->placeholder('Selectionner lieu residence')->id('lieuresidence') }}
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <input type="text" name="telephone" id="telephone" placeholder="Téléphone" class="form-control">
+
+                                                    <div class="col-md-4">
+                                                        <label>Région</label>
+                                                        {{ html()->select('region', $regions, null)->class('form-control')->placeholder('Selectionner region / district')->id('region') }}
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Département</label>
+                                                        {{ html()->select('departement', $departements, null)->class('form-control')->placeholder('Selectionner département')->id('departement') }}
+                                                    </div>
+                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-4">
+                                                        <label>Nom & prénoms</label>
+                                                        <input type="text" name="nom" id="nom" value="" placeholder="Nom & prénoms" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Téléphone</label>
+                                                        <input type="text" name="telephone" id="telephone" value="" placeholder="Téléphone" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <button type="button" class="btn btn-primary" id="recherche_beneficiaire"
                                                     data-dismiss="modal">Recherche
                                             </button>
@@ -106,7 +120,7 @@
                                             <div class="row">
                                                 <div class="col-md-4"></div>
                                                <div class="col-md-4">
-                                                    <label><strong>Sélectionnez Chef d'équipe</strong></label>
+                                                    <label><strong style="color:red;">Sélectionnez Chef d'équipe pour les affectation</strong></label>
                                                     <select class="select2 form-control" id="chefequipe" name="chefequipe">
                                                         <option value="0"></option>
                                                         @foreach($chefequipes as $chefequipe)
@@ -168,10 +182,8 @@
             let nom = $('#nom').val();
             let telephone = $('#telephone').val();
             let lieuresidence = $('#lieuresidence').val();
+            let departement = $('#departement').val();
 
-            //console.log(telephone);
-
-            // récupérer les autres valeurs de filtre
             $.ajax({
                 url: "{{ route('benevole.index') }}",
                 method: "GET",
@@ -179,7 +191,8 @@
                     region: region,
                     lieuresidence: lieuresidence,
                     nom: nom,
-                    telephone: telephone
+                    telephone: telephone,
+                    departement: departement
                 },
                 success: function (response) {
                     $('#benevoles').html(response);

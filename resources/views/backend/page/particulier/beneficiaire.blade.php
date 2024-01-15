@@ -50,3 +50,12 @@
 @else
     <p>Aucun résultat.</p>
 @endif
+<br>
+<div class="table-responsive mb-3 text-nowrap">
+    <label>Légend :</label>
+    <div>
+        <button class="btn btn-success">Bénévole - Chef d'équipe</button>
+        <button class="btn btn-danger">Bénévole - Superviseur</button>
+        <button class="btn btn-info">Bénévole - Affecté</button>
+    </div>
+</div>

@@ -16,9 +16,9 @@
             <tbody class="table-border-bottom-0" id="tableBenevoleBody">
             @forelse($benevoles as $key => $benevole)
                 <tr 
-                <?php if($benevole->state == 2){echo 'class="table-success"';} ?>
-                <?php if($benevole->state == 3){echo 'class="table-danger"';} ?>
-                <?php if($benevole->is_affected == 2){echo 'class="table-info"';} ?>
+                <?php if($benevole->state == 2){echo 'class="btn-success"';} ?>
+                <?php if($benevole->state == 3){echo 'class="btn-danger"';} ?>
+                <?php if($benevole->is_affected == 2){echo 'class="btn-info"';} ?>
                 >
                     <td class="large-cell">{{ $benevole->code}}</td>
                     <td class="large-cell">{{ strtoupper($benevole->nom) }}</td>
@@ -50,12 +50,3 @@
 @else
     <p>Aucun résultat.</p>
 @endif
-<br>
-<div class="table-responsive mb-3 text-nowrap">
-    <label>Légend :</label>
-    <div>
-        <button class="btn btn-success">Bénévole - Chef d'équipe</button>
-        <button class="btn btn-danger">Bénévole - Superviseur</button>
-        <button class="btn btn-info">Bénévole - Affecté</button>
-    </div>
-</div>

@@ -73,15 +73,7 @@
                     <div class="col-12">
                         <div class="card user-profile-list">
                             <div class="card-body">
-                                <div class="float-right">
-                                    {{-- <button type="button"
-                                             data-toggle="modal"
-                                             data-target="#addcolonne"
-                                             class="btn btn-icon btn-icon btn-primary mr-0 waves-effect waves-light">
-                                         <i data-feather="list"></i>
-                                         Ajouter Colonne
-                                     </button>--}}
-                                </div>
+                
                                 <div class="col-xl-12 col-lg-12">
                                     <div class="card">
                                         <form action="#">
@@ -98,7 +90,6 @@
                                                     <div class="col-md-4">
                                                         {{ html()->select('departement', $departements, null)->class('form-control')->placeholder('Selectionner département')->id('departement') }}
                                                     </div>
-                                    
                                                 </div>
                                             </div>
 
@@ -121,6 +112,21 @@
                                                     data-dismiss="modal">Recherche
                                             </button>
                                         </form>
+                                        <br>
+
+                                        <label>Légend :</label>
+                                        <div>
+                                            <span style="padding: 5px">
+                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-success"></button>: <label>Chef d'équipe</label>
+                                            </span>
+                                            <span style="padding: 5px">
+                                                 <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger"></button>: <label>Superviseur</label>
+                                            </span>
+                                            <span style="padding: 5px">
+                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-info"></button>: <label>Bénévole affecté</label>
+                                            </span>
+                                            
+                                        </div>
 
                                         <div id="benevoles">
                                             @include('backend.page.particulier.beneficiaire')

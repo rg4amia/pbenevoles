@@ -117,13 +117,13 @@
                                         <label>Légend :</label>
                                         <div>
                                             <span style="padding: 5px">
-                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-success"></button>: <label>Chef d'équipe</label>
+                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-success"></button> : <label>Identifie le chef d'équipe</label>
                                             </span>
                                             <span style="padding: 5px">
-                                                 <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger"></button>: <label>Superviseur</label>
+                                                 <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger"></button> : <label>Identifie le Superviseur</label>
                                             </span>
                                             <span style="padding: 5px">
-                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-info"></button>: <label>Bénévole affecté</label>
+                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-info"></button> : <label>Identifie le Bénévole affecté</label>
                                             </span>
                                             
                                         </div>

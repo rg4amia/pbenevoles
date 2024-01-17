@@ -43,7 +43,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                         
                         <div style="text-align:center;padding: 20px;"><a class="btn btn-success rounded" href="{{route('liste')}}">Cliquez pour accéder à la liste des bénéficiaires.</a></div>
                         
-                        <aside class="col-xl-6 col-lg-6" style="display:block;">
+                        <aside class="col-xl-6 col-lg-6" style="display:none;">
                              <!--    <br>
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
                             <ul class="list_ok">
@@ -141,7 +141,7 @@ $lieu_residence_id=$ob_param['lieu_residence_id'] ?? '';
                             </ul>
 
                         </aside><!-- /aside -->
-                        <aside class="col-xl-6 col-lg-6" style="display:block;">
+                        <aside class="col-xl-6 col-lg-6" style="display:none;">
                                 <br>
                             <h5 style="color:#ff8019;">COMMENT ENREGISTRER SA RECLAMATION ?</h5>
                             <ul class="list_ok">
